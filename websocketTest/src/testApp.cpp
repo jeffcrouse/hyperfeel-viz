@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
-    options.host = "je44.com";
+    options.host = "brainz.io";
     options.port = 8080;
     //options.protocol = "of-protocol";
     bool connected = client.connect( options );
