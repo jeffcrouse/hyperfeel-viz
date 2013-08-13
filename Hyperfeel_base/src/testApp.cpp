@@ -8,8 +8,20 @@ void testApp::setup(){
 	ofSetVerticalSync(true);
 		
 	//fbo
-	fbo.allocate( ofGetWidth(), ofGetHeight(), GL_RGBA, 4 );
+//	fbo.allocate( ofGetWidth(), ofGetHeight(), GL_RGBA16F, 4 );
 	
+	ofFbo::Settings s;
+	s.width         = ofGetWidth();
+	s.height            = ofGetHeight();
+	s.internalformat    = GL_RGBA16;
+	s.numColorbuffers   = 3;
+	s.useDepth = true;
+	s.numSamples = 0;
+	fbo.allocate(s);
+	
+	fbo.createAndAttachTexture(GL_RGBA16, 1);
+	
+	cout << "fbo.getNumTextures(): " << fbo.getNumTextures() << endl;
 	//shaders
 	loadShaders();
 	
@@ -108,34 +120,35 @@ void testApp::draw(){
 	//
 	ofBackground( 0,0,0 );
 	
+	glEnable(GL_DEPTH_TEST);
+	
 	//Draw out scene to the fbo
 	fbo.begin();
+    fbo.activateAllDrawBuffers();
 	ofClear(0,0,0);
     ofBackgroundGradient( bckgrnd0, bckgrnd1 );
 	
-	glLineWidth( 3 );
-	
+	//set camera attributes
 	camera.setFov( fov );
 	camera.setNearClip( nearClip );
 	camera.setFarClip( farClip );
 	
-	camera.setFov( fov );
+	//draw the data
 	camera.begin();
 	dataShader.begin();
 	dataShader.setUniform1f("nearClip", nearClip );
 	dataShader.setUniform1f("farClip", farClip );
 	dataShader.setUniform1f("curveWidth", curveWidth );
+	ofColor c;
 	for (int i=0; i < 30; i++) {
 		
-		ofColor c;
-		c.setHsb(255 * float(i)/30, 200, 255);
+		c.setHsb(255 * float(i)/30, 150, 255);
 		
 		dataShader.setUniform3f("color", float(c.r)/255., float(c.g)/255., float(c.b)/255. );
 		dataShader.setUniform1f("radius", curveRadius * (1. - (float(i)/30)*.98) );
 		dataShader.setUniform1f("offset", curveOffset * (1. - (float(i)/30)*.98) );
 		
 		ofPushMatrix();
-//		ofTranslate( ofGetWidth()/2, ofGetHeight()/2, 0);
 		ofTranslate( 0, 0, -30 * i);
 		ofRotate( i * 20. + elapsedTime*(.1 * i), 0, 0, 1);
 		
@@ -144,9 +157,10 @@ void testApp::draw(){
 		ofPopMatrix();
 		
 	}
+	
+	//end it
 	dataShader.end();
 	camera.end();
-	
 	fbo.end();
 	
 	
@@ -155,23 +169,20 @@ void testApp::draw(){
 	fboShader.begin();
 	fboShader.setUniform1f( "radius", radius );
 	fboShader.setUniform2f( "texDim", fbo.getWidth(), fbo.getHeight() );
-	fboShader.setUniformTexture("tex", fbo.getTextureReference(), 0 );
+	fboShader.setUniformTexture("tex", fbo.getTextureReference(0), 0 );
+	fboShader.setUniformTexture("deferredPass", fbo.getTextureReference(1), 1 );
 	fbo.draw(0, 0, ofGetWidth(), ofGetHeight() );
 	fboShader.end();
-	
-	
-	glDisable(GL_DEPTH_TEST);
-
-
-	
-	glEnable(GL_DEPTH_TEST);
 	
 	
 	//GUI
 	if( bHide ){
 		glDisable(GL_DEPTH_TEST);
+		
+		fbo.getTextureReference(0).draw( ofGetWidth() - 250, 25, 200, 200 );
+		fbo.getTextureReference(1).draw( ofGetWidth() - 250, 250, 200, 200 );
+		
 		gui.draw();
-		glEnable(GL_DEPTH_TEST);
 	}
 }
 

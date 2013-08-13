@@ -4,6 +4,8 @@ uniform float radius;
 
 uniform sampler2DRect tex;
 
+uniform sampler2DRect deferredPass;
+
 varying vec2 uv;
 
 void main(void)
@@ -19,5 +21,9 @@ void main(void)
 	
 	vec4 color = texture2DRect( tex, uv );
 	
-	gl_FragColor = color;//vec4( uv / texDim, 1., 1. );
+	vec4 normAndDepth = texture2DRect( deferredPass, uv );
+	vec3 norm = normAndDepth.xyz*2. - 1.;
+	float depth = normAndDepth.w;
+	
+	gl_FragColor = vec4( color.xyz * depth, 1. );
 }

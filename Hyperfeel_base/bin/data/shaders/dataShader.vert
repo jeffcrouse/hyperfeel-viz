@@ -11,6 +11,7 @@ uniform float curveWidth;
 varying vec3 ePos;
 varying vec3 col;
 varying float vData;
+varying vec3 norm;
 
 float TWO_PI = 6.28318530718;
 float PI = 3.14159265359;
@@ -21,6 +22,7 @@ void main()
 	float data = gl_Vertex.x;
 	float timeStamp = gl_Vertex.y;
 	float plusMinus = gl_Vertex.z;
+	
 
 //	float radius = 100.;
 //	float offset = 50.;
@@ -32,6 +34,9 @@ void main()
 	vec4 ecPosition = gl_ModelViewMatrix * vec4( pos, 1.);
 	ePos = normalize(ecPosition.xyz/ecPosition.w);
 	gl_Position = gl_ProjectionMatrix * ecPosition	;
+	
+	
+	norm = normalize(gl_NormalMatrix * vec3(0,0.,1.));
 
 	col = color;
 	vData = data;
