@@ -26,6 +26,11 @@ void testApp::setup(){
 		timeStamp[i] = float(i) / numSamples;
 	}
 	
+	//camera
+	camera.setNearClip(1);
+	camera.setFarClip(500);
+	camera.setFov( 60 );
+	
 	//create vertex data
 	numVertices = attention.size() * 2;
 	vector<ofVec3f> vertices( numVertices );
@@ -34,14 +39,13 @@ void testApp::setup(){
 		vertices[i].set( attention[i/2], timeStamp[i/2], -1 );
 		vertices[i+1].set( meditation[i/2], timeStamp[i/2], 1 );
 	}
-	
-	
+		
 	//close the ribbon
 	vertices.push_back( ofVec3f( attention[0], timeStamp[0], -1 ) );
 	vertices.push_back( ofVec3f( meditation[0], timeStamp[0], 1 ) );
 	numVertices += 2;
 	
-	//set the vbo
+	//set the vbo.. we need to use vertices or else ofVbo won't draw...
 	vbo.setVertexData( &vertices[0], vertices.size(), GL_STATIC_DRAW );
 
 //	dataShader.begin();
@@ -57,7 +61,12 @@ void testApp::setup(){
 	gui.setup("panel"); // most of the time you don't need a name but don't forget to call setup
 	gui.add( fpsLabel.set("fps", "60") );
 	gui.add(radius.set( "radius", 512, 256, 1024 ));
-	gui.add(color.set("color",ofColor(100,100,140),ofColor(0,0),ofColor(255,255)));
+//	gui.add(color.set("color",ofColor(100,100,140),ofColor(0,0),ofColor(255,255)));
+	
+	gui.add( cameraGroup.setup( "camera" ) );
+	cameraGroup.add( nearClip.set("nearClip", 10, 1, 500) );
+	cameraGroup.add( farClip.set("farClip", 500, 500, 2000) );
+	cameraGroup.add( fov.set("fov", 60, 1, 90) );
 	
 	gui.add( bckgrnd0.set("bckgrnd0",ofColor(100,100,140),ofColor(0,0),ofColor(255,255)));
 	gui.add( bckgrnd1.set("bckgrnd1",ofColor(100,100,140),ofColor(0,0),ofColor(255,255)));
@@ -90,8 +99,6 @@ void testApp::loadShaders(){
 //--------------------------------------------------------------
 void testApp::update(){
 	//	ofSetCircleResolution(circleResolution);
-//	gui.setup("panel")
-//	gui.getControl("panel")->set;
 	fpsLabel.set( ofToString( ofGetFrameRate()));
 }
 
@@ -107,11 +114,15 @@ void testApp::draw(){
 	
 	glLineWidth( 3 );
 	
-	//	camera.begin();
+	camera.setFov( fov );
+	camera.setNearClip( nearClip );
+	camera.setFarClip( farClip );
+	
+	camera.setFov( fov );
+	camera.begin();
 	dataShader.begin();
-	dataShader.setUniform3f("color", float(color->r)/255., float(color->g)/255., float(color->b)/255. );
-	dataShader.setUniform1f("radius", curveRadius );
-	dataShader.setUniform1f("offset", curveOffset );
+	dataShader.setUniform1f("nearClip", nearClip );
+	dataShader.setUniform1f("farClip", farClip );
 	dataShader.setUniform1f("curveWidth", curveWidth );
 	for (int i=0; i < 30; i++) {
 		
@@ -119,22 +130,21 @@ void testApp::draw(){
 		c.setHsb(255 * float(i)/30, 200, 255);
 		
 		dataShader.setUniform3f("color", float(c.r)/255., float(c.g)/255., float(c.b)/255. );
-		
 		dataShader.setUniform1f("radius", curveRadius * (1. - (float(i)/30)*.98) );
 		dataShader.setUniform1f("offset", curveOffset * (1. - (float(i)/30)*.98) );
 		
 		ofPushMatrix();
-		ofTranslate( ofGetWidth()/2, ofGetHeight()/2, 0);
-		ofTranslate( 0, 0, -10 * i);
+//		ofTranslate( ofGetWidth()/2, ofGetHeight()/2, 0);
+		ofTranslate( 0, 0, -30 * i);
 		ofRotate( i * 20., 0, 0, 1);
-//		ofScale( 1. - (float(i)/30)*.98, 1. - (float(i)/30)*.98 );
+		
 		vbo.draw(GL_QUAD_STRIP, 0, numVertices );
 		
 		ofPopMatrix();
 		
 	}
 	dataShader.end();
-	//	camera.end();
+	camera.end();
 	
 	fbo.end();
 	

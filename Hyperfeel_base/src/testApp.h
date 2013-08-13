@@ -37,6 +37,10 @@ public:
 	
 	//camera
 	ofEasyCam camera;
+	ofxGuiGroup cameraGroup;
+	ofParameter<float> nearClip;
+	ofParameter<float> farClip;
+	ofParameter<float> fov;
 	
 	//meshes
 	ofVbo vbo;
