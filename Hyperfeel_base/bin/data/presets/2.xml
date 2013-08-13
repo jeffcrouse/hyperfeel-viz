@@ -1,17 +1,17 @@
 <panel>
-	<fps>60.023</fps>
+	<fps>31.9774</fps>
 	<radius>424.96</radius>
 	<color>255, 255, 255, 255</color>
 	<bckgrnd0>0, 0, 0, 255</bckgrnd0>
 	<bckgrnd1>255, 255, 255, 255</bckgrnd1>
-	<curveOffset>64</curveOffset>
-	<curveRadius>495.505</curveRadius>
-	<curveWidth>50.5</curveWidth>
+	<curveOffset>284</curveOffset>
+	<curveRadius>795.205</curveRadius>
+	<curveWidth>87.625</curveWidth>
 	<presets/>
 <panel/>
 	<camera>
-		<nearClip>153.755</nearClip>
-		<farClip>1334.18</farClip>
-		<fov>90</fov>
+		<nearClip>51.9184</nearClip>
+		<farClip>4265.31</farClip>
+		<fov>49.1327</fov>
 	</camera>
 </panel>

@@ -65,7 +65,7 @@ void testApp::setup(){
 	
 	gui.add( cameraGroup.setup( "camera" ) );
 	cameraGroup.add( nearClip.set("nearClip", 10, 1, 500) );
-	cameraGroup.add( farClip.set("farClip", 500, 500, 2000) );
+	cameraGroup.add( farClip.set("farClip", 500, 500, 5000) );
 	cameraGroup.add( fov.set("fov", 60, 1, 90) );
 	
 	gui.add( bckgrnd0.set("bckgrnd0",ofColor(100,100,140),ofColor(0,0),ofColor(255,255)));
