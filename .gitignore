@@ -11,3 +11,28 @@
 *.lai
 *.la
 *.a
+
+#XCode
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.mode1v3
+*.mode2v3
+#XCode 4
+xcuserdata
+*.xcworkspace
+
+#OSX
+.DS_Store
+*.swp
+*~.nib
+# Thumbnails
+._*
+
+[Bb]uild/
+[Oo]bj/
+*.o
+[Dd]ebug*/
+[Rr]elease*/
+*.mode*
+*.app/
