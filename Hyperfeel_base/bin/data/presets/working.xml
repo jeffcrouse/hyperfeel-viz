@@ -9,13 +9,13 @@
 <panel/>
 <working>1</working>
 	<working_copy>1</working_copy>
-<curveOffset>64</curveOffset>
-	<curveRadius>495.505</curveRadius>
-<fps>59.9828</fps>
-<curveWidth>50.5</curveWidth>
+<curveOffset>32</curveOffset>
+	<curveRadius>175.825</curveRadius>
+<fps>60.0129</fps>
+<curveWidth>28.72</curveWidth>
 <camera>
-		<nearClip>153.755</nearClip>
-		<farClip>1334.18</farClip>
-	<fov>90</fov>
+		<nearClip>370.158</nearClip>
+		<farClip>1280.61</farClip>
+	<fov>30.9694</fov>
 	</camera>
 </panel>
