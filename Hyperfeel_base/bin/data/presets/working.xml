@@ -1,8 +1,8 @@
 <panel>
 	<radius>424.96</radius>
 	<color>255, 255, 255, 255</color>
-	<bckgrnd0>255, 124, 200, 255</bckgrnd0>
-	<bckgrnd1>149, 48, 54, 255</bckgrnd1>
+	<bckgrnd0>0, 0, 0, 255</bckgrnd0>
+	<bckgrnd1>255, 255, 255, 255</bckgrnd1>
 	<presets>
 		<presets/>
 	</presets>
@@ -10,12 +10,12 @@
 <working>1</working>
 	<working_copy>1</working_copy>
 <curveOffset>64</curveOffset>
-	<curveRadius>625.375</curveRadius>
-<fps>60.5182</fps>
-<curveWidth>26.74</curveWidth>
+	<curveRadius>495.505</curveRadius>
+<fps>59.9828</fps>
+<curveWidth>50.5</curveWidth>
 <camera>
-		<nearClip>500</nearClip>
-		<farClip>1364.8</farClip>
+		<nearClip>153.755</nearClip>
+		<farClip>1334.18</farClip>
 	<fov>90</fov>
 	</camera>
 </panel>

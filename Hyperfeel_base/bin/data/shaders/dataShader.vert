@@ -11,7 +11,6 @@ uniform float curveWidth;
 varying vec3 ePos;
 varying vec3 col;
 varying float vData;
-varying float vDepth;
 
 float TWO_PI = 6.28318530718;
 float PI = 3.14159265359;
@@ -33,9 +32,7 @@ void main()
 	vec4 ecPosition = gl_ModelViewMatrix * vec4( pos, 1.);
 	ePos = normalize(ecPosition.xyz/ecPosition.w);
 	gl_Position = gl_ProjectionMatrix * ecPosition	;
-	
-	vDepth = gl_Position.z;
-	
+
 	col = color;
 	vData = data;
 }
