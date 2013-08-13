@@ -13,47 +13,49 @@ void testApp::setup(){
 	//shaders
 	loadShaders();
 	
-	//data
-	attention.resize( 1000 * 2 );
-	meditation.resize( 1000 * 2 );
-	timeStamp.resize( 1000 * 2 );
-	plusMinus.resize( 1000 * 2 );
+	//make some fake data
 	
+	vector <float> attention, meditation, timeStamp;
+	attention.resize( 1000 );
+	meditation.resize( 1000 );
+	timeStamp.resize( 1000 );
 	float numSamples = 1000;
 	for (int i=0; i<numSamples; i++) {
-		attention[i] = ofNoise( float(i * 100) / float(attention.size()) );
-		meditation[i] = 1. - attention[i];
+		attention[i] = ofNoise( float(i * 40) / (numSamples-1.) );
+		meditation[i] = ofNoise( float(i * 40) / (numSamples-1.) + 77);
 		timeStamp[i] = float(i) / numSamples;
-		plusMinus[i] = 1;
-	}
-	for (int i=numSamples; i<numSamples * 2; i++) {
-		attention[i] = ofNoise( float(i * 100) / float(attention.size()) );
-		meditation[i] = 1. - attention[i];
-		timeStamp[i] = float(i-numSamples) / numSamples;
-		plusMinus[i] = -1;
-	}
-	vector<ofVec3f> vertices( attention.size() );
-		
-	float step = 1. / numSamples;
-	for (int i=0; i<attention.size(); i++) {
-		vertices[i].set( step * float(i) * 2. - 1., 0, 0 );
 	}
 	
+	//create vertex data
+	numVertices = attention.size() * 2;
+	vector<ofVec3f> vertices( numVertices );
+	
+	for (int i=0; i<numVertices; i+=2	) {
+		vertices[i].set( attention[i/2], timeStamp[i/2], -1 );
+		vertices[i+1].set( meditation[i/2], timeStamp[i/2], 1 );
+	}
+	
+	
+	//close the ribbon
+	vertices.push_back( ofVec3f( attention[0], timeStamp[0], -1 ) );
+	vertices.push_back( ofVec3f( meditation[0], timeStamp[0], 1 ) );
+	numVertices += 2;
+	
+	//set the vbo
 	vbo.setVertexData( &vertices[0], vertices.size(), GL_STATIC_DRAW );
-	
-	
-	dataShader.begin();
-	vbo.setAttributeData( dataShader.getAttributeLocation( "attention" ), &attention[0], 1, attention.size(), GL_STATIC_DRAW );
-	vbo.setAttributeData( dataShader.getAttributeLocation( "meditation" ), &meditation[0], 1, meditation.size(), GL_STATIC_DRAW );
-	vbo.setAttributeData( dataShader.getAttributeLocation( "timeStamp" ), &timeStamp[0], 1, timeStamp.size(), GL_STATIC_DRAW );
-	vbo.setAttributeData( dataShader.getAttributeLocation( "plusMinus" ), &plusMinus[0], 1, plusMinus.size(), GL_STATIC_DRAW );
-	dataShader.end();
+
+//	dataShader.begin();
+//	vbo.setAttributeData( dataShader.getAttributeLocation( "vData" ), &vData[0], 1, vData.size(), GL_STATIC_DRAW );
+//	vbo.setAttributeData( dataShader.getAttributeLocation( "timeStamp" ), &vTimeStamp[0], 1, vTimeStamp.size(), GL_STATIC_DRAW );
+//	vbo.setAttributeData( dataShader.getAttributeLocation( "plusMinus" ), &vPlusMinus[0], 1, vPlusMinus.size(), GL_STATIC_DRAW );
+//	dataShader.end();
 	
 	
 	//GUI
 	bHide = true;
 	
 	gui.setup("panel"); // most of the time you don't need a name but don't forget to call setup
+	gui.add( fpsLabel.set("fps", "60") );
 	gui.add(radius.set( "radius", 512, 256, 1024 ));
 	gui.add(color.set("color",ofColor(100,100,140),ofColor(0,0),ofColor(255,255)));
 	
@@ -62,6 +64,7 @@ void testApp::setup(){
 	
 	gui.add( curveOffset.set( "curveOffset",100, -400, 400) );
 	gui.add( curveRadius.set( "curveRadius",100, 1, 1000) );
+	gui.add( curveWidth.set( "curveWidth",10, 1, 100) );
 	
 	gui.add( presetGroup.setup( "presets" ) );
 	presetGroup.add( savePresetButton.setup("save preset"));
@@ -87,6 +90,9 @@ void testApp::loadShaders(){
 //--------------------------------------------------------------
 void testApp::update(){
 	//	ofSetCircleResolution(circleResolution);
+//	gui.setup("panel")
+//	gui.getControl("panel")->set;
+	fpsLabel.set( ofToString( ofGetFrameRate()));
 }
 
 //--------------------------------------------------------------
@@ -102,14 +108,32 @@ void testApp::draw(){
 	glLineWidth( 3 );
 	
 	//	camera.begin();
-	ofPushMatrix();
-	ofTranslate( ofGetWidth()/2, ofGetHeight()/2);
 	dataShader.begin();
+	dataShader.setUniform3f("color", float(color->r)/255., float(color->g)/255., float(color->b)/255. );
 	dataShader.setUniform1f("radius", curveRadius );
 	dataShader.setUniform1f("offset", curveOffset );
-	vbo.draw(GL_LINE_STRIP, 0, attention.size() );
+	dataShader.setUniform1f("curveWidth", curveWidth );
+	for (int i=0; i < 30; i++) {
+		
+		ofColor c;
+		c.setHsb(255 * float(i)/30, 200, 255);
+		
+		dataShader.setUniform3f("color", float(c.r)/255., float(c.g)/255., float(c.b)/255. );
+		
+		dataShader.setUniform1f("radius", curveRadius * (1. - (float(i)/30)*.98) );
+		dataShader.setUniform1f("offset", curveOffset * (1. - (float(i)/30)*.98) );
+		
+		ofPushMatrix();
+		ofTranslate( ofGetWidth()/2, ofGetHeight()/2, 0);
+		ofTranslate( 0, 0, -10 * i);
+		ofRotate( i * 20., 0, 0, 1);
+//		ofScale( 1. - (float(i)/30)*.98, 1. - (float(i)/30)*.98 );
+		vbo.draw(GL_QUAD_STRIP, 0, numVertices );
+		
+		ofPopMatrix();
+		
+	}
 	dataShader.end();
-	ofPopMatrix();
 	//	camera.end();
 	
 	fbo.end();

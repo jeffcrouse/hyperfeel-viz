@@ -44,6 +44,7 @@ public:
 	
 	ofParameter<float> curveOffset;
 	ofParameter<float> curveRadius;
+	ofParameter<float> curveWidth;
 	
 	//FBO
 	ofFbo fbo;
@@ -55,11 +56,13 @@ public:
 	map< string, Hyperfeel_Button> presetNames;
 	
 	ofxButton savePresetButton;
+	ofParameter<string> fpsLabel;
 	ofParameter<float> radius;
 	ofParameter<ofColor> color;
 	ofParameter<ofColor> bckgrnd0, bckgrnd1;
 	ofxPanel gui;
 	ofxGuiGroup presetGroup;
 	
-	vector<float> attention, meditation, timeStamp, plusMinus;
+	int numVertices;
+//	vector<float> attention, meditation, timeStamp, plusMinus;
 };

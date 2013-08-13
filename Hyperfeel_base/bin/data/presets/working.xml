@@ -1,7 +1,7 @@
 <panel>
 	<radius>424.96</radius>
-	<color>0, 0, 5, 255</color>
-	<bckgrnd0>31, 124, 200, 255</bckgrnd0>
+	<color>255, 255, 255, 255</color>
+	<bckgrnd0>255, 124, 200, 255</bckgrnd0>
 	<bckgrnd1>149, 48, 54, 255</bckgrnd1>
 	<presets>
 		<presets/>
@@ -9,6 +9,8 @@
 <panel/>
 <working>1</working>
 	<working_copy>1</working_copy>
-<curveOffset>-60</curveOffset>
-	<curveRadius>345.655</curveRadius>
+<curveOffset>80</curveOffset>
+	<curveRadius>405.595</curveRadius>
+<fps>60.0602</fps>
+<curveWidth>13.87</curveWidth>
 </panel>
