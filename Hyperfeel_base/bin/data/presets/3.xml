@@ -1,0 +1,15 @@
+<panel>
+	<fps>60.0124</fps>
+	<radius>424.96</radius>
+	<camera>
+		<nearClip>500</nearClip>
+		<farClip>1510.2</farClip>
+		<fov>64.1173</fov>
+	</camera>
+	<bckgrnd0>0, 0, 0, 255</bckgrnd0>
+	<bckgrnd1>255, 255, 255, 255</bckgrnd1>
+	<curveOffset>400</curveOffset>
+	<curveRadius>535.465</curveRadius>
+	<curveWidth>47.035</curveWidth>
+	<presets/>
+</panel>

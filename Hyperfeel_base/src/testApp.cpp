@@ -98,6 +98,7 @@ void testApp::loadShaders(){
 
 //--------------------------------------------------------------
 void testApp::update(){
+	elapsedTime = ofGetElapsedTimef();
 	//	ofSetCircleResolution(circleResolution);
 	fpsLabel.set( ofToString( ofGetFrameRate()));
 }
@@ -136,7 +137,7 @@ void testApp::draw(){
 		ofPushMatrix();
 //		ofTranslate( ofGetWidth()/2, ofGetHeight()/2, 0);
 		ofTranslate( 0, 0, -30 * i);
-		ofRotate( i * 20., 0, 0, 1);
+		ofRotate( i * 20. + elapsedTime*(.1 * i), 0, 0, 1);
 		
 		vbo.draw(GL_QUAD_STRIP, 0, numVertices );
 		
@@ -219,6 +220,7 @@ void testApp::loadPresetsToGui(){
 	//load our working settings. always working from working...
 	gui.loadFromFile( "presets/working.xml" );
 	currentPresetName = "working";
+	presetNames[ "working" ].setValue( true );
 }
 
 void testApp::addPresetToGui( string name ){

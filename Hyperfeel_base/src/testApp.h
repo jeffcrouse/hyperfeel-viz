@@ -34,6 +34,8 @@ public:
 	void loadPreset( string name);
 	void savePreset();
 	
+	//animation
+	float elapsedTime;
 	
 	//camera
 	ofEasyCam camera;
