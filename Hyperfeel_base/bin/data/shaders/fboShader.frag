@@ -6,6 +6,7 @@ uniform sampler2DRect tex;
 
 uniform sampler2DRect deferredPass;
 
+varying vec3 ePos;
 varying vec2 uv;
 
 void main(void)
@@ -22,8 +23,12 @@ void main(void)
 	vec4 color = texture2DRect( tex, uv );
 	
 	vec4 normAndDepth = texture2DRect( deferredPass, uv );
-	vec3 norm = normAndDepth.xyz*2. - 1.;
+	vec3 norm = normalize( normAndDepth.xyz*2.-1. );
 	float depth = normAndDepth.w;
 	
-	gl_FragColor = vec4( color.xyz * depth, 1. );
+	float fr = dot( norm, ePos ) * .5 + .5;
+	float amnt = pow(fr+ .1, 4.0);
+//	float alpha = pow( amnt, 2.);
+	
+	gl_FragColor = vec4( color.xyz * depth * amnt + amnt*.1,  1. );
 }

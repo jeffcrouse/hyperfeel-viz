@@ -13,7 +13,7 @@ void testApp::setup(){
 	ofFbo::Settings s;
 	s.width         = ofGetWidth();
 	s.height            = ofGetHeight();
-	s.internalformat    = GL_RGBA16;
+	s.internalformat    = GL_RGBA;
 	s.numColorbuffers   = 3;
 	s.useDepth = true;
 	s.numSamples = 0;
@@ -73,7 +73,6 @@ void testApp::setup(){
 	gui.setup("panel"); // most of the time you don't need a name but don't forget to call setup
 	gui.add( fpsLabel.set("fps", "60") );
 	gui.add(radius.set( "radius", 512, 256, 1024 ));
-//	gui.add(color.set("color",ofColor(100,100,140),ofColor(0,0),ofColor(255,255)));
 	
 	gui.add( cameraGroup.setup( "camera" ) );
 	cameraGroup.add( nearClip.set("nearClip", 10, 1, 500) );
