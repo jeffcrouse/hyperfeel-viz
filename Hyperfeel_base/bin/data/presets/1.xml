@@ -3,15 +3,15 @@
 	<color>255, 255, 255, 255</color>
 	<bckgrnd0>0, 0, 0, 255</bckgrnd0>
 	<bckgrnd1>255, 255, 255, 255</bckgrnd1>
-	<curveOffset>84</curveOffset>
-	<curveRadius>535.465</curveRadius>
+	<curveOffset>92</curveOffset>
+	<curveRadius>405.595</curveRadius>
 	<presets/>
 <panel/>
-<fps>59.9642</fps>
+<fps>59.962</fps>
 <camera>
-		<nearClip>500</nearClip>
-		<farClip>1510.2</farClip>
-		<fov>64.1173</fov>
+		<nearClip>395.617</nearClip>
+		<farClip>2153.06</farClip>
+		<fov>38.6888</fov>
 	</camera>
-	<curveWidth>100</curveWidth>
+	<curveWidth>32.185</curveWidth>
 </panel>
