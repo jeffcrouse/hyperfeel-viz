@@ -54,7 +54,7 @@ void main(void)
 	float rnd = 0.;
 	vec3 ray;
 	
-	vec2 seed = gl_FragCoord.xy` + time*.01;
+	vec2 seed = gl_FragCoord.xy + time*.01;
 	for(int i=0; i<24; i+=2){
 		rnd = rand( seed+float(i*i));
 		
