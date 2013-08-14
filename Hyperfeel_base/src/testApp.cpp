@@ -33,8 +33,8 @@ void testApp::setup(){
 	timeStamp.resize( 1000 );
 	float numSamples = 1000;
 	for (int i=0; i<numSamples; i++) {
-		attention[i] = ofNoise( float(i * 40) / (numSamples-1.) );
-		meditation[i] = ofNoise( float(i * 40) / (numSamples-1.) + 77);
+		attention[i] = ofNoise( float(i * 40) / (numSamples-1.) ) * ofNoise( float(i * 2) / (numSamples-1.) );
+		meditation[i] = ofNoise( float(i * 40) / (numSamples-1.) + 7) * ofNoise( float(i * 2) / (numSamples-1.) +77);
 		timeStamp[i] = float(i) / numSamples;
 	}
 	

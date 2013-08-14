@@ -65,7 +65,7 @@ void main(void)
 		
 		ray = samples[i].xyz * rad * rnd;
 //		ray = reflect( -samples[i], xyzd.xyz) * rad * rnd;
-//		ray = reflect( -ray, norm);
+		ray = reflect( -ray, norm);
 		delta = depth - mn - ( texture2DRect( deferredPass, uv + ray.xy).w );
 		ao += min( 1., ( delta > 0. ) ? delta/max( delta, mx) : (mx - delta)/mx );
 	}
