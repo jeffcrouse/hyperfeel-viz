@@ -26,45 +26,15 @@ void testApp::setup(){
 	loadShaders();
 	
 	//make some fake data
-	
-	vector <float> attention, meditation, timeStamp;
-	attention.resize( 1000 );
-	meditation.resize( 1000 );
-	timeStamp.resize( 1000 );
-	float numSamples = 1000;
-	for (int i=0; i<numSamples; i++) {
-		attention[i] = ofNoise( float(i * 40) / (numSamples-1.) ) * ofNoise( float(i * 2) / (numSamples-1.) );
-		meditation[i] = ofNoise( float(i * 40) / (numSamples-1.) + 7) * ofNoise( float(i * 2) / (numSamples-1.) +77);
-		timeStamp[i] = float(i) / numSamples;
-	}
+	vector<HyperFeel_Data> data = getFakeData();
 	
 	//camera
 //	camera.setNearClip(1);
 //	camera.setFarClip(500);
 	camera.setFov( 60 );
 	
-	//create vertex data
-	numVertices = attention.size() * 2;
-	vector<ofVec3f> vertices( numVertices );
-	
-	for (int i=0; i<numVertices; i+=2	) {
-		vertices[i].set( attention[i/2], timeStamp[i/2], -1 );
-		vertices[i+1].set( meditation[i/2], timeStamp[i/2], 1 );
-	}
-		
-	//close the ribbon
-	vertices.push_back( ofVec3f( attention[0], timeStamp[0], -1 ) );
-	vertices.push_back( ofVec3f( meditation[0], timeStamp[0], 1 ) );
-	numVertices += 2;
-	
-	//set the vbo.. we need to use vertices or else ofVbo won't draw...
-	vbo.setVertexData( &vertices[0], vertices.size(), GL_STATIC_DRAW );
-
-//	dataShader.begin();
-//	vbo.setAttributeData( dataShader.getAttributeLocation( "vData" ), &vData[0], 1, vData.size(), GL_STATIC_DRAW );
-//	vbo.setAttributeData( dataShader.getAttributeLocation( "timeStamp" ), &vTimeStamp[0], 1, vTimeStamp.size(), GL_STATIC_DRAW );
-//	vbo.setAttributeData( dataShader.getAttributeLocation( "plusMinus" ), &vPlusMinus[0], 1, vPlusMinus.size(), GL_STATIC_DRAW );
-//	dataShader.end();
+	drawType = "displacedMesh";//"rainbowLayers";
+	bRainbowLayersIsSetup = bDisplacedMeshIsSetup = false;
 	
 	
 	//GUI
@@ -141,6 +111,9 @@ void testApp::loadShaders(){
 	
 	dataShader.load("shaders/dataShader");
 	
+	//displacedMesh
+	displacedShader.load( "shaders/displaced" );
+	
 }
 
 
@@ -171,32 +144,14 @@ void testApp::draw(){
 	
 	//draw the data
 	camera.begin();
-	dataShader.begin();
-	dataShader.setUniform1f("nearClip", nearClip );
-	dataShader.setUniform1f("farClip", farClip );
-	dataShader.setUniform1f("curveWidth", curveWidth );
-	dataShader.setUniform1f( "time", elapsedTime );
-	ofColor c;
-	for (int i=0; i < 30; i++) {
-		
-		c.setHsb(255 * float(i)/30, 150, 255);
-		
-		dataShader.setUniform3f("color", float(c.r)/255., float(c.g)/255., float(c.b)/255. );
-		dataShader.setUniform1f("radius", curveRadius * (1. - (float(i)/30)*.98) );
-		dataShader.setUniform1f("offset", curveOffset * (1. - (float(i)/30)*.98) );
-		
-		ofPushMatrix();
-		ofTranslate( 0, 0, -30 * i);
-		ofRotate( i * 20. + elapsedTime*(.1 * i), 0, 0, 1);
-		
-		vbo.draw(GL_QUAD_STRIP, 0, numVertices );
-		
-		ofPopMatrix();
-		
+	
+	if(drawType == "rainbowLayers"){
+		drawRainbowLayers();
+	}
+	else if( drawType == "displacedMesh" ){
+		drawDisplacedMesh();
 	}
 	
-	//end it
-	dataShader.end();
 	camera.end();
 	fbo.end();
 	
@@ -225,6 +180,257 @@ void testApp::draw(){
 		
 		gui.draw();
 	}
+}
+void testApp::setupDisplacedMesh(){
+	
+	bDisplacedMeshIsSetup = true;
+	cout << endl << "setting up displacedMesh" << endl << endl;
+	
+	//setup shader
+	displacedShader.load( "shaders/displaced" );
+	
+	//create mesh tube
+	float radiusBottom = 500, radiusTop = 0;
+	
+	int subdX = 64, subdY = 32;//128*128 ~= 16000 * (pos+norm+tangent+bi-tangent+uv+indices) == a lot of data
+	
+	int numVertices = subdX * subdY;
+	vector< ofVec3f >vertices( numVertices );
+	vector< ofVec3f >normals( numVertices );
+	vector< ofVec3f >tangents( numVertices );
+	vector< ofVec3f >binormals( numVertices );
+	vector< ofVec2f >texCoords( numVertices );
+		
+	//make our vertices
+	int count = 0;
+	float xStep = 1. / float(subdX-1);
+	float yStep = 1. / float(subdY-1);
+	float zStep = -subdY / 2;
+	for (int i=0; i<subdY; i++) {
+		//interpolate between top and bottom radius'
+		float mixVal = cos( i * yStep * HALF_PI );
+		float rad = radiusBottom * mixVal + radiusTop * (1. - mixVal);
+	
+		//make some vertices
+		for (int j=0; j<subdX; j++) {
+			vertices[count].set( sin(xStep*j*TWO_PI) * rad, cos(xStep*j*TWO_PI) * rad, i * zStep );
+			texCoords[count].set( j * xStep, i * yStep );
+			count++;
+		}
+	}
+	displacedVertexCount = count;
+	
+	//make the faces, calculate the face normals and add them to the vertex normals
+	vector<ofIndexType> indices;
+	ofVec3f faceNorm;
+	int p0, p1, p2, p3, wrapIndex;
+	for (int i=1; i<subdY; i++) {
+		for (int j=1; j<subdX; j++) {
+			//we need to connect the fron to the back
+//			wrapIndex = ( j == subdX-1 )? 0 : j-1;
+			
+			//triangle faces
+			p0 = (i-1) * subdX + j-1;
+			p1 = i*subdX + j-1;
+			p2 = i*subdX + j;
+			p3 = (i-1) * subdX + j;
+			
+			faceNorm = normalFrom4Points( vertices[p0], vertices[p1], vertices[p2], vertices[p3] );
+			
+			normals[p0] += faceNorm;
+			normals[p1] += faceNorm;
+			normals[p2] += faceNorm;
+			normals[p3] += faceNorm;
+			
+			indices.push_back( p0 );
+			indices.push_back( p1 );
+			indices.push_back( p2 );
+
+			indices.push_back( p0 );
+			indices.push_back( p2 );
+			indices.push_back( p3 );
+		}
+	}
+	displacedIndexCount = indices.size();
+	
+	//wrap the normals around
+	for (int i=0; i<subdY; i++) {
+		p0 = i*subdX;
+		p1 = i*subdX + subdX-1;
+		normals[p0] = normals[p1] = (normals[p0] + normals[p1]) * .5;
+	}
+	
+	//smooth the normals
+	for (int i=0; i<normals.size(); i++) {
+		normals[i].normalize();
+	}
+	
+	//compute tangents and bi-normals
+	vector<ofVec3f> tan1( vertices.size(), ofVec3f(0) );
+	vector<ofVec3f> tan2( vertices.size(), ofVec3f(0) );
+	ofVec3f sdir, tdir;
+	ofVec4f tangent;
+	int i1, i2, i3;
+	float x1, x2, y1, y2, z1, z2, s1, s2, t1, t2, r;
+	
+	for(int f=0; f<indices.size(); f+=3){
+		i1 = indices[f];
+		i2 = indices[f+1];
+		i3 = indices[f+2];
+
+		ofVec3f& v1 = vertices[i1];
+		ofVec3f& v2 = vertices[i2];
+		ofVec3f& v3 = vertices[i3];
+
+		ofVec2f& w1 = texCoords[i1];
+		ofVec2f& w2 = texCoords[i2];
+		ofVec2f& w3 = texCoords[i3];
+
+		
+		x1 = v2.x - v1.x;
+		x2 = v3.x - v1.x;
+		y1 = v2.y - v1.y;
+		y2 = v3.y - v1.y;
+		z1 = v2.z - v1.z;
+		z2 = v3.z - v1.z;
+		
+		s1 = w2.x - w1.x;
+		s2 = w3.x - w1.x;
+		t1 = w2.y - w1.y;
+		t2 = w3.y - w1.y;
+
+		r = 1.0F / (s1 * t2 - s2 * t1);
+		sdir.set((t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r,
+				 (t2 * z1 - t1 * z2) * r);
+		tdir.set((s1 * x2 - s2 * x1) * r, (s1 * y2 - s2 * y1) * r,
+				 (s1 * z2 - s2 * z1) * r);
+
+		tan1[i1] += sdir;
+		tan1[i2] += sdir;
+		tan1[i3] += sdir;
+		
+		tan2[i1] += tdir;
+		tan2[i2] += tdir;
+		tan2[i3] += tdir;
+	}
+
+	for (int a=0; a < vertices.size(); a++){
+		ofVec3f& n = normals[a];
+		ofVec3f& t = tan1[a];
+		
+		// Gram-Schmidt orthogonalize
+		tangent = (t - n * n.dot(t)).normalize();
+		
+		// Calculate handedness
+		tangent.w = ( n.crossed(t).dot( tan2[a] ) < 0.) ? -1.f : 1.f;
+		
+		tangents[a] = tangent;
+		binormals[a] = n.crossed( tangent );
+	}
+	
+	
+	//add attributes to vbo
+	displacedVbo.setVertexData( &vertices[0], vertices.size(), GL_STATIC_DRAW );
+	displacedVbo.setNormalData( &normals[0], normals.size(), GL_STATIC_DRAW );
+	displacedVbo.setTexCoordData( &texCoords[0], texCoords.size(), GL_STATIC_DRAW );
+	displacedVbo.setIndexData( &indices[0], indices.size(), GL_STATIC_DRAW );
+	
+	displacedShader.begin();
+	
+	displacedVbo.setAttributeData( displacedShader.getAttributeLocation( "tangent" ), &tangents[0].x, 1, tangents.size()*3, GL_STATIC_DRAW );
+	displacedVbo.setAttributeData( displacedShader.getAttributeLocation( "binormal" ), &binormals[0].x, 1, binormals.size()*3, GL_STATIC_DRAW );
+	
+	displacedShader.end();
+	
+	//gui switch to displaced panel...
+	
+}
+void testApp::drawDisplacedMesh(){
+	if(!bDisplacedMeshIsSetup){
+		setupDisplacedMesh();
+	}
+	
+	displacedShader.begin();
+	displacedShader.setUniform1f("time", elapsedTime );
+	
+//	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE );
+	displacedVbo.drawElements(GL_TRIANGLES, displacedIndexCount );
+//	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL );
+	
+	displacedShader.end();
+	
+}
+
+ofVec3f testApp::normalFrom3Points(ofVec3f p0, ofVec3f p1, ofVec3f p2){
+	
+//	faces[index].normal = (vertices[faces[index][2]] - vertices[faces[index][1]]).cross( vertices[faces[index][0]] - vertices[faces[index][1]] ).normalize();
+	ofVec3f norm = (p2 - p1).cross( p0 - p1);
+	return norm.normalized();
+}
+ofVec3f testApp::normalFrom4Points(ofVec3f p0, ofVec3f p1, ofVec3f p2, ofVec3f p3){
+	return (normalFrom3Points(p0, p1, p2) + normalFrom3Points(p0, p2, p3)).normalized();
+}
+
+void testApp::setupRainbowLayers(){
+	bool bRainbowLayersIsSetup = true;
+	
+	cout << endl << "setting up rainbowLayers" << endl << endl;
+	
+	//make some fake data
+	vector<HyperFeel_Data> data = getFakeData();
+	
+	//create vertex data
+	numVertices = data.size() * 2;
+	vector<ofVec3f> vertices( numVertices );
+	
+	for (int i=0; i<numVertices; i+=2	) {
+		vertices[i].set( data[i/2].attention, data[i/2].timeStamp, -1 );
+		vertices[i+1].set( data[i/2].meditation, data[i/2].timeStamp, 1 );
+	}
+	
+	//close the ribbon
+	vertices.push_back( ofVec3f( data[0].attention, data[0].timeStamp, -1 ) );
+	vertices.push_back( ofVec3f( data[0].meditation, data[0].timeStamp, 1 ) );
+	numVertices += 2;
+	
+	//set the vbo.. we need to use vertices or else ofVbo won't draw...
+	vbo.setVertexData( &vertices[0], vertices.size(), GL_STATIC_DRAW );
+
+}
+
+
+void testApp::drawRainbowLayers(){
+	
+	if( !bRainbowLayersIsSetup ){
+		setupRainbowLayers();
+	}
+	
+	dataShader.begin();
+	dataShader.setUniform1f("nearClip", nearClip );
+	dataShader.setUniform1f("farClip", farClip );
+	dataShader.setUniform1f("curveWidth", curveWidth );
+	dataShader.setUniform1f( "time", elapsedTime );
+	ofColor c;
+	for (int i=0; i < 30; i++) {
+		
+		c.setHsb(255 * float(i)/30, 150, 255);
+		
+		dataShader.setUniform3f("color", float(c.r)/255., float(c.g)/255., float(c.b)/255. );
+		dataShader.setUniform1f("radius", curveRadius * (1. - (float(i)/30)*.98) );
+		dataShader.setUniform1f("offset", curveOffset * (1. - (float(i)/30)*.98) );
+		
+		ofPushMatrix();
+		ofTranslate( 0, 0, -30 * i);
+		ofRotate( i * 20. + elapsedTime*(.1 * i), 0, 0, 1);
+		
+		vbo.draw(GL_QUAD_STRIP, 0, numVertices );
+		
+		ofPopMatrix();
+		
+	}
+	
+	//end it
+	dataShader.end();
 }
 
 

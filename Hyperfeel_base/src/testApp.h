@@ -4,6 +4,14 @@
 #include "ofxGui.h"
 #include "Hyperfeel_Button.h"
 
+class HyperFeel_Data {
+public:
+	HyperFeel_Data(){};
+	~HyperFeel_Data(){};
+
+	float attention, meditation, timeStamp;
+};
+
 class testApp : public ofBaseApp{
 	
 public:
@@ -24,7 +32,42 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 	
+	//drawing options
+	//
+	//rainbow layers
+	string drawType;
+	bool bRainbowLayersIsSetup;
+	void setupRainbowLayers();
+	void drawRainbowLayers();
+	
+	//displaced mesh
+	bool bDisplacedMeshIsSetup;
+	void setupDisplacedMesh();
+	void drawDisplacedMesh();
+	ofVec3f normalFrom3Points(ofVec3f p0, ofVec3f p1, ofVec3f p2);
+	ofVec3f normalFrom4Points(ofVec3f p0, ofVec3f p1, ofVec3f p2, ofVec3f p3);
+	ofVbo displacedVbo;
+	int displacedVertexCount, displacedIndexCount;
+	ofShader displacedShader;
+	
+	
+	
 	bool bHide;
+	
+	//Hyper feel
+	vector<HyperFeel_Data> getFakeData(int amount = 1000){
+		vector<HyperFeel_Data> data( amount );
+		
+		for(int i=0; i<amount; i++){
+			
+			data[i].attention = ofNoise( float(i * 40) / (amount-1.) ) * ofNoise( float(i * 2) / (amount-1.) );
+			data[i].meditation = ofNoise( float(i * 40) / (amount-1.) + 10) * ofNoise( float(i * 2) / (amount-1.) + 100);
+			data[i].timeStamp = float(i) / amount;
+		}
+		
+		
+		return data;
+	};
 	
 	//Gui methods
 	void addPresetToGui( string name );

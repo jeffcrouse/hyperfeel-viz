@@ -23,6 +23,10 @@
 		5050D0E917B9D40E005A2953 /* Hyperfeel_Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5050D0E717B9D40E005A2953 /* Hyperfeel_Button.cpp */; };
 		5050D0EC17B9F2E1005A2953 /* dataShader.frag in Sources */ = {isa = PBXBuildFile; fileRef = 5050D0EA17B9F2E1005A2953 /* dataShader.frag */; };
 		5050D0ED17B9F2E1005A2953 /* dataShader.vert in Sources */ = {isa = PBXBuildFile; fileRef = 5050D0EB17B9F2E1005A2953 /* dataShader.vert */; };
+		50C240A317BBF01B00D68B73 /* normal.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50C240A117BBF01B00D68B73 /* normal.frag */; };
+		50C240A417BBF01B00D68B73 /* normal.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50C240A217BBF01B00D68B73 /* normal.vert */; };
+		50C240A717BC004900D68B73 /* displaced.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50C240A517BC004900D68B73 /* displaced.frag */; };
+		50C240A817BC004900D68B73 /* displaced.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50C240A617BC004900D68B73 /* displaced.vert */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -101,6 +105,10 @@
 		5050D0E817B9D40E005A2953 /* Hyperfeel_Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hyperfeel_Button.h; sourceTree = "<group>"; };
 		5050D0EA17B9F2E1005A2953 /* dataShader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = dataShader.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		5050D0EB17B9F2E1005A2953 /* dataShader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = dataShader.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50C240A117BBF01B00D68B73 /* normal.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = normal.frag; sourceTree = "<group>"; };
+		50C240A217BBF01B00D68B73 /* normal.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = normal.vert; sourceTree = "<group>"; };
+		50C240A517BC004900D68B73 /* displaced.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displaced.frag; sourceTree = "<group>"; };
+		50C240A617BC004900D68B73 /* displaced.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displaced.vert; sourceTree = "<group>"; };
 		6cb9c598362950e6f30f3c2e6bdad4be /* ofxSSAO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSSAO.h; path = ../../../addons/ofxSSAO/src/ofxSSAO.h; sourceTree = SOURCE_ROOT; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -210,12 +218,16 @@
 		5008459B17B9309B00ACCF0E /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				50C240A517BC004900D68B73 /* displaced.frag */,
+				50C240A617BC004900D68B73 /* displaced.vert */,
 				5050D0EA17B9F2E1005A2953 /* dataShader.frag */,
 				5050D0EB17B9F2E1005A2953 /* dataShader.vert */,
 				500845A417B931CB00ACCF0E /* facingRatio.frag */,
 				500845A517B931CB00ACCF0E /* facingRatio.vert */,
 				5008459C17B930A600ACCF0E /* fboShader.vert */,
 				5008459E17B930AF00ACCF0E /* fboShader.frag */,
+				50C240A117BBF01B00D68B73 /* normal.frag */,
+				50C240A217BBF01B00D68B73 /* normal.vert */,
 			);
 			name = shaders;
 			path = bin/data/shaders;
@@ -417,6 +429,10 @@
 				5050D0E917B9D40E005A2953 /* Hyperfeel_Button.cpp in Sources */,
 				5050D0EC17B9F2E1005A2953 /* dataShader.frag in Sources */,
 				5050D0ED17B9F2E1005A2953 /* dataShader.vert in Sources */,
+				50C240A317BBF01B00D68B73 /* normal.frag in Sources */,
+				50C240A417BBF01B00D68B73 /* normal.vert in Sources */,
+				50C240A717BC004900D68B73 /* displaced.frag in Sources */,
+				50C240A817BC004900D68B73 /* displaced.vert in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
