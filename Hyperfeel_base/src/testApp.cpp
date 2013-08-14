@@ -19,7 +19,7 @@ void testApp::setup(){
 	s.numSamples = 0;
 	fbo.allocate(s);
 	
-	fbo.createAndAttachTexture(GL_RGBA16, 1);
+	fbo.createAndAttachTexture(GL_RGBA32F, 1);
 	
 	cout << "fbo.getNumTextures(): " << fbo.getNumTextures() << endl;
 	//shaders
@@ -175,6 +175,7 @@ void testApp::draw(){
 	dataShader.setUniform1f("nearClip", nearClip );
 	dataShader.setUniform1f("farClip", farClip );
 	dataShader.setUniform1f("curveWidth", curveWidth );
+	dataShader.setUniform1f( "time", elapsedTime );
 	ofColor c;
 	for (int i=0; i < 30; i++) {
 		

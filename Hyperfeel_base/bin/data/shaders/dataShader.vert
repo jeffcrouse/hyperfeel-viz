@@ -4,6 +4,7 @@
 //attribute float plusMinus;
 
 uniform vec3 color;
+uniform float time;
 uniform float radius;
 uniform float offset;
 uniform float curveWidth;
@@ -29,7 +30,8 @@ void main()
 	vec3 normalizedPosition = vec3( sin(timeStamp * TWO_PI), cos(timeStamp * TWO_PI), 0. );
 	vec3 pos = normalizedPosition * radius;
 	
-	pos += ( normalizedPosition * offset * data * data + normalizedPosition * curveWidth) * plusMinus;
+	float timeOffset = sin(timeStamp * TWO_PI + time) * cos(timeStamp * TWO_PI + time) *.5 + .5;
+	pos += ( normalizedPosition * offset * data * data * timeOffset + normalizedPosition * curveWidth) * plusMinus;
 	
 	vec4 ecPosition = gl_ModelViewMatrix * vec4( pos, 1.);
 	ePos = normalize(ecPosition.xyz/ecPosition.w);

@@ -65,7 +65,7 @@ void main(void)
 	}
 	
 	
-	gl_FragColor += vec4( (vec3(ao/12.) * .3-.15) ,1. );
+	gl_FragColor += vec4( (vec3(ao/12.) * .3-.1) ,1. );
 
 	
 }
