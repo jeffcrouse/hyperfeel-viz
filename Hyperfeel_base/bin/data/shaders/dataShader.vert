@@ -35,7 +35,7 @@ void main()
 	ePos = normalize(ecPosition.xyz/ecPosition.w);
 	gl_Position = gl_ProjectionMatrix * ecPosition	;
 	
-	vec3 nrm = vec3(normalizedPosition.xy * plusMinus, 1.);
+	vec3 nrm = vec3(normalizedPosition.xy * plusMinus, 1.5);
 	norm = normalize( gl_NormalMatrix * nrm );
 
 	col = color;

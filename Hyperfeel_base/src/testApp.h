@@ -48,9 +48,16 @@ public:
 	ofVbo vbo;
 	ofShader dataShader;
 	
+	ofParameter<string> meshLabel;
 	ofParameter<float> curveOffset;
 	ofParameter<float> curveRadius;
 	ofParameter<float> curveWidth;
+	
+	ofParameter<string> ssaoLabel;
+	ofParameter<float> minThreshold;
+	ofParameter<float> maxThreshold;
+	ofParameter<float> sampleRadius;
+	
 	
 	//FBO
 	ofFbo fbo;
