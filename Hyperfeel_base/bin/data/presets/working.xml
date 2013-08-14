@@ -2,20 +2,20 @@
 	<radius>424.96</radius>
 	<color>255, 255, 255, 255</color>
 	<bckgrnd0>0, 0, 0, 255</bckgrnd0>
-	<bckgrnd1>255, 255, 255, 255</bckgrnd1>
+	<bckgrnd1>0, 0, 0, 239</bckgrnd1>
 	<presets>
 		<presets/>
 	</presets>
 <panel/>
 <working>1</working>
 	<working_copy>1</working_copy>
-<curveOffset>148</curveOffset>
-	<curveRadius>465.535</curveRadius>
-<fps>59.9658</fps>
-<curveWidth>53.47</curveWidth>
+<curveOffset>92</curveOffset>
+	<curveRadius>490.51</curveRadius>
+<fps>60.0041</fps>
+<curveWidth>23.77</curveWidth>
 <camera>
-		<nearClip>92.6531</nearClip>
-		<farClip>3415.82</farClip>
-	<fov>38.6888</fov>
+		<nearClip>334.515</nearClip>
+		<farClip>1716.84</farClip>
+	<fov>61.8469</fov>
 	</camera>
 </panel>

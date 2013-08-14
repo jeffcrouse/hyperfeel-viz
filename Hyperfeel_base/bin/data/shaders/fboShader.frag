@@ -23,12 +23,12 @@ void main(void)
 	vec4 color = texture2DRect( tex, uv );
 	
 	vec4 normAndDepth = texture2DRect( deferredPass, uv );
-	vec3 norm = normalize( normAndDepth.xyz*2.-1. );
+	vec3 norm = normAndDepth.xyz * 2. - 1.;
 	float depth = normAndDepth.w;
 	
 	float fr = dot( norm, ePos ) * .5 + .5;
 	float amnt = pow(fr+ .1, 4.0);
 //	float alpha = pow( amnt, 2.);
 	
-	gl_FragColor = vec4( color.xyz * depth * amnt + amnt*.1,  1. );
+	gl_FragColor = vec4( vec3(fr),  1. );
 }
