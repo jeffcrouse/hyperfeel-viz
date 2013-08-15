@@ -190,7 +190,7 @@ void testApp::setupDisplacedMesh(){
 	displacedShader.load( "shaders/displaced" );
 	
 	//create mesh tube
-	float halfsphereRad = 500;
+	float halfsphereRad = 700;
 	
 	int subdX = 128, subdY = 64;//128*128 ~= 16000 * (pos+norm+tangent+bi-tangent+uv+indices) == a lot of data
 	

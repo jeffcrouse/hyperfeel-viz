@@ -3,9 +3,11 @@ uniform float time;
 attribute vec3 tangent;
 attribute vec3 binormal;
 
+varying vec4 ecPosition;
 varying vec3 eye;
 varying vec3 norm;
 varying vec2 uv;
+varying float delta;
 
 float offset = 400.;
 float noiseScale = .0015;
@@ -104,6 +106,8 @@ void main()
 	float timeScaled = time * -.3;
 	float tangentScale = 10.;
 	
+	uv = gl_MultiTexCoord0.xy;
+	
 	norm = gl_NormalMatrix *  gl_Normal;
 	vec3 vTangent = gl_NormalMatrix * (-tangent * tangentScale);
 	vec3 bitangent = gl_NormalMatrix * (binormal * tangentScale);
@@ -112,13 +116,14 @@ void main()
 	vec3 animationOffset = vec3(100.,33.,timeScaled);
 	vec3 no = norm * offset;
 	
-	vec4 ecPosition = gl_ModelViewMatrix * gl_Vertex;
+	ecPosition = gl_ModelViewMatrix * gl_Vertex;
 	
 	vec3 samplePos = ecPosition.xyz * noiseScale + animationOffset;
 	vec3 samplePos1 = (ecPosition.xyz + vTangent) * noiseScale + animationOffset;
 	vec3 samplePos2 = (ecPosition.xyz + bitangent) * noiseScale + animationOffset;
 	
-	vec3 deformedPos = no * scldNoise( samplePos );
+	delta = scldNoise( samplePos );
+	vec3 deformedPos = no * delta;
 	vec3 deformedTangent = vTangent + no * scldNoise( samplePos1 );
 	vec3 deformedBitangent = bitangent + no * scldNoise( samplePos2 );
 	
