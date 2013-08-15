@@ -158,7 +158,7 @@ void testApp::draw(){
 	
 	//draw fbo to the screen
 	ofSetColor(255, 255, 255 );
-	fboShader.begin();
+//	fboShader.begin();
 	fboShader.setUniform1f( "radius", radius );
 	fboShader.setUniform1f( "time", elapsedTime );
 	fboShader.setUniform1f( "minThreshold", minThreshold );
@@ -168,7 +168,7 @@ void testApp::draw(){
 	fboShader.setUniformTexture("tex", fbo.getTextureReference(0), 0 );
 	fboShader.setUniformTexture("deferredPass", fbo.getTextureReference(1), 1 );
 	fbo.draw(0, 0, ofGetWidth(), ofGetHeight() );
-	fboShader.end();
+//	fboShader.end();
 	
 	
 	//GUI
@@ -190,9 +190,9 @@ void testApp::setupDisplacedMesh(){
 	displacedShader.load( "shaders/displaced" );
 	
 	//create mesh tube
-	float radiusBottom = 500, radiusTop = 0;
+	float halfsphereRad = 500;
 	
-	int subdX = 64, subdY = 32;//128*128 ~= 16000 * (pos+norm+tangent+bi-tangent+uv+indices) == a lot of data
+	int subdX = 64, subdY = 64;//128*128 ~= 16000 * (pos+norm+tangent+bi-tangent+uv+indices) == a lot of data
 	
 	int numVertices = subdX * subdY;
 	vector< ofVec3f >vertices( numVertices );
@@ -206,14 +206,25 @@ void testApp::setupDisplacedMesh(){
 	float xStep = 1. / float(subdX-1);
 	float yStep = 1. / float(subdY-1);
 	float zStep = -subdY / 2;
-	for (int i=0; i<subdY; i++) {
-		//interpolate between top and bottom radius'
-		float mixVal = cos( i * yStep * HALF_PI );
-		float rad = radiusBottom * mixVal + radiusTop * (1. - mixVal);
 	
+	float xval, yval;
+	for (int i=0; i<subdY; i++) {
+
 		//make some vertices
 		for (int j=0; j<subdX; j++) {
-			vertices[count].set( sin(xStep*j*TWO_PI) * rad, cos(xStep*j*TWO_PI) * rad, i * zStep );
+			
+//			vertices[count].set( sin(xStep*j*TWO_PI) * rad, cos(xStep*j*TWO_PI) * rad, i * zStep );
+			
+			xval = xStep*j*TWO_PI;
+			yval = yStep*i*HALF_PI;
+			float u = xval;
+			float v = yval;
+			
+			vertices[count].set( cos(u)*sin(v), sin(u)*sin(v), -cos(v) );
+//			vertices[count].set( cos(u)*sin(v), cos(v), sin(u)*sin(v) );
+			
+			vertices[count] *= halfsphereRad;
+			
 			texCoords[count].set( j * xStep, i * yStep );
 			count++;
 		}
@@ -325,7 +336,7 @@ void testApp::setupDisplacedMesh(){
 		tangent.w = ( n.crossed(t).dot( tan2[a] ) < 0.) ? -1.f : 1.f;
 		
 		tangents[a] = tangent;
-		binormals[a] = n.crossed( tangent );
+		binormals[a] = n.crossed( tangents[a] );
 	}
 	
 	
@@ -337,8 +348,8 @@ void testApp::setupDisplacedMesh(){
 	
 	displacedShader.begin();
 	
-	displacedVbo.setAttributeData( displacedShader.getAttributeLocation( "tangent" ), &tangents[0].x, 1, tangents.size()*3, GL_STATIC_DRAW );
-	displacedVbo.setAttributeData( displacedShader.getAttributeLocation( "binormal" ), &binormals[0].x, 1, binormals.size()*3, GL_STATIC_DRAW );
+	displacedVbo.setAttributeData( displacedShader.getAttributeLocation( "tangent" ), &tangents[0].x, 3, tangents.size()*3, GL_STATIC_DRAW, sizeof(tangents[0]) );
+	displacedVbo.setAttributeData( displacedShader.getAttributeLocation( "binormal" ), &binormals[0].x, 3, binormals.size()*3, GL_STATIC_DRAW, sizeof(binormals[0])  );
 	
 	displacedShader.end();
 	
@@ -350,6 +361,9 @@ void testApp::drawDisplacedMesh(){
 		setupDisplacedMesh();
 	}
 	
+	ofPushMatrix();
+	ofScale(1, 1, 3);
+	
 	displacedShader.begin();
 	displacedShader.setUniform1f("time", elapsedTime );
 	
@@ -358,6 +372,8 @@ void testApp::drawDisplacedMesh(){
 //	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL );
 	
 	displacedShader.end();
+	
+	ofPopMatrix();
 	
 }
 

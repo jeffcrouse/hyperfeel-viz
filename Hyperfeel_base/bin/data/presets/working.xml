@@ -1,5 +1,5 @@
 <panel>
-	<fps>59.9681</fps>
+	<fps>60.0384</fps>
 	<radius>512</radius>
 	<camera>
 		<nearClip>46.8265</nearClip>
@@ -10,10 +10,10 @@
 	<bckgrnd1>0, 0, 0, 255</bckgrnd1>
 	<curveOffset>400</curveOffset>
 	<curveRadius>450</curveRadius>
-	<curveWidth>30</curveWidth>
+	<curveWidth>91.09</curveWidth>
 	<minThreshold>0.06866</minThreshold>
 	<maxThreshold>0.08595</maxThreshold>
-	<sampleRadius>705.59</sampleRadius>
+	<sampleRadius>1000</sampleRadius>
 	<presets/>
 <panel/>
 </panel>
