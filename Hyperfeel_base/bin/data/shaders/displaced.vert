@@ -7,8 +7,8 @@ varying vec3 eye;
 varying vec3 norm;
 varying vec2 uv;
 
-float offset = 300.;
-float noiseScale = .002;
+float offset = 400.;
+float noiseScale = .0015;
 
 vec4 permute( vec4 x ) {
 	return mod( ( ( x * 34.0 ) + 1.0 ) * x, 289.0 );
@@ -79,8 +79,8 @@ vec3 normalFrom3Points( vec3 p0, vec3 p1, vec3 p2){
 
 float remapValue( float t ){
 	//	P(t) = P0*t^2 + P1*2*t*(1-t) + P2*(1-t)^2
-	float p0 = 0.;
-	float p1 = .9;
+	float p0 = -.2;
+	float p1 = .75;
 	float p2 = 1.;
 	
 	return pow( p0*t, 2.) + p1*2.*t*(1.-t) + pow(p2*(1.-t), 2.);
@@ -89,9 +89,9 @@ float remapValue( float t ){
 float scldNoise( vec3 s ){
 	
 	
-	float outval = snoise( s ) * (snoise( s * 3.) * .5 + .5);
-	outval = 1. - pow( 1. - outval, 2. );
-	return remapValue( outval*.5 + .5 );
+	float outval = snoise( s ) * (snoise( s * 2.) * .25 + .75);
+//	outval = 1. - pow( 1. - outval, 2. );
+	return remapValue( outval*.5 + .5);
 }
 vec4 getOffset( vec3 s, vec3 n ){
 	return vec4( n * offset * scldNoise( s ), 0.);
@@ -114,7 +114,6 @@ void main()
 	
 	vec4 ecPosition = gl_ModelViewMatrix * gl_Vertex;
 	
-	
 	vec3 samplePos = ecPosition.xyz * noiseScale + animationOffset;
 	vec3 samplePos1 = (ecPosition.xyz + vTangent) * noiseScale + animationOffset;
 	vec3 samplePos2 = (ecPosition.xyz + bitangent) * noiseScale + animationOffset;
@@ -124,42 +123,9 @@ void main()
 	vec3 deformedBitangent = bitangent + no * scldNoise( samplePos2 );
 	
 	norm = normalize( normalize( normalFrom3Points( deformedTangent, deformedPos, deformedBitangent ).xyz ));
-	//	vec4 ecPosition = gl_ModelViewMatrix * gl_Vertex + vec4(deformedPos, 0.);
-	ecPosition += vec4(deformedPos, 0.);
-	
+	ecPosition += vec4( deformedPos, 0.);
 	eye = -normalize(ecPosition.xyz);
 	
 	gl_Position = gl_ProjectionMatrix * ecPosition;
 	
 }
-
-
-
-/*
- float timeScaled = time * -.3;
- float tangentScale = 10.;
- 
- norm = gl_Normal;
- vec3 vTangent = -tangent * tangentScale;
- vec3 bitangent = binormal * tangentScale;
- //	vec3 vTangent = -normalize( cross( binormal, norm ) ) * tangentScale;
- 
- vec3 animationOffset = vec3(100.,33.,timeScaled);
- vec3 no = norm * offset;
- 
- 
- vec3 samplePos = gl_Vertex.xyz * noiseScale + animationOffset;
- vec3 samplePos1 = (gl_Vertex.xyz + vTangent) * noiseScale + animationOffset;
- vec3 samplePos2 = (gl_Vertex.xyz + bitangent) * noiseScale + animationOffset;
- 
- vec3 deformedPos = no * snoise( samplePos );
- vec3 deformedTangent = vTangent + no * snoise( samplePos1 );
- vec3 deformedBitangent = bitangent + no * snoise( samplePos2 );
- 
- norm = ( gl_NormalMatrix * normalize( normalFrom3Points( deformedTangent, deformedPos, deformedBitangent ).xyz ))
- ;//cross( deformedTangent-deformedPos, deformedPos-deformedBitangent));
- vec4 ecPosition = gl_ModelViewMatrix * gl_Vertex + vec4(deformedPos, 0.);
- eye = -normalize(ecPosition.xyz);
- 
- gl_Position = gl_ProjectionMatrix * ecPosition;
-*/

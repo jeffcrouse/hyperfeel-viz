@@ -192,7 +192,7 @@ void testApp::setupDisplacedMesh(){
 	//create mesh tube
 	float halfsphereRad = 500;
 	
-	int subdX = 64, subdY = 64;//128*128 ~= 16000 * (pos+norm+tangent+bi-tangent+uv+indices) == a lot of data
+	int subdX = 128, subdY = 64;//128*128 ~= 16000 * (pos+norm+tangent+bi-tangent+uv+indices) == a lot of data
 	
 	int numVertices = subdX * subdY;
 	vector< ofVec3f >vertices( numVertices );
