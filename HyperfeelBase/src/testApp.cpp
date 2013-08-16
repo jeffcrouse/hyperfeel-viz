@@ -146,7 +146,7 @@ void testApp::setupUI(){
 	displacedMeshGui = new ofxUICanvas();
 	displacedMeshGui->setName("displacedMesh");
 	displacedMeshGui->setPosition(rainbowLayersGui->getRect()->getX() + rainbowLayersGui->getRect()->getWidth() + 30, rainbowLayersGui->getRect()->getY() );
-	displacedMeshGui->addSlider("displacement", 10, 1000, &uiDisplacement );
+	displacedMeshGui->addSlider("displacement", -1000, 1000, &uiDisplacement );
 	displacedMeshGui->addSlider("deltaExpo", 1., 32., &uiDeltaExpo );
 	displacedMeshGui->addSlider("noiseSurfaceSampleScale", .0001, .3, &uiNoiseSurfaceSampleScale );
 	displacedMeshGui->addSlider("roundingWeight", .001, 1.000, &uiRoundingWeight );
@@ -844,8 +844,11 @@ void testApp::savePreset( string presetName )
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-	if( key == 'h' ){
-		bHide = !bHide;
+	if( key == 'h' || key == 'H' ){
+		for(vector<ofxUICanvas *>::iterator it = guis.begin(); it != guis.end(); ++it)
+		{
+			(*it)->toggleVisible();
+		}
 	}
 	if(key == 's' || key == 'S' ) {
 		savePreset();

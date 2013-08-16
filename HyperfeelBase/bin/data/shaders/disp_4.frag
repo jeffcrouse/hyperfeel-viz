@@ -92,9 +92,11 @@ void main(void)
 //	float fr = dot( eye, norm );// * .5 + .5;
 	float fr = abs( dot( eye, norm ) );
 	
+	float someVal = pow(fr, frExpo) * sin(ecPosition.x * noiseSurfaceSampleScale );
+	
 	vec3 color = texture2DRect( tex, uv * texDim ).xyz;
 	
-	gl_FragData[0] = vec4( color, 1. );
+	gl_FragData[0] = vec4( color * pow( fr, frExpo )  * someVal, 1. );
 	
     gl_FragData[1] = vec4( norm*.5+.5, linearizeDepth( gl_FragCoord.z ) );// norm,
 }
