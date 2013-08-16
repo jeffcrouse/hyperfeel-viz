@@ -178,7 +178,8 @@ void testApp::setupUI(){
 	dispShaderName = dispShaderNames[0];
 	
 	//load our working sttings
-	loadPreset("Working");
+//	loadPreset("Working");
+	nextPreset = "Working";
 }
 
 void testApp::guiEvent(ofxUIEventArgs &e){
@@ -292,12 +293,13 @@ void testApp::loadShaders()
 	displacedShader.load( "shaders/displaced" );
 	
 	disp_1.load( "shaders/disp_1" );
-	dispShaderNames.push_back("disp_1");
+	dispShaderNames.push_back("dispShader_1");
+	
 	disp_2.load( "shaders/disp_2" );
-	dispShaderNames.push_back("disp_2");
+	dispShaderNames.push_back("dispShader_2");
 	
 	disp_3.load( "shaders/disp_3" );
-	dispShaderNames.push_back("disp_3");
+	dispShaderNames.push_back("dispShader_3");
 	
 	
 	
@@ -520,7 +522,7 @@ void testApp::drawDisplacedMesh()
 	ofScale(1, 1, 3);
 	
 
-	if( dispShaderName == "disp_1"){
+	if( dispShaderName == "dispShader_1"){
 		disp_1.begin();
 		
 		disp_1.setUniform1f("time", elapsedTime );
@@ -531,7 +533,7 @@ void testApp::drawDisplacedMesh()
 		disp_1.setUniform1f("frExpo", frExpo );
 		disp_1.setUniform1f("noiseSurfaceSampleScale", uiNoiseSurfaceSampleScale );
 	}
-	else if( dispShaderName == "disp_2"){
+	else if( dispShaderName == "dispShader_2"){
 		disp_2.begin();
 		
 		disp_2.setUniform1f("time", elapsedTime );
@@ -543,7 +545,7 @@ void testApp::drawDisplacedMesh()
 		disp_2.setUniform1f("noiseSurfaceSampleScale", uiNoiseSurfaceSampleScale );
 	}
 	
-	else if( dispShaderName == "disp_3"){
+	else if( dispShaderName == "dispShader_3"){
 		disp_3.begin();
 		disp_3.setUniform1f("time", elapsedTime );
 		disp_3.setUniform1f("nearClip", nearClip );
@@ -573,16 +575,16 @@ void testApp::drawDisplacedMesh()
 //	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL );
 	
 
-	if( dispShaderName == "disp_1")
+	if( dispShaderName == "dispShader_1")
 	{
 		disp_1.end();
 	}
-	else if( dispShaderName == "disp_2")
+	else if( dispShaderName == "dispShader_2")
 	{
 		disp_2.end();
 	}
 	
-	else if( dispShaderName == "disp_3")
+	else if( dispShaderName == "dispShader_3")
 	{
 		disp_3.end();
 	}

@@ -6,22 +6,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>deltaExpo</Name>
-    <Value>9.246304512</Value>
+    <Value>1.152709365</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseSurfaceSampleScale</Name>
-    <Value>0.172948793</Value>
+    <Value>0.140447304</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>roundingWeight</Name>
-    <Value>0.675202012</Value>
+    <Value>0.473433495</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>frExpo</Name>
-    <Value>20.699508667</Value>
+    <Value>25.128078461</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -30,16 +30,16 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>disp_1</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>disp_2</Name>
+    <Name>dispShader_1</Name>
     <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>disp_3</Name>
+    <Name>dispShader_2</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>dispShader_3</Name>
     <Value>0</Value>
 </Widget>
