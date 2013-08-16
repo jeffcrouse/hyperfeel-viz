@@ -75,7 +75,7 @@ public:
 	
 	
 	//Russain Dolls
-	void setupRussianDolls( float radians = float(HALF_PI)*1.35, float sphereRad=300.);
+	void setupRussianDolls( float radians = float(HALF_PI)*1.5, float sphereRad=300.);
 	void drawRussianDolls();
 	vector<ofVec3f> rimPoints;//used to connect the vbo with the ribbons
 	vector<ofNode> dollNodes;

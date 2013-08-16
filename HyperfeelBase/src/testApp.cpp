@@ -363,8 +363,12 @@ void testApp::drawRussianDolls(){
 	dollShader.begin();
 	
 	for(int i=0; i<dollNodes.size(); i++){
-		
-		dollNodes[i].setOrientation(ofVec3f( 0, sin(elapsedTime * .4)*2, sin(elapsedTime * .2)*10. ));
+		if( i == 0){
+			dollNodes[i].setOrientation(ofVec3f( 0, sin(elapsedTime * .4)*2, sin(elapsedTime * .2)*10. ));
+		}else{
+			
+			dollNodes[i].setOrientation( dollNodes[i-1].getOrientationEuler() );
+		}
 		ofPushMatrix();
 		ofMultMatrix( dollNodes[i].getGlobalTransformMatrix() );
 		ofSetColor( dollColors[i] );
