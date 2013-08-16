@@ -1,2 +1,0 @@
-ofxSSAO
-ofxUI
