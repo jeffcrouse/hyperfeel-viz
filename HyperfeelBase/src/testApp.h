@@ -34,6 +34,18 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 	
+	
+	//Hyper feel
+	vector<HyperFeel_Data> getFakeData(int amount = 1000){
+		vector<HyperFeel_Data> data( amount );
+		for(int i=0; i<amount; i++){
+			data[i].attention = ofNoise( float(i * 40) / (amount-1.) ) * ofNoise( float(i * 2) / (amount-1.) );
+			data[i].meditation = ofNoise( float(i * 40) / (amount-1.) + 10) * ofNoise( float(i * 2) / (amount-1.) + 100);
+			data[i].timeStamp = float(i) / amount;
+		}
+		return data;
+	};
+	
 	//drawing options
 	//
 	//rainbow layers
@@ -44,7 +56,7 @@ public:
 	
 	//displaced mesh
 	bool bDisplacedMeshIsSetup;
-	void setupDisplacedMesh();
+	void setupDisplacedMesh( float radians = float(HALF_PI), float sphereRad=700. );
 	void drawDisplacedMesh();
 	ofVec3f normalFrom3Points(ofVec3f p0, ofVec3f p1, ofVec3f p2);
 	ofVec3f normalFrom4Points(ofVec3f p0, ofVec3f p1, ofVec3f p2, ofVec3f p3);
@@ -62,37 +74,25 @@ public:
 	ofShader disp_4;
 	
 	
-	
-	bool bHide;
-	
-	//Hyper feel
-	vector<HyperFeel_Data> getFakeData(int amount = 1000){
-		vector<HyperFeel_Data> data( amount );
-		
-		for(int i=0; i<amount; i++){
-			
-			data[i].attention = ofNoise( float(i * 40) / (amount-1.) ) * ofNoise( float(i * 2) / (amount-1.) );
-			data[i].meditation = ofNoise( float(i * 40) / (amount-1.) + 10) * ofNoise( float(i * 2) / (amount-1.) + 100);
-			data[i].timeStamp = float(i) / amount;
-		}
-		
-		
-		return data;
-	};
+	//Russain Dolls
+	void setupRussianDolls( float radians = float(HALF_PI)*1.35, float sphereRad=300.);
+	void drawRussianDolls();
+	vector<ofVec3f> rimPoints;//used to connect the vbo with the ribbons
+	vector<ofNode> dollNodes;
+	vector<ofFloatColor> dollColors;
+	ofVbo dollVbo;
+	ofShader dollShader;
+	int russianDallIndexCount;
+	bool bRussianDollsAreSetup;
+
 	
 	//Gui methods
 	void loadPreset( string name);
-
 	void savePreset( string folderName );
 	void savePreset(){
 		string presetName = ofSystemTextBoxDialog("Save Preset As");
-		if(presetName.length())
-		{
-			savePreset(presetName);
-		}
-		else{
-			bSavePreset = false;
-		}
+		if(presetName.length())	savePreset(presetName);
+		else	bSavePreset = false;
 	};
 	
 	//animation
@@ -115,6 +115,7 @@ public:
 	
 	//ofxUI
 	vector<string> getPresetNames();
+	vector<string> renderTypes;
 	vector<string> effects;
 	
 	string currentRenderType;

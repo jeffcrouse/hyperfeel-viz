@@ -34,6 +34,8 @@ void testApp::setup(){
 	bRainbowLayersIsSetup = bDisplacedMeshIsSetup = false;
 	
 	
+	bRussianDollsAreSetup = false;
+	
 	setDefaults();
 	
     // ---
@@ -66,9 +68,10 @@ void testApp::setDefaults(){
 
 void testApp::setupUI(){
 	
-	vector<string> renderTypes;
+	renderTypes.clear();
 	renderTypes.push_back("rainbowLayers");
 	renderTypes.push_back("displacedMesh");
+	renderTypes.push_back("russianDolls");
 	
     int columnWidth = 75;
 	
@@ -189,53 +192,51 @@ void testApp::guiEvent(ofxUIEventArgs &e){
 	string name = e.widget->getName();
 	int kind = e.widget->getKind();
 //	cout << endl << name << " : " << kind << " : " << e.widget->getParent()->getName() <<  endl;
+
 	
-	if( name == "rainbowLayers" )
-	{
-		
-		ofxUIToggle *t = e.getToggle();
-		if(t->getValue()){
-			currentRenderType = name;
-//			cout << "currentRenderType == " << currentRenderType <<endl;
-		}
-	}
-	
-	else if( name == "displacedMesh" )
-	{
-		ofxUIToggle *t = e.getToggle();
-		if(t->getValue()){
-			currentRenderType = name;
-//			cout << "currentRenderType == " << currentRenderType <<endl;
-		}
-	}
-	else if( name == "save preset" ){
+	if( name == "save preset" ){
 		bSavePreset = true;
-//		savePreset();
+		//savePreset();
 	}
 	
 	else{
 		
-		//look in the presets
-		presetNames = getPresetNames();
-		for (int i=0; i<presetNames.size(); i++) {
-			if( name == presetNames[i] ){
-//				nextPreset = name;
-				
+		bool bFoundIt = false;
+		
+		//check and change the render type
+		for (int i=0; i<renderTypes.size(); i++) {
+			if(name == renderTypes[i]){
 				ofxUIToggle *t = e.getToggle();
 				if(t->getValue()){
-					nextPreset = name;
+					currentRenderType = name;
+					bFoundIt = true;
 				}
 			}
 		}
-		bPresetsloadedHack = true;
+		
+		//look in the presets
+		if(!bFoundIt){
+			presetNames = getPresetNames();
+			for (int i=0; i<presetNames.size(); i++) {
+				if( name == presetNames[i] ){
+					ofxUIToggle *t = e.getToggle();
+					if(t->getValue()){
+						nextPreset = name;
+						bFoundIt = true;
+					}
+				}
+			}
+		}
 		
 		//look in the shaders
-		for(int i=0; i<dispShaderNames.size(); i++){
-			if(name == dispShaderNames[i]){
-				ofxUIToggle *t = e.getToggle();
-				if(t->getValue()){
-//					cout << "dispShaderName: "<<dispShaderName<< endl;
-					dispShaderName = dispShaderNames[i];
+		if(!bFoundIt){
+			for(int i=0; i<dispShaderNames.size(); i++){
+				if(name == dispShaderNames[i]){
+					ofxUIToggle *t = e.getToggle();
+					if(t->getValue()){
+						dispShaderName = dispShaderNames[i];
+						bFoundIt = true;
+					}
 				}
 			}
 		}
@@ -307,7 +308,7 @@ void testApp::loadShaders()
 	
 	
 	
-//	dispShaderName = dispShaderNames[0];
+	dollShader.load( "shaders/doll" );
 	
 }
 
@@ -338,28 +339,137 @@ void testApp::draw()
 	else if( currentRenderType == "displacedMesh" ){
 		drawDisplacedMesh();
 	}
+	else if( currentRenderType == "russianDolls" ){
+		drawRussianDolls();
+	}
 	
 	
 	glDisable(GL_DEPTH_TEST);
 	
-	if( dispShaderName == "dispShader_4"){
+	if( currentRenderType == "displacedMesh" && dispShaderName == "dispShader_4"){
 		ofSetColor(255, 255, 255, 255);
 		fboMap.draw(10, ofGetHeight() - 210, 200, 200);
 	}
 	
 }
 
-void testApp::setupDisplacedMesh()
+void testApp::drawRussianDolls(){
+	if(!bRussianDollsAreSetup){
+		setupRussianDolls();
+	}
+	
+	camera.begin();
+	
+	dollShader.begin();
+	
+	for(int i=0; i<dollNodes.size(); i++){
+		
+		dollNodes[i].setOrientation(ofVec3f( 0, sin(elapsedTime * .4)*2, sin(elapsedTime * .2)*10. ));
+		ofPushMatrix();
+		ofMultMatrix( dollNodes[i].getGlobalTransformMatrix() );
+		ofSetColor( dollColors[i] );
+		
+		dollVbo.drawElements(GL_QUADS, russianDallIndexCount );
+		
+		ofPopMatrix();
+	}
+	
+	dollShader.end();
+	
+	camera.end();
+	
+	
+}
+
+void testApp::setupRussianDolls( float radians, float sphereRad ){
+	bRussianDollsAreSetup = true;
+	
+	int subdX = 64, subdY = 32;
+	int vertCount = subdX * subdY;
+	
+	//make our vertices
+	vector<ofVec3f> vertices(vertCount);
+	vector<ofVec3f> normals(vertCount);
+	int count = 0;
+	float xStep = 1. / float(subdX-1);
+	float yStep = 1. / float(subdY-1);
+	float zStep = -subdY / 2;
+	
+	float xval, yval;
+	for (int i=0; i<subdY; i++) {
+		for (int j=0; j<subdX; j++) {
+			//make our vertices
+			
+			xval = xStep*j*TWO_PI;
+			yval = yStep*i * radians;
+			float u = xval;
+			float v = yval;
+			
+			vertices[count].set( cos(u)*sin(v), sin(u)*sin(v), -cos(v) );
+			normals[count] = vertices[count];
+			
+			vertices[count] *= sphereRad;
+			
+//			texCoords[count].set( j * xStep, i * yStep );
+			count++;
+		}
+	}
+	
+	
+	//make the faces, calculate the face normals and add them to the vertex normals
+	vector<ofIndexType> indices;
+	int p0, p1, p2, p3, wrapIndex;
+	for (int i=1; i<subdY; i++) {
+		for (int j=1; j<subdX; j++) {
+			
+			//quad faces
+			p0 = (i-1) * subdX + j-1;
+			p1 = i*subdX + j-1;
+			p2 = i*subdX + j;
+			p3 = (i-1) * subdX + j;
+			
+			indices.push_back( p0 );
+			indices.push_back( p1 );
+			indices.push_back( p2 );
+			indices.push_back( p3 );
+		}
+	}
+	russianDallIndexCount = indices.size();
+	
+	
+	//add attributes to vbo
+	dollVbo.setVertexData( &vertices[0], vertices.size(), GL_STATIC_DRAW );
+	dollVbo.setNormalData( &normals[0], normals.size(), GL_STATIC_DRAW );
+//	dollVbo.setTexCoordData( &texCoords[0], texCoords.size(), GL_STATIC_DRAW );
+	dollVbo.setIndexData( &indices[0], indices.size(), GL_STATIC_DRAW );
+	
+	
+	//create our nodes
+	dollNodes.resize( 30 );
+	dollColors.resize( dollNodes.size() );
+	
+	for(int i=0; i<dollNodes.size(); i++){
+		dollColors[i].set( ofRandom(.5,1.5), ofRandom(.5,1.5), ofRandom(.5,1.5));
+		dollNodes[i].setScale(.9);
+		
+		if(i>0){
+			dollNodes[i].setParent( dollNodes[i-1] );
+		}
+	}
+}
+
+
+//--------------------------------------------------------------
+void testApp::setupDisplacedMesh( float radians, float sphereRad )
 {
 	
-	bDisplacedMeshIsSetup = true;
+	bRussianDollsAreSetup = true;
 	cout << endl << "setting up displacedMesh" << endl << endl;
 	
 	//setup shader
 	displacedShader.load( "shaders/displaced" );
 	
 	//create mesh tube
-	float halfsphereRad = 700;
 	
 	int subdX = 64, subdY = 64;//128*128 ~= 16000 * (pos+norm+tangent+bitangent+uv+indices) == a lot of data
 	
@@ -383,19 +493,20 @@ void testApp::setupDisplacedMesh()
 		for (int j=0; j<subdX; j++) {
 			
 			xval = xStep*j*TWO_PI;
-			yval = yStep*i*HALF_PI;
+			yval = yStep*i * radians;
 			float u = xval;
 			float v = yval;
 			
 			vertices[count].set( cos(u)*sin(v), sin(u)*sin(v), -cos(v) );
 			
-			vertices[count] *= halfsphereRad;
+			vertices[count] *= sphereRad;
 			
 			texCoords[count].set( j * xStep, i * yStep );
 			count++;
 		}
 	}
 	displacedVertexCount = count;
+	
 	
 	//make the faces, calculate the face normals and add them to the vertex normals
 	vector<ofIndexType> indices;
@@ -420,7 +531,7 @@ void testApp::setupDisplacedMesh()
 			indices.push_back( p0 );
 			indices.push_back( p1 );
 			indices.push_back( p2 );
-
+			
 			indices.push_back( p0 );
 			indices.push_back( p2 );
 			indices.push_back( p3 );
@@ -520,6 +631,7 @@ void testApp::setupDisplacedMesh()
 	//gui switch to displaced panel...
 	
 }
+
 void testApp::drawDisplacedMesh()
 {
 	if(!bDisplacedMeshIsSetup){
@@ -660,11 +772,14 @@ ofVec3f testApp::normalFrom3Points(ofVec3f p0, ofVec3f p1, ofVec3f p2)
 	ofVec3f norm = (p2 - p1).cross( p0 - p1);
 	return norm.normalized();
 }
+
 ofVec3f testApp::normalFrom4Points(ofVec3f p0, ofVec3f p1, ofVec3f p2, ofVec3f p3)
 {
 	return (normalFrom3Points(p0, p1, p2) + normalFrom3Points(p0, p2, p3)).normalized();
 }
 
+
+//--------------------------------------------------------------
 void testApp::setupRainbowLayers()
 {
 	bRainbowLayersIsSetup = true;
@@ -692,7 +807,6 @@ void testApp::setupRainbowLayers()
 	vbo.setVertexData( &vertices[0], vertices.size(), GL_STATIC_DRAW );
 
 }
-
 
 void testApp::drawRainbowLayers()
 {
@@ -784,6 +898,7 @@ void testApp::exit()
 	}
 }
 
+//--------------------------------------------------------------
 vector<string> testApp::getPresetNames()
 {
 	vector<string> presetNames;
@@ -799,7 +914,6 @@ vector<string> testApp::getPresetNames()
 	return presetNames;
 }
 
-//--------------------------------------------------------------
 void testApp::loadPreset( string presetName)
 {
 	currentPresetName = presetName;
@@ -821,29 +935,22 @@ void testApp::savePreset( string presetName )
     if(!dir.doesDirectoryExist(presetDirectory))
     {
         dir.createDirectory(presetDirectory);
-//        presetRadio->addToggle(presetCanvas->addToggle( presetName, true));
-//        presetCanvas->autoSizeToFitWidgets();
-//		ofxUIToggle* t = new ofxUIToggle();
-//		t->setName( presetName );
-//		presetRadio->addToggle(t);
-//		presetGui->autoSizeToFitWidgets();
 		
-		cout << "adding toggle: " <<presetName << endl;
         presetRadio->addToggle(presetGui->addToggle(presetName, true));
         presetGui->autoSizeToFitWidgets();
-		cout << "added toggle: " <<presetName << endl;
     }
     
     for(int i = 0; i < guis.size(); i++)
     {
-		cout << "saving: " << presetDirectory+guis[i]->getName()+".xml" << endl;
-        guis[i]->saveSettings(presetDirectory+guis[i]->getName()+".xml");
+		cout << "saving: " << presetDirectory + guis[i]->getName()+".xml" << endl;
+        guis[i]->saveSettings(presetDirectory + guis[i]->getName()+".xml");
     }
 }
 
 
 //--------------------------------------------------------------
-void testApp::keyPressed(int key){
+void testApp::keyPressed(int key)
+{
 	if( key == 'h' || key == 'H' ){
 		for(vector<ofxUICanvas *>::iterator it = guis.begin(); it != guis.end(); ++it)
 		{
@@ -859,26 +966,31 @@ void testApp::keyPressed(int key){
 	}
 }
 //--------------------------------------------------------------
-void testApp::keyReleased(int key){
+void testApp::keyReleased(int key)
+{
 	
 }
 
 //--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y ){
+void testApp::mouseMoved(int x, int y )
+{
 	
 }
 
 //--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button){
+void testApp::mouseDragged(int x, int y, int button)
+{
 }
 
 //--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
+void testApp::mousePressed(int x, int y, int button)
+{
 	
 }
 
 //--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button){
+void testApp::mouseReleased(int x, int y, int button)
+{
 	
 }
 
