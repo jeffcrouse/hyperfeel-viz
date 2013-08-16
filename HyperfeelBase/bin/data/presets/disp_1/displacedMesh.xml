@@ -1,22 +1,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>displacement</Name>
-    <Value>546.453186035</Value>
+    <Value>619.605895996</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>deltaExpo</Name>
-    <Value>28.640394211</Value>
+    <Value>10.620689392</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseSurfaceSampleScale</Name>
-    <Value>0.047374882</Value>
+    <Value>0.300000012</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>roundingWeight</Name>
-    <Value>0.921261072</Value>
+    <Value>0.768704414</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -26,12 +26,12 @@
 <Widget>
     <Kind>2</Kind>
     <Name>disp_1</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>disp_2</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

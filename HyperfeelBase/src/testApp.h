@@ -50,7 +50,12 @@ public:
 	ofVec3f normalFrom4Points(ofVec3f p0, ofVec3f p1, ofVec3f p2, ofVec3f p3);
 	ofVbo displacedVbo;
 	int displacedVertexCount, displacedIndexCount;
+	
+	string dispShaderName;
+	vector<string> dispShaderNames;
 	ofShader displacedShader;
+	ofShader disp_1;
+	ofShader disp_2;
 	
 	
 	
@@ -94,6 +99,7 @@ public:
 	ofFbo fbo;
 	ofShader fboShader;
 	
+	
 	//ofxUI
 	vector<string> getPresetNames();
 	vector<string> effects;
@@ -108,7 +114,7 @@ public:
     void guiEvent(ofxUIEventArgs &e);
 	void guiPresetEvent(ofxUIEventArgs &e);
 	ofxUICanvas* _gui;
-	ofxUICanvas* presetCanvas;
+	ofxUICanvas* presetGui;
 	ofxUIRadio* presetRadio;
 	ofxUICanvas* rainbowLayersGui;
 	float uiCurveOffset, uiCurveRadius, uiCurveWidth;
