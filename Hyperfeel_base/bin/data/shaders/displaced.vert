@@ -1,4 +1,6 @@
+uniform float displacement;
 uniform float time;
+uniform float roundingWeight;
 
 attribute vec3 tangent;
 attribute vec3 binormal;
@@ -9,7 +11,7 @@ varying vec3 norm;
 varying vec2 uv;
 varying float delta;
 
-float offset = 400.;
+float offset = displacement;
 float noiseScale = .0015;
 
 vec4 permute( vec4 x ) {
@@ -82,7 +84,7 @@ vec3 normalFrom3Points( vec3 p0, vec3 p1, vec3 p2){
 float remapValue( float t ){
 	//	P(t) = P0*t^2 + P1*2*t*(1-t) + P2*(1-t)^2
 	float p0 = -.2;
-	float p1 = .75;
+	float p1 = roundingWeight;
 	float p2 = 1.;
 	
 	return pow( p0*t, 2.) + p1*2.*t*(1.-t) + pow(p2*(1.-t), 2.);
@@ -132,5 +134,7 @@ void main()
 	eye = -normalize(ecPosition.xyz);
 	
 	gl_Position = gl_ProjectionMatrix * ecPosition;
+	
+	
 	
 }

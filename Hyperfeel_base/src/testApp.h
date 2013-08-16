@@ -1,8 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxGui.h"
-#include "Hyperfeel_Button.h"
+//#include "ofxGui.h"
+//#include "Hyperfeel_Button.h"
+//#include "HyperFeel_guiSwtich.h"
+#include "ofxUI.h"
 
 class HyperFeel_Data {
 public:
@@ -70,19 +72,15 @@ public:
 	};
 	
 	//Gui methods
-	void addPresetToGui( string name );
-	void loadPresetsToGui();
-	void updateGuiPresets();
-	void switchPresets();
 	void loadPreset( string name);
-	void savePreset();
+	void savePreset( string folderName = "Working" );
 	
 	//animation
 	float elapsedTime;
 	
 	//camera
 	ofEasyCam camera;
-	ofxGuiGroup cameraGroup;
+//	ofxGuiGroup cameraGroup;
 	ofParameter<float> nearClip;
 	ofParameter<float> farClip;
 	ofParameter<float> fov;
@@ -91,34 +89,36 @@ public:
 	ofVbo vbo;
 	ofShader dataShader;
 	
-	ofParameter<string> meshLabel;
-	ofParameter<float> curveOffset;
-	ofParameter<float> curveRadius;
-	ofParameter<float> curveWidth;
-	
-	ofParameter<string> ssaoLabel;
-	ofParameter<float> minThreshold;
-	ofParameter<float> maxThreshold;
-	ofParameter<float> sampleRadius;
-	
 	
 	//FBO
 	ofFbo fbo;
 	ofShader fboShader;
 	
+	//ofxUI
+	vector<string> getPresetNames();
+	vector<string> effects;
 	
-	//GUI
+	string currentRenderType;
+	vector <ofxUICanvas*> guis;
+	vector <ofxUICanvas*> presetEventGuis;
+	
+	float goboRadius;
+	void setDefaults();
+	void setupUI();
+    void guiEvent(ofxUIEventArgs &e);
+	void guiPresetEvent(ofxUIEventArgs &e);
+	ofxUICanvas* _gui;
+	ofxUICanvas* presetCanvas;
+	ofxUIRadio* presetRadio;
+	ofxUICanvas* rainbowLayersGui;
+	float uiCurveOffset, uiCurveRadius, uiCurveWidth;
+	float uiFov;
+	
+	float uiMinThreshold, uiMaxThreshold, uiSampleRadius, uiNearClip, uiFarClip;
+	
+	ofxUICanvas* displacedMeshGui;
+	float uiDisplacement, uiDeltaExpo, uiNoiseSurfaceSampleScale, uiRoundingWeight, frExpo;
+	
 	string currentPresetName;
-	map< string, Hyperfeel_Button> presetNames;
-	
-	ofxButton savePresetButton;
-	ofParameter<string> fpsLabel;
-	ofParameter<float> radius;
-	ofParameter<ofColor> color;
-	ofParameter<ofColor> bckgrnd0, bckgrnd1;
-	ofxPanel gui;
-	ofxGuiGroup presetGroup;
-	
 	int numVertices;
-//	vector<float> attention, meditation, timeStamp, plusMinus;
 };

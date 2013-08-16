@@ -1,3 +1,7 @@
+uniform float frExpo;
+uniform float deltaExpo;
+uniform float noiseSurfaceSampleScale;
+
 
 varying vec4 ecPosition;
 varying vec3 eye;
@@ -5,8 +9,8 @@ varying vec3 norm;
 varying vec2 uv;
 varying float delta;
 
-float nearClip = 300.;
-float farClip = 2300.;
+uniform float nearClip;
+uniform float farClip;
 
 float rand(vec2 n){
 //	return 0.6 + 0.5 *fract(sin(dot(n.xy, vec2(12.9898, 78.233)))* 43758.5453);
@@ -82,17 +86,19 @@ float linearizeDepth( in float d ) {
 
 void main(void)
 {
-	//	gl_FragColor = vec4( uv, 1., 1. );
 //	float fr = dot( eye, norm );// * .5 + .5;
 	float fr = abs( dot( eye, norm ) );
-	gl_FragColor = vec4( (norm*.5 + .5) * fr, 1.);
 	
 //	float someVal = abs( sin( norm.x *6.28) * cos( norm.y*6.28);
 //	float someVal = sin( pow(gl_FragCoord.z, 100.) * 100. + gl_FragCoord.y*100.;
 //	float someVal = rand( vec2(gl_FragCoord.x + gl_FragCoord.y, gl_FragCoord.z * 10.) / 10.);
 //	float someVal = rand( gl_FragCoord.xy * 10 + gl_FragCoord.z );
 //	float someVal = pow( snoise( linearizeDepth( gl_FragCoord.z ) + gl_FragCoord.xyz * vec3( .23, .23, 1000.) ) * .5 + .5, 2. );
-	float someVal = pow( snoise(ecPosition.xyz * .05) * .5 + .5, 3. );
 	
-	gl_FragColor = vec4( vec3( someVal * pow(fr,5.) * pow( delta*1.75, 3. )), 1. );
+//	float someVal = pow( snoise(ecPosition.xyz * .05) * .5 + .5, 3. );
+	float someVal = pow( abs(snoise(ecPosition.xyz * noiseSurfaceSampleScale)), deltaExpo );
+	
+	gl_FragData[0] = vec4( vec3( someVal * pow(fr,5.) * pow( delta*1.75, frExpo )), 1. );
+	
+    gl_FragData[1] = vec4( norm*.5+.5, linearizeDepth( gl_FragCoord.z ) );// norm,
 }

@@ -4,7 +4,7 @@ uniform float radius;
 uniform float time;
 uniform float minThreshold;
 uniform float maxThreshold;
-uniform float sampleRadius;
+//uniform float sampleRadius;
 
 uniform vec3 samples[24];
 
@@ -27,6 +27,8 @@ void main(void)
 {
 //	vec2 texDim = vec2(1024.,1024.);//<-- set when these we size / resize the fbo
 	vec2 screenCenter = texDim / 2.;//
+	
+	float sampleRadius = 500.;
 	
 	vec2 screenDelta = uv.xy  - screenCenter;
 	
@@ -65,7 +67,7 @@ void main(void)
 	}
 	
 	
-	gl_FragColor += vec4( (vec3(ao/12.) * .3-.1) ,1. );
+	gl_FragColor += vec4( (vec3(ao/12.) * .3-.1) , 1. );
 	
 
 	

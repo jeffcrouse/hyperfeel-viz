@@ -28,47 +28,195 @@ void testApp::setup(){
 	//make some fake data
 	vector<HyperFeel_Data> data = getFakeData();
 	
-	//camera
-//	camera.setNearClip(1);
-//	camera.setFarClip(500);
-	camera.setFov( 60 );
-	
 	drawType = "displacedMesh";//"rainbowLayers";
 	bRainbowLayersIsSetup = bDisplacedMeshIsSetup = false;
 	
 	
-	//GUI
-	bHide = true;
+	setDefaults();
 	
-	gui.setup("panel"); // most of the time you don't need a name but don't forget to call setup
-	gui.add( fpsLabel.set("fps", "60") );
-	gui.add(radius.set( "radius", 512, 256, 1024 ));
-	
-	gui.add( cameraGroup.setup( "camera" ) );
-	cameraGroup.add( nearClip.set("nearClip", 10, 1, 500) );
-	cameraGroup.add( farClip.set("farClip", 500, 500, 5000) );
-	cameraGroup.add( fov.set("fov", 60, 1, 90) );
-	
-	gui.add( bckgrnd0.set("bckgrnd0",ofColor(100,100,140),ofColor(0,0),ofColor(255,255)));
-	gui.add( bckgrnd1.set("bckgrnd1",ofColor(100,100,140),ofColor(0,0),ofColor(255,255)));
-		
-	gui.add( curveOffset.set( "curveOffset",100, -400, 400) );
-	gui.add( curveRadius.set( "curveRadius",100, 1, 1000) );
-	gui.add( curveWidth.set( "curveWidth",10, 1, 100) );
-	
-	
-	gui.add( minThreshold.set( "minThreshold", .01, .001, .2 ));
-	gui.add( maxThreshold.set( "maxThreshold", .1, .01, .5 ));
-	gui.add( sampleRadius.set( "sampleRadius", 40, 2, 1000 ));
-	
-	gui.add( presetGroup.setup( "presets" ) );
-	presetGroup.add( savePresetButton.setup("save preset"));
-	savePresetButton.addListener( this, &testApp::savePreset );
-	
-	
-	loadPresetsToGui();
+    // ---
+	setupUI();
+
 }
 
+
+void testApp::setDefaults(){
+	goboRadius = ofGetWidth()/2;
+	
+	uiCurveWidth = 100, uiCurveRadius = 500, uiCurveOffset = 100;
+	
+	uiMinThreshold = .002;
+	uiMaxThreshold = .01;
+	uiSampleRadius = 50.;
+	uiNearClip = 1, uiFarClip = 10000;
+	
+	uiDisplacement = 400;
+	uiDeltaExpo = 4.;
+	uiNoiseSurfaceSampleScale = .03;
+	uiRoundingWeight = .8;
+	frExpo = 2;
+	
+	camera.setFov( 60 );
+	camera.setNearClip( 50 );
+	camera.setFarClip( 5000 );
+}
+
+
+void testApp::setupUI(){
+	
+	vector<string> renderTypes;
+	renderTypes.push_back("rainbowLayers");
+	renderTypes.push_back("displacedMesh");
+	
+    int columnWidth = 75;
+	
+	float dim = 24;
+	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
+    float length = 320-xInit;
+	
+	setDefaults();
+	
+	ofxUICanvas* guiMain = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
+	guiMain->setName("Main");
+	guiMain->setPosition(10, 10);
+	guiMain->setColorFill(ofxUIColor(200));
+	guiMain->setColorFillHighlight(ofxUIColor(255));
+	guiMain->setColorBack(ofxUIColor(20, 20, 20, 150));
+	
+	guiMain->addLabel("main");
+	guiMain->addSpacer();
+	guiMain->addFPS();
+	guiMain->addSpacer();
+	guiMain->addLabel("global rendering");
+	guiMain->addSlider("goboRadius", 256, 1024, &goboRadius );
+	
+	//create a radio for switching renderTypes
+	guiMain->addSpacer();
+	guiMain->addLabel("Effects" );
+	guiMain->addRadio("render types", renderTypes );
+	
+	guiMain->autoSizeToFitWidgets();
+	ofAddListener( guiMain->newGUIEvent,this,&testApp::guiEvent );
+	guis.push_back( guiMain  );
+	
+	
+	//get our presets and them to the radio
+	ofxUICanvas* presetGui = new ofxUICanvas();
+	presetGui->setName("PRESETS");
+	presetGui->addLabel("PRESETS");
+	presetGui->setPosition( guiMain->getRect()->getX(), guiMain->getRect()->getY() + guiMain->getRect()->getHeight() + 30);
+	presetGui->addSpacer();
+	presetRadio = presetGui->addRadio("presets", getPresetNames() );
+	
+	//save button
+	presetGui->addSpacer();
+	presetGui->addButton("save preset", false);
+	presetGui->addSpacer();
+	
+	//add listener
+	ofAddListener( presetGui->newGUIEvent,this,&testApp::guiPresetEvent );
+	presetGui->autoSizeToFitWidgets();
+	presetEventGuis.push_back( presetGui );
+
+	
+	//add some effect specific gui stuff
+	ofxUICanvas* rainbowLayersGui = new ofxUICanvas();
+	rainbowLayersGui->addLabel("rainbow layers" );
+	rainbowLayersGui->addSpacer();
+	rainbowLayersGui->setName("rainbowLayersGui");
+	rainbowLayersGui->setPosition( guiMain->getRect()->getX() + guiMain->getRect()->getWidth() + 30, guiMain->getRect()->getY() );
+	
+	//uiMinThreshold = .02, uiMaxThreshold = .2, uiSampleRadius = 500;
+	rainbowLayersGui->addLabel("ssao");
+	rainbowLayersGui->addSlider("sampleRadius", 1., 1000., &uiSampleRadius );
+	rainbowLayersGui->addSlider("minThreshold", .001, .1, &uiMinThreshold );
+	rainbowLayersGui->addSlider("maxThreshold", .1, .5, &uiMaxThreshold );
+	rainbowLayersGui->addSlider("nearClip", 1., 50, &uiNearClip );
+	rainbowLayersGui->addSlider("farClip", 50, 5000, &uiFarClip );
+	
+	
+	//uiCurveOffset, uiCurveRadius, uiCurveWidth;
+	rainbowLayersGui->addLabel("mesh settings");
+	rainbowLayersGui->addSlider("ribbon offset", -500, 500, &uiCurveOffset );
+	rainbowLayersGui->addSlider("ribbon width", 1, 1000, &uiCurveWidth );
+	rainbowLayersGui->addSlider("ribbon radius", 100, 1000, &uiCurveRadius );
+	
+	rainbowLayersGui->autoSizeToFitWidgets();
+	guis.push_back(rainbowLayersGui);
+	
+	displacedMeshGui = new ofxUICanvas();
+	displacedMeshGui->setName("displacedMesh");
+	displacedMeshGui->setPosition(rainbowLayersGui->getRect()->getX() + rainbowLayersGui->getRect()->getWidth() + 30, rainbowLayersGui->getRect()->getY() );
+	displacedMeshGui->addSlider("displacement", 10, 1000, &uiDisplacement );
+	displacedMeshGui->addSlider("deltaExpo", 1., 32., &uiDeltaExpo );
+	displacedMeshGui->addSlider("noiseSurfaceSampleScale", .0001, .3, &uiNoiseSurfaceSampleScale );
+	displacedMeshGui->addSlider("roundingWeight", .001, 1.000, &uiRoundingWeight );
+	
+	displacedMeshGui->addSlider("frExpo", 1., 32.000, &frExpo );
+	displacedMeshGui->autoSizeToFitWidgets();
+	guis.push_back(displacedMeshGui);
+	
+	//load our working sttings
+	loadPreset("Working");
+}
+
+void testApp::guiEvent(ofxUIEventArgs &e){
+	
+	string name = e.widget->getName();
+	int kind = e.widget->getKind();
+//	cout << name << " : " << kind << " : " << e.widget->getParent()->getName() <<  endl;
+	
+	
+	if( name == "rainbowLayers" )
+	{
+		currentRenderType = name;
+		cout << "currentRenderType == " << currentRenderType <<endl;
+	}
+	
+	else if( name == "displacedMesh" )
+	{
+		currentRenderType = name;
+		cout << "currentRenderType == " << currentRenderType <<endl;
+	}
+	
+	
+}
+
+void testApp::guiPresetEvent(ofxUIEventArgs &e)
+{
+	string name = e.widget->getName();
+	
+	ofxUIToggle *t = (ofxUIToggle *) e.widget;
+	if(t->getValue())
+	{
+		loadPreset( e.widget->getName() );
+	}
+	
+	
+	else if(name == "save preset"){
+		cout << "save preset" << endl;
+		string presetName = ofSystemTextBoxDialog("Save Preset As");
+		if(presetName.length())
+		{
+			savePreset(presetName);
+		}
+		else{
+			savePreset();
+		}
+	}
+	
+	else if( name == "rainbowLayers" )
+	{
+		currentRenderType = name;
+		cout << "currentRenderType == " << currentRenderType <<endl;
+	}
+	
+	else if( name == "displacedMesh" )
+	{
+		currentRenderType = name;
+		cout << "currentRenderType == " << currentRenderType <<endl;
+	}
+}
 
 //--------------------------------------------------------------
 void testApp::loadShaders(){
@@ -120,8 +268,6 @@ void testApp::loadShaders(){
 //--------------------------------------------------------------
 void testApp::update(){
 	elapsedTime = ofGetElapsedTimef();
-	//	ofSetCircleResolution(circleResolution);
-	fpsLabel.set( ofToString( ofGetFrameRate()));
 }
 
 //--------------------------------------------------------------
@@ -131,55 +277,13 @@ void testApp::draw(){
 	
 	glEnable(GL_DEPTH_TEST);
 	
-	//Draw out scene to the fbo
-	fbo.begin();
-    fbo.activateAllDrawBuffers();
-	ofClear(0,0,0);
-    ofBackgroundGradient( bckgrnd0, bckgrnd1 );
-	
-	//set camera attributes
-	camera.setFov( fov );
-//	camera.setNearClip( nearClip );
-//	camera.setFarClip( farClip );
-	
-	//draw the data
-	camera.begin();
-	
-	if(drawType == "rainbowLayers"){
+	if(currentRenderType == "rainbowLayers" ){
 		drawRainbowLayers();
 	}
-	else if( drawType == "displacedMesh" ){
+	else if( currentRenderType == "displacedMesh" ){
 		drawDisplacedMesh();
 	}
 	
-	camera.end();
-	fbo.end();
-	
-	
-	//draw fbo to the screen
-	ofSetColor(255, 255, 255 );
-//	fboShader.begin();
-	fboShader.setUniform1f( "radius", radius );
-	fboShader.setUniform1f( "time", elapsedTime );
-	fboShader.setUniform1f( "minThreshold", minThreshold );
-	fboShader.setUniform1f( "maxThreshold", maxThreshold );
-	fboShader.setUniform1f( "sampleRadius", sampleRadius );
-	fboShader.setUniform2f( "texDim", fbo.getWidth(), fbo.getHeight() );
-	fboShader.setUniformTexture("tex", fbo.getTextureReference(0), 0 );
-	fboShader.setUniformTexture("deferredPass", fbo.getTextureReference(1), 1 );
-	fbo.draw(0, 0, ofGetWidth(), ofGetHeight() );
-//	fboShader.end();
-	
-	
-	//GUI
-	if( bHide ){
-		glDisable(GL_DEPTH_TEST);
-		
-		fbo.getTextureReference(0).draw( ofGetWidth() - 250, 25, 200, 200 );
-		fbo.getTextureReference(1).draw( ofGetWidth() - 250, 250, 200, 200 );
-		
-		gui.draw();
-	}
 }
 void testApp::setupDisplacedMesh(){
 	
@@ -192,7 +296,7 @@ void testApp::setupDisplacedMesh(){
 	//create mesh tube
 	float halfsphereRad = 700;
 	
-	int subdX = 128, subdY = 64;//128*128 ~= 16000 * (pos+norm+tangent+bi-tangent+uv+indices) == a lot of data
+	int subdX = 64, subdY = 64;//128*128 ~= 16000 * (pos+norm+tangent+bitangent+uv+indices) == a lot of data
 	
 	int numVertices = subdX * subdY;
 	vector< ofVec3f >vertices( numVertices );
@@ -213,15 +317,12 @@ void testApp::setupDisplacedMesh(){
 		//make some vertices
 		for (int j=0; j<subdX; j++) {
 			
-//			vertices[count].set( sin(xStep*j*TWO_PI) * rad, cos(xStep*j*TWO_PI) * rad, i * zStep );
-			
 			xval = xStep*j*TWO_PI;
 			yval = yStep*i*HALF_PI;
 			float u = xval;
 			float v = yval;
 			
 			vertices[count].set( cos(u)*sin(v), sin(u)*sin(v), -cos(v) );
-//			vertices[count].set( cos(u)*sin(v), cos(v), sin(u)*sin(v) );
 			
 			vertices[count] *= halfsphereRad;
 			
@@ -237,8 +338,6 @@ void testApp::setupDisplacedMesh(){
 	int p0, p1, p2, p3, wrapIndex;
 	for (int i=1; i<subdY; i++) {
 		for (int j=1; j<subdX; j++) {
-			//we need to connect the fron to the back
-//			wrapIndex = ( j == subdX-1 )? 0 : j-1;
 			
 			//triangle faces
 			p0 = (i-1) * subdX + j-1;
@@ -361,11 +460,21 @@ void testApp::drawDisplacedMesh(){
 		setupDisplacedMesh();
 	}
 	
+	
+	camera.begin();
+	
 	ofPushMatrix();
 	ofScale(1, 1, 3);
 	
 	displacedShader.begin();
 	displacedShader.setUniform1f("time", elapsedTime );
+	displacedShader.setUniform1f("nearClip", nearClip );
+	displacedShader.setUniform1f("farClip", farClip );
+	displacedShader.setUniform1f("displacement", uiDisplacement );
+	displacedShader.setUniform1f("deltaExpo", uiDeltaExpo );
+	displacedShader.setUniform1f("frExpo", frExpo );
+	displacedShader.setUniform1f("noiseSurfaceSampleScale", uiNoiseSurfaceSampleScale );
+	
 	
 //	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE );
 	displacedVbo.drawElements(GL_TRIANGLES, displacedIndexCount );
@@ -375,11 +484,11 @@ void testApp::drawDisplacedMesh(){
 	
 	ofPopMatrix();
 	
+	camera.end();
+	
 }
 
 ofVec3f testApp::normalFrom3Points(ofVec3f p0, ofVec3f p1, ofVec3f p2){
-	
-//	faces[index].normal = (vertices[faces[index][2]] - vertices[faces[index][1]]).cross( vertices[faces[index][0]] - vertices[faces[index][1]] ).normalize();
 	ofVec3f norm = (p2 - p1).cross( p0 - p1);
 	return norm.normalized();
 }
@@ -388,7 +497,7 @@ ofVec3f testApp::normalFrom4Points(ofVec3f p0, ofVec3f p1, ofVec3f p2, ofVec3f p
 }
 
 void testApp::setupRainbowLayers(){
-	bool bRainbowLayersIsSetup = true;
+	bRainbowLayersIsSetup = true;
 	
 	cout << endl << "setting up rainbowLayers" << endl << endl;
 	
@@ -416,15 +525,30 @@ void testApp::setupRainbowLayers(){
 
 
 void testApp::drawRainbowLayers(){
+	//Draw out scene to the fbo
+	fbo.begin();
+    fbo.activateAllDrawBuffers();
+	ofClear(0,0,0,255);
+	//    ofBackgroundGradient( bckgrnd0, bckgrnd1 );
+	
+	//set camera attributes
+	//	camera.setFov( uiFov );
+	//	camera.setNearClip( nearClip );
+	//	camera.setFarClip( farClip );
+	
+	//draw the data
+	camera.begin();
+	
+	
 	
 	if( !bRainbowLayersIsSetup ){
 		setupRainbowLayers();
 	}
 	
 	dataShader.begin();
-	dataShader.setUniform1f("nearClip", nearClip );
-	dataShader.setUniform1f("farClip", farClip );
-	dataShader.setUniform1f("curveWidth", curveWidth );
+	dataShader.setUniform1f("nearClip", uiNearClip );
+	dataShader.setUniform1f("farClip", uiFarClip );
+	dataShader.setUniform1f("curveWidth", uiCurveWidth );
 	dataShader.setUniform1f( "time", elapsedTime );
 	ofColor c;
 	for (int i=0; i < 30; i++) {
@@ -432,8 +556,8 @@ void testApp::drawRainbowLayers(){
 		c.setHsb(255 * float(i)/30, 150, 255);
 		
 		dataShader.setUniform3f("color", float(c.r)/255., float(c.g)/255., float(c.b)/255. );
-		dataShader.setUniform1f("radius", curveRadius * (1. - (float(i)/30)*.98) );
-		dataShader.setUniform1f("offset", curveOffset * (1. - (float(i)/30)*.98) );
+		dataShader.setUniform1f("radius", uiCurveRadius * (1. - (float(i)/30)*.98) );
+		dataShader.setUniform1f("offset", uiCurveOffset * (1. - (float(i)/30)*.98) );
 		
 		ofPushMatrix();
 		ofTranslate( 0, 0, -30 * i);
@@ -447,105 +571,92 @@ void testApp::drawRainbowLayers(){
 	
 	//end it
 	dataShader.end();
+	
+	camera.end();
+	fbo.end();
+	
+	
+	//draw fbo to the screen
+	ofSetColor(255, 255, 255 );
+	fboShader.begin();
+	fboShader.setUniform1f( "radius", goboRadius );
+	fboShader.setUniform1f( "time", elapsedTime );
+	fboShader.setUniform1f( "minThreshold", uiMinThreshold );
+	fboShader.setUniform1f( "maxThreshold", uiMaxThreshold );
+	fboShader.setUniform1f( "sampleRadius", uiSampleRadius );
+	fboShader.setUniform2f( "texDim", fbo.getWidth(), fbo.getHeight() );
+	fboShader.setUniformTexture("tex", fbo.getTextureReference(0), 0 );
+	fboShader.setUniformTexture("deferredPass", fbo.getTextureReference(1), 1 );
+	fbo.draw(0, 0, ofGetWidth(), ofGetHeight() );
+	fboShader.end();
+	
+	
 }
 
 
 //--------------------------------------------------------------
-void testApp::exit(){
+void testApp::exit()
+{
 	
-	gui.saveToFile("presets/working.xml");
-
-	//remove preset listeners
-	for (map<string, Hyperfeel_Button >::iterator it=presetNames.begin(); it!=presetNames.end(); ++it){
-		it->second.removeListener( this, &testApp::switchPresets );
+	savePreset("Working");
+	
+	for(int i=0; i<guis.size(); i++){
+		
+		ofRemoveListener(guis[i]->newGUIEvent,this,&testApp::guiEvent);
+		delete guis[i];
 	}
 	
-	
-	savePresetButton.removeListener( this, &testApp::savePreset );
+		for(int i=0; i<presetEventGuis.size(); i++){
+		
+		ofRemoveListener(presetEventGuis[i]->newGUIEvent,this,&testApp::guiPresetEvent);
+		delete presetEventGuis[i];
+	}
 }
 
-
-
-//--------------------------------------------------------------
-void testApp::loadPresetsToGui(){
-	
-	//some path, may be absolute or relative to bin/data
+vector<string> testApp::getPresetNames(){
+	vector<string> presetNames;
 	string path = "presets/";
 	ofDirectory dir(path);
-	dir.allowExt("xml");
 	dir.listDir();
 	
 	//go through and store our preset names
 	for(int i = 0; i < dir.numFiles(); i++){
-		//get a clean name
-		string cleanName = dir.getName(i);
-		cleanName.erase(cleanName.end()-4,cleanName.end());
+		presetNames.push_back(dir.getName(i));
+	}
+	
+	return presetNames;
+}
+
+//--------------------------------------------------------------
+void testApp::loadPreset( string presetName){
+//	gui.loadFromFile( "presets/" + currentPresetName + ".xml" );
+	
+	for(int i = 0; i < guis.size(); i++)
+    {
+		cout << "Presets/" + presetName + "/"+guis[i]->getName()+".xml" << endl;
+        guis[i]->loadSettings( "Presets/" + presetName + "/"+guis[i]->getName()+".xml");
+    }
+}
+
+void testApp::savePreset( string presetName ){
+	
+	
+    ofDirectory dir;
+    string presetDirectory = ofToDataPath("Presets/" + presetName + "/");
+    if(!dir.doesDirectoryExist(presetDirectory))
+    {
+        dir.createDirectory(presetDirectory);
+//        presetRadio->addToggle(presetCanvas->addToggle( presetName, true));
+//        presetCanvas->autoSizeToFitWidgets();
+    }
+    
+    for(int i = 0; i < guis.size(); i++)
+    {
+        guis[i]->saveSettings(presetDirectory+guis[i]->getName()+".xml");
 		
-		presetNames[ cleanName ];//.setup( cleanName, false );
 		
-	}
-	
-	//add our presets to the gui
-	for (map<string, Hyperfeel_Button >::iterator it=presetNames.begin(); it!=presetNames.end(); ++it){
-		presetGroup.add( it->second.setup(it->first, false) );
-		it->second.addListener( this, &testApp::switchPresets );
-	}
-	
-	//load our working settings. always working from working...
-	gui.loadFromFile( "presets/working.xml" );
-	currentPresetName = "working";
-	presetNames[ "working" ].setValue( true );
-}
-
-void testApp::addPresetToGui( string name ){
-	presetGroup.add( presetNames[ name ].setup( name, false) );
-	presetNames[ name ].addListener( this, &testApp::switchPresets );
-}
-
-void testApp::updateGuiPresets(){
-	//some path, may be absolute or relative to bin/data
-	string path = "presets/";
-	ofDirectory dir(path);
-	dir.allowExt("xml");
-	dir.listDir();
-	
-	for(int i = 0; i < dir.numFiles(); i++){
-		string cleanName = dir.getName(i);
-		cleanName.erase(cleanName.end()-4,cleanName.end());
-		
-		//if it isn't added to the gui add it
-		if(presetNames.find( cleanName ) == presetNames.end())	addPresetToGui( cleanName );
-	}
-}
-
-void testApp::switchPresets(){
-	
-	string lastPreset = currentPresetName;
-	for (map<string, Hyperfeel_Button >::iterator it=presetNames.begin(); it!=presetNames.end(); ++it){
-		if( it->second.getValue() == true && it->first != lastPreset ){
-			currentPresetName = it->first;
-		}
-	}
-	
-	presetNames[lastPreset].setValue( lastPreset == currentPresetName );
-	
-	loadPreset( currentPresetName );
-}
-
-void testApp::loadPreset( string name){
-	gui.loadFromFile( "presets/" + currentPresetName + ".xml" );
-}
-
-void testApp::savePreset(){
-	ofFileDialogResult saveFileResult = ofSystemSaveDialog( "preset", "Save your preset");
-	if (saveFileResult.bSuccess){
-		if( saveFileResult.fileName.size() < 4 || saveFileResult.fileName.substr( saveFileResult.fileName.size()-4, saveFileResult.fileName.size() ) != ".xml"){
-			saveFileResult.fileName += ".xml";
-		}
-		gui.saveToFile("presets/" + saveFileResult.fileName );
-		
-		updateGuiPresets();
-	}
+		cout << "saving: " << presetDirectory+guis[i]->getName()+".xml" << endl;
+    }
 }
 
 
@@ -555,7 +666,7 @@ void testApp::keyPressed(int key){
 		bHide = !bHide;
 	}
 	if(key == 's' || key == 'S' ) {
-		savePreset();
+//		savePreset();
 	}
 	
 	if(key == ' '){
