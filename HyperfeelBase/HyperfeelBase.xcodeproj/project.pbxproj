@@ -23,6 +23,8 @@
 		50CF06A317BE70B5003FE633 /* disp_2.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06A117BE70B5003FE633 /* disp_2.vert */; };
 		50CF06A717BE752F003FE633 /* disp_3.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06A517BE752F003FE633 /* disp_3.frag */; };
 		50CF06A817BE752F003FE633 /* disp_3.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06A617BE752F003FE633 /* disp_3.vert */; };
+		50CF06AB17BE9998003FE633 /* disp_4.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06A917BE9998003FE633 /* disp_4.frag */; };
+		50CF06AC17BE9998003FE633 /* disp_4.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06AA17BE9998003FE633 /* disp_4.vert */; };
 		50E0E6C117BDE80F005537AB /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E0E6BF17BDE80F005537AB /* testApp.cpp */; };
 		50E0E6CB17BDE84F005537AB /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E0E6C417BDE84F005537AB /* tinyxml.cpp */; };
 		50E0E6CC17BDE84F005537AB /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E0E6C617BDE84F005537AB /* tinyxmlerror.cpp */; };
@@ -113,6 +115,8 @@
 		50CF06A117BE70B5003FE633 /* disp_2.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = disp_2.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		50CF06A517BE752F003FE633 /* disp_3.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = disp_3.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		50CF06A617BE752F003FE633 /* disp_3.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = disp_3.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50CF06A917BE9998003FE633 /* disp_4.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = disp_4.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50CF06AA17BE9998003FE633 /* disp_4.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = disp_4.vert; sourceTree = "<group>"; };
 		50E0E6BF17BDE80F005537AB /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
 		50E0E6C017BDE80F005537AB /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
 		50E0E6C417BDE84F005537AB /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 		50CF068717BE6BF4003FE633 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				50CF06A917BE9998003FE633 /* disp_4.frag */,
+				50CF06AA17BE9998003FE633 /* disp_4.vert */,
 				50CF06A517BE752F003FE633 /* disp_3.frag */,
 				50CF06A617BE752F003FE633 /* disp_3.vert */,
 				50CF06A017BE70B5003FE633 /* disp_2.frag */,
@@ -517,6 +523,8 @@
 				50CF06A317BE70B5003FE633 /* disp_2.vert in Sources */,
 				50CF06A717BE752F003FE633 /* disp_3.frag in Sources */,
 				50CF06A817BE752F003FE633 /* disp_3.vert in Sources */,
+				50CF06AB17BE9998003FE633 /* disp_4.frag in Sources */,
+				50CF06AC17BE9998003FE633 /* disp_4.vert in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

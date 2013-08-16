@@ -59,6 +59,7 @@ public:
 	ofShader disp_1;
 	ofShader disp_2;
 	ofShader disp_3;
+	ofShader disp_4;
 	
 	
 	
@@ -99,10 +100,6 @@ public:
 	
 	//camera
 	ofEasyCam camera;
-//	ofxGuiGroup cameraGroup;
-	ofParameter<float> nearClip;
-	ofParameter<float> farClip;
-	ofParameter<float> fov;
 	
 	//meshes
 	ofVbo vbo;
@@ -112,6 +109,8 @@ public:
 	//FBO
 	ofFbo fbo;
 	ofShader fboShader;
+	
+	ofFbo fboMap;
 	
 	
 	//ofxUI

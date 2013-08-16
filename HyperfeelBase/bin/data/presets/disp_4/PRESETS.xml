@@ -20,11 +20,6 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>disp_4</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
     <Name>rainbow_1</Name>
     <Value>0</Value>
 </Widget>
@@ -37,4 +32,9 @@
     <Kind>2</Kind>
     <Name>Working</Name>
     <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>disp_4</Name>
+    <Value>1</Value>
 </Widget>

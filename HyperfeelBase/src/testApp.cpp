@@ -21,6 +21,8 @@ void testApp::setup(){
 	
 	fbo.createAndAttachTexture(GL_RGBA32F, 1);
 	
+	fboMap.allocate( 1024, 1024, GL_RGBA, 4 );
+	
 	cout << "fbo.getNumTextures(): " << fbo.getNumTextures() << endl;
 	//shaders
 	loadShaders();
@@ -249,9 +251,8 @@ void testApp::guiPresetEvent(ofxUIEventArgs &e)
 //--------------------------------------------------------------
 void testApp::loadShaders()
 {
-	//try hitting "l" to reload
-	
 	cout<<endl<<endl<< "loading shaders: " << ofGetFrameNum() <<endl<<endl;
+	
 	//some points distributed on half a sphere
     float halfSphereSamps[] = {
         -0.717643236477, -0.688175618649, 0.273249441045,
@@ -301,6 +302,9 @@ void testApp::loadShaders()
 	disp_3.load( "shaders/disp_3" );
 	dispShaderNames.push_back("dispShader_3");
 	
+	disp_4.load( "shaders/disp_4" );
+	dispShaderNames.push_back("dispShader_4");
+	
 	
 	
 //	dispShaderName = dispShaderNames[0];
@@ -313,7 +317,6 @@ void testApp::update()
 {
 	elapsedTime = ofGetElapsedTimef();
 	if(currentPresetName != nextPreset){
-		cout << "currentPresetName != nextPreset" << endl;
 		loadPreset( nextPreset );
 	}
 	if(bSavePreset){
@@ -334,6 +337,14 @@ void testApp::draw()
 	}
 	else if( currentRenderType == "displacedMesh" ){
 		drawDisplacedMesh();
+	}
+	
+	
+	glDisable(GL_DEPTH_TEST);
+	
+	if( dispShaderName == "dispShader_4"){
+		ofSetColor(255, 255, 255, 255);
+		fboMap.draw(10, ofGetHeight() - 210, 200, 200);
 	}
 	
 }
@@ -526,8 +537,8 @@ void testApp::drawDisplacedMesh()
 		disp_1.begin();
 		
 		disp_1.setUniform1f("time", elapsedTime );
-		disp_1.setUniform1f("nearClip", nearClip );
-		disp_1.setUniform1f("farClip", farClip );
+		disp_1.setUniform1f("nearClip", uiNearClip );
+		disp_1.setUniform1f("farClip", uiFarClip );
 		disp_1.setUniform1f("displacement", uiDisplacement );
 		disp_1.setUniform1f("deltaExpo", uiDeltaExpo );
 		disp_1.setUniform1f("frExpo", frExpo );
@@ -537,8 +548,8 @@ void testApp::drawDisplacedMesh()
 		disp_2.begin();
 		
 		disp_2.setUniform1f("time", elapsedTime );
-		disp_2.setUniform1f("nearClip", nearClip );
-		disp_2.setUniform1f("farClip", farClip );
+		disp_2.setUniform1f("nearClip", uiNearClip );
+		disp_2.setUniform1f("farClip", uiFarClip );
 		disp_2.setUniform1f("displacement", uiDisplacement );
 		disp_2.setUniform1f("deltaExpo", uiDeltaExpo );
 		disp_2.setUniform1f("frExpo", frExpo );
@@ -548,24 +559,64 @@ void testApp::drawDisplacedMesh()
 	else if( dispShaderName == "dispShader_3"){
 		disp_3.begin();
 		disp_3.setUniform1f("time", elapsedTime );
-		disp_3.setUniform1f("nearClip", nearClip );
-		disp_3.setUniform1f("farClip", farClip );
+		disp_3.setUniform1f("nearClip", uiNearClip );
+		disp_3.setUniform1f("farClip", uiFarClip );
 		disp_3.setUniform1f("displacement", uiDisplacement );
 		disp_3.setUniform1f("deltaExpo", uiDeltaExpo );
 		disp_3.setUniform1f("frExpo", frExpo );
 		disp_3.setUniform1f("noiseSurfaceSampleScale", uiNoiseSurfaceSampleScale );
+	}
+	
+	else if( dispShaderName == "dispShader_4"){
+		fboMap.begin();
+		
+		ofClear(10,0,0,0);
+		
+		int numBoxes = 64;
+		float step = 1024 / numBoxes;
+		for (int j=-1; j<2; j++) {
+			ofPushMatrix();
+			ofTranslate(fboMap.getWidth() * j, 0);
+			ofSeedRandom();
+			for (int i=0; i<=numBoxes; i++) {
+				
+				ofSetColor( 255,255,255  );
+				
+				ofPushMatrix();
+				ofTranslate(step * i, fboMap.getHeight()/2, 0);
+				ofRotate(elapsedTime * 3. + i*step, 0, 0, 1 );
+				ofDrawBox(0,0,0, 6, fboMap.getHeight(), 6);
+				ofPopMatrix();
+			}
+			
+			ofPopMatrix();
+		}
+		
+		fboMap.end();
+		
+		disp_4.begin();
+		disp_4.setUniform1f("time", elapsedTime );
+		disp_4.setUniform1f("nearClip", uiNearClip );
+		disp_4.setUniform1f("farClip", uiFarClip );
+		disp_4.setUniform1f("displacement", uiDisplacement );
+		disp_4.setUniform1f("deltaExpo", uiDeltaExpo );
+		disp_4.setUniform1f("frExpo", frExpo );
+		disp_4.setUniform1f("noiseSurfaceSampleScale", uiNoiseSurfaceSampleScale );
+		disp_4.setUniformTexture("tex", fboMap.getTextureReference(), 0);
+		disp_4.setUniform2f("texDim", fboMap.getWidth(), fboMap.getHeight() );
 	}
 	else//if(dispShaderName == "displacedMesh")
 	{
 		
 		displacedShader.begin();
 		displacedShader.setUniform1f("time", elapsedTime );
-		displacedShader.setUniform1f("nearClip", nearClip );
-		displacedShader.setUniform1f("farClip", farClip );
+		displacedShader.setUniform1f("nearClip", uiNearClip );
+		displacedShader.setUniform1f("farClip", uiFarClip );
 		displacedShader.setUniform1f("displacement", uiDisplacement );
 		displacedShader.setUniform1f("deltaExpo", uiDeltaExpo );
 		displacedShader.setUniform1f("frExpo", frExpo );
 		displacedShader.setUniform1f("noiseSurfaceSampleScale", uiNoiseSurfaceSampleScale );
+		
 	}
 	
 	
@@ -587,6 +638,11 @@ void testApp::drawDisplacedMesh()
 	else if( dispShaderName == "dispShader_3")
 	{
 		disp_3.end();
+	}
+	
+	else if( dispShaderName == "dispShader_4")
+	{
+		disp_4.end();
 	}
 	else//	if(dispShaderName == "displacedMesh")
 	{
@@ -792,11 +848,10 @@ void testApp::keyPressed(int key){
 		bHide = !bHide;
 	}
 	if(key == 's' || key == 'S' ) {
-//		savePreset();
+		savePreset();
 	}
 	
 	if(key == ' '){
-//		reloadShaders
 		loadShaders();
 	}
 }
