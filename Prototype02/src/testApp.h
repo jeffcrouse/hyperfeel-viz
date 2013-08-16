@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxLibwebsockets.h"
+#include "Journey.h"
 
 class testApp : public ofBaseApp{
 
@@ -19,7 +20,10 @@ class testApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-        
+		
+    /**
+     *  Websocekts stuff...
+     */
         ofxLibwebsockets::Client client;
         
         // websocket methods
@@ -30,4 +34,15 @@ class testApp : public ofBaseApp{
         void onMessage( ofxLibwebsockets::Event& args );
         void onBroadcast( ofxLibwebsockets::Event& args );
     
+    /**
+     * JSON parsing stuff...
+     */
+        Json::Value json;
+        Json::Reader reader;
+    /**
+     *  Journeys
+     */
+
+    vector<Journey*> journeys;
 };
+

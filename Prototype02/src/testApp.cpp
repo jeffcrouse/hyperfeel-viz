@@ -3,25 +3,29 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
-    options.host = "brainz.io";
+    options.host = "brainz.io"; // 
     options.port = 8080;
-    //options.protocol = "of-protocol";
     bool connected = client.connect( options );
     
     client.addListener(this);
     ofSetFrameRate(60);
+    
+    ofSetLogLevel(OF_LOG_VERBOSE);
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-
+    for(int i=0; i<journeys.size(); i++) {
+        journeys[i]->update();
+    }
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-
+    for(int i=0; i<journeys.size(); i++) {
+        journeys[i]->draw();
+    }
 }
-
 
 //--------------------------------------------------------------
 void testApp::onConnect( ofxLibwebsockets::Event& args ){
@@ -45,24 +49,35 @@ void testApp::onIdle( ofxLibwebsockets::Event& args ){
 
 //--------------------------------------------------------------
 void testApp::onMessage( ofxLibwebsockets::Event& args ){
-    cout<<"got message "<<args.message<<endl;
+    //cout<<"got message "<<endl;
     
-    Json::Value json;   // will contains the root value after parsing.
-    Json::Reader reader;
-    bool parsingSuccessful = reader.parse( args.message, json );
-    if ( !parsingSuccessful ) {
-        std::cout  << "Failed to parse configuration\n" << reader.getFormattedErrorMessages();
+    if ( !reader.parse( args.message, json ) ) {
+        std::cout  << "Failed to parse json\n" << reader.getFormattedErrorMessages();
         return;
     }
+    string route = json["route"].asString();
     
-    cout << "ROUTE: " << json["route"].asString() << endl;
+    
+    if(route=="init") {
+        for(int i=0; i<json["journeys"].size(); i++) {
+            journeys.push_back(new Journey(json["journeys"][i], false));
+        }
+    }
+    else if(route=="journey") {
+        journeys.push_back(new Journey(json["journey"], true));
+    }
+    else if(route=="tick") {
+        ofLogVerbose() << "server time: " << iso8601toTimestamp(json["date"].asString());
+    }
+    else {
+        ofLogWarning() << "Route " << route << " unknown..." << endl;
+    }
 }
 
 //--------------------------------------------------------------
 void testApp::onBroadcast( ofxLibwebsockets::Event& args ){
     cout<<"got broadcast "<<args.message<<endl;
 }
-
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
 
