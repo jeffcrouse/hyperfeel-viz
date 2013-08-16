@@ -50,7 +50,16 @@ public:
 	ofVec3f normalFrom4Points(ofVec3f p0, ofVec3f p1, ofVec3f p2, ofVec3f p3);
 	ofVbo displacedVbo;
 	int displacedVertexCount, displacedIndexCount;
+	
+	string dispShaderName;
+	vector<string> dispShaderNames;
+	vector<string> presetNames;
+	bool bPresetsloadedHack;
 	ofShader displacedShader;
+	ofShader disp_1;
+	ofShader disp_2;
+	ofShader disp_3;
+	ofShader disp_4;
 	
 	
 	
@@ -73,17 +82,24 @@ public:
 	
 	//Gui methods
 	void loadPreset( string name);
-	void savePreset( string folderName = "Working" );
+
+	void savePreset( string folderName );
+	void savePreset(){
+		string presetName = ofSystemTextBoxDialog("Save Preset As");
+		if(presetName.length())
+		{
+			savePreset(presetName);
+		}
+		else{
+			bSavePreset = false;
+		}
+	};
 	
 	//animation
 	float elapsedTime;
 	
 	//camera
 	ofEasyCam camera;
-//	ofxGuiGroup cameraGroup;
-	ofParameter<float> nearClip;
-	ofParameter<float> farClip;
-	ofParameter<float> fov;
 	
 	//meshes
 	ofVbo vbo;
@@ -93,6 +109,9 @@ public:
 	//FBO
 	ofFbo fbo;
 	ofShader fboShader;
+	
+	ofFbo fboMap;
+	
 	
 	//ofxUI
 	vector<string> getPresetNames();
@@ -108,7 +127,7 @@ public:
     void guiEvent(ofxUIEventArgs &e);
 	void guiPresetEvent(ofxUIEventArgs &e);
 	ofxUICanvas* _gui;
-	ofxUICanvas* presetCanvas;
+	ofxUICanvas* presetGui;
 	ofxUIRadio* presetRadio;
 	ofxUICanvas* rainbowLayersGui;
 	float uiCurveOffset, uiCurveRadius, uiCurveWidth;
@@ -119,6 +138,7 @@ public:
 	ofxUICanvas* displacedMeshGui;
 	float uiDisplacement, uiDeltaExpo, uiNoiseSurfaceSampleScale, uiRoundingWeight, frExpo;
 	
-	string currentPresetName;
+	string currentPresetName, nextPreset;
+	bool bSavePreset;
 	int numVertices;
 };

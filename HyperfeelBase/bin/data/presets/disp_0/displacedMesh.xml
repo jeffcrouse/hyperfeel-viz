@@ -1,7 +1,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>displacement</Name>
-    <Value>-1000.000000000</Value>
+    <Value>478.177337646</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -11,22 +11,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>noiseSurfaceSampleScale</Name>
-    <Value>0.300000012</Value>
+    <Value>0.171471447</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>roundingWeight</Name>
-    <Value>0.473433495</Value>
+    <Value>0.512802958</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>frExpo</Name>
-    <Value>1.610837460</Value>
+    <Value>1.458128095</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>displacedNoise</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -42,9 +42,4 @@
     <Kind>2</Kind>
     <Name>dispShader_3</Name>
     <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>dispShader_4</Name>
-    <Value>1</Value>
 </Widget>

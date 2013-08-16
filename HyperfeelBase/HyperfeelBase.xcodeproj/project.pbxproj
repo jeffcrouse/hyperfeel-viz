@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50CF069417BE6BF4003FE633 /* dataShader.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50CF068817BE6BF4003FE633 /* dataShader.frag */; };
+		50CF069517BE6BF4003FE633 /* dataShader.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50CF068917BE6BF4003FE633 /* dataShader.vert */; };
+		50CF069617BE6BF4003FE633 /* disp_1.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50CF068A17BE6BF4003FE633 /* disp_1.frag */; };
+		50CF069717BE6BF4003FE633 /* disp_1.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50CF068B17BE6BF4003FE633 /* disp_1.vert */; };
+		50CF069817BE6BF4003FE633 /* displaced.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50CF068C17BE6BF4003FE633 /* displaced.frag */; };
+		50CF069917BE6BF4003FE633 /* displaced.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50CF068D17BE6BF4003FE633 /* displaced.vert */; };
+		50CF069A17BE6BF4003FE633 /* facingRatio.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50CF068E17BE6BF4003FE633 /* facingRatio.frag */; };
+		50CF069B17BE6BF4003FE633 /* facingRatio.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50CF068F17BE6BF4003FE633 /* facingRatio.vert */; };
+		50CF069C17BE6BF4003FE633 /* fboShader.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50CF069017BE6BF4003FE633 /* fboShader.frag */; };
+		50CF069D17BE6BF4003FE633 /* fboShader.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50CF069117BE6BF4003FE633 /* fboShader.vert */; };
+		50CF069E17BE6BF4003FE633 /* normal.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50CF069217BE6BF4003FE633 /* normal.frag */; };
+		50CF069F17BE6BF4003FE633 /* normal.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50CF069317BE6BF4003FE633 /* normal.vert */; };
+		50CF06A217BE70B5003FE633 /* disp_2.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06A017BE70B5003FE633 /* disp_2.frag */; };
+		50CF06A317BE70B5003FE633 /* disp_2.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06A117BE70B5003FE633 /* disp_2.vert */; };
+		50CF06A717BE752F003FE633 /* disp_3.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06A517BE752F003FE633 /* disp_3.frag */; };
+		50CF06A817BE752F003FE633 /* disp_3.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06A617BE752F003FE633 /* disp_3.vert */; };
+		50CF06AB17BE9998003FE633 /* disp_4.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06A917BE9998003FE633 /* disp_4.frag */; };
+		50CF06AC17BE9998003FE633 /* disp_4.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06AA17BE9998003FE633 /* disp_4.vert */; };
 		50E0E6C117BDE80F005537AB /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E0E6BF17BDE80F005537AB /* testApp.cpp */; };
 		50E0E6CB17BDE84F005537AB /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E0E6C417BDE84F005537AB /* tinyxml.cpp */; };
 		50E0E6CC17BDE84F005537AB /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E0E6C617BDE84F005537AB /* tinyxmlerror.cpp */; };
@@ -81,6 +99,24 @@
 		4c9b919b991b4e45bc5dc0dbf09c9904 /* ofxUIRadio.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUIRadio.h; path = ../../../addons/ofxUI/src/ofxUIRadio.h; sourceTree = SOURCE_ROOT; };
 		4ed7bc3af72f6be8f0917a303bedb573 /* ofxUIImage.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUIImage.h; path = ../../../addons/ofxUI/src/ofxUIImage.h; sourceTree = SOURCE_ROOT; };
 		4ff2f2d5a01ada37a9ade20fb41e7560 /* ofxUICanvas.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUICanvas.h; path = ../../../addons/ofxUI/src/ofxUICanvas.h; sourceTree = SOURCE_ROOT; };
+		50CF068817BE6BF4003FE633 /* dataShader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = dataShader.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50CF068917BE6BF4003FE633 /* dataShader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = dataShader.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50CF068A17BE6BF4003FE633 /* disp_1.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = disp_1.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50CF068B17BE6BF4003FE633 /* disp_1.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = disp_1.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50CF068C17BE6BF4003FE633 /* displaced.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displaced.frag; sourceTree = "<group>"; };
+		50CF068D17BE6BF4003FE633 /* displaced.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displaced.vert; sourceTree = "<group>"; };
+		50CF068E17BE6BF4003FE633 /* facingRatio.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = facingRatio.frag; sourceTree = "<group>"; };
+		50CF068F17BE6BF4003FE633 /* facingRatio.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = facingRatio.vert; sourceTree = "<group>"; };
+		50CF069017BE6BF4003FE633 /* fboShader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fboShader.frag; sourceTree = "<group>"; };
+		50CF069117BE6BF4003FE633 /* fboShader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fboShader.vert; sourceTree = "<group>"; };
+		50CF069217BE6BF4003FE633 /* normal.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = normal.frag; sourceTree = "<group>"; };
+		50CF069317BE6BF4003FE633 /* normal.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = normal.vert; sourceTree = "<group>"; };
+		50CF06A017BE70B5003FE633 /* disp_2.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = disp_2.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50CF06A117BE70B5003FE633 /* disp_2.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = disp_2.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50CF06A517BE752F003FE633 /* disp_3.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = disp_3.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50CF06A617BE752F003FE633 /* disp_3.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = disp_3.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50CF06A917BE9998003FE633 /* disp_4.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = disp_4.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50CF06AA17BE9998003FE633 /* disp_4.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = disp_4.vert; sourceTree = "<group>"; };
 		50E0E6BF17BDE80F005537AB /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
 		50E0E6C017BDE80F005537AB /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
 		50E0E6C417BDE84F005537AB /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -171,6 +207,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50CF068717BE6BF4003FE633 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				50CF06A917BE9998003FE633 /* disp_4.frag */,
+				50CF06AA17BE9998003FE633 /* disp_4.vert */,
+				50CF06A517BE752F003FE633 /* disp_3.frag */,
+				50CF06A617BE752F003FE633 /* disp_3.vert */,
+				50CF06A017BE70B5003FE633 /* disp_2.frag */,
+				50CF06A117BE70B5003FE633 /* disp_2.vert */,
+				50CF068817BE6BF4003FE633 /* dataShader.frag */,
+				50CF068917BE6BF4003FE633 /* dataShader.vert */,
+				50CF068A17BE6BF4003FE633 /* disp_1.frag */,
+				50CF068B17BE6BF4003FE633 /* disp_1.vert */,
+				50CF068C17BE6BF4003FE633 /* displaced.frag */,
+				50CF068D17BE6BF4003FE633 /* displaced.vert */,
+				50CF068E17BE6BF4003FE633 /* facingRatio.frag */,
+				50CF068F17BE6BF4003FE633 /* facingRatio.vert */,
+				50CF069017BE6BF4003FE633 /* fboShader.frag */,
+				50CF069117BE6BF4003FE633 /* fboShader.vert */,
+				50CF069217BE6BF4003FE633 /* normal.frag */,
+				50CF069317BE6BF4003FE633 /* normal.vert */,
+			);
+			name = shaders;
+			path = bin/data/shaders;
+			sourceTree = "<group>";
+		};
 		50E0E6C217BDE84F005537AB /* ofxXmlSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +324,7 @@
 			children = (
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
+				50CF068717BE6BF4003FE633 /* shaders */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
@@ -444,6 +507,24 @@
 				50E0E6CC17BDE84F005537AB /* tinyxmlerror.cpp in Sources */,
 				50E0E6CD17BDE84F005537AB /* tinyxmlparser.cpp in Sources */,
 				50E0E6CE17BDE84F005537AB /* ofxXmlSettings.cpp in Sources */,
+				50CF069417BE6BF4003FE633 /* dataShader.frag in Sources */,
+				50CF069517BE6BF4003FE633 /* dataShader.vert in Sources */,
+				50CF069617BE6BF4003FE633 /* disp_1.frag in Sources */,
+				50CF069717BE6BF4003FE633 /* disp_1.vert in Sources */,
+				50CF069817BE6BF4003FE633 /* displaced.frag in Sources */,
+				50CF069917BE6BF4003FE633 /* displaced.vert in Sources */,
+				50CF069A17BE6BF4003FE633 /* facingRatio.frag in Sources */,
+				50CF069B17BE6BF4003FE633 /* facingRatio.vert in Sources */,
+				50CF069C17BE6BF4003FE633 /* fboShader.frag in Sources */,
+				50CF069D17BE6BF4003FE633 /* fboShader.vert in Sources */,
+				50CF069E17BE6BF4003FE633 /* normal.frag in Sources */,
+				50CF069F17BE6BF4003FE633 /* normal.vert in Sources */,
+				50CF06A217BE70B5003FE633 /* disp_2.frag in Sources */,
+				50CF06A317BE70B5003FE633 /* disp_2.vert in Sources */,
+				50CF06A717BE752F003FE633 /* disp_3.frag in Sources */,
+				50CF06A817BE752F003FE633 /* disp_3.vert in Sources */,
+				50CF06AB17BE9998003FE633 /* disp_4.frag in Sources */,
+				50CF06AC17BE9998003FE633 /* disp_4.vert in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

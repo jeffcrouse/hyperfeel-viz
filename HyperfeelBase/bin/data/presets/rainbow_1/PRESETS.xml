@@ -1,6 +1,26 @@
 <Widget>
     <Kind>2</Kind>
-    <Name>disp_0</Name>
+    <Name>Laser</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>lasr</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>Working</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>wtf</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>Testing</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
@@ -15,26 +35,6 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>disp_3</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>disp_4</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
     <Name>rainbow_1</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>rainbow_2</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>Working</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>

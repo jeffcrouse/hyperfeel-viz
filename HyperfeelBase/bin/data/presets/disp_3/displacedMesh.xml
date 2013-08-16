@@ -1,17 +1,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>displacement</Name>
-    <Value>-1000.000000000</Value>
+    <Value>468.423645020</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>deltaExpo</Name>
-    <Value>1.000000000</Value>
+    <Value>1.152709365</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseSurfaceSampleScale</Name>
-    <Value>0.300000012</Value>
+    <Value>0.140447304</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -21,7 +21,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>frExpo</Name>
-    <Value>1.610837460</Value>
+    <Value>25.128078461</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -41,10 +41,5 @@
 <Widget>
     <Kind>2</Kind>
     <Name>dispShader_3</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>dispShader_4</Name>
     <Value>1</Value>
 </Widget>
