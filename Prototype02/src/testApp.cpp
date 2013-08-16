@@ -1,7 +1,8 @@
 #include "testApp.h"
 
 //--------------------------------------------------------------
-void testApp::setup(){
+void testApp::setup()
+{
     ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
     options.host = "brainz.io"; // 
     options.port = 8080;
@@ -59,14 +60,21 @@ void testApp::onMessage( ofxLibwebsockets::Event& args ){
     
     
     if(route=="init") {
+		// on start up to populate the animation
         for(int i=0; i<json["journeys"].size(); i++) {
+			
+			//false for not animating in
             journeys.push_back(new Journey(json["journeys"][i], false));
         }
     }
     else if(route=="journey") {
+		
+		//true for animating in
         journeys.push_back(new Journey(json["journey"], true));
     }
     else if(route=="tick") {
+		
+		//for testing, can go if iritating
         ofLogVerbose() << "server time: " << iso8601toTimestamp(json["date"].asString());
     }
     else {
