@@ -1,11 +1,16 @@
 <Widget>
     <Kind>2</Kind>
-    <Name>Laser</Name>
+    <Name>disp_1</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>disp_2</Name>
     <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>LaserBeam</Name>
+    <Name>Laser</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
@@ -15,11 +20,21 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>last</Name>
+    <Name>rainbow_1</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>Testing</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>Working</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>wtf</Name>
     <Value>0</Value>
 </Widget>

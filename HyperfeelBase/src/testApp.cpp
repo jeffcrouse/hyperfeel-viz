@@ -96,8 +96,7 @@ void testApp::setupUI(){
 	guiMain->addRadio("render types", renderTypes );
 	
 	guiMain->autoSizeToFitWidgets();
-	ofAddListener( guiMain->newGUIEvent,this,&testApp::guiEvent );
-	guis.push_back( guiMain  );
+	
 	
 	
 	//get our presets and them to the radio
@@ -112,13 +111,9 @@ void testApp::setupUI(){
 	presetGui->addLabel("PRESETS");
 	presetGui->setPosition( guiMain->getRect()->getX(), guiMain->getRect()->getY() + guiMain->getRect()->getHeight() + 30);
 	presetGui->addSpacer();
-	presetRadio = presetGui->addRadio("presets", getPresetNames() );
+	presetRadio = presetGui->addRadio("presets", getPresetNames(), false );
 	
-	
-	//add listener
-	ofAddListener( presetGui->newGUIEvent,this,&testApp::guiPresetEvent );
 	presetGui->autoSizeToFitWidgets();
-	presetEventGuis.push_back( presetGui );
 
 	
 	//add some effect specific gui stuff
@@ -153,18 +148,34 @@ void testApp::setupUI(){
 	displacedMeshGui->addSlider("deltaExpo", 1., 32., &uiDeltaExpo );
 	displacedMeshGui->addSlider("noiseSurfaceSampleScale", .0001, .3, &uiNoiseSurfaceSampleScale );
 	displacedMeshGui->addSlider("roundingWeight", .001, 1.000, &uiRoundingWeight );
+	displacedMeshGui->addSlider("frExpo", 1., 32.000, &frExpo );
 	
 	displacedMeshGui->addSpacer();
 	displacedMeshGui->addLabel("Shaders");
 	displacedMeshGui->addSpacer();
 	
 	displacedMeshGui->addRadio("shaders", dispShaderNames );
-	
-	displacedMeshGui->addSlider("frExpo", 1., 32.000, &frExpo );
+
 	displacedMeshGui->autoSizeToFitWidgets();
 	
-	ofAddListener( displacedMeshGui->newGUIEvent,this,&testApp::guiEvent );
+	
+	
+	//add listeners
+	
 	guis.push_back(displacedMeshGui);
+	guis.push_back( guiMain  );
+	guis.push_back( presetGui );
+	
+	bPresetsloadedHack = false;
+	ofAddListener( displacedMeshGui->newGUIEvent,this,&testApp::guiEvent );
+	ofAddListener( guiMain->newGUIEvent,this,&testApp::guiEvent );
+	ofAddListener( presetGui->newGUIEvent,this,&testApp::guiEvent );
+	
+	
+	
+	
+	//probably don;t need this but it's here.
+	dispShaderName = dispShaderNames[0];
 	
 	//load our working sttings
 	loadPreset("Working");
@@ -174,66 +185,64 @@ void testApp::guiEvent(ofxUIEventArgs &e){
 	
 	string name = e.widget->getName();
 	int kind = e.widget->getKind();
-//	cout << name << " : " << kind << " : " << e.widget->getParent()->getName() <<  endl;
-	
+//	cout << endl << name << " : " << kind << " : " << e.widget->getParent()->getName() <<  endl;
 	
 	if( name == "rainbowLayers" )
 	{
-		currentRenderType = name;
-		cout << "currentRenderType == " << currentRenderType <<endl;
+		
+		ofxUIToggle *t = e.getToggle();
+		if(t->getValue()){
+			currentRenderType = name;
+//			cout << "currentRenderType == " << currentRenderType <<endl;
+		}
 	}
 	
 	else if( name == "displacedMesh" )
 	{
-		currentRenderType = name;
-		cout << "currentRenderType == " << currentRenderType <<endl;
+		ofxUIToggle *t = e.getToggle();
+		if(t->getValue()){
+			currentRenderType = name;
+//			cout << "currentRenderType == " << currentRenderType <<endl;
+		}
+	}
+	else if( name == "save preset" ){
+		bSavePreset = true;
+//		savePreset();
 	}
 	
 	else{
+		
+		//look in the presets
+		presetNames = getPresetNames();
+		for (int i=0; i<presetNames.size(); i++) {
+			if( name == presetNames[i] ){
+//				nextPreset = name;
+				
+				ofxUIToggle *t = e.getToggle();
+				if(t->getValue()){
+					nextPreset = name;
+				}
+			}
+		}
+		bPresetsloadedHack = true;
+		
+		//look in the shaders
 		for(int i=0; i<dispShaderNames.size(); i++){
 			if(name == dispShaderNames[i]){
-				dispShaderName = dispShaderNames[i];
+				ofxUIToggle *t = e.getToggle();
+				if(t->getValue()){
+//					cout << "dispShaderName: "<<dispShaderName<< endl;
+					dispShaderName = dispShaderNames[i];
+				}
 			}
 		}
 	}
-	
 	
 }
 
 void testApp::guiPresetEvent(ofxUIEventArgs &e)
 {
-	string name = e.widget->getName();
-	
-	ofxUIToggle *t = (ofxUIToggle *) e.widget;
-	if(t->getValue())
-	{
-		loadPreset( e.widget->getName() );
-	}
-	
-	
-	else if(name == "save preset"){
-		cout << "save preset" << endl;
-		string presetName = ofSystemTextBoxDialog("Save Preset As");
-		if(presetName.length())
-		{
-			savePreset(presetName);
-		}
-		else{
-			savePreset();
-		}
-	}
-	
-	else if( name == "rainbowLayers" )
-	{
-		currentRenderType = name;
-		cout << "currentRenderType == " << currentRenderType <<endl;
-	}
-	
-	else if( name == "displacedMesh" )
-	{
-		currentRenderType = name;
-		cout << "currentRenderType == " << currentRenderType <<endl;
-	}
+	cout << "guiPresetEvent"<<endl;
 }
 
 //--------------------------------------------------------------
@@ -287,9 +296,12 @@ void testApp::loadShaders()
 	disp_2.load( "shaders/disp_2" );
 	dispShaderNames.push_back("disp_2");
 	
+	disp_3.load( "shaders/disp_3" );
+	dispShaderNames.push_back("disp_3");
 	
 	
-	dispShaderName = dispShaderNames[0];
+	
+//	dispShaderName = dispShaderNames[0];
 	
 }
 
@@ -298,6 +310,13 @@ void testApp::loadShaders()
 void testApp::update()
 {
 	elapsedTime = ofGetElapsedTimef();
+	if(currentPresetName != nextPreset){
+		cout << "currentPresetName != nextPreset" << endl;
+		loadPreset( nextPreset );
+	}
+	if(bSavePreset){
+		savePreset();
+	}
 }
 
 //--------------------------------------------------------------
@@ -523,6 +542,17 @@ void testApp::drawDisplacedMesh()
 		disp_2.setUniform1f("frExpo", frExpo );
 		disp_2.setUniform1f("noiseSurfaceSampleScale", uiNoiseSurfaceSampleScale );
 	}
+	
+	else if( dispShaderName == "disp_3"){
+		disp_3.begin();
+		disp_3.setUniform1f("time", elapsedTime );
+		disp_3.setUniform1f("nearClip", nearClip );
+		disp_3.setUniform1f("farClip", farClip );
+		disp_3.setUniform1f("displacement", uiDisplacement );
+		disp_3.setUniform1f("deltaExpo", uiDeltaExpo );
+		disp_3.setUniform1f("frExpo", frExpo );
+		disp_3.setUniform1f("noiseSurfaceSampleScale", uiNoiseSurfaceSampleScale );
+	}
 	else//if(dispShaderName == "displacedMesh")
 	{
 		
@@ -537,6 +567,7 @@ void testApp::drawDisplacedMesh()
 	}
 	
 	
+	
 //	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE );
 	displacedVbo.drawElements(GL_TRIANGLES, displacedIndexCount );
 //	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL );
@@ -549,6 +580,11 @@ void testApp::drawDisplacedMesh()
 	else if( dispShaderName == "disp_2")
 	{
 		disp_2.end();
+	}
+	
+	else if( dispShaderName == "disp_3")
+	{
+		disp_3.end();
 	}
 	else//	if(dispShaderName == "displacedMesh")
 	{
@@ -683,7 +719,7 @@ void testApp::exit()
 		delete guis[i];
 	}
 	
-		for(int i=0; i<presetEventGuis.size(); i++){
+	for(int i=0; i<presetEventGuis.size(); i++){
 		
 		ofRemoveListener(presetEventGuis[i]->newGUIEvent,this,&testApp::guiPresetEvent);
 		delete presetEventGuis[i];
@@ -708,18 +744,19 @@ vector<string> testApp::getPresetNames()
 //--------------------------------------------------------------
 void testApp::loadPreset( string presetName)
 {
-//	gui.loadFromFile( "presets/" + currentPresetName + ".xml" );
+	currentPresetName = presetName;
 	
 	for(int i = 0; i < guis.size(); i++)
     {
 		cout << "Presets/" + presetName + "/"+guis[i]->getName()+".xml" << endl;
         guis[i]->loadSettings( "Presets/" + presetName + "/"+guis[i]->getName()+".xml");
+		
     }
 }
 
 void testApp::savePreset( string presetName )
 {
-	
+	bSavePreset = false;
 	
     ofDirectory dir;
     string presetDirectory = ofToDataPath("Presets/" + presetName + "/");
@@ -733,16 +770,16 @@ void testApp::savePreset( string presetName )
 //		presetRadio->addToggle(t);
 //		presetGui->autoSizeToFitWidgets();
 		
+		cout << "adding toggle: " <<presetName << endl;
         presetRadio->addToggle(presetGui->addToggle(presetName, true));
         presetGui->autoSizeToFitWidgets();
+		cout << "added toggle: " <<presetName << endl;
     }
     
     for(int i = 0; i < guis.size(); i++)
     {
-        guis[i]->saveSettings(presetDirectory+guis[i]->getName()+".xml");
-		
-		
 		cout << "saving: " << presetDirectory+guis[i]->getName()+".xml" << endl;
+        guis[i]->saveSettings(presetDirectory+guis[i]->getName()+".xml");
     }
 }
 

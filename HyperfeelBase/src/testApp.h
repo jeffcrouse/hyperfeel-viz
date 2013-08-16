@@ -53,9 +53,12 @@ public:
 	
 	string dispShaderName;
 	vector<string> dispShaderNames;
+	vector<string> presetNames;
+	bool bPresetsloadedHack;
 	ofShader displacedShader;
 	ofShader disp_1;
 	ofShader disp_2;
+	ofShader disp_3;
 	
 	
 	
@@ -78,7 +81,18 @@ public:
 	
 	//Gui methods
 	void loadPreset( string name);
-	void savePreset( string folderName = "Working" );
+
+	void savePreset( string folderName );
+	void savePreset(){
+		string presetName = ofSystemTextBoxDialog("Save Preset As");
+		if(presetName.length())
+		{
+			savePreset(presetName);
+		}
+		else{
+			bSavePreset = false;
+		}
+	};
 	
 	//animation
 	float elapsedTime;
@@ -125,6 +139,7 @@ public:
 	ofxUICanvas* displacedMeshGui;
 	float uiDisplacement, uiDeltaExpo, uiNoiseSurfaceSampleScale, uiRoundingWeight, frExpo;
 	
-	string currentPresetName;
+	string currentPresetName, nextPreset;
+	bool bSavePreset;
 	int numVertices;
 };
