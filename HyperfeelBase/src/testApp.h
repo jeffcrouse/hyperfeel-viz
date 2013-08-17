@@ -75,7 +75,7 @@ public:
 	
 	
 	//Russain Dolls
-	void setupRussianDolls( float radians = float(HALF_PI)*1.5, float sphereRad=300.);
+	void setupRussianDolls( float radians = float(HALF_PI)*1.5, float sphereRad=500.);
 	void drawRussianDolls();
 	vector<ofVec3f> rimPoints;//used to connect the vbo with the ribbons
 	vector<ofNode> dollNodes;
@@ -84,6 +84,8 @@ public:
 	ofShader dollShader;
 	int russianDallIndexCount;
 	bool bRussianDollsAreSetup;
+	float uiRussianDollsAlpha;
+	ofxUICanvas* russianDollGui;
 
 	
 	//Gui methods

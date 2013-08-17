@@ -2,9 +2,13 @@ varying vec3 color;
 varying vec3 norm;
 varying vec3 ePos;
 varying vec3 lPos;
+varying vec2 uv;
 
 void main()
 {
+	
+	uv = gl_MultiTexCoord0.xy;
+	
 	norm = normalize( gl_NormalMatrix * gl_Normal );
 //	norm = norm * .5 + .5;
 	

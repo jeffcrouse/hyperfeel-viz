@@ -1,7 +1,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>displacement</Name>
-    <Value>468.423645020</Value>
+    <Value>468.423583984</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -30,16 +30,21 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>disp_1</Name>
+    <Name>dispShader_1</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>disp_2</Name>
+    <Name>dispShader_2</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>dispShader_3</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>dispShader_4</Name>
     <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>disp_3</Name>
-    <Value>0</Value>
 </Widget>

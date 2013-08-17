@@ -63,6 +63,8 @@ void testApp::setDefaults(){
 	camera.setFov( 60 );
 	camera.setNearClip( 50 );
 	camera.setFarClip( 5000 );
+	
+	uiRussianDollsAlpha = 1.;
 }
 
 
@@ -149,6 +151,9 @@ void testApp::setupUI(){
 	displacedMeshGui = new ofxUICanvas();
 	displacedMeshGui->setName("displacedMesh");
 	displacedMeshGui->setPosition(rainbowLayersGui->getRect()->getX() + rainbowLayersGui->getRect()->getWidth() + 30, rainbowLayersGui->getRect()->getY() );
+	
+	displacedMeshGui->addLabel("Displaced Mesh");
+	displacedMeshGui->addSpacer();
 	displacedMeshGui->addSlider("displacement", -1000, 1000, &uiDisplacement );
 	displacedMeshGui->addSlider("deltaExpo", 1., 32., &uiDeltaExpo );
 	displacedMeshGui->addSlider("noiseSurfaceSampleScale", .0001, .3, &uiNoiseSurfaceSampleScale );
@@ -163,6 +168,17 @@ void testApp::setupUI(){
 
 	displacedMeshGui->autoSizeToFitWidgets();
 	
+	russianDollGui = new ofxUICanvas();
+	russianDollGui->setName("russianDolls");
+	russianDollGui->addSpacer();
+	russianDollGui->setPosition( rainbowLayersGui->getRect()->getX(), rainbowLayersGui->getRect()->getY() + rainbowLayersGui->getRect()->getHeight() + 20 );
+	
+	russianDollGui->addLabel("Russian Dolls");
+	russianDollGui->addLabel( "uniforms" );
+	russianDollGui->addSpacer();
+	russianDollGui->addSlider("alpha", 0, 1, &uiRussianDollsAlpha );
+	
+	
 	
 	
 	//add listeners
@@ -170,6 +186,7 @@ void testApp::setupUI(){
 	guis.push_back(displacedMeshGui);
 	guis.push_back( guiMain  );
 	guis.push_back( presetGui );
+	guis.push_back( russianDollGui );
 	
 	bPresetsloadedHack = false;
 	ofAddListener( displacedMeshGui->newGUIEvent,this,&testApp::guiEvent );
@@ -358,10 +375,7 @@ void testApp::drawRussianDolls(){
 		setupRussianDolls();
 	}
 	
-	camera.begin();
-	
-	dollShader.begin();
-	
+	//update
 	for(int i=0; i<dollNodes.size(); i++){
 		if( i == 0){
 			dollNodes[i].setOrientation(ofVec3f( 0, sin(elapsedTime * .4)*2, sin(elapsedTime * .2)*10. ));
@@ -369,10 +383,26 @@ void testApp::drawRussianDolls(){
 			
 			dollNodes[i].setOrientation( dollNodes[i-1].getOrientationEuler() );
 		}
+	}
+	
+	
+	//draw
+
+	ofBlendMode( OF_BLENDMODE_ADD );
+	glEnable(GL_CULL_FACE);
+	camera.begin();
+	
+	dollShader.begin();
+	dollShader.setUniform1f("alpha", uiRussianDollsAlpha );
+	for(int i=dollNodes.size()-1; i>=0; i--){
 		ofPushMatrix();
 		ofMultMatrix( dollNodes[i].getGlobalTransformMatrix() );
 		ofSetColor( dollColors[i] );
 		
+		glCullFace(GL_BACK);
+		dollVbo.drawElements(GL_QUADS, russianDallIndexCount );
+		
+		glCullFace(GL_FRONT);
 		dollVbo.drawElements(GL_QUADS, russianDallIndexCount );
 		
 		ofPopMatrix();
@@ -381,6 +411,8 @@ void testApp::drawRussianDolls(){
 	dollShader.end();
 	
 	camera.end();
+	
+	glDisable(GL_CULL_FACE);
 	
 	
 }
@@ -394,6 +426,7 @@ void testApp::setupRussianDolls( float radians, float sphereRad ){
 	//make our vertices
 	vector<ofVec3f> vertices(vertCount);
 	vector<ofVec3f> normals(vertCount);
+	vector<ofVec2f> texCoords(vertCount);
 	int count = 0;
 	float xStep = 1. / float(subdX-1);
 	float yStep = 1. / float(subdY-1);
@@ -414,7 +447,7 @@ void testApp::setupRussianDolls( float radians, float sphereRad ){
 			
 			vertices[count] *= sphereRad;
 			
-//			texCoords[count].set( j * xStep, i * yStep );
+			texCoords[count].set( j * xStep, i * yStep );
 			count++;
 		}
 	}
@@ -444,7 +477,7 @@ void testApp::setupRussianDolls( float radians, float sphereRad ){
 	//add attributes to vbo
 	dollVbo.setVertexData( &vertices[0], vertices.size(), GL_STATIC_DRAW );
 	dollVbo.setNormalData( &normals[0], normals.size(), GL_STATIC_DRAW );
-//	dollVbo.setTexCoordData( &texCoords[0], texCoords.size(), GL_STATIC_DRAW );
+	dollVbo.setTexCoordData( &texCoords[0], texCoords.size(), GL_STATIC_DRAW );
 	dollVbo.setIndexData( &indices[0], indices.size(), GL_STATIC_DRAW );
 	
 	
@@ -453,7 +486,7 @@ void testApp::setupRussianDolls( float radians, float sphereRad ){
 	dollColors.resize( dollNodes.size() );
 	
 	for(int i=0; i<dollNodes.size(); i++){
-		dollColors[i].set( ofRandom(.5,1.5), ofRandom(.5,1.5), ofRandom(.5,1.5));
+		dollColors[i].set( ofRandom(.5,1.5), ofRandom(.5,1.5), ofRandom(.5,1.5) );
 		dollNodes[i].setScale(.9);
 		
 		if(i>0){
