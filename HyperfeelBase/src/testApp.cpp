@@ -223,10 +223,9 @@ void testApp::guiEvent(ofxUIEventArgs &e){
 		//check and change the render type
 		for (int i=0; i<renderTypes.size(); i++) {
 			if(name == renderTypes[i]){
-				ofxUIToggle *t = e.getToggle();
-				if(t->getValue()){
+				if(e.getToggle()->getValue()){
 					currentRenderType = name;
-					bFoundIt = true;
+//					bFoundIt = true;
 				}
 			}
 		}
@@ -236,10 +235,9 @@ void testApp::guiEvent(ofxUIEventArgs &e){
 			presetNames = getPresetNames();
 			for (int i=0; i<presetNames.size(); i++) {
 				if( name == presetNames[i] ){
-					ofxUIToggle *t = e.getToggle();
-					if(t->getValue()){
+					if(e.getToggle()->getValue()){
 						nextPreset = name;
-						bFoundIt = true;
+//						bFoundIt = true;
 					}
 				}
 			}
@@ -249,10 +247,9 @@ void testApp::guiEvent(ofxUIEventArgs &e){
 		if(!bFoundIt){
 			for(int i=0; i<dispShaderNames.size(); i++){
 				if(name == dispShaderNames[i]){
-					ofxUIToggle *t = e.getToggle();
-					if(t->getValue()){
+					if(e.getToggle()->getValue()){
 						dispShaderName = dispShaderNames[i];
-						bFoundIt = true;
+//						bFoundIt = true;
 					}
 				}
 			}
@@ -372,6 +369,7 @@ void testApp::draw()
 
 void testApp::drawRussianDolls(){
 	if(!bRussianDollsAreSetup){
+		cout << "setting up russian dolls" << endl;
 		setupRussianDolls();
 	}
 	
@@ -500,7 +498,7 @@ void testApp::setupRussianDolls( float radians, float sphereRad ){
 void testApp::setupDisplacedMesh( float radians, float sphereRad )
 {
 	
-	bRussianDollsAreSetup = true;
+	bDisplacedMeshIsSetup = true;
 	cout << endl << "setting up displacedMesh" << endl << endl;
 	
 	//setup shader
