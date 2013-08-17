@@ -1,17 +1,7 @@
 <Widget>
     <Kind>2</Kind>
-    <Name>rainbow_1</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>rainbow_2</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>Working</Name>
-    <Value>0</Value>
+    <Name>disp_0</Name>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -30,6 +20,36 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>disp_0</Name>
-    <Value>1</Value>
+    <Name>disp_4</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>rainbow_1</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>rainbow_2</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>russianDolls</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>russianDolls_1</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>russianDolls_2</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>Working</Name>
+    <Value>0</Value>
 </Widget>

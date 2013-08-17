@@ -363,7 +363,7 @@ void testApp::draw()
 	
 	glDisable(GL_DEPTH_TEST);
 	
-	if( currentRenderType == "displacedMesh" && dispShaderName == "dispShader_4"){
+	if( guis[0]->isVisible() && currentRenderType == "displacedMesh" && dispShaderName == "dispShader_4"){
 		ofSetColor(255, 255, 255, 255);
 		fboMap.draw(10, ofGetHeight() - 210, 200, 200);
 	}
@@ -387,7 +387,7 @@ void testApp::drawRussianDolls(){
 	
 	
 	//draw
-
+	ofPushStyle();
 	ofBlendMode( OF_BLENDMODE_ADD );
 	glEnable(GL_CULL_FACE);
 	camera.begin();
@@ -411,7 +411,7 @@ void testApp::drawRussianDolls(){
 	dollShader.end();
 	
 	camera.end();
-	
+	ofPopStyle();
 	glDisable(GL_CULL_FACE);
 	
 	

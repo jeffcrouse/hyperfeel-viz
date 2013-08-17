@@ -1,7 +1,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>displacement</Name>
-    <Value>478.177337646</Value>
+    <Value>478.177368164</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -42,4 +42,9 @@
     <Kind>2</Kind>
     <Name>dispShader_3</Name>
     <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>dispShader_4</Name>
+    <Value>1</Value>
 </Widget>
