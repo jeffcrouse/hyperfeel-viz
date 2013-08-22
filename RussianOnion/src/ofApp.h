@@ -89,7 +89,7 @@ public:
 	void setupOnion();
 	void drawOnion();
 	bool bOnionSetup;
-	void setupSphere( float radians = PI, float sphereRad=200.f);
+	void setupSphere( float radians = PI, float sphereRad=20.f);
 	ofVec3f normalFrom3Points(ofVec3f p0, ofVec3f p1, ofVec3f p2);
 	ofVec3f normalFrom4Points(ofVec3f p0, ofVec3f p1, ofVec3f p2, ofVec3f p3);
 	
@@ -97,6 +97,12 @@ public:
 	int spherVboIndexCount;
 	
 	vector<Onion> onions;
+	
+	float recursiveScale;
+	float squish;
+	float readingThreshold;
+	float readingScale;
+	float onionAlpha;
 	
     /**
      *  Journeys

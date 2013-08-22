@@ -112,7 +112,12 @@ void ofApp::setupUI(){
 	guiMain->addLabel("global rendering");
 	guiMain->addToggle("depthTest", bDepthTest);
 
-	guiMain->addSlider("radius", 10, 20, &radius );
+	guiMain->addSlider("radius", 1, 100, &radius );
+	guiMain->addSlider("recursiveScale", .5, 1., &recursiveScale );
+	guiMain->addSlider("squish", .01, 1., &squish );
+	guiMain->addSlider("readingThreshold", 0., 1., &readingThreshold );
+	guiMain->addSlider("readingScale", .01, 1., &readingScale );
+	guiMain->addSlider("onionAlpha", .01, 1., &onionAlpha );
 	
 	//create a radio for switching renderTypes
 	guiMain->addSpacer();
@@ -289,15 +294,6 @@ void ofApp::update()
 		for(int i=0; i<onions.size(); i++){
 			onions[i].setup( journeys[i] );
 		}
-//		
-//		if(bDebug)	cout << "update journeys " << ofGetElapsedTimef() << endl;
-//		if(bDebug)	cout << "journeys.size(): " << journeys.size() << endl;
-//		
-//		
-//		ribbons.resize( journeys.size() );
-//		for (int i=0; i<ribbons.size(); i++) {
-//			ribbons[i].setup( journeys[i], getRandomColor() );
-//		}
 	}
 	
 	//animation
@@ -488,25 +484,56 @@ void ofApp::drawOnion(){
 	
 //	sphereVbo.drawElements(GL_QUADS, spherVboIndexCount );
 	
-	float scaleStep = 1./float(onions.size());
-	float scl;
 	for (int i=0; i<onions.size(); i++) {
-		scl = scaleStep * i;
-		ofPushMatrix();
-		ofScale( scl*3, scl*3, scl );
+		if(i>0){
+			
+			onions[i].transform.setScale( onions[i-1].transform.getScale() * recursiveScale );
+		}else{
+			onions[i].transform.setScale( 1 );
+		}
+	}
+	
+	float scaleStep = 1./float(onions.size());
+	ofPushMatrix();
+	ofScale( radius, radius, radius * squish );
+	
+	glEnable(GL_CULL_FACE);
+	for (int i=onions.size()-1; i>=0; i--) {
 		
-		onions[i].setUniforms( currentShader );
+		ofPushMatrix();
+		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
+		
+
+		currentShader->setUniformTexture("dataTexture", onions[i].dataTexture, 0);
+		currentShader->setUniform2f("texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
+		currentShader->setUniform1f("readingThreshold", readingThreshold);
+		currentShader->setUniform1f("readingScale", readingScale);
+		currentShader->setUniform1f("alpha", onionAlpha);
+		
+		
+		glCullFace(GL_BACK);
 		sphereVbo.drawElements( GL_QUADS, spherVboIndexCount );
 		
+		glCullFace(GL_FRONT);
+		sphereVbo.drawElements( GL_QUADS, spherVboIndexCount );
+		
+		
 		ofPopMatrix();
+		
 	}
+	
+	glDisable(GL_CULL_FACE);
+	
+	ofPopMatrix();
 	
 	currentShader->end();
 	
 	camera.end();
 	
-	for (int i=0; i<onions.size(); i++) {
-		onions[i].dataTexture.draw(10, ofGetHeight() - 20 - 10*i, ofGetWidth()/2, 9 );
+	if(guis[0]->isVisible()){
+		for (int i=0; i<onions.size(); i++) {
+			onions[i].dataTexture.draw(10, ofGetHeight() - 20 - 10*i, ofGetWidth()/2, 9 );
+		}
 	}
 }
 
@@ -729,12 +756,22 @@ void ofApp::handleRoute(Json::Value& _json){
 		vector <string> outStrings;
         for(int i=0; i<_json["journeys"].size(); i++) {
 			
-			if(_json["journeys"][i]["readings"].size() > 180){
+			if(_json["journeys"][i]["readings"].size() > 100){
 				//false for not animating in
 				journeys.push_back(new Journey(_json["journeys"][i], false));
 			}
 			
         }
+		
+		if(journeys.size() < 20){
+			for(int i=0; i<_json["journeys"].size(); i++) {
+				
+				if(_json["journeys"][i]["readings"].size() > 100){
+					//false for not animating in
+					journeys.push_back(new Journey(_json["journeys"][i], false));
+				}	
+			}
+		}
 		
 		bJourniesNeedUpdate = true;
     }

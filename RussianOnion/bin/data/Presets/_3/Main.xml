@@ -34,11 +34,6 @@
     <Value>0.095673077</Value>
 </Widget>
 <Widget>
-    <Kind>4</Kind>
-    <Name>onionAlpha</Name>
-    <Value>0.498653829</Value>
-</Widget>
-<Widget>
     <Kind>2</Kind>
     <Name>facingRatioShader</Name>
     <Value>0</Value>

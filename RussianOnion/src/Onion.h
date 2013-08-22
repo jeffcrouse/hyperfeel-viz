@@ -29,11 +29,12 @@ public:
 		dataTexture.loadData( &data[0], j->readings.size(), 1, GL_RGB );
 	}
 	
-	void setUniforms( ofShader* shader){
-		shader->setUniformTexture("dataTexture", dataTexture, 0);
-		shader->setUniform2f("texDim", dataTexture.getWidth(), dataTexture.getHeight() );
-	}
+//	void setUniforms( ofShader* shader){
+//		shader->setUniformTexture("dataTexture", dataTexture, 0);
+//		shader->setUniform2f("texDim", dataTexture.getWidth(), dataTexture.getHeight() );
+//	}
 	
 	ofTexture dataTexture;
 	ofVec2f textureDim;
+	ofNode transform;
 };

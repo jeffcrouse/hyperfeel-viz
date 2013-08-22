@@ -21,22 +21,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>squish</Name>
-    <Value>0.812788427</Value>
+    <Value>0.330480754</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingThreshold</Name>
-    <Value>0.298076928</Value>
+    <Value>0.121794872</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingScale</Name>
-    <Value>0.095673077</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>onionAlpha</Name>
-    <Value>0.498653829</Value>
+    <Value>0.117884614</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
