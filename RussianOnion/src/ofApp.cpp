@@ -293,6 +293,7 @@ void ofApp::update()
 		
 		for(int i=0; i<onions.size(); i++){
 			onions[i].setup( journeys[i] );
+			onions[i].color = getRandomColor();
 		}
 	}
 	
@@ -302,9 +303,9 @@ void ofApp::update()
 }
 
 void ofApp::retryColors(){
-//	for(int i=0; i<ribbons.size(); i++){
-//		ribbons[i].color = getRandomColor();
-//	}
+	for(int i=0; i<onions.size(); i++){
+		onions[i].color = getRandomColor();
+	}
 }
 
 //--------------------------------------------------------------
@@ -503,6 +504,8 @@ void ofApp::drawOnion(){
 		ofPushMatrix();
 		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
 		
+		ofSetColor( onions[i].color );
+		
 
 		currentShader->setUniformTexture("dataTexture", onions[i].dataTexture, 0);
 		currentShader->setUniform2f("texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
@@ -531,8 +534,9 @@ void ofApp::drawOnion(){
 	camera.end();
 	
 	if(guis[0]->isVisible()){
+		ofSetColor(255,255,255);
 		for (int i=0; i<onions.size(); i++) {
-			onions[i].dataTexture.draw(10, ofGetHeight() - 20 - 10*i, ofGetWidth()/2, 9 );
+			onions[i].dataTexture.draw(5, ofGetHeight() - 10 - 5*i, ofGetWidth()/4, 4.5 );
 		}
 	}
 }
@@ -769,7 +773,18 @@ void ofApp::handleRoute(Json::Value& _json){
 				if(_json["journeys"][i]["readings"].size() > 100){
 					//false for not animating in
 					journeys.push_back(new Journey(_json["journeys"][i], false));
-				}	
+				}
+			}
+		}
+		
+		
+		if(journeys.size() < 40){
+			for(int i=0; i<_json["journeys"].size(); i++) {
+				
+				if(_json["journeys"][i]["readings"].size() > 100){
+					//false for not animating in
+					journeys.push_back(new Journey(_json["journeys"][i], false));
+				}
 			}
 		}
 		

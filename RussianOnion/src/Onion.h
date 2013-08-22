@@ -37,4 +37,5 @@ public:
 	ofTexture dataTexture;
 	ofVec2f textureDim;
 	ofNode transform;
+	ofColor color;
 };
