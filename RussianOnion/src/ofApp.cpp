@@ -506,6 +506,7 @@ void ofApp::drawOnion(){
 		
 		ofPushMatrix();
 		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
+		ofRotate((i*elapsedTime)*3., 0, 0, 1);
 		
 		ofSetColor( onions[i].color );
 		
