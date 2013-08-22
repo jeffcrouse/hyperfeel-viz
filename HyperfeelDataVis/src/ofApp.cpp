@@ -282,6 +282,12 @@ void ofApp::update()
 	float loadDataVal = t - floor(t);
 }
 
+void ofApp::retryColors(){
+	for(int i=0; i<ribbons.size(); i++){
+		ribbons[i].color = getRandomColor();
+	}
+}
+
 //--------------------------------------------------------------
 void ofApp::draw()
 {
@@ -461,6 +467,10 @@ void ofApp::keyPressed(int key)
 	
 	if(key == ' '){
 		loadShaders();
+	}
+	
+	if(key == 'c'){
+		retryColors();
 	}
 }
 //--------------------------------------------------------------

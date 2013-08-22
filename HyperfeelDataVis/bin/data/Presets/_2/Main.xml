@@ -5,18 +5,28 @@
 </Widget>
 <Widget>
     <Kind>4</Kind>
+    <Name>minRibbonScale</Name>
+    <Value>0.100000001</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>maxRibbonScale</Name>
+    <Value>8.615385056</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
     <Name>twistAngle</Name>
-    <Value>12.756410599</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>frExpo</Name>
-    <Value>1.967948794</Value>
+    <Value>20.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>8.064102173</Value>
+    <Value>8.429487228</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -35,8 +45,18 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
+    <Name>ribbonBars</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>ribbonDepth</Name>
     <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>ribbonRings</Name>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -46,5 +66,10 @@
 <Widget>
     <Kind>2</Kind>
     <Name>ribbonTransparent</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>ribbonTransparentNoise</Name>
     <Value>0</Value>
 </Widget>

@@ -1,7 +1,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>depthTest</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -11,7 +11,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>maxRibbonScale</Name>
-    <Value>9.567307472</Value>
+    <Value>3.855769157</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -21,22 +21,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>frExpo</Name>
-    <Value>2.651923180</Value>
+    <Value>0.786538482</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>8.307692528</Value>
+    <Value>20.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>nearDepthScale</Name>
-    <Value>3391.025634766</Value>
+    <Value>2275.641113281</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>farDepthScale</Name>
-    <Value>4233.974609375</Value>
+    <Value>10000.000000000</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -45,7 +45,17 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
+    <Name>ribbonBars</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>ribbonDepth</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>ribbonRings</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
@@ -60,6 +70,6 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>ribbonTransparentDepth</Name>
+    <Name>ribbonTransparentNoise</Name>
     <Value>0</Value>
 </Widget>

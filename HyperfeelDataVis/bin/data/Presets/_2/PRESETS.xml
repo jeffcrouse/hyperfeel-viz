@@ -15,6 +15,21 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
+    <Name>_4</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>_5</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>_6</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>Working</Name>
     <Value>0</Value>
 </Widget>

@@ -71,6 +71,7 @@ public:
 	bool bSaveJsonsToFile, bLoadJsonsFromFile;
 	
 	ofColor getRandomColor();
+	void retryColors();
 	
     /**
      *  Journeys

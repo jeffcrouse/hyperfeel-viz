@@ -6,7 +6,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>minRibbonScale</Name>
-    <Value>4.258333683</Value>
+    <Value>2.019230843</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -21,22 +21,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>frExpo</Name>
-    <Value>2.527564049</Value>
+    <Value>0.600000024</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>10.256410599</Value>
+    <Value>8.246795654</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>nearDepthScale</Name>
-    <Value>3391.025634766</Value>
+    <Value>3160.256347656</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>farDepthScale</Name>
-    <Value>4233.974609375</Value>
+    <Value>5131.410156250</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -45,7 +45,17 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
+    <Name>ribbonBars</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>ribbonDepth</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>ribbonRings</Name>
     <Value>0</Value>
 </Widget>
 <Widget>

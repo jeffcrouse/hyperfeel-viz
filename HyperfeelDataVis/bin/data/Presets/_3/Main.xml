@@ -6,12 +6,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>minRibbonScale</Name>
-    <Value>14.334296227</Value>
+    <Value>11.135577202</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>maxRibbonScale</Name>
-    <Value>8.298076630</Value>
+    <Value>4.490385056</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -21,7 +21,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>frExpo</Name>
-    <Value>1.594871759</Value>
+    <Value>0.600000024</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -45,7 +45,17 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
+    <Name>ribbonBars</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>ribbonDepth</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>ribbonRings</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
@@ -60,6 +70,6 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>ribbonTransparentDepth</Name>
+    <Name>ribbonTransparentNoise</Name>
     <Value>0</Value>
 </Widget>
