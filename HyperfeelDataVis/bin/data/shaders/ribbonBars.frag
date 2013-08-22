@@ -94,7 +94,7 @@ void main(void)
 	fr = pow( fr, frExpo );
 	
 	float sclZ = pos.z * fr;
-	float someVal = pow( abs(sin( uv.x * 700. )), 4.);
+	float someVal = pow( abs(sin( uv.x * 700. )), 3.);
 	
 	
 	float d = min(1., max(0., map( length(ecPosition.xyz), nearDepthScale, farDepthScale, 1., 0. )));

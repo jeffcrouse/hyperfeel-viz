@@ -100,5 +100,4 @@ void main(void)
 	float d = min(1., max(0., map( length(ecPosition.xyz), nearDepthScale, farDepthScale, 1., 0. )));
 	
 	gl_FragColor = vec4( col * someVal, someVal * d * .7 );
-
 }
