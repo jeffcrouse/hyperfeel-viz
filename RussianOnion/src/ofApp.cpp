@@ -485,12 +485,15 @@ void ofApp::drawOnion(){
 	
 //	sphereVbo.drawElements(GL_QUADS, spherVboIndexCount );
 	
+	ofVec3f Eul( 0, pow(sin(elapsedTime * .8), 3.)*3, pow(sin(elapsedTime * .4), 3.)*10. );
 	for (int i=0; i<onions.size(); i++) {
+		
 		if(i>0){
-			
 			onions[i].transform.setScale( onions[i-1].transform.getScale() * recursiveScale );
+			onions[i].transform.setOrientation( onions[i-1].transform.getOrientationEuler() + Eul );
 		}else{
 			onions[i].transform.setScale( 1 );
+			onions[i].transform.setOrientation( Eul );
 		}
 	}
 	
