@@ -29,7 +29,7 @@ void main(void)
 		discard;
 	}
 	
-	float fr = dot(-ePos, norm) * .5 + .5;
+	float fr = abs(dot(-ePos, norm));// * .5 + .5;
 	
 //	gl_FragColor = vec4( uv, 1., 1. );
 	gl_FragColor = vec4( color * fr, alpha);// * vec4( data.xy, 1., 1. );
