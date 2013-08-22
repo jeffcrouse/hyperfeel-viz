@@ -1,17 +1,22 @@
 <Widget>
     <Kind>2</Kind>
+    <Name>ribbons</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>depthTest</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>minRibbonScale</Name>
-    <Value>5.857692242</Value>
+    <Value>0.100000001</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>maxRibbonScale</Name>
-    <Value>9.250000000</Value>
+    <Value>9.884615898</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -21,22 +26,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>frExpo</Name>
-    <Value>0.600000024</Value>
+    <Value>2.527564049</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>7.576923370</Value>
+    <Value>7.637820721</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>nearDepthScale</Name>
-    <Value>3288.461425781</Value>
+    <Value>2160.256347656</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>farDepthScale</Name>
-    <Value>6365.384765625</Value>
+    <Value>4951.922851562</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -61,7 +66,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>ribbonSine</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -71,5 +76,15 @@
 <Widget>
     <Kind>2</Kind>
     <Name>ribbonTransparentNoise</Name>
-    <Value>1</Value>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>GL_QUADS</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>GL_LINES</Name>
+    <Value>0</Value>
 </Widget>

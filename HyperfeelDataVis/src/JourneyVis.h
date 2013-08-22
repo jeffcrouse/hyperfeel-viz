@@ -131,13 +131,13 @@ public:
 		}
 	}
 	
-	void draw( bool wireframe=false)
+	void draw( GLenum drawType = GL_QUADS, bool wireframe=false)
 	{
 		if(bWireframe || wireframe){
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE );
 		}
-		vbo.drawElements( GL_QUADS, numIndices );
-//		vbo.drawElements( GL_LINE_STRIP, numIndices - 1 );
+		vbo.drawElements( drawType, numIndices );
+		
 		if(bWireframe || wireframe){
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL );
 		}

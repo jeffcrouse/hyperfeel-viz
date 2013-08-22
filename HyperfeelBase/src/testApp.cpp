@@ -505,7 +505,6 @@ void testApp::setupDisplacedMesh( float radians, float sphereRad )
 	displacedShader.load( "shaders/displaced" );
 	
 	//create mesh tube
-	
 	int subdX = 64, subdY = 64;//128*128 ~= 16000 * (pos+norm+tangent+bitangent+uv+indices) == a lot of data
 	
 	int numVertices = subdX * subdY;

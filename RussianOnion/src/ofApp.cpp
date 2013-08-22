@@ -34,6 +34,8 @@ void ofApp::setup(){
 	bLoadJsonsFromFile = true;
 	bJourniesNeedUpdate = false;
 	
+	bOnionSetup = false;
+	
 	//	journey colors
 	colorMap["red"].set( 255, 99, 99 );				// = ofColor::red;
 	colorMap["orange"].set( 255, 182, 42 );			// = ofColor::orange;
@@ -82,7 +84,7 @@ void ofApp::setDefaults(){
 void ofApp::setupUI(){
 	
 	renderTypes.clear();
-	renderTypes.push_back("ribbons");
+	renderTypes.push_back("onion");
 	
     int columnWidth = 75;
 	
@@ -109,35 +111,26 @@ void ofApp::setupUI(){
 	guiMain->addSpacer();
 	guiMain->addLabel("global rendering");
 	guiMain->addToggle("depthTest", bDepthTest);
-	
 
-	guiMain->addSlider("minRibbonScale", 0.1, 50.0, &minRibbonScale );
-	guiMain->addSlider("maxRibbonScale", 1., 100.0, &maxRibbonScale );
-	guiMain->addSlider("twistAngle", 0., 20.0, &twistAngle );
-	guiMain->addSlider("frExpo", .6, 20, &frExpo );
-	guiMain->addSlider("radius", 1, 20, &radius );
-	guiMain->addSlider("nearDepthScale", 2000, 4000, &nearDepthScale );
-	guiMain->addSlider("farDepthScale", 3000, 10000, &farDepthScale );
-//	guiMain->addSlider("goboRadius", 256, 1024, &goboRadius );
+	guiMain->addSlider("radius", 10, 20, &radius );
 	
 	//create a radio for switching renderTypes
 	guiMain->addSpacer();
-	guiMain->addLabel("Ribbon Shaders" );
-//	guiMain->addRadio("render types", renderTypes );
+	guiMain->addLabel("Shaders" );
 	cout << "shaderNames.size(): "<< shaderNames.size() << endl;
 	guiMain->addRadio("shaders", shaderNames );
 	
+	
+//	vector<string> glDrawTypes;
+//	glDrawTypes.push_back("GL_QUADS");
+//	glDrawTypes.push_back("GL_LINES");
+//	ribbonDrawType = GL_QUADS;
+//	guiMain->addSpacer();
+//	
+//	guiMain->addRadio("ribbonDrawType", glDrawTypes );
+	
+	
 	guiMain->autoSizeToFitWidgets();
-	
-	vector<string> glDrawTypes;
-	glDrawTypes.push_back("GL_QUADS");
-	glDrawTypes.push_back("GL_LINES");
-	ribbonDrawType = GL_QUADS;
-	guiMain->addSpacer();
-	
-	guiMain->addRadio("ribbonDrawType", glDrawTypes );
-	
-	
 	
 	
 	
@@ -183,17 +176,17 @@ void ofApp::guiEvent(ofxUIEventArgs &e){
 		//savePreset();
 	}
 	
-	else if( name == "GL_QUADS"){
-		if(e.getToggle()->getValue()){
-			ribbonDrawType = GL_QUADS;
-		}
-	}
-	
-	else if( name == "GL_LINES"){
-		if(e.getToggle()->getValue()){
-			ribbonDrawType = GL_LINES;
-		}
-	}
+//	else if( name == "GL_QUADS"){
+//		if(e.getToggle()->getValue()){
+//			ribbonDrawType = GL_QUADS;
+//		}
+//	}
+//	
+//	else if( name == "GL_LINES"){
+//		if(e.getToggle()->getValue()){
+//			ribbonDrawType = GL_LINES;
+//		}
+//	}
 	
 	else{
 		
@@ -258,34 +251,21 @@ void ofApp::loadShaders()
 	cout<<endl<<endl<< "loading shaders: " << ofGetFrameNum() <<endl<<endl;
 	
 	//load data shader
-	journeyLineShader.load( "shaders/dataLineShader" );
-	currentShader = &journeyLineShader;
+	facingRatioShader.load( "shaders/facingRatio" );
+	shaderMap["facingRatioShader"] = &facingRatioShader;
 	
-	ribbonSine.load("shaders/dataLineShader.vert", "shaders/ribbonSine.frag");
+	normalShader.load( "shaders/normal" );
+	shaderMap["normalShader"] = &normalShader;
 	
-	ribbonDepth.load("shaders/dataLineShader.vert", "shaders/ribbonDepth.frag");
-	
-	ribbonTransparent.load( "shaders/dataLineShader.vert", "shaders/ribbonTransparent.frag");
-	
-	ribbonTransparentNoise.load( "shaders/dataLineShader.vert", "shaders/ribbonTransparentNoise.frag");
-	
-	ribbonBars.load( "shaders/dataLineShader.vert", "shaders/ribbonBars.frag");
-	
-	ribbonRings.load( "shaders/dataLineShader.vert", "shaders/ribbonRings.frag");
-	
-	
-	shaderMap["dataLineShader"] = &journeyLineShader;
-	shaderMap["ribbonSine"] = &ribbonSine;
-	shaderMap["ribbonDepth"] = &ribbonDepth;
-	shaderMap["ribbonTransparent"] = &ribbonTransparent;
-	shaderMap["ribbonTransparentNoise"] = &ribbonTransparentNoise;
-	shaderMap["ribbonBars"] = &ribbonBars;
-	shaderMap["ribbonRings"] = &ribbonRings;
+	onionShader.load( "shaders/onion" );
+	shaderMap["onionShader"] = &onionShader;
 	
 	//store the shader names in a vecotr for use in a radio gui
 	for( map<string, ofShader*>::iterator it = shaderMap.begin(); it!= shaderMap.end(); it++){
 		shaderNames.push_back(it->first);
 	}
+	
+//	currentShader = &normalShader;
 }
 
 
@@ -304,26 +284,31 @@ void ofApp::update()
 	if(bJourniesNeedUpdate){
 		bJourniesNeedUpdate = false;
 		
-		if(bDebug)	cout << "update journeys " << ofGetElapsedTimef() << endl;
-		if(bDebug)	cout << "journeys.size(): " << journeys.size() << endl;
+		onions.resize( journeys.size() );
 		
-		
-		ribbons.resize( journeys.size() );
-		for (int i=0; i<ribbons.size(); i++) {
-			ribbons[i].setup( journeys[i], getRandomColor() );
+		for(int i=0; i<onions.size(); i++){
+			onions[i].setup( journeys[i] );
 		}
+//		
+//		if(bDebug)	cout << "update journeys " << ofGetElapsedTimef() << endl;
+//		if(bDebug)	cout << "journeys.size(): " << journeys.size() << endl;
+//		
+//		
+//		ribbons.resize( journeys.size() );
+//		for (int i=0; i<ribbons.size(); i++) {
+//			ribbons[i].setup( journeys[i], getRandomColor() );
+//		}
 	}
 	
 	//animation
 	elapsedTime = ofGetElapsedTimef();
 	float t = elapsedTime * 3;
-	float loadDataVal = t - floor(t);
 }
 
 void ofApp::retryColors(){
-	for(int i=0; i<ribbons.size(); i++){
-		ribbons[i].color = getRandomColor();
-	}
+//	for(int i=0; i<ribbons.size(); i++){
+//		ribbons[i].color = getRandomColor();
+//	}
 }
 
 //--------------------------------------------------------------
@@ -338,8 +323,8 @@ void ofApp::draw()
 		glDisable(GL_DEPTH_TEST);
 	}
 //
-	if( currentRenderType == "ribbons"){
-		drawRibbons();
+	if( currentRenderType == "onion"){
+		drawOnion();
 	}
 	
 	if (!bDepthTest) {
@@ -350,49 +335,194 @@ void ofApp::draw()
 	ofPopStyle();
 }
 
-void ofApp::drawRibbons(){
-	ofEnableAlphaBlending();
-	ofBlendMode( OF_BLENDMODE_ADD );
-	glLineWidth( 3 );
+//--------------------------------------------------------------
+void ofApp::setupSphere( float radians, float sphereRad ){
+	//create mesh tube
+	int subdX = 64, subdY = 64;//128*128 ~= 16000 * (pos+norm+tangent+bitangent+uv+indices) == a lot of data
+	
+	int numVertices = subdX * subdY;
+	vector< ofVec3f >vertices( numVertices );
+	vector< ofVec3f >normals( numVertices );
+	vector< ofVec3f >tangents( numVertices );
+	vector< ofVec3f >binormals( numVertices );
+	vector< ofVec2f >texCoords( numVertices );
+	
+	//make our vertices
+	int count = 0;
+	float xStep = 1. / float(subdX-1);
+	float yStep = 1. / float(subdY-1);
+	float zStep = -subdY / 2;
+	
+	float xval, yval;
+	for (int i=0; i<subdY; i++) {
+		
+		//make some vertices
+		for (int j=0; j<subdX; j++) {
+			
+			xval = xStep*j*TWO_PI;
+			yval = yStep*i * radians;
+			float u = xval;
+			float v = yval;
+			
+			normals[count].set( cos(u)*sin(v), sin(u)*sin(v), -cos(v) );
+			vertices[count] = normals[count] * sphereRad;
+			texCoords[count].set( j * xStep, i * yStep );
+			
+			count++;
+		}
+	}
+	
+	//make the faces, calculate the face normals and add them to the vertex normals
+	vector<ofIndexType> indices;
+	ofVec3f faceNorm;
+	int p0, p1, p2, p3, wrapIndex;
+	for (int i=1; i<subdY; i++) {
+		for (int j=1; j<subdX; j++) {
+			
+			//triangle faces
+			p0 = (i-1) * subdX + j-1;
+			p1 = i*subdX + j-1;
+			p2 = i*subdX + j;
+			p3 = (i-1) * subdX + j;
+			
+			indices.push_back( p0 );
+			indices.push_back( p1 );
+			indices.push_back( p2 );
+			indices.push_back( p3 );
+		}
+	}
+	spherVboIndexCount = indices.size();
+	
+	//compute tangents and bi-normals
+	vector<ofVec3f> tan1( vertices.size(), ofVec3f(0) );
+	vector<ofVec3f> tan2( vertices.size(), ofVec3f(0) );
+	ofVec3f sdir, tdir;
+	ofVec4f tangent;
+	int i1, i2, i3;
+	float x1, x2, y1, y2, z1, z2, s1, s2, t1, t2, r;
+	
+	for(int f=0; f<indices.size(); f+=3){
+		i1 = indices[f];
+		i2 = indices[f+1];
+		i3 = indices[f+2];
+		
+		ofVec3f& v1 = vertices[i1];
+		ofVec3f& v2 = vertices[i2];
+		ofVec3f& v3 = vertices[i3];
+		
+		ofVec2f& w1 = texCoords[i1];
+		ofVec2f& w2 = texCoords[i2];
+		ofVec2f& w3 = texCoords[i3];
+		
+		
+		x1 = v2.x - v1.x;
+		x2 = v3.x - v1.x;
+		y1 = v2.y - v1.y;
+		y2 = v3.y - v1.y;
+		z1 = v2.z - v1.z;
+		z2 = v3.z - v1.z;
+		
+		s1 = w2.x - w1.x;
+		s2 = w3.x - w1.x;
+		t1 = w2.y - w1.y;
+		t2 = w3.y - w1.y;
+		
+		r = 1.0F / (s1 * t2 - s2 * t1);
+		sdir.set((t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r,
+				 (t2 * z1 - t1 * z2) * r);
+		tdir.set((s1 * x2 - s2 * x1) * r, (s1 * y2 - s2 * y1) * r,
+				 (s1 * z2 - s2 * z1) * r);
+		
+		tan1[i1] += sdir;
+		tan1[i2] += sdir;
+		tan1[i3] += sdir;
+		
+		tan2[i1] += tdir;
+		tan2[i2] += tdir;
+		tan2[i3] += tdir;
+	}
+	
+	for (int a=0; a < vertices.size(); a++){
+		ofVec3f& n = normals[a];
+		ofVec3f& t = tan1[a];
+		
+		// Gram-Schmidt orthogonalize
+		tangent = (t - n * n.dot(t)).normalize();
+		
+		// Calculate handedness
+		tangent.w = ( n.crossed(t).dot( tan2[a] ) < 0.) ? -1.f : 1.f;
+		
+		tangents[a] = tangent;
+		binormals[a] = n.crossed( tangents[a] );
+	}
+	
+	
+	//add attributes to vbo
+	sphereVbo.setVertexData( &vertices[0], vertices.size(), GL_STATIC_DRAW );
+	sphereVbo.setNormalData( &normals[0], normals.size(), GL_STATIC_DRAW );
+	sphereVbo.setTexCoordData( &texCoords[0], texCoords.size(), GL_STATIC_DRAW );
+	sphereVbo.setIndexData( &indices[0], indices.size(), GL_STATIC_DRAW );
+	
+//	displacedShader.begin();
+//	
+//	sphereVbo.setAttributeData( displacedShader.getAttributeLocation( "tangent" ), &tangents[0].x, 3, tangents.size()*3, GL_STATIC_DRAW, sizeof(tangents[0]) );
+//	sphereVbo.setAttributeData( displacedShader.getAttributeLocation( "binormal" ), &binormals[0].x, 3, binormals.size()*3, GL_STATIC_DRAW, sizeof(binormals[0])  );
+//	
+//	displacedShader.end();
+	
+}
+
+void ofApp::setupOnion(){
+	bOnionSetup = true;
+	setupSphere();
+}
+
+void ofApp::drawOnion(){
+	if(!bOnionSetup){
+		setupOnion();
+	}
 	
 	camera.begin();
-	ofPushMatrix();
-	ofScale(20, 20, 20);
-	
-	float scl;
 	
 	currentShader->begin();
-	currentShader->setUniform1f("frExpo", frExpo);
-	currentShader->setUniform1f("radius", radius);
-	currentShader->setUniform1f("nearDepthScale", nearDepthScale);
-	currentShader->setUniform1f("farDepthScale", farDepthScale);
-	for (int i=ribbons.size()-1; i>=0; i--) {
-		
-		ofSetColor( ribbons[i].color );
-		
+	
+//	sphereVbo.drawElements(GL_QUADS, spherVboIndexCount );
+	
+	float scaleStep = 1./float(onions.size());
+	float scl;
+	for (int i=0; i<onions.size(); i++) {
+		scl = scaleStep * i;
 		ofPushMatrix();
-		ofTranslate(0, 0, -100 + -10 * i );
-		ofRotate( (i+1.) * elapsedTime * .6, 0, 0, 1 );
-		scl = ofMap(i, 0, ribbons.size()-1, maxRibbonScale, minRibbonScale);
-		ofScale( scl , scl);
+		ofScale( scl*3, scl*3, scl );
 		
-		currentShader->setUniform1f("time", elapsedTime + float(i) * .2 );
-		currentShader->setUniform1f("spread", ofMap(float(i), 0., ribbons.size()-1., 0, 1) );
-		//		currentShader->setUniform1f("twistAngle", 0. );// ofMap(float(i), 0., ribbons.size()-1., .0, 1.));
-		currentShader->setUniform1i("twist", 1 );
-		currentShader->setUniform1f("twistAngle", twistAngle );
-		
-		ribbons[i].draw( ribbonDrawType );
-		
+		onions[i].setUniforms( currentShader );
+		sphereVbo.drawElements( GL_QUADS, spherVboIndexCount );
 		
 		ofPopMatrix();
-		
 	}
+	
 	currentShader->end();
 	
-	ofPopMatrix();
 	camera.end();
+	
+	for (int i=0; i<onions.size(); i++) {
+		onions[i].dataTexture.draw(10, ofGetHeight() - 20 - 10*i, ofGetWidth()/2, 9 );
+	}
 }
+
+
+
+ofVec3f ofApp::normalFrom3Points(ofVec3f p0, ofVec3f p1, ofVec3f p2)
+{
+	ofVec3f norm = (p2 - p1).cross( p0 - p1);
+	return norm.normalized();
+}
+
+ofVec3f ofApp::normalFrom4Points(ofVec3f p0, ofVec3f p1, ofVec3f p2, ofVec3f p3)
+{
+	return (normalFrom3Points(p0, p1, p2) + normalFrom3Points(p0, p2, p3)).normalized();
+}
+
 
 //--------------------------------------------------------------
 void ofApp::exit()

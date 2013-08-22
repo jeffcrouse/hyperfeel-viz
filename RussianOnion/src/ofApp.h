@@ -4,7 +4,7 @@
 #include "ofxUI.h"
 #include "ofxLibwebsockets.h"
 #include "Journey.h"
-#include "JourneyVis.h"
+#include "Onion.h"
 
 class HyperFeel_Data {
 public:
@@ -76,6 +76,28 @@ public:
 	ofColor getRandomColor();
 	void retryColors();
 	
+	/**
+	 * shaders
+	 */
+	ofShader facingRatioShader; 
+	ofShader normalShader;
+	ofShader onionShader;
+	
+	/**
+	 * onion
+	 */
+	void setupOnion();
+	void drawOnion();
+	bool bOnionSetup;
+	void setupSphere( float radians = PI, float sphereRad=200.f);
+	ofVec3f normalFrom3Points(ofVec3f p0, ofVec3f p1, ofVec3f p2);
+	ofVec3f normalFrom4Points(ofVec3f p0, ofVec3f p1, ofVec3f p2, ofVec3f p3);
+	
+	ofVbo sphereVbo;
+	int spherVboIndexCount;
+	
+	vector<Onion> onions;
+	
     /**
      *  Journeys
      */
@@ -88,19 +110,9 @@ public:
     vector<ofFloatColor> vboColors;
 	map <string, ofColor> colorMap;
 	
-	vector<JourneyVis> ribbons;
-	
 	ofShader* currentShader;
 	vector<string> shaderNames;
 	map< string, ofShader*> shaderMap;
-	
-	ofShader journeyLineShader;
-	ofShader ribbonSine;
-	ofShader ribbonDepth;
-	ofShader ribbonTransparent;
-	ofShader ribbonTransparentNoise;
-	ofShader ribbonBars;
-	ofShader ribbonRings;
 	
 	GLenum ribbonDrawType;
 	
