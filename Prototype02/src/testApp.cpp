@@ -4,14 +4,14 @@
 void testApp::setup()
 {
     ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
-    options.host = "brainz.io"; // 
+    options.host = "cheese.local"; //
     options.port = 8080;
     bool connected = client.connect( options );
     
     client.addListener(this);
     ofSetFrameRate(60);
     
-    ofSetLogLevel(OF_LOG_VERBOSE);
+    //ofSetLogLevel(OF_LOG_VERBOSE);
 }
 
 //--------------------------------------------------------------
@@ -50,7 +50,7 @@ void testApp::onIdle( ofxLibwebsockets::Event& args ){
 
 //--------------------------------------------------------------
 void testApp::onMessage( ofxLibwebsockets::Event& args ){
-	cout<<"got message "<<endl;
+	cout<<"got message " << endl;
     
     if ( !reader.parse( args.message, json ) ) {
         std::cout  << "Failed to parse json\n" << reader.getFormattedErrorMessages();
@@ -59,23 +59,28 @@ void testApp::onMessage( ofxLibwebsockets::Event& args ){
     string route = json["route"].asString();
     
     
-    if(route=="init") {
+    if(route=="showJourney") {
 		// on start up to populate the animation
-        for(int i=0; i<json["journeys"].size(); i++) {
-			
-			//false for not animating in
-            journeys.push_back(new Journey(json["journeys"][i], false));
-        }
+        //false for not animating in
+        journeys.push_back(new Journey(json["journey"], false));
     }
-    else if(route=="journey") {
-		
+    else if(route=="addJourney") {
+    
 		//true for animating in
         journeys.push_back(new Journey(json["journey"], true));
+    }
+    else if(route=="removeJourney") {
+        string uid = json["_id"].asString();
+        for(int i=0; i<journeys.size(); i++) {
+            if(journeys[i]->uid==uid) {
+                journeys[i]->sayGoodbye();
+            }
+        }
     }
     else if(route=="tick") {
 		
 		//for testing, can go if iritating
-        ofLogVerbose() << "server time: " << iso8601toTimestamp(json["date"].asString());
+        //ofLogVerbose() << "server time: " << iso8601toTimestamp(json["date"].asString());
     }
     else {
         ofLogWarning() << "Route " << route << " unknown..." << endl;

@@ -18,15 +18,22 @@ long iso8601toTimestamp(string d);
 struct Reading {
     int attention;
     int meditation;
+    long time;
 };
 
+class Event {
+public:
+    long time;
+    string type;
+    Json::Value data;
+};
 
 class Journey {
 public:
     Journey(Json::Value& json, bool buildIn=true) {
         
 		//corresponds tp ipod 0-6 roygbiv. 1 == orange
-        client_id = ofToInt( json["client_id"].asString() );
+        client_id = json["client_id"].asInt();
 		
 		//16 digit hash
         uid = json["_id"].asString();
@@ -37,44 +44,48 @@ public:
 		//READINGS
 		//each reading is a message sent from the ipod
         for(int i=0; i<json["readings"].size(); i++) {
-			//convert to timestamp
-            long time = iso8601toTimestamp( json["readings"][i]["date"].asString() );
-    
-			//user blink data. not in every reading and when it is it is by itself
-            if(json["readings"][i]["data"].isMember("blinkStrength")) {
-                //
-                if(json["readings"][i]["data"]["blinkStrength"].asInt() > 50)
-                    blinks.push_back( time );
-                
-            }
-			//eeg. meditation / attention
-			else if(json["readings"][i]["data"].isMember("eSenseMeditation")) {
-				
-				//int btwn 0-100
-                Reading r;
-                r.meditation = json["readings"][i]["data"]["eSenseMeditation"].asInt();
-                r.attention = json["readings"][i]["data"]["eSenseAttention"].asInt();
-                readings.push_back( r );
-            }
-			//
-			else {
-                ofLogWarning() << "unrecognized reading...";
-            }
+			
+            Reading r;
+            r.time = iso8601toTimestamp( json["readings"][i]["date"].asString() ); //convert to timestamp
+            r.meditation = json["readings"][i]["data"]["meditation"].asInt(); //int btwn 0-100
+            r.attention = json["readings"][i]["data"]["attention"].asInt(); //int btwn 0-100
+            readings.push_back( r );
         }
+        
+        //EVENTS
+        for(int i=0; i<json["events"].size(); i++) {
+            
+            Event e;
+            e.time = iso8601toTimestamp( json["events"][i]["date"].asString() ); //convert to timestamp
+            e.type = json["events"][i]["eventType"].asString();
+            e.data = json["events"][i]["data"];
+            events.push_back( e );
+        }
+        
+        long start = readings.front().time;
+        long end = readings.back().time;
+        long duration = end-start;
+        ofLogNotice() << "Constructed Journey " << uid << " with " << readings.size() << " readings duration: " << duration;
+        
     }
     
+    // Animate out and delete
+    void sayGoodbye() {
+        
+    }
     
     void update() {
         
     }
     
     void draw() {
-        
+ 
     }
     
     int client_id;
     string uid;
     long created_at;
     vector<Reading> readings;
+    vector<Event> events;
     vector<long> blinks;
 };
