@@ -50,7 +50,7 @@ void testApp::onIdle( ofxLibwebsockets::Event& args ){
 
 //--------------------------------------------------------------
 void testApp::onMessage( ofxLibwebsockets::Event& args ){
-    //cout<<"got message "<<endl;
+	cout<<"got message "<<endl;
     
     if ( !reader.parse( args.message, json ) ) {
         std::cout  << "Failed to parse json\n" << reader.getFormattedErrorMessages();

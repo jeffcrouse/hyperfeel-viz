@@ -1,0 +1,50 @@
+<Widget>
+    <Kind>2</Kind>
+    <Name>depthTest</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>twistAngle</Name>
+    <Value>12.756410599</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>frExpo</Name>
+    <Value>1.967948794</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>radius</Name>
+    <Value>8.064102173</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>nearDepthScale</Name>
+    <Value>3128.205078125</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>farDepthScale</Name>
+    <Value>5871.794921875</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>dataLineShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>ribbonDepth</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>ribbonSine</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>ribbonTransparent</Name>
+    <Value>0</Value>
+</Widget>

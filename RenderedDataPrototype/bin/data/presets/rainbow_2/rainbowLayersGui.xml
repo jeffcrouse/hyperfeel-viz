@@ -1,0 +1,40 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>sampleRadius</Name>
+    <Value>571.857177734</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>minThreshold</Name>
+    <Value>0.017093597</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>maxThreshold</Name>
+    <Value>0.375862062</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>nearClip</Name>
+    <Value>49.034481049</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>farClip</Name>
+    <Value>562.068969727</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ribbon offset</Name>
+    <Value>145.320190430</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ribbon width</Name>
+    <Value>64.975372314</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ribbon radius</Name>
+    <Value>525.615783691</Value>
+</Widget>
