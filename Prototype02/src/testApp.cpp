@@ -4,7 +4,7 @@
 void testApp::setup()
 {
     ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
-    options.host = "cheese.local"; //
+    options.host = "brainz.io"; //
     options.port = 8080;
     bool connected = client.connect( options );
     
