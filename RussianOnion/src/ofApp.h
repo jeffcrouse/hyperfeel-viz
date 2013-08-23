@@ -81,7 +81,13 @@ public:
 	 */
 	ofShader facingRatioShader; 
 	ofShader normalShader;
+	ofShader displacedShader;
+	ofShader displacedBarsShader;
+	ofShader displacedDotsShader;
 	ofShader onionShader;
+	ofShader onionBarsShader;
+	ofShader onionBarsHorzShader;
+	ofShader onionDotsShader;
 	
 	/**
 	 * onion
@@ -103,6 +109,9 @@ public:
 	float readingThreshold;
 	float readingScale;
 	float onionAlpha;
+	float dataSmoothing;
+	float facingRatio;
+	float displacement;
 	
     /**
      *  Journeys

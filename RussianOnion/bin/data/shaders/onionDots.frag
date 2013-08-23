@@ -1,3 +1,5 @@
+uniform float time;
+uniform float facingRatio;
 uniform float readingThreshold;
 uniform float readingScale;
 uniform float alpha;
@@ -8,6 +10,7 @@ uniform sampler2DRect dataTexture;
 
 varying vec3 color;
 varying vec3 ePos;
+varying vec3 localPos;
 varying vec3 norm;
 varying vec2 uv;
 
@@ -54,9 +57,14 @@ void main(void)
 	}
 
 	//facing ratio
-	float fr = (dot(-ePos, norm)) * .5 + .5;
+	float fr = dot(-ePos, norm) * facingRatio + 1. - facingRatio;
 	
 	//color
-	gl_FragColor = vec4( color * fr, a);// * vec4( data.xy, 1., 1. );
+	vec3 col = color * fr;
+	
+	vec2 dotSample = uv*vec2(1800., 600.) + vec2(time,0.);
+	a *= pow( (sin( dotSample.x ) + cos( dotSample.y )), 1.);
+	
+	gl_FragColor = vec4( col, a);// * vec4( data.xy, 1., 1. );
 }
 

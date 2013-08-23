@@ -118,6 +118,9 @@ void ofApp::setupUI(){
 	guiMain->addSlider("readingThreshold", 0., 1., &readingThreshold );
 	guiMain->addSlider("readingScale", .01, 1., &readingScale );
 	guiMain->addSlider("onionAlpha", .01, 1., &onionAlpha );
+	guiMain->addSlider("dataSmoothing", .01, 1., &dataSmoothing );
+	guiMain->addSlider("facingRatio", .01, 1., &facingRatio );
+	guiMain->addSlider("displacement", -1000, 1000., &displacement );
 	
 	//create a radio for switching renderTypes
 	guiMain->addSpacer();
@@ -262,8 +265,29 @@ void ofApp::loadShaders()
 	normalShader.load( "shaders/normal" );
 	shaderMap["normalShader"] = &normalShader;
 	
+	displacedShader.load( "shaders/displaced" );
+	shaderMap["displacedShader"] = &displacedShader;
+	
+	displacedBarsShader.load( "shaders/displacedBars" );
+	shaderMap["displacedBarsShader"] = &displacedBarsShader;
+	
+	displacedDotsShader.load( "shaders/displacedDots" );
+	shaderMap["displacedDotsShader"] = &displacedDotsShader;
+	
+	displacedShader.load( "shaders/displaced" );
+	shaderMap["displacedShader"] = &displacedShader;
+	
 	onionShader.load( "shaders/onion" );
 	shaderMap["onionShader"] = &onionShader;
+	
+	onionBarsShader.load( "shaders/onionBars" );
+	shaderMap["onionBarsShader"] = &onionBarsShader;
+	
+	onionBarsHorzShader.load( "shaders/onionBarsHorz" );
+	shaderMap["onionBarsHorzShader"] = &onionBarsHorzShader;
+	
+	onionDotsShader.load( "shaders/onionDots" );
+	shaderMap["onionDotsShader"] = &onionDotsShader;
 	
 	//store the shader names in a vecotr for use in a radio gui
 	for( map<string, ofShader*>::iterator it = shaderMap.begin(); it!= shaderMap.end(); it++){
@@ -333,7 +357,8 @@ void ofApp::draw()
 }
 
 //--------------------------------------------------------------
-void ofApp::setupSphere( float radians, float sphereRad ){
+void ofApp::setupSphere( float radians, float sphereRad )
+{
 	//create mesh tube
 	int subdX = 64, subdY = 64;//128*128 ~= 16000 * (pos+norm+tangent+bitangent+uv+indices) == a lot of data
 	
@@ -384,6 +409,9 @@ void ofApp::setupSphere( float radians, float sphereRad ){
 			
 			indices.push_back( p0 );
 			indices.push_back( p1 );
+			indices.push_back( p2 );
+			
+			indices.push_back( p0 );
 			indices.push_back( p2 );
 			indices.push_back( p3 );
 		}
@@ -460,12 +488,13 @@ void ofApp::setupSphere( float radians, float sphereRad ){
 	sphereVbo.setTexCoordData( &texCoords[0], texCoords.size(), GL_STATIC_DRAW );
 	sphereVbo.setIndexData( &indices[0], indices.size(), GL_STATIC_DRAW );
 	
-//	displacedShader.begin();
-//	
-//	sphereVbo.setAttributeData( displacedShader.getAttributeLocation( "tangent" ), &tangents[0].x, 3, tangents.size()*3, GL_STATIC_DRAW, sizeof(tangents[0]) );
-//	sphereVbo.setAttributeData( displacedShader.getAttributeLocation( "binormal" ), &binormals[0].x, 3, binormals.size()*3, GL_STATIC_DRAW, sizeof(binormals[0])  );
-//	
-//	displacedShader.end();
+	displacedShader.begin();
+	
+	cout << displacedShader.getAttributeLocation( "tangent" ) << " : " << displacedShader.getAttributeLocation( "binormal" ) << endl;
+	sphereVbo.setAttributeData( displacedShader.getAttributeLocation( "tangent" ), &tangents[0].x, 3, tangents.size()*3, GL_STATIC_DRAW, sizeof(tangents[0]) );
+	sphereVbo.setAttributeData( displacedShader.getAttributeLocation( "binormal" ), &binormals[0].x, 3, binormals.size()*3, GL_STATIC_DRAW, sizeof(binormals[0])  );
+	
+	displacedShader.end();
 	
 }
 
@@ -482,6 +511,7 @@ void ofApp::drawOnion(){
 	camera.begin();
 	
 	currentShader->begin();
+	currentShader->setUniform1f("time", elapsedTime );
 	
 //	sphereVbo.drawElements(GL_QUADS, spherVboIndexCount );
 	
@@ -510,19 +540,23 @@ void ofApp::drawOnion(){
 		
 		ofSetColor( onions[i].color );
 		
+//		if(currentShader == &displacedShader){
+		currentShader->setUniform1f("displacement", displacement );
+//		}
 
 		currentShader->setUniformTexture("dataTexture", onions[i].dataTexture, 0);
 		currentShader->setUniform2f("texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
 		currentShader->setUniform1f("readingThreshold", readingThreshold);
 		currentShader->setUniform1f("readingScale", readingScale);
 		currentShader->setUniform1f("alpha", onionAlpha);
-		
+		currentShader->setUniform1f("dataSmoothing", dataSmoothing);
+		currentShader->setUniform1f("facingRatio", facingRatio);
 		
 		glCullFace(GL_BACK);
-		sphereVbo.drawElements( GL_QUADS, spherVboIndexCount );
+		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );
 		
 		glCullFace(GL_FRONT);
-		sphereVbo.drawElements( GL_QUADS, spherVboIndexCount );
+		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );
 		
 		
 		ofPopMatrix();
