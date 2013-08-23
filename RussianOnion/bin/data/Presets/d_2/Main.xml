@@ -11,7 +11,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>17.182691574</Value>
+    <Value>21.625000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -21,42 +21,42 @@
 <Widget>
     <Kind>4</Kind>
     <Name>squish</Name>
-    <Value>1.000000000</Value>
+    <Value>0.495480746</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingThreshold</Name>
-    <Value>0.041666668</Value>
+    <Value>0.243589744</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingScale</Name>
-    <Value>0.381249994</Value>
+    <Value>0.146442309</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>onionAlpha</Name>
-    <Value>0.359038442</Value>
+    <Value>0.454230756</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>dataSmoothing</Name>
-    <Value>0.485961527</Value>
+    <Value>0.727115393</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>facingRatio</Name>
-    <Value>0.793749988</Value>
+    <Value>0.539903820</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>displacement</Name>
-    <Value>-108.974365234</Value>
+    <Value>-96.153869629</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>displacedBarsShader</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -66,7 +66,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>displacedShader</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>

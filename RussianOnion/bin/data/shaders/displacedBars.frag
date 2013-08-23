@@ -1,9 +1,18 @@
-uniform float displacement;
 uniform float time;
-//uniform float roundingWeight;
+uniform float facingRatio;
+uniform float readingThreshold;
+uniform float readingScale;
+uniform float alpha;
+uniform float dataSmoothing;
 
-attribute vec3 tangent;
-attribute vec3 binormal;
+uniform vec2 texDim;
+uniform sampler2DRect dataTexture;
+float AACoefficient = .00125;
+
+
+uniform float frExpo;
+uniform float deltaExpo;
+uniform float noiseSurfaceSampleScale;
 
 varying vec4 ecPosition;
 varying vec3 color;
@@ -12,8 +21,13 @@ varying vec3 norm;
 varying vec2 uv;
 varying float delta;
 
-//float offset = displacement;
-//float noiseScale = .0015;
+uniform float nearClip;
+uniform float farClip;
+
+float rand(vec2 n){
+//	return 0.6 + 0.5 *fract(sin(dot(n.xy, vec2(12.9898, 78.233)))* 43758.5453);
+	return 0.6 + .5 * fract( sin( dot( n.xy, n.yx * 10.)));
+}
 
 vec4 permute( vec4 x ) {
 	return mod( ( ( x * 34.0 ) + 1.0 ) * x, 289.0 );
@@ -21,7 +35,6 @@ vec4 permute( vec4 x ) {
 vec4 taylorInvSqrt( vec4 r ) {
 	return 1.79284291400159 - 0.85373472095314 * r;
 }
-
 float snoise( vec3 v ) {
 	const vec2 C = vec2( 1.0 / 6.0, 1.0 / 3.0 );
 	const vec4 D = vec4( 0.0, 0.5, 1.0, 2.0 );
@@ -79,67 +92,60 @@ float snoise( vec3 v ) {
 								 dot( p2, x2 ), dot( p3, x3 ) ) );
 }
 
-vec3 normalFrom3Points( vec3 p0, vec3 p1, vec3 p2){
-	return normalize( cross( p2-p1, p0-p1 ) );
+float linearizeDepth( in float d ) {
+    return (2.0 * nearClip) / (farClip + nearClip - d * (farClip - nearClip));
 }
 
-float remapValue( float t, float roundingWeight ){
-	//	P(t) = P0*t^2 + P1*2*t*(1-t) + P2*(1-t)^2
-	float p0 = .0;
-	float p1 = roundingWeight;
-	float p2 = 1.;
-	
-	return pow( p0*t, 2.) + p1*2.*t*(1.-t) + pow(p2*(1.-t), 2.);
+float map(float value, float inputMin, float inputMax, float outputMin, float outputMax) {;
+	return ((value - inputMin) / (inputMax - inputMin) * (outputMax - outputMin) + outputMin);
 }
 
-float scldNoise( vec3 s ){
-	
-	
-	float outval = snoise( s ) * (snoise( s * 2.) * .25 + .75);
-//	outval = 1. - pow( 1. - outval, 2. );
-	return remapValue( outval*.5 + .5, .5);
-}
-vec4 getOffset( vec3 s, vec3 n, float offset ){
-	return vec4( n * offset * scldNoise( s ), 0.);
-}
-
-
-void main()
+void main(void)
 {
 	
-	float noiseScale = .005;
-	float roundingWeight = .5;
-	float offset = displacement;
+	vec2 data = texture2DRect( dataTexture, uv * texDim ).xy;
+	
+	//smooth it out a bit
+	vec2 dataLeft = texture2DRect( dataTexture, uv * texDim+vec2(1., 0.)).xy;
+	vec2 dataRight = texture2DRect( dataTexture, uv * texDim-vec2(1., 0.) ).xy;
+	
+	data += (dataLeft*.5 + dataRight*.5) * dataSmoothing;
+	data *= 1. - dataSmoothing;
+	
+	float attention = uv.y - data.x * readingScale;
+	float meditation = uv.y + data.y * readingScale;
+	
+	// if uv.y is above .
+	float upThreshold = .5 + readingThreshold;
+	float downThreshold = .5-readingThreshold;
+	float a = alpha;
+	if(  attention  > upThreshold ){
+		//sample the Attention
+		discard;
+	}
+	
+	else if( meditation < downThreshold ){
+		//sample the meditation
+		discard;
+	}
+	
+	//gradient alpha
+	else if( attention > upThreshold - AACoefficient ){
+		a = map( attention, upThreshold-AACoefficient, upThreshold, alpha , 0.);
+	}
+	else if( meditation < downThreshold + AACoefficient ){
+		a = map( meditation, downThreshold+AACoefficient, downThreshold, alpha , 0.);
+	}
+	
 
-	float timeScaled = time * -.3;
-	float tangentScale = 50.;
+	//facing ratio
+	float fr = dot( eye, norm) * facingRatio + 1. - facingRatio;
 	
-	uv = gl_MultiTexCoord0.xy;
+	//color
+	vec3 col = color * fr;
 	
-	norm = gl_NormalMatrix *  gl_Normal;
-	vec3 vTangent = normalize( gl_NormalMatrix * -tangent ) * tangentScale;
-	vec3 bitangent = normalize( gl_NormalMatrix * binormal ) * tangentScale;
+	float barSample = uv.x*1000. + time;
+	a *= pow( abs(sin( barSample ) + cos( barSample )), 4.);
 	
-	vec3 animationOffset = vec3(100.,33.,timeScaled);
-	vec3 no = normalize(norm) * offset;
-	
-	ecPosition = gl_ModelViewMatrix * gl_Vertex;
-	
-	vec3 samplePos = ecPosition.xyz * noiseScale + animationOffset;
-	vec3 samplePos1 = (ecPosition.xyz + vTangent) * noiseScale + animationOffset;
-	vec3 samplePos2 = (ecPosition.xyz + bitangent) * noiseScale + animationOffset;
-	
-	delta = scldNoise( samplePos );
-	vec3 deformedPos = no * delta;
-	vec3 deformedTangent = vTangent + no * scldNoise( samplePos1 );
-	vec3 deformedBitangent = bitangent + no * scldNoise( samplePos2 );
-	
-	norm = normalize( normalize( normalFrom3Points( deformedTangent, deformedPos, deformedBitangent ).xyz ));
-	ecPosition += vec4( deformedPos, 0.);
-	eye = -normalize(ecPosition.xyz);
-	
-	gl_Position = gl_ProjectionMatrix * ecPosition;
-	
-	color = gl_Color.xyz;
-	
+	gl_FragColor = vec4( col, a);
 }

@@ -11,6 +11,18 @@
 		50138E6917C683D4009E8A93 /* onion.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50138E6717C683D4009E8A93 /* onion.frag */; };
 		50138E6A17C683D4009E8A93 /* onion.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50138E6817C683D4009E8A93 /* onion.vert */; };
 		5096CB3917C29459007FAFFC /* Journey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5096CB3717C29459007FAFFC /* Journey.cpp */; };
+		50A150C417C7619B000FADB1 /* onionBars.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50A150C217C7619B000FADB1 /* onionBars.frag */; };
+		50A150C517C7619B000FADB1 /* onionBars.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50A150C317C7619B000FADB1 /* onionBars.vert */; };
+		50A150C817C76949000FADB1 /* onionBarsHorz.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50A150C617C76949000FADB1 /* onionBarsHorz.frag */; };
+		50A150C917C76949000FADB1 /* onionBarsHorz.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50A150C717C76949000FADB1 /* onionBarsHorz.vert */; };
+		50A150CC17C76AF9000FADB1 /* onionDots.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50A150CA17C76AF9000FADB1 /* onionDots.frag */; };
+		50A150CD17C76AF9000FADB1 /* onionDots.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50A150CB17C76AF9000FADB1 /* onionDots.vert */; };
+		50A150D017C76E15000FADB1 /* displaced.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50A150CE17C76E15000FADB1 /* displaced.frag */; };
+		50A150D117C76E15000FADB1 /* displaced.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50A150CF17C76E15000FADB1 /* displaced.vert */; };
+		50A150D617C783B0000FADB1 /* displacedBars.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50A150D217C783AF000FADB1 /* displacedBars.frag */; };
+		50A150D717C783B0000FADB1 /* displacedBars.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50A150D317C783B0000FADB1 /* displacedBars.vert */; };
+		50A150D817C783B0000FADB1 /* displacedDots.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50A150D417C783B0000FADB1 /* displacedDots.frag */; };
+		50A150D917C783B0000FADB1 /* displacedDots.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50A150D517C783B0000FADB1 /* displacedDots.vert */; };
 		50FE7B4B17C4043400F3DAA5 /* facingRatio.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50FE7B3717C4043400F3DAA5 /* facingRatio.frag */; };
 		50FE7B4C17C4043400F3DAA5 /* facingRatio.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50FE7B3817C4043400F3DAA5 /* facingRatio.vert */; };
 		50FE7B4F17C4043400F3DAA5 /* normal.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50FE7B3B17C4043400F3DAA5 /* normal.frag */; };
@@ -102,10 +114,22 @@
 		4ff2f2d5a01ada37a9ade20fb41e7560 /* ofxUICanvas.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUICanvas.h; path = ../../../addons/ofxUI/src/ofxUICanvas.h; sourceTree = SOURCE_ROOT; };
 		50138E5017C67C3F009E8A93 /* Onion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Onion.cpp; sourceTree = "<group>"; };
 		50138E5117C67C3F009E8A93 /* Onion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Onion.h; sourceTree = "<group>"; };
-		50138E6717C683D4009E8A93 /* onion.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onion.frag; sourceTree = "<group>"; };
+		50138E6717C683D4009E8A93 /* onion.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onion.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		50138E6817C683D4009E8A93 /* onion.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onion.vert; sourceTree = "<group>"; };
 		5096CB3717C29459007FAFFC /* Journey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Journey.cpp; sourceTree = "<group>"; };
 		5096CB3817C29459007FAFFC /* Journey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journey.h; sourceTree = "<group>"; };
+		50A150C217C7619B000FADB1 /* onionBars.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onionBars.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50A150C317C7619B000FADB1 /* onionBars.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onionBars.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50A150C617C76949000FADB1 /* onionBarsHorz.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onionBarsHorz.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50A150C717C76949000FADB1 /* onionBarsHorz.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onionBarsHorz.vert; sourceTree = "<group>"; };
+		50A150CA17C76AF9000FADB1 /* onionDots.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onionDots.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50A150CB17C76AF9000FADB1 /* onionDots.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onionDots.vert; sourceTree = "<group>"; };
+		50A150CE17C76E15000FADB1 /* displaced.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displaced.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50A150CF17C76E15000FADB1 /* displaced.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displaced.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50A150D217C783AF000FADB1 /* displacedBars.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displacedBars.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50A150D317C783B0000FADB1 /* displacedBars.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displacedBars.vert; sourceTree = "<group>"; };
+		50A150D417C783B0000FADB1 /* displacedDots.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displacedDots.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50A150D517C783B0000FADB1 /* displacedDots.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displacedDots.vert; sourceTree = "<group>"; };
 		50FE7B3717C4043400F3DAA5 /* facingRatio.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = facingRatio.frag; sourceTree = "<group>"; };
 		50FE7B3817C4043400F3DAA5 /* facingRatio.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = facingRatio.vert; sourceTree = "<group>"; };
 		50FE7B3B17C4043400F3DAA5 /* normal.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = normal.frag; sourceTree = "<group>"; };
@@ -228,6 +252,18 @@
 		50FE7B2817C4043400F3DAA5 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				50A150CE17C76E15000FADB1 /* displaced.frag */,
+				50A150CF17C76E15000FADB1 /* displaced.vert */,
+				50A150D217C783AF000FADB1 /* displacedBars.frag */,
+				50A150D317C783B0000FADB1 /* displacedBars.vert */,
+				50A150D417C783B0000FADB1 /* displacedDots.frag */,
+				50A150D517C783B0000FADB1 /* displacedDots.vert */,
+				50A150CA17C76AF9000FADB1 /* onionDots.frag */,
+				50A150CB17C76AF9000FADB1 /* onionDots.vert */,
+				50A150C217C7619B000FADB1 /* onionBars.frag */,
+				50A150C317C7619B000FADB1 /* onionBars.vert */,
+				50A150C617C76949000FADB1 /* onionBarsHorz.frag */,
+				50A150C717C76949000FADB1 /* onionBarsHorz.vert */,
 				50138E6717C683D4009E8A93 /* onion.frag */,
 				50138E6817C683D4009E8A93 /* onion.vert */,
 				50FE7B3717C4043400F3DAA5 /* facingRatio.frag */,
@@ -556,6 +592,18 @@
 				50138E5217C67C3F009E8A93 /* Onion.cpp in Sources */,
 				50138E6917C683D4009E8A93 /* onion.frag in Sources */,
 				50138E6A17C683D4009E8A93 /* onion.vert in Sources */,
+				50A150C417C7619B000FADB1 /* onionBars.frag in Sources */,
+				50A150C517C7619B000FADB1 /* onionBars.vert in Sources */,
+				50A150C817C76949000FADB1 /* onionBarsHorz.frag in Sources */,
+				50A150C917C76949000FADB1 /* onionBarsHorz.vert in Sources */,
+				50A150CC17C76AF9000FADB1 /* onionDots.frag in Sources */,
+				50A150CD17C76AF9000FADB1 /* onionDots.vert in Sources */,
+				50A150D017C76E15000FADB1 /* displaced.frag in Sources */,
+				50A150D117C76E15000FADB1 /* displaced.vert in Sources */,
+				50A150D617C783B0000FADB1 /* displacedBars.frag in Sources */,
+				50A150D717C783B0000FADB1 /* displacedBars.vert in Sources */,
+				50A150D817C783B0000FADB1 /* displacedDots.frag in Sources */,
+				50A150D917C783B0000FADB1 /* displacedDots.vert in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
