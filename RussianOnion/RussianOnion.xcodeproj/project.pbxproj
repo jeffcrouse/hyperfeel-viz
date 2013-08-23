@@ -126,9 +126,9 @@
 		50A150CB17C76AF9000FADB1 /* onionDots.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onionDots.vert; sourceTree = "<group>"; };
 		50A150CE17C76E15000FADB1 /* displaced.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displaced.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		50A150CF17C76E15000FADB1 /* displaced.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displaced.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
-		50A150D217C783AF000FADB1 /* displacedBars.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displacedBars.frag; sourceTree = "<group>"; };
+		50A150D217C783AF000FADB1 /* displacedBars.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displacedBars.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		50A150D317C783B0000FADB1 /* displacedBars.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displacedBars.vert; sourceTree = "<group>"; };
-		50A150D417C783B0000FADB1 /* displacedDots.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displacedDots.frag; sourceTree = "<group>"; };
+		50A150D417C783B0000FADB1 /* displacedDots.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displacedDots.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		50A150D517C783B0000FADB1 /* displacedDots.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displacedDots.vert; sourceTree = "<group>"; };
 		50FE7B3717C4043400F3DAA5 /* facingRatio.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = facingRatio.frag; sourceTree = "<group>"; };
 		50FE7B3817C4043400F3DAA5 /* facingRatio.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = facingRatio.vert; sourceTree = "<group>"; };

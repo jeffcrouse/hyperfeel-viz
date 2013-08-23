@@ -139,9 +139,7 @@ void main(void)
 	
 
 	//facing ratio
-	float fr = abs( dot( eye, norm ) );
-	
-//	gl_FragColor = vec4( norm*.5+.5, 1.);
+	float fr = dot( eye, norm) * facingRatio + 1. - facingRatio;
 	
 	//color
 	vec3 col = color * fr;

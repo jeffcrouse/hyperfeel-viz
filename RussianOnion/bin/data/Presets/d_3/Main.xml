@@ -1,0 +1,100 @@
+<Widget>
+    <Kind>2</Kind>
+    <Name>onion</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>depthTest</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>radius</Name>
+    <Value>20.355768204</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>recursiveScale</Name>
+    <Value>0.953525662</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>squish</Name>
+    <Value>0.695384622</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>readingThreshold</Name>
+    <Value>0.006410256</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>readingScale</Name>
+    <Value>0.498653829</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>onionAlpha</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>dataSmoothing</Name>
+    <Value>0.787403822</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>facingRatio</Name>
+    <Value>0.438365400</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>displacement</Name>
+    <Value>-57.692260742</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>displacedBarsShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>displacedDotsShader</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>displacedShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>facingRatioShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>normalShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>onionBarsHorzShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>onionBarsShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>onionDotsShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>onionShader</Name>
+    <Value>0</Value>
+</Widget>

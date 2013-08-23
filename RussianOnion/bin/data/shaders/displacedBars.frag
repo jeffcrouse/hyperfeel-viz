@@ -139,7 +139,7 @@ void main(void)
 	
 
 	//facing ratio
-	float fr = abs( dot( eye, norm ) );
+	float fr = dot( eye, norm) * facingRatio + 1. - facingRatio;
 	
 	//color
 	vec3 col = color * fr;
