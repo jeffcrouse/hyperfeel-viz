@@ -1,3 +1,4 @@
+uniform float facingRatio;
 uniform float readingThreshold;
 uniform float readingScale;
 uniform float alpha;
@@ -54,7 +55,7 @@ void main(void)
 	}
 
 	//facing ratio
-	float fr = (dot(-ePos, norm)) * .5 + .5;
+	float fr = dot(-ePos, norm) * facingRatio + 1. - facingRatio;
 	
 	//color
 	gl_FragColor = vec4( color * fr, a);// * vec4( data.xy, 1., 1. );

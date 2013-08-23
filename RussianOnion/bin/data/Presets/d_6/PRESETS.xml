@@ -25,7 +25,7 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>Working</Name>
+    <Name>_7</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
@@ -45,7 +45,7 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>d_5</Name>
+    <Name>d_3</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
@@ -55,11 +55,31 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>d_3</Name>
+    <Name>d_5</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>d_6</Name>
     <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>d_7</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>d_8</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>Working</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>_8</Name>
+    <Value>0</Value>
 </Widget>

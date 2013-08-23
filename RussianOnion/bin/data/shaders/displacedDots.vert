@@ -1,6 +1,6 @@
 uniform float displacement;
 uniform float time;
-//uniform float roundingWeight;
+uniform float noiseScale;
 
 attribute vec3 tangent;
 attribute vec3 binormal;
@@ -106,8 +106,6 @@ vec4 getOffset( vec3 s, vec3 n, float offset ){
 
 void main()
 {
-	
-	float noiseScale = .005;
 	float roundingWeight = .5;
 	float offset = displacement;
 

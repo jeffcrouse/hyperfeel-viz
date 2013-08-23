@@ -131,6 +131,7 @@ void ofApp::setupUI(){
 	guiMain->addSlider("dataSmoothing", .01, 1., &dataSmoothing );
 	guiMain->addSlider("facingRatio", .01, 1., &facingRatio );
 	guiMain->addSlider("displacement", -1000, 1000., &displacement );
+	guiMain->addSlider("noiseScale", 0, .025, &noiseScale );
 	
 	//create a radio for switching renderTypes
 	guiMain->addSpacer();
@@ -517,12 +518,7 @@ void ofApp::drawOnion(){
 	if(!bOnionSetup){
 		setupOnion();
 	}
-	
-	camera.begin();
-	
-	currentShader->begin();
-	currentShader->setUniform1f("time", elapsedTime );
-	
+	//update onion transforms
 	ofVec3f Eul( 0, pow(sin(elapsedTime * .8), 3.)*3, pow(sin(elapsedTime * .4), 3.)*10. );
 	ofQuaternion q;
 	q.makeRotate(Eul.x, ofVec3f(1,0,0), Eul.y, ofVec3f(0,1,0), Eul.z, ofVec3f(0,0,1));
@@ -537,6 +533,19 @@ void ofApp::drawOnion(){
 		}
 	}
 	
+	//draw it
+	camera.begin();
+	
+	currentShader->begin();
+	currentShader->setUniform1f("time", elapsedTime );
+	currentShader->setUniform1f("readingThreshold", readingThreshold);
+	currentShader->setUniform1f("readingScale", readingScale);
+	currentShader->setUniform1f("alpha", onionAlpha);
+	currentShader->setUniform1f("dataSmoothing", dataSmoothing);
+	currentShader->setUniform1f("facingRatio", facingRatio);
+	currentShader->setUniform1f("displacement", displacement );
+	currentShader->setUniform1f("noiseScale", noiseScale );
+	
 	float scaleStep = 1./float(onions.size());
 	ofPushMatrix();
 	ofScale( radius, radius, radius * squish );
@@ -549,18 +558,9 @@ void ofApp::drawOnion(){
 		ofRotate((i*elapsedTime)*3., 0, 0, 1);
 		
 		ofSetColor( onions[i].color );
-		
-//		if(currentShader == &displacedShader){
-		currentShader->setUniform1f("displacement", displacement );
-//		}
 
 		currentShader->setUniformTexture("dataTexture", onions[i].dataTexture, 0);
 		currentShader->setUniform2f("texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
-		currentShader->setUniform1f("readingThreshold", readingThreshold);
-		currentShader->setUniform1f("readingScale", readingScale);
-		currentShader->setUniform1f("alpha", onionAlpha);
-		currentShader->setUniform1f("dataSmoothing", dataSmoothing);
-		currentShader->setUniform1f("facingRatio", facingRatio);
 		
 		glCullFace(GL_BACK);
 		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );

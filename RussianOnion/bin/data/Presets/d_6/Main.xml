@@ -54,6 +54,11 @@
     <Value>-57.692260742</Value>
 </Widget>
 <Widget>
+    <Kind>4</Kind>
+    <Name>noiseScale</Name>
+    <Value>0.006650641</Value>
+</Widget>
+<Widget>
     <Kind>2</Kind>
     <Name>displacedBarsShader</Name>
     <Value>0</Value>

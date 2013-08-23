@@ -114,6 +114,7 @@ public:
 	float dataSmoothing;
 	float facingRatio;
 	float displacement;
+	float noiseScale;
 	
     /**
      *  Journeys
