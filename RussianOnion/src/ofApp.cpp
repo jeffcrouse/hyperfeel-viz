@@ -516,11 +516,14 @@ void ofApp::drawOnion(){
 //	sphereVbo.drawElements(GL_QUADS, spherVboIndexCount );
 	
 	ofVec3f Eul( 0, pow(sin(elapsedTime * .8), 3.)*3, pow(sin(elapsedTime * .4), 3.)*10. );
+	ofMatrix4x4 m;
+	ofQuaternion q;
+	q.makeRotate(Eul.x, ofVec3f(1,0,0), Eul.y, ofVec3f(0,1,0), Eul.z, ofVec3f(0,0,1));
 	for (int i=0; i<onions.size(); i++) {
 		
 		if(i>0){
 			onions[i].transform.setScale( onions[i-1].transform.getScale() * recursiveScale );
-			onions[i].transform.setOrientation( onions[i-1].transform.getOrientationEuler() + Eul );
+			onions[i].transform.setOrientation( onions[i-1].transform.getOrientationQuat() * q );
 		}else{
 			onions[i].transform.setScale( 1 );
 			onions[i].transform.setOrientation( Eul );
