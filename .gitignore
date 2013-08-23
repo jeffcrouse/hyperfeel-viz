@@ -36,3 +36,5 @@ xcuserdata
 [Rr]elease*/
 *.mode*
 *.app/
+
+/RecordingTest/bin/data/sounds/
