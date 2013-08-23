@@ -1,0 +1,1748 @@
+
+{
+	"journey" : 
+	{
+		"__v" : 0,
+		"_id" : "52167db6092569cda5000003",
+		"client_id" : 2,
+		"created_at" : "2013-08-22T21:08:06.194Z",
+		"events" : 
+		[
+			
+			{
+				"_id" : "52167db6092569cda5000069",
+				"data" : 
+				{
+					"strength" : 67
+				},
+				"date" : "2013-08-22T21:06:32.020Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000068",
+				"data" : 
+				{
+					"strength" : 53
+				},
+				"date" : "2013-08-22T21:06:32.869Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000067",
+				"data" : 
+				{
+					"strength" : 51
+				},
+				"date" : "2013-08-22T21:06:33.777Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000066",
+				"data" : 
+				{
+					"strength" : 51
+				},
+				"date" : "2013-08-22T21:06:34.606Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000065",
+				"data" : 
+				{
+					"strength" : 81
+				},
+				"date" : "2013-08-22T21:06:35.548Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000064",
+				"data" : 
+				{
+					"strength" : 76
+				},
+				"date" : "2013-08-22T21:06:36.390Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000063",
+				"data" : 
+				{
+					"strength" : 62
+				},
+				"date" : "2013-08-22T21:06:37.217Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000062",
+				"data" : 
+				{
+					"strength" : 84
+				},
+				"date" : "2013-08-22T21:06:38.051Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000061",
+				"data" : 
+				{
+					"strength" : 68
+				},
+				"date" : "2013-08-22T21:06:38.859Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000060",
+				"data" : 
+				{
+					"strength" : 68
+				},
+				"date" : "2013-08-22T21:06:39.730Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500005f",
+				"data" : 
+				{
+					"strength" : 79
+				},
+				"date" : "2013-08-22T21:06:40.621Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500005e",
+				"data" : 
+				{
+					"strength" : 53
+				},
+				"date" : "2013-08-22T21:06:41.582Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500005d",
+				"data" : 
+				{
+					"strength" : 83
+				},
+				"date" : "2013-08-22T21:06:42.514Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500005c",
+				"data" : 
+				{
+					"strength" : 75
+				},
+				"date" : "2013-08-22T21:06:43.319Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500005b",
+				"data" : 
+				{
+					"strength" : 90
+				},
+				"date" : "2013-08-22T21:06:44.183Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500005a",
+				"data" : 
+				{
+					"strength" : 82
+				},
+				"date" : "2013-08-22T21:06:45.112Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000059",
+				"data" : 
+				{
+					"strength" : 54
+				},
+				"date" : "2013-08-22T21:06:46.016Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000058",
+				"data" : 
+				{
+					"strength" : 80
+				},
+				"date" : "2013-08-22T21:06:46.992Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000057",
+				"data" : 
+				{
+					"strength" : 75
+				},
+				"date" : "2013-08-22T21:06:47.850Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000056",
+				"data" : 
+				{
+					"strength" : 57
+				},
+				"date" : "2013-08-22T21:06:48.803Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000055",
+				"data" : 
+				{
+					"strength" : 66
+				},
+				"date" : "2013-08-22T21:06:49.709Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000054",
+				"data" : 
+				{
+					"strength" : 71
+				},
+				"date" : "2013-08-22T21:06:50.526Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000053",
+				"data" : 
+				{
+					"strength" : 89
+				},
+				"date" : "2013-08-22T21:06:51.358Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000052",
+				"data" : 
+				{
+					"strength" : 73
+				},
+				"date" : "2013-08-22T21:06:52.183Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000051",
+				"data" : 
+				{
+					"strength" : 64
+				},
+				"date" : "2013-08-22T21:06:53.004Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000050",
+				"data" : 
+				{
+					"strength" : 56
+				},
+				"date" : "2013-08-22T21:06:53.905Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500004f",
+				"data" : 
+				{
+					"strength" : 85
+				},
+				"date" : "2013-08-22T21:06:54.760Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500004e",
+				"data" : 
+				{
+					"strength" : 72
+				},
+				"date" : "2013-08-22T21:06:55.564Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500004d",
+				"data" : 
+				{
+					"strength" : 73
+				},
+				"date" : "2013-08-22T21:06:56.401Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500004c",
+				"data" : 
+				{
+					"strength" : 71
+				},
+				"date" : "2013-08-22T21:06:57.206Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500004b",
+				"data" : 
+				{
+					"strength" : 54
+				},
+				"date" : "2013-08-22T21:06:58.109Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500004a",
+				"data" : 
+				{
+					"strength" : 90
+				},
+				"date" : "2013-08-22T21:06:58.924Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000049",
+				"data" : 
+				{
+					"strength" : 72
+				},
+				"date" : "2013-08-22T21:06:59.817Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000048",
+				"data" : 
+				{
+					"strength" : 67
+				},
+				"date" : "2013-08-22T21:07:00.762Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000047",
+				"data" : 
+				{
+					"strength" : 75
+				},
+				"date" : "2013-08-22T21:07:01.713Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000046",
+				"data" : 
+				{
+					"strength" : 52
+				},
+				"date" : "2013-08-22T21:07:02.608Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000045",
+				"data" : 
+				{
+					"strength" : 82
+				},
+				"date" : "2013-08-22T21:07:03.583Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000044",
+				"data" : 
+				{
+					"strength" : 82
+				},
+				"date" : "2013-08-22T21:07:04.509Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000043",
+				"data" : 
+				{
+					"strength" : 96
+				},
+				"date" : "2013-08-22T21:07:06.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000042",
+				"data" : 
+				{
+					"strength" : 75
+				},
+				"date" : "2013-08-22T21:07:07.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000041",
+				"data" : 
+				{
+					"strength" : 94
+				},
+				"date" : "2013-08-22T21:07:08.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000040",
+				"data" : 
+				{
+					"strength" : 68
+				},
+				"date" : "2013-08-22T21:07:09.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500003f",
+				"data" : 
+				{
+					"strength" : 56
+				},
+				"date" : "2013-08-22T21:07:10.102Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500003e",
+				"data" : 
+				{
+					"strength" : 78
+				},
+				"date" : "2013-08-22T21:07:11.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500003d",
+				"data" : 
+				{
+					"strength" : 94
+				},
+				"date" : "2013-08-22T21:07:12.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500003c",
+				"data" : 
+				{
+					"strength" : 59
+				},
+				"date" : "2013-08-22T21:07:13.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500003b",
+				"data" : 
+				{
+					"strength" : 70
+				},
+				"date" : "2013-08-22T21:07:14.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500003a",
+				"data" : 
+				{
+					"strength" : 80
+				},
+				"date" : "2013-08-22T21:07:15.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000039",
+				"data" : 
+				{
+					"strength" : 68
+				},
+				"date" : "2013-08-22T21:07:16.102Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000038",
+				"data" : 
+				{
+					"strength" : 84
+				},
+				"date" : "2013-08-22T21:07:17.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000037",
+				"data" : 
+				{
+					"strength" : 71
+				},
+				"date" : "2013-08-22T21:07:18.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000036",
+				"data" : 
+				{
+					"strength" : 66
+				},
+				"date" : "2013-08-22T21:07:19.104Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000035",
+				"data" : 
+				{
+					"strength" : 100
+				},
+				"date" : "2013-08-22T21:07:20.104Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000034",
+				"data" : 
+				{
+					"strength" : 80
+				},
+				"date" : "2013-08-22T21:07:21.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000033",
+				"data" : 
+				{
+					"strength" : 75
+				},
+				"date" : "2013-08-22T21:07:22.104Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000032",
+				"data" : 
+				{
+					"strength" : 58
+				},
+				"date" : "2013-08-22T21:07:23.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000031",
+				"data" : 
+				{
+					"strength" : 96
+				},
+				"date" : "2013-08-22T21:07:24.104Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000030",
+				"data" : 
+				{
+					"strength" : 87
+				},
+				"date" : "2013-08-22T21:07:25.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500002f",
+				"data" : 
+				{
+					"strength" : 60
+				},
+				"date" : "2013-08-22T21:07:26.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500002e",
+				"data" : 
+				{
+					"strength" : 96
+				},
+				"date" : "2013-08-22T21:07:27.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500002d",
+				"data" : 
+				{
+					"strength" : 56
+				},
+				"date" : "2013-08-22T21:07:28.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500002c",
+				"data" : 
+				{
+					"strength" : 65
+				},
+				"date" : "2013-08-22T21:07:29.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500002b",
+				"data" : 
+				{
+					"strength" : 83
+				},
+				"date" : "2013-08-22T21:07:30.104Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500002a",
+				"data" : 
+				{
+					"strength" : 81
+				},
+				"date" : "2013-08-22T21:07:31.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000029",
+				"data" : 
+				{
+					"strength" : 86
+				},
+				"date" : "2013-08-22T21:07:32.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000028",
+				"data" : 
+				{
+					"strength" : 82
+				},
+				"date" : "2013-08-22T21:07:33.103Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000027",
+				"data" : 
+				{
+					"strength" : 66
+				},
+				"date" : "2013-08-22T21:07:34.012Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000026",
+				"data" : 
+				{
+					"strength" : 55
+				},
+				"date" : "2013-08-22T21:07:34.852Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000025",
+				"data" : 
+				{
+					"strength" : 87
+				},
+				"date" : "2013-08-22T21:07:35.844Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000024",
+				"data" : 
+				{
+					"strength" : 100
+				},
+				"date" : "2013-08-22T21:07:36.718Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000023",
+				"data" : 
+				{
+					"strength" : 72
+				},
+				"date" : "2013-08-22T21:07:37.637Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000022",
+				"data" : 
+				{
+					"strength" : 51
+				},
+				"date" : "2013-08-22T21:07:38.521Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000021",
+				"data" : 
+				{
+					"strength" : 87
+				},
+				"date" : "2013-08-22T21:07:39.339Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000020",
+				"data" : 
+				{
+					"strength" : 90
+				},
+				"date" : "2013-08-22T21:07:40.211Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500001f",
+				"data" : 
+				{
+					"strength" : 63
+				},
+				"date" : "2013-08-22T21:07:41.107Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500001e",
+				"data" : 
+				{
+					"strength" : 74
+				},
+				"date" : "2013-08-22T21:07:42.037Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500001d",
+				"data" : 
+				{
+					"strength" : 56
+				},
+				"date" : "2013-08-22T21:07:42.903Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500001c",
+				"data" : 
+				{
+					"strength" : 51
+				},
+				"date" : "2013-08-22T21:07:43.799Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500001b",
+				"data" : 
+				{
+					"strength" : 51
+				},
+				"date" : "2013-08-22T21:07:44.623Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500001a",
+				"data" : 
+				{
+					"strength" : 74
+				},
+				"date" : "2013-08-22T21:07:45.439Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000019",
+				"data" : 
+				{
+					"strength" : 91
+				},
+				"date" : "2013-08-22T21:07:46.407Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000018",
+				"data" : 
+				{
+					"strength" : 81
+				},
+				"date" : "2013-08-22T21:07:47.252Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000017",
+				"data" : 
+				{
+					"strength" : 81
+				},
+				"date" : "2013-08-22T21:07:48.104Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000016",
+				"data" : 
+				{
+					"strength" : 89
+				},
+				"date" : "2013-08-22T21:07:49.104Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000015",
+				"data" : 
+				{
+					"strength" : 75
+				},
+				"date" : "2013-08-22T21:07:50.088Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000014",
+				"data" : 
+				{
+					"strength" : 72
+				},
+				"date" : "2013-08-22T21:07:51.054Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000013",
+				"data" : 
+				{
+					"strength" : 53
+				},
+				"date" : "2013-08-22T21:07:51.925Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000012",
+				"data" : 
+				{
+					"strength" : 86
+				},
+				"date" : "2013-08-22T21:07:52.748Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000011",
+				"data" : 
+				{
+					"strength" : 85
+				},
+				"date" : "2013-08-22T21:07:53.549Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000010",
+				"data" : 
+				{
+					"strength" : 54
+				},
+				"date" : "2013-08-22T21:07:54.527Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500000f",
+				"data" : 
+				{
+					"strength" : 54
+				},
+				"date" : "2013-08-22T21:07:55.500Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500000e",
+				"data" : 
+				{
+					"strength" : 84
+				},
+				"date" : "2013-08-22T21:07:56.466Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500000d",
+				"data" : 
+				{
+					"strength" : 51
+				},
+				"date" : "2013-08-22T21:07:57.461Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500000c",
+				"data" : 
+				{
+					"strength" : 58
+				},
+				"date" : "2013-08-22T21:07:58.360Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500000b",
+				"data" : 
+				{
+					"strength" : 73
+				},
+				"date" : "2013-08-22T21:07:59.243Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500000a",
+				"data" : 
+				{
+					"strength" : 65
+				},
+				"date" : "2013-08-22T21:08:00.200Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000009",
+				"data" : 
+				{
+					"strength" : 80
+				},
+				"date" : "2013-08-22T21:08:01.034Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000008",
+				"data" : 
+				{
+					"strength" : 65
+				},
+				"date" : "2013-08-22T21:08:01.840Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000007",
+				"data" : 
+				{
+					"strength" : 53
+				},
+				"date" : "2013-08-22T21:08:02.704Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000006",
+				"data" : 
+				{
+					"strength" : 52
+				},
+				"date" : "2013-08-22T21:08:03.557Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000005",
+				"data" : 
+				{
+					"strength" : 95
+				},
+				"date" : "2013-08-22T21:08:04.503Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000004",
+				"data" : 
+				{
+					"strength" : 98
+				},
+				"date" : "2013-08-22T21:08:05.472Z",
+				"eventType" : "blink"
+			}
+		],
+		"readings" : 
+		[
+			
+			{
+				"_id" : "52167db6092569cda50000b0",
+				"data" : 
+				{
+					"attention" : 41,
+					"meditation" : 47
+				},
+				"date" : "2013-08-22T21:06:32.707Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000af",
+				"data" : 
+				{
+					"attention" : 54,
+					"meditation" : 37
+				},
+				"date" : "2013-08-22T21:06:33.737Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000ae",
+				"data" : 
+				{
+					"attention" : 57,
+					"meditation" : 36
+				},
+				"date" : "2013-08-22T21:06:34.828Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000ad",
+				"data" : 
+				{
+					"attention" : 51,
+					"meditation" : 51
+				},
+				"date" : "2013-08-22T21:06:35.926Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000ac",
+				"data" : 
+				{
+					"attention" : 43,
+					"meditation" : 72
+				},
+				"date" : "2013-08-22T21:06:37.090Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000ab",
+				"data" : 
+				{
+					"attention" : 36,
+					"meditation" : 80
+				},
+				"date" : "2013-08-22T21:06:38.148Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000aa",
+				"data" : 
+				{
+					"attention" : 30,
+					"meditation" : 72
+				},
+				"date" : "2013-08-22T21:06:39.230Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000a9",
+				"data" : 
+				{
+					"attention" : 24,
+					"meditation" : 50
+				},
+				"date" : "2013-08-22T21:06:40.290Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000a8",
+				"data" : 
+				{
+					"attention" : 20,
+					"meditation" : 30
+				},
+				"date" : "2013-08-22T21:06:41.312Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000a7",
+				"data" : 
+				{
+					"attention" : 17,
+					"meditation" : 19
+				},
+				"date" : "2013-08-22T21:06:42.360Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000a6",
+				"data" : 
+				{
+					"attention" : 20,
+					"meditation" : 25
+				},
+				"date" : "2013-08-22T21:06:43.569Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000a5",
+				"data" : 
+				{
+					"attention" : 28,
+					"meditation" : 45
+				},
+				"date" : "2013-08-22T21:06:44.705Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000a4",
+				"data" : 
+				{
+					"attention" : 27,
+					"meditation" : 65
+				},
+				"date" : "2013-08-22T21:06:45.973Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000a3",
+				"data" : 
+				{
+					"attention" : 19,
+					"meditation" : 75
+				},
+				"date" : "2013-08-22T21:06:47.163Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000a2",
+				"data" : 
+				{
+					"attention" : 18,
+					"meditation" : 77
+				},
+				"date" : "2013-08-22T21:06:48.326Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000a1",
+				"data" : 
+				{
+					"attention" : 32,
+					"meditation" : 73
+				},
+				"date" : "2013-08-22T21:06:49.540Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda50000a0",
+				"data" : 
+				{
+					"attention" : 56,
+					"meditation" : 63
+				},
+				"date" : "2013-08-22T21:06:50.668Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500009f",
+				"data" : 
+				{
+					"attention" : 77,
+					"meditation" : 49
+				},
+				"date" : "2013-08-22T21:06:51.835Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500009e",
+				"data" : 
+				{
+					"attention" : 80,
+					"meditation" : 39
+				},
+				"date" : "2013-08-22T21:06:52.920Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500009d",
+				"data" : 
+				{
+					"attention" : 66,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:06:54.093Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500009c",
+				"data" : 
+				{
+					"attention" : 44,
+					"meditation" : 52
+				},
+				"date" : "2013-08-22T21:06:55.149Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500009b",
+				"data" : 
+				{
+					"attention" : 27,
+					"meditation" : 67
+				},
+				"date" : "2013-08-22T21:06:56.273Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500009a",
+				"data" : 
+				{
+					"attention" : 20,
+					"meditation" : 78
+				},
+				"date" : "2013-08-22T21:06:57.312Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000099",
+				"data" : 
+				{
+					"attention" : 18,
+					"meditation" : 84
+				},
+				"date" : "2013-08-22T21:06:58.560Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000098",
+				"data" : 
+				{
+					"attention" : 21,
+					"meditation" : 78
+				},
+				"date" : "2013-08-22T21:06:59.735Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000097",
+				"data" : 
+				{
+					"attention" : 23,
+					"meditation" : 63
+				},
+				"date" : "2013-08-22T21:07:00.911Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000096",
+				"data" : 
+				{
+					"attention" : 21,
+					"meditation" : 47
+				},
+				"date" : "2013-08-22T21:07:02.045Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000095",
+				"data" : 
+				{
+					"attention" : 20,
+					"meditation" : 35
+				},
+				"date" : "2013-08-22T21:07:03.071Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000094",
+				"data" : 
+				{
+					"attention" : 25,
+					"meditation" : 30
+				},
+				"date" : "2013-08-22T21:07:04.251Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000093",
+				"data" : 
+				{
+					"attention" : 32,
+					"meditation" : 33
+				},
+				"date" : "2013-08-22T21:07:06.103Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000092",
+				"data" : 
+				{
+					"attention" : 50,
+					"meditation" : 48
+				},
+				"date" : "2013-08-22T21:07:08.103Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000091",
+				"data" : 
+				{
+					"attention" : 38,
+					"meditation" : 50
+				},
+				"date" : "2013-08-22T21:07:10.102Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000090",
+				"data" : 
+				{
+					"attention" : 22,
+					"meditation" : 50
+				},
+				"date" : "2013-08-22T21:07:12.103Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500008f",
+				"data" : 
+				{
+					"attention" : 24,
+					"meditation" : 53
+				},
+				"date" : "2013-08-22T21:07:14.103Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500008e",
+				"data" : 
+				{
+					"attention" : 50,
+					"meditation" : 67
+				},
+				"date" : "2013-08-22T21:07:16.102Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500008d",
+				"data" : 
+				{
+					"attention" : 80,
+					"meditation" : 80
+				},
+				"date" : "2013-08-22T21:07:18.103Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500008c",
+				"data" : 
+				{
+					"attention" : 62,
+					"meditation" : 77
+				},
+				"date" : "2013-08-22T21:07:20.103Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500008b",
+				"data" : 
+				{
+					"attention" : 24,
+					"meditation" : 66
+				},
+				"date" : "2013-08-22T21:07:22.104Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500008a",
+				"data" : 
+				{
+					"attention" : 20,
+					"meditation" : 45
+				},
+				"date" : "2013-08-22T21:07:24.104Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000089",
+				"data" : 
+				{
+					"attention" : 33,
+					"meditation" : 26
+				},
+				"date" : "2013-08-22T21:07:26.103Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000088",
+				"data" : 
+				{
+					"attention" : 46,
+					"meditation" : 39
+				},
+				"date" : "2013-08-22T21:07:28.103Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000087",
+				"data" : 
+				{
+					"attention" : 70,
+					"meditation" : 66
+				},
+				"date" : "2013-08-22T21:07:30.104Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000086",
+				"data" : 
+				{
+					"attention" : 88,
+					"meditation" : 77
+				},
+				"date" : "2013-08-22T21:07:32.103Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000085",
+				"data" : 
+				{
+					"attention" : 76,
+					"meditation" : 69
+				},
+				"date" : "2013-08-22T21:07:34.012Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000084",
+				"data" : 
+				{
+					"attention" : 67,
+					"meditation" : 74
+				},
+				"date" : "2013-08-22T21:07:35.256Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000083",
+				"data" : 
+				{
+					"attention" : 56,
+					"meditation" : 81
+				},
+				"date" : "2013-08-22T21:07:36.446Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000082",
+				"data" : 
+				{
+					"attention" : 42,
+					"meditation" : 76
+				},
+				"date" : "2013-08-22T21:07:37.665Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000081",
+				"data" : 
+				{
+					"attention" : 36,
+					"meditation" : 60
+				},
+				"date" : "2013-08-22T21:07:38.756Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000080",
+				"data" : 
+				{
+					"attention" : 45,
+					"meditation" : 35
+				},
+				"date" : "2013-08-22T21:07:39.907Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500007f",
+				"data" : 
+				{
+					"attention" : 64,
+					"meditation" : 21
+				},
+				"date" : "2013-08-22T21:07:40.946Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500007e",
+				"data" : 
+				{
+					"attention" : 86,
+					"meditation" : 19
+				},
+				"date" : "2013-08-22T21:07:42.153Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500007d",
+				"data" : 
+				{
+					"attention" : 94,
+					"meditation" : 30
+				},
+				"date" : "2013-08-22T21:07:43.377Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500007c",
+				"data" : 
+				{
+					"attention" : 92,
+					"meditation" : 45
+				},
+				"date" : "2013-08-22T21:07:44.426Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500007b",
+				"data" : 
+				{
+					"attention" : 87,
+					"meditation" : 61
+				},
+				"date" : "2013-08-22T21:07:45.606Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500007a",
+				"data" : 
+				{
+					"attention" : 82,
+					"meditation" : 77
+				},
+				"date" : "2013-08-22T21:07:46.653Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000079",
+				"data" : 
+				{
+					"attention" : 74,
+					"meditation" : 88
+				},
+				"date" : "2013-08-22T21:07:47.760Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000078",
+				"data" : 
+				{
+					"attention" : 69,
+					"meditation" : 91
+				},
+				"date" : "2013-08-22T21:07:49.103Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000077",
+				"data" : 
+				{
+					"attention" : 31,
+					"meditation" : 87
+				},
+				"date" : "2013-08-22T21:07:50.182Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000076",
+				"data" : 
+				{
+					"attention" : 21,
+					"meditation" : 80
+				},
+				"date" : "2013-08-22T21:07:51.443Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000075",
+				"data" : 
+				{
+					"attention" : 29,
+					"meditation" : 75
+				},
+				"date" : "2013-08-22T21:07:52.582Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000074",
+				"data" : 
+				{
+					"attention" : 46,
+					"meditation" : 69
+				},
+				"date" : "2013-08-22T21:07:53.783Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000073",
+				"data" : 
+				{
+					"attention" : 64,
+					"meditation" : 58
+				},
+				"date" : "2013-08-22T21:07:55.033Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000072",
+				"data" : 
+				{
+					"attention" : 76,
+					"meditation" : 48
+				},
+				"date" : "2013-08-22T21:07:56.287Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000071",
+				"data" : 
+				{
+					"attention" : 84,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:07:57.481Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda5000070",
+				"data" : 
+				{
+					"attention" : 82,
+					"meditation" : 36
+				},
+				"date" : "2013-08-22T21:07:58.499Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500006f",
+				"data" : 
+				{
+					"attention" : 66,
+					"meditation" : 32
+				},
+				"date" : "2013-08-22T21:07:59.621Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500006e",
+				"data" : 
+				{
+					"attention" : 40,
+					"meditation" : 30
+				},
+				"date" : "2013-08-22T21:08:00.850Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500006d",
+				"data" : 
+				{
+					"attention" : 21,
+					"meditation" : 33
+				},
+				"date" : "2013-08-22T21:08:02.137Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500006c",
+				"data" : 
+				{
+					"attention" : 19,
+					"meditation" : 34
+				},
+				"date" : "2013-08-22T21:08:03.337Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500006b",
+				"data" : 
+				{
+					"attention" : 26,
+					"meditation" : 25
+				},
+				"date" : "2013-08-22T21:08:04.600Z"
+			},
+			
+			{
+				"_id" : "52167db6092569cda500006a",
+				"data" : 
+				{
+					"attention" : 29,
+					"meditation" : 11
+				},
+				"date" : "2013-08-22T21:08:05.801Z"
+			}
+		]
+	},
+	"route" : "showJourney"
+}
+

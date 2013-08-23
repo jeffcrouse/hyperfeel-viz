@@ -20,7 +20,7 @@ void ofApp::setup(){
 	
 	//
     ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
-    options.host = "laserstorms-MacBook-Pro.local"; //
+    options.host = "brainz.io"; //laserstorms-MacBook-Pro.local"; //
     options.port = 8080;
     bool connected = client.connect( options );
     
@@ -60,10 +60,20 @@ void ofApp::setup(){
 	currentPresetName = "default";
 	
 	if(bLoadJsonsFromFile){
-		cout << "loading journeys from files" << endl;
-		ofBuffer buffer = ofBufferFromFile("Journeys/journey_init.json");
-		reader.parse( buffer.getText(), json );
-		handleRoute( json );
+		
+		//hackey population of journeys
+		int file_index=0;
+		for(int i=0; i<60; i++){
+			ofBuffer buffer = ofBufferFromFile("Journeys/journey_showJourney" + ofToString(file_index) + ".json");
+			if(buffer.size()){
+				reader.parse( buffer.getText(), json );
+				handleRoute( json );
+				file_index++;
+			}
+			else{
+				file_index = 0;
+			}
+		}
 	}
 
 }
@@ -513,10 +523,7 @@ void ofApp::drawOnion(){
 	currentShader->begin();
 	currentShader->setUniform1f("time", elapsedTime );
 	
-//	sphereVbo.drawElements(GL_QUADS, spherVboIndexCount );
-	
 	ofVec3f Eul( 0, pow(sin(elapsedTime * .8), 3.)*3, pow(sin(elapsedTime * .4), 3.)*10. );
-	ofMatrix4x4 m;
 	ofQuaternion q;
 	q.makeRotate(Eul.x, ofVec3f(1,0,0), Eul.y, ofVec3f(0,1,0), Eul.z, ofVec3f(0,0,1));
 	for (int i=0; i<onions.size(); i++) {
@@ -778,82 +785,116 @@ void ofApp::onIdle( ofxLibwebsockets::Event& args ){
 }
 
 //--------------------------------------------------------------
-void ofApp::handleRoute(Json::Value& _json){
+void ofApp::handleRoute( Json::Value& _json){
 	string route = _json["route"].asString();
+	
+    
 	
 	if(bSaveJsonsToFile){
 		
+		string fileIndex = ofToString( journeys.size() );
 		ofDirectory dir;
 		string journeyDirectory = ofToDataPath("Journeys/");
 		if(!dir.doesDirectoryExist(journeyDirectory))	dir.createDirectory(journeyDirectory);
 		
-		cout << ( journeyDirectory + "journey_" + route +".json").c_str() << endl;
-		ofstream    fs( ( journeyDirectory + "journey_" + route +".json").c_str() );
+		cout << ( journeyDirectory + "journey_" + route + fileIndex  +".json").c_str() << endl;
+		ofstream    fs( ( journeyDirectory + "journey_" + route + fileIndex+".json").c_str() );
 		
 		fs << _json << endl;
 		
 		fs.close();
 	}
+	
     
-    if(route=="init") {
-		if(bDebug)	cout << "message == init" << endl;
+    if(route=="showJourney") {
 		// on start up to populate the animation
-		vector <string> outStrings;
-        for(int i=0; i<_json["journeys"].size(); i++) {
-			
-			if(_json["journeys"][i]["readings"].size() > 100){
-				//false for not animating in
-				journeys.push_back(new Journey(_json["journeys"][i], false));
-			}
-			
-        }
-		
-		if(journeys.size() < 20){
-			for(int i=0; i<_json["journeys"].size(); i++) {
-				
-				if(_json["journeys"][i]["readings"].size() > 100){
-					//false for not animating in
-					journeys.push_back(new Journey(_json["journeys"][i], false));
-				}
-			}
-		}
-		
-		
-		if(journeys.size() < 40){
-			for(int i=0; i<_json["journeys"].size(); i++) {
-				
-				if(_json["journeys"][i]["readings"].size() > 100){
-					//false for not animating in
-					journeys.push_back(new Journey(_json["journeys"][i], false));
-				}
-			}
-		}
-		
+        //false for not animating in
+        journeys.push_back(new Journey(json["journey"], false));
 		bJourniesNeedUpdate = true;
     }
-    else if(route=="journey") {
-		if(bDebug)	cout << "message == journey" << endl;
+    else if(route=="addJourney") {
 		
 		//true for animating in
         journeys.push_back(new Journey(json["journey"], true));
-		
-		
 		bJourniesNeedUpdate = true;
-		
+    }
+    else if(route=="removeJourney") {
+        string uid = json["_id"].asString();
+        for(int i=0; i<journeys.size(); i++) {
+            if(journeys[i]->uid==uid) {
+                journeys[i]->sayGoodbye();
+            }
+        }
     }
     else if(route=="tick") {
-		//
-		//		//for testing, can go if iritating
-		//        ofLogVerbose() << "server time: " << iso8601toTimestamp(json["date"].asString());
+		
+		//for testing, can go if iritating
+        //ofLogVerbose() << "server time: " << iso8601toTimestamp(json["date"].asString());
     }
     else {
         ofLogWarning() << "Route " << route << " unknown..." << endl;
     }
 	
+    
+//    if(route=="init") {
+//		if(bDebug)	cout << "message == init" << endl;
+//		// on start up to populate the animation
+//		vector <string> outStrings;
+//        for(int i=0; i<_json["journeys"].size(); i++) {
+//			
+//			if(_json["journeys"][i]["readings"].size() > 100){
+//				//false for not animating in
+//				journeys.push_back(new Journey(_json["journeys"][i], false));
+//			}
+//			
+//        }
+//		
+//		if(journeys.size() < 20){
+//			for(int i=0; i<_json["journeys"].size(); i++) {
+//				
+//				if(_json["journeys"][i]["readings"].size() > 100){
+//					//false for not animating in
+//					journeys.push_back(new Journey(_json["journeys"][i], false));
+//				}
+//			}
+//		}
+//		
+//		
+//		if(journeys.size() < 40){
+//			for(int i=0; i<_json["journeys"].size(); i++) {
+//				
+//				if(_json["journeys"][i]["readings"].size() > 100){
+//					//false for not animating in
+//					journeys.push_back(new Journey(_json["journeys"][i], false));
+//				}
+//			}
+//		}
+//		
+//		bJourniesNeedUpdate = true;
+//    }
+//    else if(route=="journey") {
+//		if(bDebug)	cout << "message == journey" << endl;
+//		
+//		//true for animating in
+//        journeys.push_back(new Journey(json["journey"], true));
+//		
+//		
+//		bJourniesNeedUpdate = true;
+//		
+//    }
+//    else if(route=="tick") {
+//		//
+//		//		//for testing, can go if iritating
+//		//        ofLogVerbose() << "server time: " << iso8601toTimestamp(json["date"].asString());
+//    }
+//    else {
+//        ofLogWarning() << "Route " << route << " unknown..." << endl;
+//    }
+	
 }
 void ofApp::onMessage( ofxLibwebsockets::Event& args ){
 //cout<<"got message "<< args.message <<  endl;
-    
+	
     if ( !reader.parse( args.message, json ) ) {
         std::cout  << "Failed to parse json\n" << reader.getFormattedErrorMessages();
         return;

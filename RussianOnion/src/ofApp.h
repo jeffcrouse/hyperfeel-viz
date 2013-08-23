@@ -73,8 +73,6 @@ public:
 	Json::Reader reader;
 	bool bSaveJsonsToFile, bLoadJsonsFromFile;
 	
-	ofColor getRandomColor();
-	void retryColors();
 	
 	/**
 	 * shaders
@@ -88,6 +86,10 @@ public:
 	ofShader onionBarsShader;
 	ofShader onionBarsHorzShader;
 	ofShader onionDotsShader;
+	
+	
+	ofColor getRandomColor();
+	void retryColors();
 	
 	/**
 	 * onion
