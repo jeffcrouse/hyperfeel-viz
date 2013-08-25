@@ -12,6 +12,7 @@
 		0B1A7EDFBC477E5A2E37CCDF /* ofxAudioUnitTap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BF3233A625C876FDABFAB0C /* ofxAudioUnitTap.cpp */; };
 		0C4F519BCE65BA5D7D6B6B68 /* CADebugMacros.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D354A3121711EC82B6136FB0 /* CADebugMacros.cpp */; };
 		0E826EC50F9F913C3159C2F7 /* ofxAudioUnitFftNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10F1B6B6DFEE960F7FA4C661 /* ofxAudioUnitFftNode.cpp */; };
+		1F1415C817CAAFC30028B2C3 /* ofxHttpUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F1415C617CAAFC30028B2C3 /* ofxHttpUtils.cpp */; };
 		1F5D1B5017C7965100DA5FF7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5D1B4F17C7965100DA5FF7 /* AudioUnit.framework */; };
 		1F5D1B5217C7965700DA5FF7 /* CoreAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5D1B5117C7965700DA5FF7 /* CoreAudioKit.framework */; };
 		1F5D1B9417C7ACB900DA5FF7 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F5D1B8D17C7ACB900DA5FF7 /* tinyxml.cpp */; };
@@ -93,6 +94,9 @@
 		18B335E1BC2A834648C8D7DF /* ofxAudioUnitNetSend.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAudioUnitNetSend.h; path = ../../../addons/ofxAudioUnit/src/ofxAudioUnitNetSend.h; sourceTree = SOURCE_ROOT; };
 		18F9C99EFC1FC4B7EAF4E79F /* ofxAudioUnitMixer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAudioUnitMixer.h; path = ../../../addons/ofxAudioUnit/src/ofxAudioUnitMixer.h; sourceTree = SOURCE_ROOT; };
 		1B31A94C1F7A20222686E663 /* ofxAudioUnitNetSend.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAudioUnitNetSend.cpp; path = ../../../addons/ofxAudioUnit/src/ofxAudioUnitNetSend.cpp; sourceTree = SOURCE_ROOT; };
+		1F1415C517CAAFC30028B2C3 /* ofxHttpTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxHttpTypes.h; sourceTree = "<group>"; };
+		1F1415C617CAAFC30028B2C3 /* ofxHttpUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxHttpUtils.cpp; sourceTree = "<group>"; };
+		1F1415C717CAAFC30028B2C3 /* ofxHttpUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxHttpUtils.h; sourceTree = "<group>"; };
 		1F5D1B4F17C7965100DA5FF7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		1F5D1B5117C7965700DA5FF7 /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
 		1F5D1B5C17C7ACA600DA5FF7 /* ofxUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxUI.h; sourceTree = "<group>"; };
@@ -242,6 +246,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F1415C317CAAFBA0028B2C3 /* ofxHttpUtils */ = {
+			isa = PBXGroup;
+			children = (
+				1F1415C417CAAFC30028B2C3 /* src */,
+			);
+			name = ofxHttpUtils;
+			sourceTree = "<group>";
+		};
+		1F1415C417CAAFC30028B2C3 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				1F1415C517CAAFC30028B2C3 /* ofxHttpTypes.h */,
+				1F1415C617CAAFC30028B2C3 /* ofxHttpUtils.cpp */,
+				1F1415C717CAAFC30028B2C3 /* ofxHttpUtils.h */,
+			);
+			name = src;
+			path = ../../../addons/ofxHttpUtils/src;
+			sourceTree = "<group>";
+		};
 		1F4B8F73512F75DCABF5DA50 /* CAPublicUtility */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +452,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				1F1415C317CAAFBA0028B2C3 /* ofxHttpUtils */,
 				1F96408F17CA8AD400834FC1 /* ofxVideoRecorder */,
 				1F5D1B8B17C7ACB900DA5FF7 /* ofxXmlSettings */,
 				1F5D1B5A17C7AC9800DA5FF7 /* ofxUI */,
@@ -632,6 +656,7 @@
 				1F5D1B9617C7ACB900DA5FF7 /* tinyxmlparser.cpp in Sources */,
 				1F5D1B9717C7ACB900DA5FF7 /* ofxXmlSettings.cpp in Sources */,
 				1F96409317CA8AE200834FC1 /* ofxVideoRecorder.cpp in Sources */,
+				1F1415C817CAAFC30028B2C3 /* ofxHttpUtils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

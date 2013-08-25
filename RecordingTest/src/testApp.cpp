@@ -102,7 +102,10 @@ void testApp::setup(){
     soundStream.setDeviceID(5);
     soundStream.setup(this, 0, channels, sampleRate, 256, 4);
 
-
+    
+    
+    ofAddListener(httpUtils.newResponseEvent,this,&testApp::newResponse);
+	httpUtils.start();
     
     
     setupUI();
@@ -125,7 +128,7 @@ void testApp::setupUI()
     
     ofxUICanvas* guiMain = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
 	guiMain->setName("Main");
-	guiMain->setPosition(10, 40);
+	guiMain->setPosition(10, 50);
 	guiMain->setColorFill(ofxUIColor(200));
 	guiMain->setColorFillHighlight(ofxUIColor(255));
 	guiMain->setColorBack(ofxUIColor(20, 20, 20, 150));
@@ -153,62 +156,16 @@ void testApp::setupUI()
 }
 
 //--------------------------------------------------------------
+void testApp::newResponse(ofxHttpResponse & response){
+	cout << ofToString(response.status) + ": " + (string)response.responseBody << endl;
+}
+
+//--------------------------------------------------------------
 void testApp::guiEvent(ofxUIEventArgs &e){
 	
 	string name = e.widget->getName();
 	int kind = e.widget->getKind();
     
-    /*
-    if(name == "REVERB")
-	{
-		ofxUIMinimalSlider *slider = (ofxUIMinimalSlider *) e.widget;
-        cout << "REVERB: " << slider->getScaledValue() << endl;
-		_reverb = slider->getScaledValue();
-    }
-    else if(name=="DISTORTION")
-    {
-        ofxUIMinimalSlider *slider = (ofxUIMinimalSlider *) e.widget;
-        cout << "DISTORTION: " << slider->getScaledValue() << endl;
-        _distortion = slider->getScaledValue();
-    }
-    else if(name=="COMPRESSION")
-    {
-       ofxUIMinimalSlider *slider = (ofxUIMinimalSlider *) e.widget;
-        cout << "COMPRESSION: " << slider->getScaledValue() << endl;
-        _compression = slider->getScaledValue();
-    }
-    else if(name=="DELAY")
-    {
-        ofxUIMinimalSlider *slider = (ofxUIMinimalSlider *) e.widget;
-        cout << "DELAY: " << slider->getScaledValue() << endl;
-        _delay = slider->getScaledValue();
-    }
-    else if(name=="LOWPASS")
-    {
-        ofxUIMinimalSlider *slider = (ofxUIMinimalSlider *) e.widget;
-        cout << "LOWPASS: " << slider->getScaledValue() << endl;
-        _lowpass = slider->getScaledValue();
-        AudioUnitSetParameter(lowpass.getUnit(),
-                              kLowPassParam_CutoffFrequency,
-                              kAudioUnitScope_Global,
-                              0,
-                              _lowpass,
-                              0);
-    }
-    else if(name=="VARISPEED")
-    {
-        ofxUIMinimalSlider *slider = (ofxUIMinimalSlider *) e.widget;
-        cout << "VARISPEED: " << slider->getScaledValue() << endl;
-        _varispeed = slider->getScaledValue();
-        AudioUnitSetParameter(varispeed.getUnit(),
-                              kVarispeedParam_PlaybackRate,
-                              kAudioUnitScope_Global,
-                              0,
-                              _varispeed,
-                              0);
-    }
-    else 
-     */
      if(name == "SPREAD")
     {
         ofxUIMinimalSlider *slider = (ofxUIMinimalSlider *) e.widget;
@@ -308,7 +265,7 @@ void testApp::draw(){
     }
     
     ofSetColor(ofColor::white);
-    ofDrawBitmapString(debugMessage.str(), ofGetWidth()-300, ofGetHeight()-150);
+    ofDrawBitmapString(debugMessage.str(), ofGetWidth()-300, ofGetHeight()-80);
 }
 
 
@@ -324,8 +281,20 @@ void testApp::keyReleased(int key){
         if(bRecording) {
             vidRecorder.close();
             bRecording = false;
+            
+            ofxHttpForm form;
+            form.action = "http://cheese.local:3000/submit/video";
+            form.method = OFX_HTTP_POST;
+            form.addFormField("journey_id", journey_id);
+            form.addFormField("email", "jeff@crouse.cc");
+            form.addFile("video", filename);
+            httpUtils.addForm(form);
+            
         } else {
-            vidRecorder.setup("rec"+ofGetTimestampString()+".mov", frame.getWidth(), frame.getHeight(), frameRate, sampleRate, channels);
+            journey_id = ofGetTimestampString("%m%d%H%M%S");
+            filename = "videos/"+journey_id+".mov";
+            
+            vidRecorder.setup(filename, frame.getWidth(), frame.getHeight(), frameRate, sampleRate, channels);
             bRecording = true;
         }
     }
