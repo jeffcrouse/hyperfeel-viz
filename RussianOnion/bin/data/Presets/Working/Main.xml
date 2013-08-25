@@ -11,12 +11,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>17.182691574</Value>
+    <Value>15.278845787</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.950320482</Value>
+    <Value>0.932692289</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -26,32 +26,32 @@
 <Widget>
     <Kind>4</Kind>
     <Name>readingThreshold</Name>
-    <Value>0.041666668</Value>
+    <Value>0.262820512</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingScale</Name>
-    <Value>0.381249994</Value>
+    <Value>0.286057681</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>onionAlpha</Name>
-    <Value>0.359038442</Value>
+    <Value>0.235288456</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>dataSmoothing</Name>
-    <Value>0.485961527</Value>
+    <Value>0.879423082</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>facingRatio</Name>
-    <Value>0.793749988</Value>
+    <Value>0.276538461</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>displacement</Name>
-    <Value>-108.974365234</Value>
+    <Value>64.102539062</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>

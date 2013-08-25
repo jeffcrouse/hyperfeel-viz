@@ -51,7 +51,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>displacement</Name>
-    <Value>-121.794860840</Value>
+    <Value>-38.461547852</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>noiseScale</Name>
+    <Value>0.012900642</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>

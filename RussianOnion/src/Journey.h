@@ -15,7 +15,7 @@
 
 long iso8601toTimestamp(string d);
 
-class Reading : public ofVec3f {
+class Reading : public ofVec4f {
 public:
 	//LB: changed this to float so that we could build vbos directly from the reading vector
 	void setAttention(float attention){
@@ -28,6 +28,10 @@ public:
 		x = t;
 	}
 	
+	void setTime(float t ){
+		w = t;
+	}
+	
 	float getAttention(){
 		return y;
 	}
@@ -37,15 +41,26 @@ public:
 	float getT(){
 		return x;
 	}
+	float getTime(){
+		return w;
+	}
+};
+
+
+class Event {
+public:
+    long time;
+    string type;
+    Json::Value data;
 };
 
 
 class Journey {
 public:
     Journey(Json::Value& json, bool buildIn=true) {
-        
+		
 		//corresponds tp ipod 0-6 roygbiv. 1 == orange
-        client_id = ofToInt( json["client_id"].asString() );
+        client_id = json["client_id"].asInt();
 		
 		//16 digit hash
         uid = json["_id"].asString();
@@ -56,53 +71,30 @@ public:
 		//READINGS
 		//each reading is a message sent from the ipod
         for(int i=0; i<json["readings"].size(); i++) {
-			//convert to timestamp
-			long time = 0;
-			//???: LB: I was getting an error saying that I couldn't convert to string. so I changed it to just convert if it is a string.
-			if(json["readings"][i]["date"].isString()){
-				time = iso8601toTimestamp( json["readings"][i]["date"].asString() );
-			}
 			
-			//???: it seems that some dates are empty objects
-			else if( json["readings"][i]["date"].isObject() ){
-				//:???
-				cout << "IT'S AN OBJECT"<< endl;
-				
-				vector<string> members = json["readings"][i]["date"].getMemberNames();
-				for(int i=0; i<members.size(); i++){
-					cout << members[i] << endl;
-				}
-				
-				cout << endl;
-				
-			}
-			
-			
-			//user blink data. not in every reading and when it is it is by itself
-            if(json["readings"][i]["data"].isMember("blinkStrength")) {
-                //
-                if(json["readings"][i]["data"]["blinkStrength"].asInt() > 50)
-                    blinks.push_back( time );
-                
-            }
-			//eeg. meditation / attention
-			else if(json["readings"][i]["data"].isMember("eSenseMeditation")) {
-				
-				//int btwn 0-100
-                Reading r;
-                r.setMeditation( json["readings"][i]["data"]["eSenseMeditation"].asFloat() / 100. );
-                r.setAttention( json["readings"][i]["data"]["eSenseAttention"].asFloat() / 100. );
-				
-                readings.push_back( r );
-            }
-			//
-			else {
-                ofLogWarning() << "unrecognized reading...";
-            }
-		}
+            Reading r;
+            r.setTime( iso8601toTimestamp( json["readings"][i]["date"].asString() ) ); //convert to timestamp
+            r.setMeditation( json["readings"][i]["data"]["meditation"].asFloat() * .01 ); //int btwn 0-100
+            r.setAttention( json["readings"][i]["data"]["attention"].asFloat() * .01 ) ; //int btwn 0-100
+            readings.push_back( r );
+        }
+        
+        //EVENTS
+        for(int i=0; i<json["events"].size(); i++) {
+            
+            Event e;
+            e.time = iso8601toTimestamp( json["events"][i]["date"].asString() ); //convert to timestamp
+            e.type = json["events"][i]["eventType"].asString();
+            e.data = json["events"][i]["data"];
+            events.push_back( e );
+        }
+        
+        long start = readings.front().getTime();
+        long end = readings.back().getTime();
+        long duration = end-start;
+        ofLogNotice() << "Constructed Journey " << uid << " with " << readings.size() << " readings duration: " << duration;
 		
-		
-		
+		//t is a value btwn 0-1 proportionate to it's index position
 		if( readings.size() ){
 			float step = 1. / float(readings.size() - 1);
 			for(int i=0; i<readings.size(); i++){
@@ -111,18 +103,22 @@ public:
 		}
 	}
 	
+	// Animate out and delete
+    void sayGoodbye() {
+        
+    }
 	
 	void update() {
 		
 	}
 	
 	void draw() {
-		
 	}
 	
 	int client_id;
 	string uid;
 	long created_at;
 	vector<Reading> readings;
-	vector<long> blinks;
+	vector<Event> events;
+    vector<long> blinks;
 };

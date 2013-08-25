@@ -16,7 +16,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.950320482</Value>
+    <Value>0.887820482</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -26,12 +26,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>readingThreshold</Name>
-    <Value>0.173076928</Value>
+    <Value>0.304487169</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingScale</Name>
-    <Value>0.181346163</Value>
+    <Value>0.073461540</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -52,6 +52,11 @@
     <Kind>4</Kind>
     <Name>displacement</Name>
     <Value>89.743652344</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>noiseScale</Name>
+    <Value>0.006009615</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>

@@ -1,0 +1,3001 @@
+
+{
+	"journey" : 
+	{
+		"__v" : 0,
+		"_id" : "521686c744a0b5675c00018d",
+		"client_id" : 4,
+		"created_at" : "2013-08-22T21:46:40.000Z",
+		"email" : "jefftimesten@gmail.com",
+		"events" : 
+		[
+			
+			{
+				"_id" : "521686c744a0b5675c000239",
+				"data" : 
+				{
+					"strength" : 41
+				},
+				"date" : "2013-08-22T21:42:27.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000238",
+				"data" : 
+				{
+					"strength" : 44
+				},
+				"date" : "2013-08-22T21:42:27.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000237",
+				"data" : 
+				{
+					"strength" : 57
+				},
+				"date" : "2013-08-22T21:42:59.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000236",
+				"data" : 
+				{
+					"strength" : 78
+				},
+				"date" : "2013-08-22T21:43:05.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000235",
+				"data" : 
+				{
+					"strength" : 43
+				},
+				"date" : "2013-08-22T21:43:07.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000234",
+				"data" : 
+				{
+					"strength" : 58
+				},
+				"date" : "2013-08-22T21:43:07.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000233",
+				"data" : 
+				{
+					"strength" : 50
+				},
+				"date" : "2013-08-22T21:43:07.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000232",
+				"data" : 
+				{
+					"strength" : 35
+				},
+				"date" : "2013-08-22T21:43:09.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000231",
+				"data" : 
+				{
+					"strength" : 77
+				},
+				"date" : "2013-08-22T21:43:10.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000230",
+				"data" : 
+				{
+					"strength" : 56
+				},
+				"date" : "2013-08-22T21:43:11.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00022f",
+				"data" : 
+				{
+					"strength" : 41
+				},
+				"date" : "2013-08-22T21:43:11.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00022e",
+				"data" : 
+				{
+					"strength" : 44
+				},
+				"date" : "2013-08-22T21:43:11.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00022d",
+				"data" : 
+				{
+					"strength" : 76
+				},
+				"date" : "2013-08-22T21:43:13.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00022c",
+				"data" : 
+				{
+					"strength" : 59
+				},
+				"date" : "2013-08-22T21:43:15.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00022b",
+				"data" : 
+				{
+					"strength" : 72
+				},
+				"date" : "2013-08-22T21:43:15.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00022a",
+				"data" : 
+				{
+					"strength" : 72
+				},
+				"date" : "2013-08-22T21:43:16.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000229",
+				"data" : 
+				{
+					"strength" : 67
+				},
+				"date" : "2013-08-22T21:43:16.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000228",
+				"data" : 
+				{
+					"strength" : 32
+				},
+				"date" : "2013-08-22T21:43:18.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000227",
+				"data" : 
+				{
+					"strength" : 46
+				},
+				"date" : "2013-08-22T21:43:19.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000226",
+				"data" : 
+				{
+					"strength" : 34
+				},
+				"date" : "2013-08-22T21:43:20.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000225",
+				"data" : 
+				{
+					"strength" : 38
+				},
+				"date" : "2013-08-22T21:43:20.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000224",
+				"data" : 
+				{
+					"strength" : 50
+				},
+				"date" : "2013-08-22T21:43:20.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000223",
+				"data" : 
+				{
+					"strength" : 36
+				},
+				"date" : "2013-08-22T21:43:23.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000222",
+				"data" : 
+				{
+					"strength" : 41
+				},
+				"date" : "2013-08-22T21:43:25.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000221",
+				"data" : 
+				{
+					"strength" : 66
+				},
+				"date" : "2013-08-22T21:43:25.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000220",
+				"data" : 
+				{
+					"strength" : 75
+				},
+				"date" : "2013-08-22T21:43:26.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00021f",
+				"data" : 
+				{
+					"strength" : 57
+				},
+				"date" : "2013-08-22T21:43:27.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00021e",
+				"data" : 
+				{
+					"strength" : 61
+				},
+				"date" : "2013-08-22T21:43:30.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00021d",
+				"data" : 
+				{
+					"strength" : 69
+				},
+				"date" : "2013-08-22T21:43:31.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00021c",
+				"data" : 
+				{
+					"strength" : 61
+				},
+				"date" : "2013-08-22T21:43:34.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00021b",
+				"data" : 
+				{
+					"strength" : 44
+				},
+				"date" : "2013-08-22T21:43:36.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00021a",
+				"data" : 
+				{
+					"strength" : 47
+				},
+				"date" : "2013-08-22T21:43:38.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000219",
+				"data" : 
+				{
+					"strength" : 74
+				},
+				"date" : "2013-08-22T21:43:40.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000218",
+				"data" : 
+				{
+					"strength" : 62
+				},
+				"date" : "2013-08-22T21:43:41.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000217",
+				"data" : 
+				{
+					"strength" : 55
+				},
+				"date" : "2013-08-22T21:43:42.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000216",
+				"data" : 
+				{
+					"strength" : 57
+				},
+				"date" : "2013-08-22T21:43:43.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000215",
+				"data" : 
+				{
+					"strength" : 48
+				},
+				"date" : "2013-08-22T21:43:45.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000214",
+				"data" : 
+				{
+					"strength" : 60
+				},
+				"date" : "2013-08-22T21:43:45.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000213",
+				"data" : 
+				{
+					"strength" : 54
+				},
+				"date" : "2013-08-22T21:43:47.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000212",
+				"data" : 
+				{
+					"strength" : 38
+				},
+				"date" : "2013-08-22T21:43:48.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000211",
+				"data" : 
+				{
+					"strength" : 92
+				},
+				"date" : "2013-08-22T21:43:48.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000210",
+				"data" : 
+				{
+					"strength" : 59
+				},
+				"date" : "2013-08-22T21:43:49.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00020f",
+				"data" : 
+				{
+					"strength" : 66
+				},
+				"date" : "2013-08-22T21:43:50.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00020e",
+				"data" : 
+				{
+					"strength" : 40
+				},
+				"date" : "2013-08-22T21:43:52.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00020d",
+				"data" : 
+				{
+					"strength" : 62
+				},
+				"date" : "2013-08-22T21:43:54.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00020c",
+				"data" : 
+				{
+					"strength" : 69
+				},
+				"date" : "2013-08-22T21:43:55.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00020b",
+				"data" : 
+				{
+					"strength" : 54
+				},
+				"date" : "2013-08-22T21:43:59.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00020a",
+				"data" : 
+				{
+					"strength" : 43
+				},
+				"date" : "2013-08-22T21:44:06.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000209",
+				"data" : 
+				{
+					"strength" : 48
+				},
+				"date" : "2013-08-22T21:44:13.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000208",
+				"data" : 
+				{
+					"strength" : 57
+				},
+				"date" : "2013-08-22T21:44:19.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000207",
+				"data" : 
+				{
+					"strength" : 43
+				},
+				"date" : "2013-08-22T21:44:20.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000206",
+				"data" : 
+				{
+					"strength" : 46
+				},
+				"date" : "2013-08-22T21:44:23.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000205",
+				"data" : 
+				{
+					"strength" : 43
+				},
+				"date" : "2013-08-22T21:44:24.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000204",
+				"data" : 
+				{
+					"strength" : 49
+				},
+				"date" : "2013-08-22T21:44:27.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000203",
+				"data" : 
+				{
+					"strength" : 42
+				},
+				"date" : "2013-08-22T21:44:30.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000202",
+				"data" : 
+				{
+					"strength" : 44
+				},
+				"date" : "2013-08-22T21:44:31.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000201",
+				"data" : 
+				{
+					"strength" : 44
+				},
+				"date" : "2013-08-22T21:44:34.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000200",
+				"data" : 
+				{
+					"strength" : 54
+				},
+				"date" : "2013-08-22T21:44:34.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001ff",
+				"data" : 
+				{
+					"strength" : 53
+				},
+				"date" : "2013-08-22T21:44:36.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001fe",
+				"data" : 
+				{
+					"strength" : 51
+				},
+				"date" : "2013-08-22T21:44:39.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001fd",
+				"data" : 
+				{
+					"strength" : 58
+				},
+				"date" : "2013-08-22T21:44:40.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001fc",
+				"data" : 
+				{
+					"strength" : 60
+				},
+				"date" : "2013-08-22T21:44:41.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001fb",
+				"data" : 
+				{
+					"strength" : 67
+				},
+				"date" : "2013-08-22T21:44:43.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001fa",
+				"data" : 
+				{
+					"strength" : 64
+				},
+				"date" : "2013-08-22T21:44:44.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001f9",
+				"data" : 
+				{
+					"strength" : 53
+				},
+				"date" : "2013-08-22T21:44:47.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001f8",
+				"data" : 
+				{
+					"strength" : 46
+				},
+				"date" : "2013-08-22T21:44:49.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001f7",
+				"data" : 
+				{
+					"strength" : 64
+				},
+				"date" : "2013-08-22T21:44:51.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001f6",
+				"data" : 
+				{
+					"strength" : 44
+				},
+				"date" : "2013-08-22T21:44:53.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001f5",
+				"data" : 
+				{
+					"strength" : 46
+				},
+				"date" : "2013-08-22T21:44:55.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001f4",
+				"data" : 
+				{
+					"strength" : 43
+				},
+				"date" : "2013-08-22T21:44:56.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001f3",
+				"data" : 
+				{
+					"strength" : 67
+				},
+				"date" : "2013-08-22T21:44:58.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001f2",
+				"data" : 
+				{
+					"strength" : 129
+				},
+				"date" : "2013-08-22T21:45:01.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001f1",
+				"data" : 
+				{
+					"strength" : 83
+				},
+				"date" : "2013-08-22T21:45:01.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001f0",
+				"data" : 
+				{
+					"strength" : 52
+				},
+				"date" : "2013-08-22T21:45:02.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001ef",
+				"data" : 
+				{
+					"strength" : 54
+				},
+				"date" : "2013-08-22T21:45:03.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001ee",
+				"data" : 
+				{
+					"strength" : 169
+				},
+				"date" : "2013-08-22T21:45:04.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001ed",
+				"data" : 
+				{
+					"strength" : 75
+				},
+				"date" : "2013-08-22T21:45:04.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001ec",
+				"data" : 
+				{
+					"strength" : 39
+				},
+				"date" : "2013-08-22T21:45:05.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001eb",
+				"data" : 
+				{
+					"strength" : 41
+				},
+				"date" : "2013-08-22T21:45:05.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001ea",
+				"data" : 
+				{
+					"strength" : 67
+				},
+				"date" : "2013-08-22T21:45:08.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001e9",
+				"data" : 
+				{
+					"strength" : 46
+				},
+				"date" : "2013-08-22T21:45:08.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001e8",
+				"data" : 
+				{
+					"strength" : 62
+				},
+				"date" : "2013-08-22T21:45:09.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001e7",
+				"data" : 
+				{
+					"strength" : 115
+				},
+				"date" : "2013-08-22T21:45:09.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001e6",
+				"data" : 
+				{
+					"strength" : 51
+				},
+				"date" : "2013-08-22T21:45:09.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001e5",
+				"data" : 
+				{
+					"strength" : 196
+				},
+				"date" : "2013-08-22T21:45:10.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001e4",
+				"data" : 
+				{
+					"strength" : 74
+				},
+				"date" : "2013-08-22T21:45:10.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001e3",
+				"data" : 
+				{
+					"strength" : 38
+				},
+				"date" : "2013-08-22T21:45:11.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001e2",
+				"data" : 
+				{
+					"strength" : 35
+				},
+				"date" : "2013-08-22T21:45:13.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001e1",
+				"data" : 
+				{
+					"strength" : 64
+				},
+				"date" : "2013-08-22T21:45:14.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001e0",
+				"data" : 
+				{
+					"strength" : 51
+				},
+				"date" : "2013-08-22T21:45:14.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001df",
+				"data" : 
+				{
+					"strength" : 82
+				},
+				"date" : "2013-08-22T21:45:15.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001de",
+				"data" : 
+				{
+					"strength" : 52
+				},
+				"date" : "2013-08-22T21:45:15.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001dd",
+				"data" : 
+				{
+					"strength" : 159
+				},
+				"date" : "2013-08-22T21:45:15.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001dc",
+				"data" : 
+				{
+					"strength" : 51
+				},
+				"date" : "2013-08-22T21:45:16.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001db",
+				"data" : 
+				{
+					"strength" : 54
+				},
+				"date" : "2013-08-22T21:45:16.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001da",
+				"data" : 
+				{
+					"strength" : 56
+				},
+				"date" : "2013-08-22T21:45:16.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001d9",
+				"data" : 
+				{
+					"strength" : 57
+				},
+				"date" : "2013-08-22T21:45:18.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001d8",
+				"data" : 
+				{
+					"strength" : 86
+				},
+				"date" : "2013-08-22T21:45:19.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001d7",
+				"data" : 
+				{
+					"strength" : 177
+				},
+				"date" : "2013-08-22T21:45:20.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001d6",
+				"data" : 
+				{
+					"strength" : 40
+				},
+				"date" : "2013-08-22T21:45:20.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001d5",
+				"data" : 
+				{
+					"strength" : 84
+				},
+				"date" : "2013-08-22T21:45:21.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001d4",
+				"data" : 
+				{
+					"strength" : 169
+				},
+				"date" : "2013-08-22T21:45:21.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001d3",
+				"data" : 
+				{
+					"strength" : 79
+				},
+				"date" : "2013-08-22T21:45:22.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001d2",
+				"data" : 
+				{
+					"strength" : 214
+				},
+				"date" : "2013-08-22T21:45:22.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001d1",
+				"data" : 
+				{
+					"strength" : 47
+				},
+				"date" : "2013-08-22T21:45:22.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001d0",
+				"data" : 
+				{
+					"strength" : 87
+				},
+				"date" : "2013-08-22T21:45:23.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001cf",
+				"data" : 
+				{
+					"strength" : 46
+				},
+				"date" : "2013-08-22T21:45:23.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001ce",
+				"data" : 
+				{
+					"strength" : 197
+				},
+				"date" : "2013-08-22T21:45:24.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001cd",
+				"data" : 
+				{
+					"strength" : 82
+				},
+				"date" : "2013-08-22T21:45:24.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001cc",
+				"data" : 
+				{
+					"strength" : 187
+				},
+				"date" : "2013-08-22T21:45:25.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001cb",
+				"data" : 
+				{
+					"strength" : 46
+				},
+				"date" : "2013-08-22T21:45:25.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001ca",
+				"data" : 
+				{
+					"strength" : 237
+				},
+				"date" : "2013-08-22T21:45:26.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001c9",
+				"data" : 
+				{
+					"strength" : 61
+				},
+				"date" : "2013-08-22T21:45:26.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001c8",
+				"data" : 
+				{
+					"strength" : 51
+				},
+				"date" : "2013-08-22T21:45:27.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001c7",
+				"data" : 
+				{
+					"strength" : 45
+				},
+				"date" : "2013-08-22T21:45:28.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001c6",
+				"data" : 
+				{
+					"strength" : 51
+				},
+				"date" : "2013-08-22T21:45:28.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001c5",
+				"data" : 
+				{
+					"strength" : 139
+				},
+				"date" : "2013-08-22T21:45:28.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001c4",
+				"data" : 
+				{
+					"strength" : 219
+				},
+				"date" : "2013-08-22T21:45:29.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001c3",
+				"data" : 
+				{
+					"strength" : 85
+				},
+				"date" : "2013-08-22T21:45:33.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001c2",
+				"data" : 
+				{
+					"strength" : 46
+				},
+				"date" : "2013-08-22T21:45:35.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001c1",
+				"data" : 
+				{
+					"strength" : 71
+				},
+				"date" : "2013-08-22T21:45:36.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001c0",
+				"data" : 
+				{
+					"strength" : 55
+				},
+				"date" : "2013-08-22T21:45:37.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001bf",
+				"data" : 
+				{
+					"strength" : 43
+				},
+				"date" : "2013-08-22T21:45:37.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001be",
+				"data" : 
+				{
+					"strength" : 74
+				},
+				"date" : "2013-08-22T21:45:39.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001bd",
+				"data" : 
+				{
+					"strength" : 88
+				},
+				"date" : "2013-08-22T21:45:40.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001bc",
+				"data" : 
+				{
+					"strength" : 116
+				},
+				"date" : "2013-08-22T21:45:40.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001bb",
+				"data" : 
+				{
+					"strength" : 90
+				},
+				"date" : "2013-08-22T21:45:41.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001ba",
+				"data" : 
+				{
+					"strength" : 208
+				},
+				"date" : "2013-08-22T21:45:42.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001b9",
+				"data" : 
+				{
+					"strength" : 47
+				},
+				"date" : "2013-08-22T21:45:43.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001b8",
+				"data" : 
+				{
+					"strength" : 133
+				},
+				"date" : "2013-08-22T21:45:44.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001b7",
+				"data" : 
+				{
+					"strength" : 64
+				},
+				"date" : "2013-08-22T21:45:44.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001b6",
+				"data" : 
+				{
+					"strength" : 97
+				},
+				"date" : "2013-08-22T21:45:45.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001b5",
+				"data" : 
+				{
+					"strength" : 46
+				},
+				"date" : "2013-08-22T21:45:45.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001b4",
+				"data" : 
+				{
+					"strength" : 121
+				},
+				"date" : "2013-08-22T21:45:46.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001b3",
+				"data" : 
+				{
+					"strength" : 57
+				},
+				"date" : "2013-08-22T21:45:47.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001b2",
+				"data" : 
+				{
+					"strength" : 129
+				},
+				"date" : "2013-08-22T21:45:48.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001b1",
+				"data" : 
+				{
+					"strength" : 96
+				},
+				"date" : "2013-08-22T21:45:48.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001b0",
+				"data" : 
+				{
+					"strength" : 115
+				},
+				"date" : "2013-08-22T21:45:48.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001af",
+				"data" : 
+				{
+					"strength" : 71
+				},
+				"date" : "2013-08-22T21:45:49.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001ae",
+				"data" : 
+				{
+					"strength" : 36
+				},
+				"date" : "2013-08-22T21:45:49.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001ad",
+				"data" : 
+				{
+					"strength" : 101
+				},
+				"date" : "2013-08-22T21:45:50.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001ac",
+				"data" : 
+				{
+					"strength" : 56
+				},
+				"date" : "2013-08-22T21:45:50.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001ab",
+				"data" : 
+				{
+					"strength" : 50
+				},
+				"date" : "2013-08-22T21:45:50.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001aa",
+				"data" : 
+				{
+					"strength" : 79
+				},
+				"date" : "2013-08-22T21:45:51.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001a9",
+				"data" : 
+				{
+					"strength" : 218
+				},
+				"date" : "2013-08-22T21:45:53.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001a8",
+				"data" : 
+				{
+					"strength" : 33
+				},
+				"date" : "2013-08-22T21:45:53.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001a7",
+				"data" : 
+				{
+					"strength" : 85
+				},
+				"date" : "2013-08-22T21:45:53.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001a6",
+				"data" : 
+				{
+					"strength" : 163
+				},
+				"date" : "2013-08-22T21:45:54.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001a5",
+				"data" : 
+				{
+					"strength" : 90
+				},
+				"date" : "2013-08-22T21:46:00.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001a4",
+				"data" : 
+				{
+					"strength" : 88
+				},
+				"date" : "2013-08-22T21:46:05.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001a3",
+				"data" : 
+				{
+					"strength" : 51
+				},
+				"date" : "2013-08-22T21:46:05.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001a2",
+				"data" : 
+				{
+					"strength" : 150
+				},
+				"date" : "2013-08-22T21:46:06.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001a1",
+				"data" : 
+				{
+					"strength" : 182
+				},
+				"date" : "2013-08-22T21:46:06.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0001a0",
+				"data" : 
+				{
+					"strength" : 122
+				},
+				"date" : "2013-08-22T21:46:08.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00019f",
+				"data" : 
+				{
+					"strength" : 75
+				},
+				"date" : "2013-08-22T21:46:08.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00019e",
+				"data" : 
+				{
+					"strength" : 41
+				},
+				"date" : "2013-08-22T21:46:08.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00019d",
+				"data" : 
+				{
+					"strength" : 61
+				},
+				"date" : "2013-08-22T21:46:09.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00019c",
+				"data" : 
+				{
+					"strength" : 59
+				},
+				"date" : "2013-08-22T21:46:10.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00019b",
+				"data" : 
+				{
+					"strength" : 36
+				},
+				"date" : "2013-08-22T21:46:11.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00019a",
+				"data" : 
+				{
+					"strength" : 58
+				},
+				"date" : "2013-08-22T21:46:12.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000199",
+				"data" : 
+				{
+					"strength" : 59
+				},
+				"date" : "2013-08-22T21:46:14.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000198",
+				"data" : 
+				{
+					"strength" : 45
+				},
+				"date" : "2013-08-22T21:46:15.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000197",
+				"data" : 
+				{
+					"strength" : 36
+				},
+				"date" : "2013-08-22T21:46:15.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000196",
+				"data" : 
+				{
+					"strength" : 42
+				},
+				"date" : "2013-08-22T21:46:16.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000195",
+				"data" : 
+				{
+					"strength" : 46
+				},
+				"date" : "2013-08-22T21:46:16.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000194",
+				"data" : 
+				{
+					"strength" : 221
+				},
+				"date" : "2013-08-22T21:46:16.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000193",
+				"data" : 
+				{
+					"strength" : 149
+				},
+				"date" : "2013-08-22T21:46:17.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000192",
+				"data" : 
+				{
+					"x" : 0.3815139532089233,
+					"y" : -0.08454543352127075,
+					"z" : -0.4468114674091339
+				},
+				"date" : "2013-08-22T21:46:21.000Z",
+				"eventType" : "shake"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000191",
+				"data" : 
+				{
+					"strength" : 45
+				},
+				"date" : "2013-08-22T21:46:28.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000190",
+				"data" : 
+				{
+					"strength" : 66
+				},
+				"date" : "2013-08-22T21:46:29.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00018f",
+				"data" : 
+				{
+					"strength" : 64
+				},
+				"date" : "2013-08-22T21:46:31.000Z",
+				"eventType" : "blink"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00018e",
+				"data" : 
+				{
+					"strength" : 96
+				},
+				"date" : "2013-08-22T21:46:32.000Z",
+				"eventType" : "blink"
+			}
+		],
+		"readings" : 
+		[
+			
+			{
+				"_id" : "521686c744a0b5675c0002b7",
+				"data" : 
+				{
+					"attention" : 77,
+					"meditation" : 41
+				},
+				"date" : "2013-08-22T21:42:27.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002b6",
+				"data" : 
+				{
+					"attention" : 83,
+					"meditation" : 47
+				},
+				"date" : "2013-08-22T21:42:29.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002b5",
+				"data" : 
+				{
+					"attention" : 75,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:42:31.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002b4",
+				"data" : 
+				{
+					"attention" : 48,
+					"meditation" : 53
+				},
+				"date" : "2013-08-22T21:43:02.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002b3",
+				"data" : 
+				{
+					"attention" : 77,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:43:04.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002b2",
+				"data" : 
+				{
+					"attention" : 78,
+					"meditation" : 51
+				},
+				"date" : "2013-08-22T21:43:06.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002b1",
+				"data" : 
+				{
+					"attention" : 70,
+					"meditation" : 81
+				},
+				"date" : "2013-08-22T21:43:07.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002b0",
+				"data" : 
+				{
+					"attention" : 67,
+					"meditation" : 81
+				},
+				"date" : "2013-08-22T21:43:09.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002af",
+				"data" : 
+				{
+					"attention" : 63,
+					"meditation" : 64
+				},
+				"date" : "2013-08-22T21:43:11.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002ae",
+				"data" : 
+				{
+					"attention" : 64,
+					"meditation" : 60
+				},
+				"date" : "2013-08-22T21:43:13.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002ad",
+				"data" : 
+				{
+					"attention" : 70,
+					"meditation" : 56
+				},
+				"date" : "2013-08-22T21:43:15.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002ac",
+				"data" : 
+				{
+					"attention" : 48,
+					"meditation" : 34
+				},
+				"date" : "2013-08-22T21:43:17.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002ab",
+				"data" : 
+				{
+					"attention" : 63,
+					"meditation" : 11
+				},
+				"date" : "2013-08-22T21:43:18.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002aa",
+				"data" : 
+				{
+					"attention" : 70,
+					"meditation" : 13
+				},
+				"date" : "2013-08-22T21:43:20.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002a9",
+				"data" : 
+				{
+					"attention" : 50,
+					"meditation" : 29
+				},
+				"date" : "2013-08-22T21:43:22.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002a8",
+				"data" : 
+				{
+					"attention" : 26,
+					"meditation" : 21
+				},
+				"date" : "2013-08-22T21:43:24.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002a7",
+				"data" : 
+				{
+					"attention" : 17,
+					"meditation" : 1
+				},
+				"date" : "2013-08-22T21:43:26.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002a6",
+				"data" : 
+				{
+					"attention" : 69,
+					"meditation" : 26
+				},
+				"date" : "2013-08-22T21:43:28.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002a5",
+				"data" : 
+				{
+					"attention" : 74,
+					"meditation" : 35
+				},
+				"date" : "2013-08-22T21:43:29.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002a4",
+				"data" : 
+				{
+					"attention" : 56,
+					"meditation" : 21
+				},
+				"date" : "2013-08-22T21:43:31.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002a3",
+				"data" : 
+				{
+					"attention" : 47,
+					"meditation" : 37
+				},
+				"date" : "2013-08-22T21:43:32.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002a2",
+				"data" : 
+				{
+					"attention" : 53,
+					"meditation" : 14
+				},
+				"date" : "2013-08-22T21:43:34.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002a1",
+				"data" : 
+				{
+					"attention" : 74,
+					"meditation" : 34
+				},
+				"date" : "2013-08-22T21:43:35.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c0002a0",
+				"data" : 
+				{
+					"attention" : 84,
+					"meditation" : 53
+				},
+				"date" : "2013-08-22T21:43:37.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00029f",
+				"data" : 
+				{
+					"attention" : 90,
+					"meditation" : 54
+				},
+				"date" : "2013-08-22T21:43:39.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00029e",
+				"data" : 
+				{
+					"attention" : 67,
+					"meditation" : 43
+				},
+				"date" : "2013-08-22T21:43:41.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00029d",
+				"data" : 
+				{
+					"attention" : 61,
+					"meditation" : 41
+				},
+				"date" : "2013-08-22T21:43:42.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00029c",
+				"data" : 
+				{
+					"attention" : 53,
+					"meditation" : 38
+				},
+				"date" : "2013-08-22T21:43:44.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00029b",
+				"data" : 
+				{
+					"attention" : 53,
+					"meditation" : 51
+				},
+				"date" : "2013-08-22T21:43:46.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00029a",
+				"data" : 
+				{
+					"attention" : 53,
+					"meditation" : 64
+				},
+				"date" : "2013-08-22T21:43:47.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000299",
+				"data" : 
+				{
+					"attention" : 30,
+					"meditation" : 61
+				},
+				"date" : "2013-08-22T21:43:48.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000298",
+				"data" : 
+				{
+					"attention" : 43,
+					"meditation" : 50
+				},
+				"date" : "2013-08-22T21:43:50.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000297",
+				"data" : 
+				{
+					"attention" : 44,
+					"meditation" : 44
+				},
+				"date" : "2013-08-22T21:43:51.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000296",
+				"data" : 
+				{
+					"attention" : 81,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:43:53.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000295",
+				"data" : 
+				{
+					"attention" : 83,
+					"meditation" : 38
+				},
+				"date" : "2013-08-22T21:43:54.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000294",
+				"data" : 
+				{
+					"attention" : 57,
+					"meditation" : 29
+				},
+				"date" : "2013-08-22T21:43:56.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000293",
+				"data" : 
+				{
+					"attention" : 75,
+					"meditation" : 16
+				},
+				"date" : "2013-08-22T21:43:58.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000292",
+				"data" : 
+				{
+					"attention" : 74,
+					"meditation" : 37
+				},
+				"date" : "2013-08-22T21:43:59.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000291",
+				"data" : 
+				{
+					"attention" : 96,
+					"meditation" : 74
+				},
+				"date" : "2013-08-22T21:44:01.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000290",
+				"data" : 
+				{
+					"attention" : 100,
+					"meditation" : 81
+				},
+				"date" : "2013-08-22T21:44:03.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00028f",
+				"data" : 
+				{
+					"attention" : 80,
+					"meditation" : 75
+				},
+				"date" : "2013-08-22T21:44:05.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00028e",
+				"data" : 
+				{
+					"attention" : 53,
+					"meditation" : 69
+				},
+				"date" : "2013-08-22T21:44:07.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00028d",
+				"data" : 
+				{
+					"attention" : 38,
+					"meditation" : 91
+				},
+				"date" : "2013-08-22T21:44:09.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00028c",
+				"data" : 
+				{
+					"attention" : 35,
+					"meditation" : 69
+				},
+				"date" : "2013-08-22T21:44:11.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00028b",
+				"data" : 
+				{
+					"attention" : 63,
+					"meditation" : 43
+				},
+				"date" : "2013-08-22T21:44:13.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00028a",
+				"data" : 
+				{
+					"attention" : 70,
+					"meditation" : 43
+				},
+				"date" : "2013-08-22T21:44:15.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000289",
+				"data" : 
+				{
+					"attention" : 54,
+					"meditation" : 37
+				},
+				"date" : "2013-08-22T21:44:17.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000288",
+				"data" : 
+				{
+					"attention" : 54,
+					"meditation" : 20
+				},
+				"date" : "2013-08-22T21:44:19.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000287",
+				"data" : 
+				{
+					"attention" : 64,
+					"meditation" : 27
+				},
+				"date" : "2013-08-22T21:44:21.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000286",
+				"data" : 
+				{
+					"attention" : 64,
+					"meditation" : 34
+				},
+				"date" : "2013-08-22T21:44:22.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000285",
+				"data" : 
+				{
+					"attention" : 70,
+					"meditation" : 41
+				},
+				"date" : "2013-08-22T21:44:24.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000284",
+				"data" : 
+				{
+					"attention" : 69,
+					"meditation" : 44
+				},
+				"date" : "2013-08-22T21:44:25.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000283",
+				"data" : 
+				{
+					"attention" : 63,
+					"meditation" : 41
+				},
+				"date" : "2013-08-22T21:44:27.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000282",
+				"data" : 
+				{
+					"attention" : 54,
+					"meditation" : 51
+				},
+				"date" : "2013-08-22T21:44:28.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000281",
+				"data" : 
+				{
+					"attention" : 61,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:44:29.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000280",
+				"data" : 
+				{
+					"attention" : 47,
+					"meditation" : 13
+				},
+				"date" : "2013-08-22T21:44:31.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00027f",
+				"data" : 
+				{
+					"attention" : 47,
+					"meditation" : 7
+				},
+				"date" : "2013-08-22T21:44:33.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00027e",
+				"data" : 
+				{
+					"attention" : 66,
+					"meditation" : 23
+				},
+				"date" : "2013-08-22T21:44:34.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00027d",
+				"data" : 
+				{
+					"attention" : 69,
+					"meditation" : 50
+				},
+				"date" : "2013-08-22T21:44:36.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00027c",
+				"data" : 
+				{
+					"attention" : 50,
+					"meditation" : 61
+				},
+				"date" : "2013-08-22T21:44:38.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00027b",
+				"data" : 
+				{
+					"attention" : 60,
+					"meditation" : 43
+				},
+				"date" : "2013-08-22T21:44:40.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00027a",
+				"data" : 
+				{
+					"attention" : 74,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:44:42.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000279",
+				"data" : 
+				{
+					"attention" : 67,
+					"meditation" : 29
+				},
+				"date" : "2013-08-22T21:44:43.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000278",
+				"data" : 
+				{
+					"attention" : 61,
+					"meditation" : 34
+				},
+				"date" : "2013-08-22T21:44:45.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000277",
+				"data" : 
+				{
+					"attention" : 67,
+					"meditation" : 24
+				},
+				"date" : "2013-08-22T21:44:46.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000276",
+				"data" : 
+				{
+					"attention" : 60,
+					"meditation" : 47
+				},
+				"date" : "2013-08-22T21:44:48.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000275",
+				"data" : 
+				{
+					"attention" : 64,
+					"meditation" : 48
+				},
+				"date" : "2013-08-22T21:44:49.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000274",
+				"data" : 
+				{
+					"attention" : 50,
+					"meditation" : 51
+				},
+				"date" : "2013-08-22T21:44:51.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000273",
+				"data" : 
+				{
+					"attention" : 44,
+					"meditation" : 57
+				},
+				"date" : "2013-08-22T21:44:52.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000272",
+				"data" : 
+				{
+					"attention" : 38,
+					"meditation" : 51
+				},
+				"date" : "2013-08-22T21:44:54.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000271",
+				"data" : 
+				{
+					"attention" : 53,
+					"meditation" : 38
+				},
+				"date" : "2013-08-22T21:44:56.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000270",
+				"data" : 
+				{
+					"attention" : 51,
+					"meditation" : 27
+				},
+				"date" : "2013-08-22T21:44:58.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00026f",
+				"data" : 
+				{
+					"attention" : 50,
+					"meditation" : 29
+				},
+				"date" : "2013-08-22T21:44:59.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00026e",
+				"data" : 
+				{
+					"attention" : 61,
+					"meditation" : 21
+				},
+				"date" : "2013-08-22T21:45:01.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00026d",
+				"data" : 
+				{
+					"attention" : 57,
+					"meditation" : 34
+				},
+				"date" : "2013-08-22T21:45:03.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00026c",
+				"data" : 
+				{
+					"attention" : 74,
+					"meditation" : 30
+				},
+				"date" : "2013-08-22T21:45:05.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00026b",
+				"data" : 
+				{
+					"attention" : 74,
+					"meditation" : 30
+				},
+				"date" : "2013-08-22T21:45:07.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00026a",
+				"data" : 
+				{
+					"attention" : 74,
+					"meditation" : 30
+				},
+				"date" : "2013-08-22T21:45:09.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000269",
+				"data" : 
+				{
+					"attention" : 63,
+					"meditation" : 20
+				},
+				"date" : "2013-08-22T21:45:11.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000268",
+				"data" : 
+				{
+					"attention" : 63,
+					"meditation" : 27
+				},
+				"date" : "2013-08-22T21:45:13.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000267",
+				"data" : 
+				{
+					"attention" : 61,
+					"meditation" : 21
+				},
+				"date" : "2013-08-22T21:45:15.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000266",
+				"data" : 
+				{
+					"attention" : 74,
+					"meditation" : 23
+				},
+				"date" : "2013-08-22T21:45:16.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000265",
+				"data" : 
+				{
+					"attention" : 75,
+					"meditation" : 17
+				},
+				"date" : "2013-08-22T21:45:17.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000264",
+				"data" : 
+				{
+					"attention" : 51,
+					"meditation" : 8
+				},
+				"date" : "2013-08-22T21:45:19.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000263",
+				"data" : 
+				{
+					"attention" : 64,
+					"meditation" : 3
+				},
+				"date" : "2013-08-22T21:45:21.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000262",
+				"data" : 
+				{
+					"attention" : 70,
+					"meditation" : 4
+				},
+				"date" : "2013-08-22T21:45:22.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000261",
+				"data" : 
+				{
+					"attention" : 78,
+					"meditation" : 14
+				},
+				"date" : "2013-08-22T21:45:23.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000260",
+				"data" : 
+				{
+					"attention" : 78,
+					"meditation" : 14
+				},
+				"date" : "2013-08-22T21:45:25.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00025f",
+				"data" : 
+				{
+					"attention" : 61,
+					"meditation" : 10
+				},
+				"date" : "2013-08-22T21:45:27.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00025e",
+				"data" : 
+				{
+					"attention" : 57,
+					"meditation" : 4
+				},
+				"date" : "2013-08-22T21:45:29.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00025d",
+				"data" : 
+				{
+					"attention" : 77,
+					"meditation" : 8
+				},
+				"date" : "2013-08-22T21:45:31.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00025c",
+				"data" : 
+				{
+					"attention" : 70,
+					"meditation" : 3
+				},
+				"date" : "2013-08-22T21:45:33.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00025b",
+				"data" : 
+				{
+					"attention" : 47,
+					"meditation" : 11
+				},
+				"date" : "2013-08-22T21:45:35.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00025a",
+				"data" : 
+				{
+					"attention" : 50,
+					"meditation" : 26
+				},
+				"date" : "2013-08-22T21:45:37.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000259",
+				"data" : 
+				{
+					"attention" : 44,
+					"meditation" : 44
+				},
+				"date" : "2013-08-22T21:45:39.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000258",
+				"data" : 
+				{
+					"attention" : 44,
+					"meditation" : 44
+				},
+				"date" : "2013-08-22T21:45:40.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000257",
+				"data" : 
+				{
+					"attention" : 44,
+					"meditation" : 44
+				},
+				"date" : "2013-08-22T21:45:42.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000256",
+				"data" : 
+				{
+					"attention" : 44,
+					"meditation" : 44
+				},
+				"date" : "2013-08-22T21:45:43.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000255",
+				"data" : 
+				{
+					"attention" : 40,
+					"meditation" : 51
+				},
+				"date" : "2013-08-22T21:45:45.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000254",
+				"data" : 
+				{
+					"attention" : 50,
+					"meditation" : 60
+				},
+				"date" : "2013-08-22T21:45:47.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000253",
+				"data" : 
+				{
+					"attention" : 50,
+					"meditation" : 61
+				},
+				"date" : "2013-08-22T21:45:49.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000252",
+				"data" : 
+				{
+					"attention" : 60,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:45:51.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000251",
+				"data" : 
+				{
+					"attention" : 60,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:45:53.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000250",
+				"data" : 
+				{
+					"attention" : 60,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:45:55.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00024f",
+				"data" : 
+				{
+					"attention" : 60,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:45:57.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00024e",
+				"data" : 
+				{
+					"attention" : 70,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:45:59.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00024d",
+				"data" : 
+				{
+					"attention" : 70,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:46:00.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00024c",
+				"data" : 
+				{
+					"attention" : 70,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:46:02.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00024b",
+				"data" : 
+				{
+					"attention" : 70,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:46:04.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00024a",
+				"data" : 
+				{
+					"attention" : 70,
+					"meditation" : 40
+				},
+				"date" : "2013-08-22T21:46:05.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000249",
+				"data" : 
+				{
+					"attention" : 75,
+					"meditation" : 35
+				},
+				"date" : "2013-08-22T21:46:07.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000248",
+				"data" : 
+				{
+					"attention" : 54,
+					"meditation" : 35
+				},
+				"date" : "2013-08-22T21:46:09.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000247",
+				"data" : 
+				{
+					"attention" : 30,
+					"meditation" : 27
+				},
+				"date" : "2013-08-22T21:46:11.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000246",
+				"data" : 
+				{
+					"attention" : 38,
+					"meditation" : 41
+				},
+				"date" : "2013-08-22T21:46:13.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000245",
+				"data" : 
+				{
+					"attention" : 54,
+					"meditation" : 44
+				},
+				"date" : "2013-08-22T21:46:14.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000244",
+				"data" : 
+				{
+					"attention" : 66,
+					"meditation" : 51
+				},
+				"date" : "2013-08-22T21:46:16.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000243",
+				"data" : 
+				{
+					"attention" : 66,
+					"meditation" : 51
+				},
+				"date" : "2013-08-22T21:46:17.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000242",
+				"data" : 
+				{
+					"attention" : 66,
+					"meditation" : 51
+				},
+				"date" : "2013-08-22T21:46:19.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000241",
+				"data" : 
+				{
+					"attention" : 90,
+					"meditation" : 44
+				},
+				"date" : "2013-08-22T21:46:20.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c000240",
+				"data" : 
+				{
+					"attention" : 90,
+					"meditation" : 44
+				},
+				"date" : "2013-08-22T21:46:22.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00023f",
+				"data" : 
+				{
+					"attention" : 90,
+					"meditation" : 44
+				},
+				"date" : "2013-08-22T21:46:23.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00023e",
+				"data" : 
+				{
+					"attention" : 88,
+					"meditation" : 43
+				},
+				"date" : "2013-08-22T21:46:25.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00023d",
+				"data" : 
+				{
+					"attention" : 87,
+					"meditation" : 27
+				},
+				"date" : "2013-08-22T21:46:27.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00023c",
+				"data" : 
+				{
+					"attention" : 84,
+					"meditation" : 27
+				},
+				"date" : "2013-08-22T21:46:28.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00023b",
+				"data" : 
+				{
+					"attention" : 67,
+					"meditation" : 21
+				},
+				"date" : "2013-08-22T21:46:30.000Z"
+			},
+			
+			{
+				"_id" : "521686c744a0b5675c00023a",
+				"data" : 
+				{
+					"attention" : 67,
+					"meditation" : 35
+				},
+				"date" : "2013-08-22T21:46:31.000Z"
+			}
+		]
+	},
+	"route" : "showJourney"
+}
+
