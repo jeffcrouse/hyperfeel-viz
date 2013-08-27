@@ -147,5 +147,7 @@ void main(void)
 	float barSample = uv.x*1000. + time;
 	a *= pow( abs(sin( barSample ) + cos( barSample )), 4.);
 	
+	if(a == 0.)	discard;
+	
 	gl_FragColor = vec4( col, a);
 }

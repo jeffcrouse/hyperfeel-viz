@@ -147,5 +147,7 @@ void main(void)
 	vec2 dotSample = uv*vec2(1800., 600.) + vec2(time,0.);
 	a *= pow( (sin( dotSample.x ) + cos( dotSample.y )), 1.);
 	
+	if(a == 0.)	discard;
+	
 	gl_FragColor = vec4( col, a);// * vec4( data.xy, 1., 1. );
 }

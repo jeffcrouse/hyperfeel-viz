@@ -5,6 +5,7 @@
 #include "ofxLibwebsockets.h"
 #include "Journey.h"
 #include "Onion.h"
+#include "HyperfeelTween.h"
 
 class HyperFeel_Data {
 public:
@@ -157,7 +158,30 @@ public:
 	};
 	
 	//animation
-	float elapsedTime;
+	vector <string> animationPresets;
+	
+	map<string, float>* p0;
+	map<string, float>* p1;
+	
+	float animationPresetTime;
+	int animationPresetIndex0, animationPresetIndex1;
+	bool bPlayAnimation;
+	void tweenEventHandler(TweenEvent &e);
+	TWEEN tween;
+	
+	void cachePresetValues();
+	bool bCachedPresetValues;
+	map< string, map< string, float > > presets;
+//	map< string, map<string, ofxUIWidget> > presets;
+	
+	float variation;
+	string variationKey;
+	Tween * variationTween;
+	
+	float presetMix;
+	string presetMixKey;
+	
+	float elapsedTime, timeScale, lasttime, timedelta;
 	
 	//camera
 	ofEasyCam camera;
@@ -165,6 +189,8 @@ public:
 	//meshes
 	ofShader dataShader;
 	
+	ofImage outImage;
+	bool captrure;
 	
 	//FBO
 	ofFbo fbo;

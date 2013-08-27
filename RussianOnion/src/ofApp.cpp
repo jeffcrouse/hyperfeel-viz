@@ -37,7 +37,7 @@ void ofApp::setup(){
 	bOnionSetup = false;
 	
 	//	journey colors
-	colorMap["red"].set( 255, 99, 99 );				// = ofColor::red;
+	colorMap["red"].set( 255, 99, 99 );			// = ofColor::red;
 	colorMap["orange"].set( 255, 182, 42 );			// = ofColor::orange;
 	colorMap["yellow"].set( 236,  236, 146 );		// = ofColor::yellow;
 	colorMap["green"].set( 79, 230, 60 );			// = ofColor::green;
@@ -45,9 +45,7 @@ void ofApp::setup(){
 	colorMap["indigo"].set( 131, 102, 212 );		// = ofColor::indigo;
 	colorMap["violet"].set( 227, 59, 207 );			// = ofColor::violet;
 		
-	fbo.createAndAttachTexture(GL_RGBA, 1);
-	fboMap.allocate( 1024, 1024, GL_RGBA, 4 );
-	
+//	fbo.allocate(1024*8, 1024*8);
 	// -
 	loadShaders();
 	
@@ -63,7 +61,7 @@ void ofApp::setup(){
 		
 		//hackey population of journeys
 		int file_index=0;
-		for(int i=0; i<60; i++){
+		for(int i=0; i<35; i++){
 			ofBuffer buffer = ofBufferFromFile("Journeys/journey_showJourney" + ofToString(file_index) + ".json");
 			if(buffer.size()){
 				reader.parse( buffer.getText(), json );
@@ -75,14 +73,35 @@ void ofApp::setup(){
 			}
 		}
 	}
-
+	
+	//animation
+	animationPresetTime = 10;
+	animationPresetIndex0 = 0;
+	animationPresetIndex1 = 1;
+	animationPresets.push_back("d_0");
+	animationPresets.push_back("d_1");
+	animationPresets.push_back("d_2");
+	animationPresets.push_back("d_3");
+	animationPresets.push_back("d_4");
+	animationPresets.push_back("d_5");
+	animationPresets.push_back("d_6");
+	animationPresets.push_back("d_7");
+	animationPresets.push_back("d_8");
+	animationPresets.push_back("d_9");
+	bPlayAnimation = false;
+	//add tween listener
+	ofAddListener( TweenEvent::events, this, &ofApp::tweenEventHandler );
+	
+	//kick off animation variation
+	variationKey = tween.addTween( variation, 0, 1, ofGetElapsedTimef(), 3, "variation");
+	variationTween = tween.getTween( variationKey );//<--a looping tween( basically a timer ) that triggers a transition between presets
 }
 
 
 void ofApp::setDefaults(){
 	camera.setFarClip(20000);
 	camera.setNearClip(20);
-	
+	timeScale = 1.;
 	radius = 10;
 	nearDepthScale = 3000;
 	farDepthScale = 3500;
@@ -112,6 +131,7 @@ void ofApp::setupUI(){
 	guiMain->setColorBack(ofxUIColor(20, 20, 20, 150));
 	
 	guiMain->addSpacer();
+	guiMain->addToggle("playAnimation", &bPlayAnimation );
 	guiMain->addLabel("render Types");
 	guiMain->addRadio("renderTypes", renderTypes );
 	
@@ -119,6 +139,7 @@ void ofApp::setupUI(){
 	guiMain->addSpacer();
 	guiMain->addFPS();
 	guiMain->addSpacer();
+	guiMain->addSlider("timeScl", -5, 5, &timeScale );
 	guiMain->addLabel("global rendering");
 	guiMain->addToggle("depthTest", bDepthTest);
 
@@ -139,7 +160,6 @@ void ofApp::setupUI(){
 	cout << "shaderNames.size(): "<< shaderNames.size() << endl;
 	guiMain->addRadio("shaders", shaderNames );
 	
-	
 //	vector<string> glDrawTypes;
 //	glDrawTypes.push_back("GL_QUADS");
 //	glDrawTypes.push_back("GL_LINES");
@@ -147,6 +167,7 @@ void ofApp::setupUI(){
 //	guiMain->addSpacer();
 //	
 //	guiMain->addRadio("ribbonDrawType", glDrawTypes );
+	
 	
 	
 	guiMain->autoSizeToFitWidgets();
@@ -181,6 +202,7 @@ void ofApp::setupUI(){
 	//load our working sttings
 	//	loadPreset("Working");
 	nextPreset = "Working";
+	bCachedPresetValues = false;
 }
 
 void ofApp::guiEvent(ofxUIEventArgs &e){
@@ -264,6 +286,82 @@ void ofApp::guiEvent(ofxUIEventArgs &e){
 	
 }
 
+void ofApp::tweenEventHandler(TweenEvent &e){
+	
+	//animation variation
+	if(e.name == variationKey){
+		if( e.message == "started")
+		{
+			
+			cout << e.name << " : " << e.message << endl;
+		}
+		
+		else if( e.message == "updated")
+		{
+			
+		}
+		
+		else if( e.message == "ended")
+		{
+			cout << e.name << " : " << e.message << endl;
+			//variationKey = tween.addTween( variation, 0, 1, ofGetElapsedTimef(), 10, "variation");
+			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetTime, TWEEN_LINEAR, TWEEN_IN, "variation" );
+			variationTween->bKeepAround = true;
+			
+			presetMixKey = tween.addTween( presetMix, 0, 1, ofGetElapsedTimef(), animationPresetTime*.99, "presetMix" );
+		}
+	}
+	
+	if( bPlayAnimation && e.name == "presetMix")
+	{
+		cout << e.name << " : " << e.message << endl;		
+		
+		p0 = &presets[ animationPresets[animationPresetIndex0] ];
+		p1 = &presets[ animationPresets[animationPresetIndex1] ];
+		
+		if(e.message == "started")
+		{
+			
+			
+			cout << e.name << " : " << "started" << endl;
+
+		}
+		if(e.message == "updated")
+		{
+			if(bPlayAnimation && p0 != NULL && p1 != NULL)
+			{
+				ofxUIWidget *w;
+				for (map<string, float>::iterator it=p0->begin(); it!=p0->end(); it++)
+				{
+					for (int i=0; i<guis.size(); i++)
+					{
+						w = guis[i]->getWidget( it->first );
+						if(w != NULL )
+						{
+							float val = ofMap(presetMix, 0, 1, (*p0)[it->first], (*p1)[it->first]);
+							((ofxUISlider *)w)->setValue( val );
+						}
+					}
+				}
+			}
+		}
+		
+		if(e.message == "ended"){
+			animationPresetIndex0++;
+			animationPresetIndex1++;
+			
+			if(animationPresetIndex0 >= animationPresets.size() ){
+				animationPresetIndex0 = 0;
+			}
+			if(animationPresetIndex1>= animationPresets.size() ){
+				animationPresetIndex1 = 0;
+			}
+			
+			
+		}
+	}
+}
+
 //--------------------------------------------------------------
 void ofApp::loadShaders()
 {
@@ -317,6 +415,10 @@ void ofApp::update()
 		savePreset();
 	}
 	if(currentPresetName != nextPreset){
+		if(!bCachedPresetValues){
+			bCachedPresetValues = true;
+			cachePresetValues();
+		}
 		loadPreset( nextPreset );
 	}
 	
@@ -333,8 +435,12 @@ void ofApp::update()
 	}
 	
 	//animation
-	elapsedTime = ofGetElapsedTimef();
-	float t = elapsedTime * 3;
+	float currentTime = ofGetElapsedTimef();
+	timedelta = currentTime - lasttime;
+	lasttime = currentTime;
+	elapsedTime += timedelta * timeScale;
+	
+	//tweens auto update vi ofListener
 }
 
 void ofApp::retryColors(){
@@ -347,8 +453,10 @@ void ofApp::retryColors(){
 void ofApp::draw()
 {
 	ofPushStyle();
-	ofBackground( 0,0,0 );
 	
+	if( captrure )	fbo.begin();
+	ofClear(0,0,0,0);
+		
 	if (bDepthTest) {
 		glEnable( GL_DEPTH_TEST);
 	}else{
@@ -363,8 +471,17 @@ void ofApp::draw()
 		glDisable(GL_DEPTH_TEST);
 	}
 	
+	if( captrure )	fbo.end();
 	
 	ofPopStyle();
+	if( captrure ){
+		captrure = false;
+		
+		fbo.readToPixels(outImage);
+		outImage.update();
+		outImage.saveImage("d_4Large"+ofGetTimestampString()+".png");
+	}
+//	outImage.draw( 0, 0, ofGetWidth(), ofGetHeight() );
 }
 
 //--------------------------------------------------------------
@@ -656,6 +773,44 @@ vector<string> ofApp::getPresetNames()
 	return presetNames;
 }
 
+void ofApp::cachePresetValues(){
+	vector<string> presetNames = getPresetNames();
+	
+	for (int i=0; i<presetNames.size(); i++) {
+		presets[ presetNames[i] ];
+	}
+	
+	for (int i=0; i<presetNames.size(); i++)
+	{
+		for (int j=0; j<guis.size(); j++) {
+			string fileName = "Presets/" + presetNames[i] + "/"+guis[j]->getName()+".xml";
+			
+			ofxXmlSettings xml;
+			xml.load( fileName );
+			for (int k=0; k<xml.getNumTags("Widget"); k++) {
+				xml.pushTag("Widget", k);
+				string name = xml.getValue("Name", "no_name");
+				int kind = xml.getValue("Kind", 0);
+					
+				if( kind == 4 ){
+					presets[ presetNames[i] ][ name ] = xml.getValue("Value", 0.);
+				}
+
+				xml.popTag();
+			}
+			
+		}
+	}
+	
+	//print the float values
+	for (map<string, map< string, float > >::iterator it = presets.begin(); it != presets.end(); it++) {
+		cout << endl << "preset name: "<< it->first << endl;
+		for (map<string, float>::iterator jt=it->second.begin(); jt!=it->second.end(); jt++) {
+			cout << it->first << " : " << jt->first << " : " << jt->second << endl;
+		}
+	}
+	
+}
 void ofApp::loadPreset( string presetName)
 {
 	currentPresetName = presetName;
@@ -663,10 +818,8 @@ void ofApp::loadPreset( string presetName)
 	for(int i = 0; i < guis.size(); i++)
     {
 		cout << "Presets/" + presetName + "/"+guis[i]->getName()+".xml" << endl;
-        guis[i]->loadSettings( "Presets/" + presetName + "/"+guis[i]->getName()+".xml");
-		
+		guis[i]->loadSettings( "Presets/" + presetName + "/"+guis[i]->getName()+".xml");
 		presetRadio->activateToggle( presetName );
-		
     }
 }
 
@@ -714,6 +867,10 @@ void ofApp::keyPressed(int key)
 	
 	if(key == 'c'){
 		retryColors();
+	}
+	
+	if(key == 'e' || key == 'E'){
+//		captrure = true;
 	}
 }
 //--------------------------------------------------------------
@@ -834,62 +991,6 @@ void ofApp::handleRoute( Json::Value& _json){
     else {
         ofLogWarning() << "Route " << route << " unknown..." << endl;
     }
-	
-    
-//    if(route=="init") {
-//		if(bDebug)	cout << "message == init" << endl;
-//		// on start up to populate the animation
-//		vector <string> outStrings;
-//        for(int i=0; i<_json["journeys"].size(); i++) {
-//			
-//			if(_json["journeys"][i]["readings"].size() > 100){
-//				//false for not animating in
-//				journeys.push_back(new Journey(_json["journeys"][i], false));
-//			}
-//			
-//        }
-//		
-//		if(journeys.size() < 20){
-//			for(int i=0; i<_json["journeys"].size(); i++) {
-//				
-//				if(_json["journeys"][i]["readings"].size() > 100){
-//					//false for not animating in
-//					journeys.push_back(new Journey(_json["journeys"][i], false));
-//				}
-//			}
-//		}
-//		
-//		
-//		if(journeys.size() < 40){
-//			for(int i=0; i<_json["journeys"].size(); i++) {
-//				
-//				if(_json["journeys"][i]["readings"].size() > 100){
-//					//false for not animating in
-//					journeys.push_back(new Journey(_json["journeys"][i], false));
-//				}
-//			}
-//		}
-//		
-//		bJourniesNeedUpdate = true;
-//    }
-//    else if(route=="journey") {
-//		if(bDebug)	cout << "message == journey" << endl;
-//		
-//		//true for animating in
-//        journeys.push_back(new Journey(json["journey"], true));
-//		
-//		
-//		bJourniesNeedUpdate = true;
-//		
-//    }
-//    else if(route=="tick") {
-//		//
-//		//		//for testing, can go if iritating
-//		//        ofLogVerbose() << "server time: " << iso8601toTimestamp(json["date"].asString());
-//    }
-//    else {
-//        ofLogWarning() << "Route " << route << " unknown..." << endl;
-//    }
 	
 }
 void ofApp::onMessage( ofxLibwebsockets::Event& args ){

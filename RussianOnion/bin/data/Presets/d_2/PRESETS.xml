@@ -30,6 +30,11 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
+    <Name>_8</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>d_0</Name>
     <Value>0</Value>
 </Widget>
@@ -75,11 +80,16 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>Working</Name>
+    <Name>d_9</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>_8</Name>
+    <Name>lrg_0</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>Working</Name>
     <Value>0</Value>
 </Widget>
