@@ -93,6 +93,7 @@ void TWEEN::update( ofEventArgs &args)
 	}
 }
 
+//example tween event handles
 void TWEEN::tweenEventHandler( TweenEvent &e)
 {
 	//simple example of how to use events

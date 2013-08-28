@@ -31,7 +31,8 @@ void ofApp::setup(){
 	
 	//Journy stuff
 	bSaveJsonsToFile = false;//for debuggin it was faster to load them from file rather then wait for the server
-	bLoadJsonsFromFile = true;
+	bLoadJsonsFromFile = false;
+	
 	bJourniesNeedUpdate = false;
 	
 	bOnionSetup = false;
@@ -90,16 +91,15 @@ void ofApp::setup(){
 	animationPresets.push_back("d_9");
 	bPlayAnimation = true;
 	
-	//add tween listener
-	ofAddListener( TweenEvent::events, this, &ofApp::tweenEventHandler );
-	
 	//kick off animation variation
 	variationKey = tween.addTween( variation, 0, 1, ofGetElapsedTimef(), ofGetElapsedTimef(), "variation");
-	variationTween = tween.getTween( variationKey );//<--a looping tween( basically a timer ) that triggers a transition between presets
+	variationTween = tween.getTween( variationKey );//<--a looping tween( basically a timer ) that triggers transitions between presets
 	
 	bAddingRibbon = false;
 	newRibbonScale = 1;
 	
+	//add tween listener
+	ofAddListener( TweenEvent::events, this, &ofApp::tweenEventHandler );
 }
 
 
@@ -201,7 +201,8 @@ void ofApp::setupUI(){
 	bCachedPresetValues = false;
 }
 
-void ofApp::guiEvent(ofxUIEventArgs &e){
+void ofApp::guiEvent(ofxUIEventArgs &e)
+{
 	
 	string name = e.widget->getName();
 	int kind = e.widget->getKind();
@@ -270,12 +271,15 @@ void ofApp::guiEvent(ofxUIEventArgs &e){
 	
 }
 
-void ofApp::tweenEventHandler(TweenEvent &e){
+void ofApp::tweenEventHandler(TweenEvent &e)
+{
 	
 	float newRibbonAnimationSpan = 2;
 	//action when a new ribbon animates in
-	if(e.name == addRibbonTween){
-		if( e.message == "started" ){
+	if(e.name == addRibbonTween)
+	{
+		if( e.message == "started" )
+		{
 			if(!bAddingRibbon)
 			{
 				bAddingRibbon = true;
@@ -287,10 +291,14 @@ void ofApp::tweenEventHandler(TweenEvent &e){
 				newRibbonShaderScale = 0;
 			}
 		}
-		else if( e.message == "updated" ){
+		
+		else if( e.message == "updated" )
+		{
 			
 		}
-		else if( e.message == "ended" ){
+		
+		else if( e.message == "ended" )
+		{
 			//remove the old journeys & onions
 			onions.erase( onions.begin() );
 			journeys.erase( journeys.begin() );
@@ -300,13 +308,15 @@ void ofApp::tweenEventHandler(TweenEvent &e){
 	}
 	
 	//if it's rotated down animate in the new ribbon
-	if( bAddingRibbon && e.name == "globalRotX" && e.message == "ended" ){
+	if( bAddingRibbon && e.name == "globalRotX" && e.message == "ended" )
+	{
 		tween.addTween( newRibbonShaderScale, 0, 1, ofGetElapsedTimef(), newRibbonAnimationSpan, "newRibbonShaderScale" );
 	}
 	
 	
 	//ende the adding new ribbon transition
-	if(e.name == rotatedBack && e.message == "ended" ){
+	if(e.name == rotatedBack && e.message == "ended" )
+	{
 		rotatedBack = "";
 		bAddingRibbon = false;
 	}
@@ -314,7 +324,8 @@ void ofApp::tweenEventHandler(TweenEvent &e){
 	
 	
 	//animation variation over time -> blending presets.
-	if(e.name == variationKey){
+	if(e.name == variationKey)
+	{
 		if( e.message == "started")
 		{
 			//cout << e.name << " : " << e.message << endl;
@@ -339,9 +350,10 @@ void ofApp::tweenEventHandler(TweenEvent &e){
 	if( bPlayAnimation && e.name == "presetMix")
 	{
 		//cout << e.name << " : " << e.message << endl;
-		
-		p0 = &presets[ animationPresets[ animationPresetIndex0 ] ];
-		p1 = &presets[ animationPresets[ animationPresetIndex1 ] ];
+		if(p0 == NULL || p1 == NULL){
+			p0 = &presets[ animationPresets[ animationPresetIndex0 ] ];
+			p1 = &presets[ animationPresets[ animationPresetIndex1 ] ];
+		}
 		
 		if(e.message == "started")
 		{
@@ -369,18 +381,20 @@ void ofApp::tweenEventHandler(TweenEvent &e){
 			}
 		}
 		
-		if(e.message == "ended"){
+		if(e.message == "ended")
+		{
 			animationPresetIndex0++;
 			animationPresetIndex1++;
 			
-			if(animationPresetIndex0 >= animationPresets.size() ){
+			if( animationPresetIndex0 >= animationPresets.size() ){
 				animationPresetIndex0 = 0;
 			}
-			if(animationPresetIndex1>= animationPresets.size() ){
+			if( animationPresetIndex1 >= animationPresets.size() ){
 				animationPresetIndex1 = 0;
 			}
 			
-			
+			p0 = &presets[ animationPresets[ animationPresetIndex0 ] ];
+			p1 = &presets[ animationPresets[ animationPresetIndex1 ] ];
 		}
 	}
 }
@@ -661,6 +675,8 @@ void ofApp::drawOnion(){
 	if(!bOnionSetup){
 		setupOnion();
 	}
+	
+	//TODO: magic number
 	//update onion transforms
 	ofVec3f Eul( 0, pow(sin(elapsedTime * .8), 3.)*3, pow(sin(elapsedTime * .4), 3.)*10. );
 	ofQuaternion q;
@@ -703,9 +719,10 @@ void ofApp::drawOnion(){
 //	for (int i=onions.size()-1; i>=0; i--) {
 	for (int i=0; i<onions.size(); i++) {
 
-		
 		ofPushMatrix();
 		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
+		
+		//TODO: magic number
 		ofRotate(((onions.size()-i-1)*elapsedTime)*3., 0, 0, 1);
 		
 		//set ribbon color
@@ -932,6 +949,8 @@ void ofApp::keyPressed(int key)
 		}
 	}
 }
+
+
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key)
 {
@@ -1038,6 +1057,8 @@ void ofApp::handleRoute( Json::Value& _json)
 		//true for animating in
         journeys.push_back( new Journey(json["journey"], true) );
 		bJourniesNeedUpdate = true;
+		
+		addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), 4, "addRibbon", TWEEN_SMOOTHERSTEP );
     }
 	
     else if(route=="removeJourney") {
