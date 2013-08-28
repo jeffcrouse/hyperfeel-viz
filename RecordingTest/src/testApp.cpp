@@ -12,7 +12,7 @@ void testApp::setup(){
     audioLevelsPreview.allocate(320, 240);
     frame.allocate(640, 480, OF_IMAGE_COLOR);
     
-    spread = 1.5;
+    spread = 2.0;
     bRecording = false;
     cam.initGrabber(320, 240);
     
@@ -20,24 +20,79 @@ void testApp::setup(){
     //  Set up audio
     //
     masterMixer.setInputBusCount(2);
-
-    attentionMixer.setInputBusCount(N_ATTENTION_LOOPS);
+    
+    reverb = ofxAudioUnit(kAudioUnitType_Effect, kAudioUnitSubType_MatrixReverb);
+    varispeed = varispeed = ofxAudioUnit(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
+    lowpass = ofxAudioUnit(kAudioUnitType_Effect, kAudioUnitSubType_LowPassFilter);
+    delay = ofxAudioUnit(kAudioUnitType_Effect, kAudioUnitSubType_Delay);
+    distortion = ofxAudioUnit(kAudioUnitType_Effect, kAudioUnitSubType_Distortion);
+    
+    
+//    -BrainWave01-Both.wav -- do not use
+//    -BrainWave02-Med.wav - this sound can't be loud 
+//    -BrainWave03-Attn.wav - to use with delay. conflicts with 07/09
+//    -BrainWave04-Both.wav - this can be relatively constant
+//    -BrainWave05-Attn.wav - not sure this one works. DNU for now
+//    -BrainWave06-Attn.wav - sort of conflicts with sound 04. BETTER AT LOWER ATT
+//    -BrainWave07-Attn.wav - sort of conflicts with sound 03. delay can be used on this as well BETTER AT HIGHER ATT
+//    -BrainWave08-Med.wav  - sort of conflics with 15, 12, 13
+//    -BrainWave09-Attn.wav - sort of conflicts with 07, 03. 
+//    -BrainWave10-Attn.wav - MID ATTN
+//    -BrainWave11-Med.wav - very calm moments 
+//    -BrainWave12-Med.wav - sort of conflicts with 15
+//    -BrainWave13-Med.wav - sort of conflics with 12
+//    -BrainWave14-Both.wav - sort of conflicts with 9. HIGH MED
+//    -BrainWave15-Med.wav  - conflicts with 12, 13, 8
+//    -BRainWave16-Attn.wav - MID ATTN
+//    BrainWave17-Attn.wav - this sound can't play with many other sounds (blink?)
+    
+    
+    attention_sounds.push_back("5minsilence.wav");
+    attention_sounds.push_back("sounds2/BrainWave03-Attn.wav");
+    attention_sounds.push_back("sounds2/BrainWave06-Attn.wav"); // DON'T USE WITH 4
+    attention_sounds.push_back("5minsilence.wav");
+    attention_sounds.push_back("sounds2/BRainWave16-Attn.wav");
+    attention_sounds.push_back("sounds2/BrainWave07-Attn.wav");
+    attention_sounds.push_back("sounds2/BrainWave10-Attn.wav");
+    attention_sounds.push_back("5minsilence.wav");
+    attention_sounds.push_back("sounds2/BrainWave09-Attn.wav");
+    attention_sounds.push_back("sounds2/BrainWave17-Attn.wav");
+    attention_sounds.push_back("5minsilence.wav");
+    
+    meditation_sounds.push_back("sounds2/5minsilence.wav");
+    meditation_sounds.push_back("sounds2/BrainWave15-Med.wav");
+    meditation_sounds.push_back("sounds2/BrainWave11-Med.wav");
+    meditation_sounds.push_back("sounds2/5minsilence.wav"); //BrainWave08-Med.wav"); // lower level
+    meditation_sounds.push_back("sounds2/BrainWave04-Both.wav");
+    meditation_sounds.push_back("sounds2/BrainWave12-Med.wav");
+    meditation_sounds.push_back("sounds2/BrainWave14-Both.wav");
+    meditation_sounds.push_back("sounds2/BrainWave13-Med.wav"); 
+    meditation_sounds.push_back("sounds2/5minsilence.wav");
+    
+    
+    attentionVolume = new float[ attention_sounds.size() ];
+    attentionLoops = new ofxAudioUnitFilePlayer[ attention_sounds.size() ];
+    attentionMixer.setInputBusCount(attention_sounds.size());
     attentionMixer.connectTo(masterMixer, 0);
-    for(int i=0; i<N_ATTENTION_LOOPS; i++) {
-        ostringstream fname;
-        fname << "sounds/Att" << std::setfill('0') << std::setw(2) << (i+1) << ".wav";
-        attentionLoops[i].setFile(ofFilePath::getAbsolutePath(fname.str()));
+    for(int i=0; i<attention_sounds.size(); i++) {
+        string fname = attention_sounds[i];
+        attentionLoops[i].setFile(ofFilePath::getAbsolutePath(fname));
         attentionLoops[i].connectTo(attentionMixer, i);
         attentionLoops[i].loop();
         attentionMixer.setInputVolume(0, i);
     }
     
-    meditationMixer.setInputBusCount(N_MEDITATION_LOOPS);
+    
+    
+
+    
+    meditationVolume = new float[ meditation_sounds.size() ];
+    meditationLoops = new ofxAudioUnitFilePlayer[ meditation_sounds.size() ];
+    meditationMixer.setInputBusCount(meditation_sounds.size());
     meditationMixer.connectTo(masterMixer, 1);
-    for(int i=0; i<N_MEDITATION_LOOPS; i++) {
-        ostringstream fname;
-        fname << "sounds/Med" << std::setfill('0') << std::setw(2) << (i+1) << ".wav";
-        meditationLoops[i].setFile(ofFilePath::getAbsolutePath(fname.str()));
+    for(int i=0; i<meditation_sounds.size(); i++) {
+        string fname = meditation_sounds[i];
+        meditationLoops[i].setFile(ofFilePath::getAbsolutePath(fname));
         meditationLoops[i].connectTo(meditationMixer, i);
         meditationLoops[i].loop();
         meditationMixer.setInputVolume(0, i);
@@ -45,27 +100,20 @@ void testApp::setup(){
     
     
     
-    reverb = ofxAudioUnit(kAudioUnitType_Effect, kAudioUnitSubType_MatrixReverb);
-    varispeed = varispeed = ofxAudioUnit(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
-    lowpass = ofxAudioUnit(kAudioUnitType_Effect, kAudioUnitSubType_LowPassFilter);
-    //compressor = ofxAudioUnit(kAudioUnitType_Effect, kAudioUnitSubType_DynamicsProcessor);
-    delay = ofxAudioUnit(kAudioUnitType_Effect, kAudioUnitSubType_Delay);
-    distortion = ofxAudioUnit(kAudioUnitType_Effect, kAudioUnitSubType_Distortion);
+
     
     reverb.printParameterList();
     varispeed.printParameterList();
     lowpass.printParameterList();
-    //compressor.printParameterList();
     delay.printParameterList();
     distortion.printParameterList();
         
     masterMixer
-        .connectTo(reverb)
-        .connectTo(lowpass)
-        //.connectTo(compressor)
-        .connectTo(delay)
-        .connectTo(distortion)
-        .connectTo(varispeed)
+//        .connectTo(reverb)
+//        .connectTo(lowpass)
+//        .connectTo(delay)
+//        .connectTo(distortion)
+//        .connectTo(varispeed)
         .connectTo(output);
     output.start();
     
@@ -99,7 +147,7 @@ void testApp::setup(){
     //  SoundStream setup
     //
     soundStream.listDevices();
-    soundStream.setDeviceID(5);
+    //soundStream.setDeviceID(5);
     soundStream.setup(this, 0, channels, sampleRate, 256, 4);
 
     
@@ -180,18 +228,18 @@ void testApp::guiEvent(ofxUIEventArgs &e){
 void testApp::update(){
     float max_volume = 1/(float)ceil(spread);
     
-    _attention.x += 0.002;
-    _meditation.x += 0.002;
-    attention = ofNoise(_attention.x, _attention.y)*N_ATTENTION_LOOPS;
-    meditation = ofNoise(_meditation.x, _meditation.y)*N_MEDITATION_LOOPS;
+    _attention.x += 0.001;
+    _meditation.x += 0.001;
+    attention = ofNoise(_attention.x, _attention.y)*attention_sounds.size();
+    meditation = ofNoise(_meditation.x, _meditation.y)*meditation_sounds.size();
     
-    for(int i=0; i<N_ATTENTION_LOOPS; i++) {
+    for(int i=0; i<attention_sounds.size(); i++) {
         float dist = fabs(attention-i);
         attentionVolume[i] = ofMap(dist, 0, spread, max_volume, 0, true);
         attentionMixer.setInputVolume(attentionVolume[i], i);
     }
 
-    for(int i=0; i<N_MEDITATION_LOOPS; i++) {
+    for(int i=0; i<meditation_sounds.size(); i++) {
         float dist = fabs(meditation-i);
         meditationVolume[i] = ofMap(dist, 0, spread, max_volume, 0, true);
         meditationMixer.setInputVolume(meditationVolume[i], i);
@@ -215,7 +263,7 @@ void testApp::update(){
             ofTranslate(10, audioLevelsPreview.getHeight());
             ofSetColor(ofColor::black);
             ofDrawBitmapString("ATTENTION", 0, -200);
-            for(int i=0; i<N_ATTENTION_LOOPS; i++) {
+            for(int i=0; i<attention_sounds.size(); i++) {
                 ofSetColor(ofColor::wheat);
                 ofRect(0, 20, bar_width, -ofMap(attentionVolume[i], 0, max_volume, 0, audioLevelsPreview.getHeight()));
                 ofSetColor(ofColor::black);
@@ -226,7 +274,7 @@ void testApp::update(){
             ofTranslate(bar_width+5, 0);
             ofSetColor(ofColor::black);
             ofDrawBitmapString("MEDITATION", 0, -200);
-            for(int i=0; i<N_MEDITATION_LOOPS; i++) {
+            for(int i=0; i<meditation_sounds.size(); i++) {
                 ofSetColor(ofColor::wheat);
                 ofRect(0, 20, bar_width, -ofMap(meditationVolume[i], 0, max_volume, 0, audioLevelsPreview.getHeight()));
                 ofSetColor(ofColor::black);
@@ -251,9 +299,9 @@ void testApp::draw(){
     cam.draw(0, 0, ofGetWidth(), ofGetHeight());
     
     ofSetColor(ofColor::red);
-    ofRect(0, 0, ofMap(attention, 0, N_ATTENTION_LOOPS, 0, ofGetWidth()), 20);
+    ofRect(0, 0, ofMap(attention, 0, attention_sounds.size(), 0, ofGetWidth()), 20);
     ofSetColor(ofColor::blue);
-    ofRect(0, 20, ofMap(meditation, 0, N_MEDITATION_LOOPS, 0, ofGetWidth()), 20);
+    ofRect(0, 20, ofMap(meditation, 0, meditation_sounds.size(), 0, ofGetWidth()), 20);
     
     ofSetColor(ofColor::white);
     ofDrawBitmapString("Attention", 10, 15);

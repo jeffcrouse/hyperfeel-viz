@@ -7,9 +7,6 @@
 #include "ofxHttpUtils.h"
 
 
-#define N_MEDITATION_LOOPS 6
-#define N_ATTENTION_LOOPS 10
-
 
 class testApp : public ofBaseApp{
 
@@ -70,10 +67,12 @@ class testApp : public ofBaseApp{
         float spread;
         ofxAudioUnitOutput output;
         //ofxAudioUnitTap tap;
-        ofxAudioUnitFilePlayer meditationLoops[N_MEDITATION_LOOPS];
-        ofxAudioUnitFilePlayer attentionLoops[N_ATTENTION_LOOPS];
-        float meditationVolume[N_MEDITATION_LOOPS];
-        float attentionVolume[N_ATTENTION_LOOPS];
+    vector<string> attention_sounds;
+    vector<string> meditation_sounds;
+        ofxAudioUnitFilePlayer* meditationLoops;
+        ofxAudioUnitFilePlayer* attentionLoops;
+        float* meditationVolume;
+        float* attentionVolume;
     
         ofxAudioUnitMixer meditationMixer;
         ofxAudioUnitMixer attentionMixer;
