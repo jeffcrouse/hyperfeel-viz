@@ -706,7 +706,7 @@ void ofApp::drawOnion(){
 		
 		ofPushMatrix();
 		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
-		ofRotate((i*elapsedTime)*3., 0, 0, 1);
+		ofRotate(((onions.size()-i-1)*elapsedTime)*3., 0, 0, 1);
 		
 		//set ribbon color
 		ofSetColor( onions[i].color );
