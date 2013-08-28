@@ -94,7 +94,7 @@ void ofApp::setup(){
 	ofAddListener( TweenEvent::events, this, &ofApp::tweenEventHandler );
 	
 	//kick off animation variation
-	variationKey = tween.addTween( variation, 0, 1, ofGetElapsedTimef(), 3, "variation");
+	variationKey = tween.addTween( variation, 0, 1, ofGetElapsedTimef(), ofGetElapsedTimef(), "variation");
 	variationTween = tween.getTween( variationKey );//<--a looping tween( basically a timer ) that triggers a transition between presets
 	
 	bAddingRibbon = false;
