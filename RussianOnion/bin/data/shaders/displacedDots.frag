@@ -1,3 +1,4 @@
+uniform float animateIn;
 uniform float time;
 uniform float facingRatio;
 uniform float readingThreshold;
@@ -112,12 +113,14 @@ void main(void)
 	data += (dataLeft*.5 + dataRight*.5) * dataSmoothing;
 	data *= 1. - dataSmoothing;
 	
-	float attention = uv.y - data.x * readingScale;
-	float meditation = uv.y + data.y * readingScale;
+	float attention = uv.y - data.x * readingScale * animateIn;
+	float meditation = uv.y + data.y * readingScale * animateIn;
 	
-	// if uv.y is above .
-	float upThreshold = .5 + readingThreshold;
-	float downThreshold = .5-readingThreshold;
+	//if uv.y is above .
+	float scaledReading = readingThreshold * pow( animateIn, 4.);
+	float upThreshold = .5 + scaledReading;
+	float downThreshold = .5 - scaledReading;
+	
 	float a = alpha;
 	if(  attention  > upThreshold ){
 		//sample the Attention
@@ -146,6 +149,8 @@ void main(void)
 	
 	vec2 dotSample = uv*vec2(1800., 600.) + vec2(time,0.);
 	a *= pow( (sin( dotSample.x ) + cos( dotSample.y )), 1.);
+	
+	a *= min(1., animateIn * 2. );
 	
 	if(a == 0.)	discard;
 	

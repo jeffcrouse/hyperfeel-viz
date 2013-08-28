@@ -36,9 +36,6 @@ public:
 	};
 	~Tween(){
 	};
-//	void setup(float *_value, float _startVal, float _endVal, float _startTime=ofGetElapsedTimef(), float _span=1, int _equation=TWEEN_SMOOTHSTEP, int _direction=TWEEN_IN, string _name = "tween_"  ){
-//		setup( _value, _startVal, _endVal, _startTime, _span, _equation, _direction, _name );
-//	}
 	
 	void setup(float *_value, float _startVal, float _endVal, float _startTime, float _span, int _equation, int _direction, string _name  ){
 		startTime = _startTime;

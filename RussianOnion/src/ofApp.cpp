@@ -88,13 +88,18 @@ void ofApp::setup(){
 	animationPresets.push_back("d_7");
 	animationPresets.push_back("d_8");
 	animationPresets.push_back("d_9");
-	bPlayAnimation = false;
+	bPlayAnimation = true;
+	
 	//add tween listener
 	ofAddListener( TweenEvent::events, this, &ofApp::tweenEventHandler );
 	
 	//kick off animation variation
 	variationKey = tween.addTween( variation, 0, 1, ofGetElapsedTimef(), 3, "variation");
 	variationTween = tween.getTween( variationKey );//<--a looping tween( basically a timer ) that triggers a transition between presets
+	
+	bAddingRibbon = false;
+	newRibbonScale = 1;
+	
 }
 
 
@@ -160,15 +165,6 @@ void ofApp::setupUI(){
 	cout << "shaderNames.size(): "<< shaderNames.size() << endl;
 	guiMain->addRadio("shaders", shaderNames );
 	
-//	vector<string> glDrawTypes;
-//	glDrawTypes.push_back("GL_QUADS");
-//	glDrawTypes.push_back("GL_LINES");
-//	ribbonDrawType = GL_QUADS;
-//	guiMain->addSpacer();
-//	
-//	guiMain->addRadio("ribbonDrawType", glDrawTypes );
-	
-	
 	
 	guiMain->autoSizeToFitWidgets();
 	
@@ -216,18 +212,6 @@ void ofApp::guiEvent(ofxUIEventArgs &e){
 		bSavePreset = true;
 		//savePreset();
 	}
-	
-//	else if( name == "GL_QUADS"){
-//		if(e.getToggle()->getValue()){
-//			ribbonDrawType = GL_QUADS;
-//		}
-//	}
-//	
-//	else if( name == "GL_LINES"){
-//		if(e.getToggle()->getValue()){
-//			ribbonDrawType = GL_LINES;
-//		}
-//	}
 	
 	else{
 		
@@ -288,12 +272,52 @@ void ofApp::guiEvent(ofxUIEventArgs &e){
 
 void ofApp::tweenEventHandler(TweenEvent &e){
 	
-	//animation variation
+	float newRibbonAnimationSpan = 2;
+	//action when a new ribbon animates in
+	if(e.name == addRibbonTween){
+		if( e.message == "started" ){
+			if(!bAddingRibbon)
+			{
+				bAddingRibbon = true;
+				tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, globalRotationAboutXAxis+HALF_PI, ofGetElapsedTimef(), newRibbonAnimationSpan, "globalRotX" );
+				
+				float startScale = 1. / recursiveScale;
+				tween.addTween(newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonAnimationSpan, "newRibbonScale" );
+				
+				newRibbonShaderScale = 0;
+			}
+		}
+		else if( e.message == "updated" ){
+			
+		}
+		else if( e.message == "ended" ){
+			//remove the old journeys & onions
+			onions.erase( onions.begin() );
+			journeys.erase( journeys.begin() );
+			
+			rotatedBack = tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, globalRotationAboutXAxis+HALF_PI, ofGetElapsedTimef(), 1, "rotatedBack" );
+		}
+	}
+	
+	//if it's rotated down animate in the new ribbon
+	if( bAddingRibbon && e.name == "globalRotX" && e.message == "ended" ){
+		tween.addTween( newRibbonShaderScale, 0, 1, ofGetElapsedTimef(), newRibbonAnimationSpan, "newRibbonShaderScale" );
+	}
+	
+	
+	//ende the adding new ribbon transition
+	if(e.name == rotatedBack && e.message == "ended" ){
+		rotatedBack = "";
+		bAddingRibbon = false;
+	}
+	
+	
+	
+	//animation variation over time -> blending presets.
 	if(e.name == variationKey){
 		if( e.message == "started")
 		{
-			
-			cout << e.name << " : " << e.message << endl;
+			//cout << e.name << " : " << e.message << endl;
 		}
 		
 		else if( e.message == "updated")
@@ -303,8 +327,7 @@ void ofApp::tweenEventHandler(TweenEvent &e){
 		
 		else if( e.message == "ended")
 		{
-			cout << e.name << " : " << e.message << endl;
-			//variationKey = tween.addTween( variation, 0, 1, ofGetElapsedTimef(), 10, "variation");
+			//cout << e.name << " : " << e.message << endl;
 			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetTime, TWEEN_LINEAR, TWEEN_IN, "variation" );
 			variationTween->bKeepAround = true;
 			
@@ -312,20 +335,20 @@ void ofApp::tweenEventHandler(TweenEvent &e){
 		}
 	}
 	
+	//this tween handles the animtion preset blending this allows us to spend time on a preset wothout any blending
 	if( bPlayAnimation && e.name == "presetMix")
 	{
-		cout << e.name << " : " << e.message << endl;		
+		//cout << e.name << " : " << e.message << endl;
 		
-		p0 = &presets[ animationPresets[animationPresetIndex0] ];
-		p1 = &presets[ animationPresets[animationPresetIndex1] ];
+		p0 = &presets[ animationPresets[ animationPresetIndex0 ] ];
+		p1 = &presets[ animationPresets[ animationPresetIndex1 ] ];
 		
 		if(e.message == "started")
 		{
-			
-			
-			cout << e.name << " : " << "started" << endl;
-
+			//cout << e.name << " : " << "started" << endl;
 		}
+		
+		//mix current and target preset values and set the UI widget values which in turn control our variables
 		if(e.message == "updated")
 		{
 			if(bPlayAnimation && p0 != NULL && p1 != NULL)
@@ -338,8 +361,8 @@ void ofApp::tweenEventHandler(TweenEvent &e){
 						w = guis[i]->getWidget( it->first );
 						if(w != NULL )
 						{
-							float val = ofMap(presetMix, 0, 1, (*p0)[it->first], (*p1)[it->first]);
-							((ofxUISlider *)w)->setValue( val );
+							//set the slider value as a mix of p0 & p1 values assuming presetMix is between 0&1
+							((ofxUISlider *)w)->setValue( ofMap(presetMix, 0, 1, (*p0)[it->first], (*p1)[it->first]) );
 						}
 					}
 				}
@@ -368,11 +391,11 @@ void ofApp::loadShaders()
 	cout<<endl<<endl<< "loading shaders: " << ofGetFrameNum() <<endl<<endl;
 	
 	//load data shader
-	facingRatioShader.load( "shaders/facingRatio" );
-	shaderMap["facingRatioShader"] = &facingRatioShader;
-	
-	normalShader.load( "shaders/normal" );
-	shaderMap["normalShader"] = &normalShader;
+//	facingRatioShader.load( "shaders/facingRatio" );
+//	shaderMap["facingRatioShader"] = &facingRatioShader;
+//	
+//	normalShader.load( "shaders/normal" );
+//	shaderMap["normalShader"] = &normalShader;
 	
 	displacedShader.load( "shaders/displaced" );
 	shaderMap["displacedShader"] = &displacedShader;
@@ -386,17 +409,17 @@ void ofApp::loadShaders()
 	displacedShader.load( "shaders/displaced" );
 	shaderMap["displacedShader"] = &displacedShader;
 	
-	onionShader.load( "shaders/onion" );
-	shaderMap["onionShader"] = &onionShader;
-	
-	onionBarsShader.load( "shaders/onionBars" );
-	shaderMap["onionBarsShader"] = &onionBarsShader;
-	
-	onionBarsHorzShader.load( "shaders/onionBarsHorz" );
-	shaderMap["onionBarsHorzShader"] = &onionBarsHorzShader;
-	
-	onionDotsShader.load( "shaders/onionDots" );
-	shaderMap["onionDotsShader"] = &onionDotsShader;
+//	onionShader.load( "shaders/onion" );
+//	shaderMap["onionShader"] = &onionShader;
+//	
+//	onionBarsShader.load( "shaders/onionBars" );
+//	shaderMap["onionBarsShader"] = &onionBarsShader;
+//	
+//	onionBarsHorzShader.load( "shaders/onionBarsHorz" );
+//	shaderMap["onionBarsHorzShader"] = &onionBarsHorzShader;
+//	
+//	onionDotsShader.load( "shaders/onionDots" );
+//	shaderMap["onionDotsShader"] = &onionDotsShader;
 	
 	//store the shader names in a vecotr for use in a radio gui
 	for( map<string, ofShader*>::iterator it = shaderMap.begin(); it!= shaderMap.end(); it++){
@@ -428,9 +451,12 @@ void ofApp::update()
 		
 		onions.resize( journeys.size() );
 		
-		for(int i=0; i<onions.size(); i++){
-			onions[i].setup( journeys[i] );
-			onions[i].color = getRandomColor();
+		for(int i=0; i<onions.size(); i++)
+		{
+			if(!onions[i].bIsSetup){
+				onions[i].setup( journeys[i] );
+				onions[i].color = getRandomColor();
+			}
 		}
 	}
 	
@@ -639,16 +665,19 @@ void ofApp::drawOnion(){
 	ofVec3f Eul( 0, pow(sin(elapsedTime * .8), 3.)*3, pow(sin(elapsedTime * .4), 3.)*10. );
 	ofQuaternion q;
 	q.makeRotate(Eul.x, ofVec3f(1,0,0), Eul.y, ofVec3f(0,1,0), Eul.z, ofVec3f(0,0,1));
-	for (int i=0; i<onions.size(); i++) {
+	for (int i=onions.size()-1; i>=0; i--) {
 		
-		if(i>0){
-			onions[i].transform.setScale( onions[i-1].transform.getScale() * recursiveScale );
-			onions[i].transform.setOrientation( onions[i-1].transform.getOrientationQuat() * q );
+		if(i<onions.size()-1){
+			onions[i].transform.setScale( onions[i+1].transform.getScale() * recursiveScale );
+			onions[i].transform.setOrientation( onions[i+1].transform.getOrientationQuat() * q );
 		}else{
-			onions[i].transform.setScale( 1 );
+			onions[i].transform.setScale( newRibbonScale );
 			onions[i].transform.setOrientation( Eul );
 		}
 	}
+	
+	globalTransform.makeIdentityMatrix();
+	globalTransform.rotateRad(globalRotationAboutXAxis, 1, 0, 0);
 	
 	//draw it
 	camera.begin();
@@ -667,17 +696,31 @@ void ofApp::drawOnion(){
 	ofPushMatrix();
 	ofScale( radius, radius, radius * squish );
 	
+	ofPushMatrix();
+	ofMultMatrix( globalTransform );
+	
 	glEnable(GL_CULL_FACE);
-	for (int i=onions.size()-1; i>=0; i--) {
+//	for (int i=onions.size()-1; i>=0; i--) {
+	for (int i=0; i<onions.size(); i++) {
+
 		
 		ofPushMatrix();
 		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
 		ofRotate((i*elapsedTime)*3., 0, 0, 1);
 		
+		//set ribbon color
 		ofSetColor( onions[i].color );
-
+		
+		//per ribbon uniforms
 		currentShader->setUniformTexture("dataTexture", onions[i].dataTexture, 0);
 		currentShader->setUniform2f("texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
+		
+		if( bAddingRibbon && i == onions.size()-1 ){
+			currentShader->setUniform1f("animateIn", newRibbonShaderScale );
+		}
+		else{
+			currentShader->setUniform1f("animateIn", 1 );
+		}
 		
 		glCullFace(GL_BACK);
 		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );
@@ -693,6 +736,9 @@ void ofApp::drawOnion(){
 	glDisable(GL_CULL_FACE);
 	
 	ofPopMatrix();
+	
+	ofPopMatrix();
+	
 	
 	currentShader->end();
 	
@@ -802,13 +848,13 @@ void ofApp::cachePresetValues(){
 		}
 	}
 	
-	//print the float values
-	for (map<string, map< string, float > >::iterator it = presets.begin(); it != presets.end(); it++) {
-		cout << endl << "preset name: "<< it->first << endl;
-		for (map<string, float>::iterator jt=it->second.begin(); jt!=it->second.end(); jt++) {
-			cout << it->first << " : " << jt->first << " : " << jt->second << endl;
-		}
-	}
+//	//print the float values
+//	for (map<string, map< string, float > >::iterator it = presets.begin(); it != presets.end(); it++) {
+//		cout << endl << "preset name: "<< it->first << endl;
+//		for (map<string, float>::iterator jt=it->second.begin(); jt!=it->second.end(); jt++) {
+//			cout << it->first << " : " << jt->first << " : " << jt->second << endl;
+//		}
+//	}
 	
 }
 void ofApp::loadPreset( string presetName)
@@ -872,6 +918,19 @@ void ofApp::keyPressed(int key)
 	if(key == 'e' || key == 'E'){
 //		captrure = true;
 	}
+	
+	if(key == ' '){
+		if(!bAddingRibbon){
+			addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), 4, "addRibbon", TWEEN_SMOOTHERSTEP );
+			
+			//load a journey from file
+			ofBuffer buffer = ofBufferFromFile("Journeys/journey_showJourney" + ofToString(int(ofRandom(4))) + ".json");
+			if(buffer.size()){
+				reader.parse( buffer.getText(), json );
+				handleRoute( json );
+			}
+		}
+	}
 }
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key)
@@ -903,49 +962,51 @@ void ofApp::mouseReleased(int x, int y, int button)
 }
 
 //--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
+void ofApp::windowResized(int w, int h)
+{
 //    screenSize = ofToString(w) + "x" + ofToString(h);
 }
 
 //--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
+void ofApp::gotMessage(ofMessage msg)
+{
 	
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){
+void ofApp::dragEvent(ofDragInfo dragInfo)
+{
 	
 }
 
-
-
-
-
 //--------------------------------------------------------------
-void ofApp::onConnect( ofxLibwebsockets::Event& args ){
+void ofApp::onConnect( ofxLibwebsockets::Event& args )
+{
     cout<<"on connected"<<endl;
 }
 
 //--------------------------------------------------------------
-void ofApp::onOpen( ofxLibwebsockets::Event& args ){
+void ofApp::onOpen( ofxLibwebsockets::Event& args )
+{
     cout<<"on open"<<endl;
 }
 
 //--------------------------------------------------------------
-void ofApp::onClose( ofxLibwebsockets::Event& args ){
+void ofApp::onClose( ofxLibwebsockets::Event& args )
+{
     cout<<"on close"<<endl;
 }
 
 //--------------------------------------------------------------
-void ofApp::onIdle( ofxLibwebsockets::Event& args ){
+void ofApp::onIdle( ofxLibwebsockets::Event& args )
+{
     cout<<"on idle"<<endl;
 }
 
 //--------------------------------------------------------------
-void ofApp::handleRoute( Json::Value& _json){
+void ofApp::handleRoute( Json::Value& _json)
+{
 	string route = _json["route"].asString();
-	
-    
 	
 	if(bSaveJsonsToFile){
 		
@@ -963,18 +1024,22 @@ void ofApp::handleRoute( Json::Value& _json){
 	}
 	
     
+	// LB: I was getting crashes when I initialized the onion layers here so I moved that updae
     if(route=="showJourney") {
 		// on start up to populate the animation
         //false for not animating in
         journeys.push_back(new Journey(json["journey"], false));
 		bJourniesNeedUpdate = true;
     }
+	
     else if(route=="addJourney") {
-		
+			
+		cout << "addJourney" << endl;
 		//true for animating in
-        journeys.push_back(new Journey(json["journey"], true));
+        journeys.push_back( new Journey(json["journey"], true) );
 		bJourniesNeedUpdate = true;
     }
+	
     else if(route=="removeJourney") {
         string uid = json["_id"].asString();
         for(int i=0; i<journeys.size(); i++) {
@@ -993,7 +1058,10 @@ void ofApp::handleRoute( Json::Value& _json){
     }
 	
 }
-void ofApp::onMessage( ofxLibwebsockets::Event& args ){
+
+//--------------------------------------------------------------
+void ofApp::onMessage( ofxLibwebsockets::Event& args )
+{
 //cout<<"got message "<< args.message <<  endl;
 	
     if ( !reader.parse( args.message, json ) ) {
@@ -1006,6 +1074,9 @@ void ofApp::onMessage( ofxLibwebsockets::Event& args ){
 }
 
 //--------------------------------------------------------------
-void ofApp::onBroadcast( ofxLibwebsockets::Event& args ){
+void ofApp::onBroadcast( ofxLibwebsockets::Event& args )
+{
     cout<<"got broadcast "<<args.message<<endl;
 }
+
+

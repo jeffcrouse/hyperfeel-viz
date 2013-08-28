@@ -11,8 +11,13 @@
 
 class Onion{
 public:
-	Onion(){};
-	~Onion(){};
+	Onion(){
+		bIsSetup = false;
+	};
+	~Onion(){
+		//???: do we need to do more to deallocate this
+		dataTexture.clear();
+	};
 	
 	void setup( Journey* j ){
 		
@@ -27,15 +32,13 @@ public:
 		}
 		
 		dataTexture.loadData( &data[0], j->readings.size(), 1, GL_RGB );
+		
+		bIsSetup = true;
 	}
-	
-//	void setUniforms( ofShader* shader){
-//		shader->setUniformTexture("dataTexture", dataTexture, 0);
-//		shader->setUniform2f("texDim", dataTexture.getWidth(), dataTexture.getHeight() );
-//	}
 	
 	ofTexture dataTexture;
 	ofVec2f textureDim;
 	ofNode transform;
 	ofColor color;
+	bool bIsSetup;
 };

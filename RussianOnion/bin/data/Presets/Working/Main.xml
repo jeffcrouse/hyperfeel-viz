@@ -21,57 +21,57 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>20.826259613</Value>
+    <Value>20.355768204</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.950320482</Value>
+    <Value>0.978671610</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>squish</Name>
-    <Value>0.558980584</Value>
+    <Value>0.894741297</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingThreshold</Name>
-    <Value>0.234714866</Value>
+    <Value>0.006410256</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingScale</Name>
-    <Value>0.150835380</Value>
+    <Value>0.214155197</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>onionAlpha</Name>
-    <Value>0.454230756</Value>
+    <Value>0.655279040</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>dataSmoothing</Name>
-    <Value>0.727115393</Value>
+    <Value>0.787403822</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>facingRatio</Name>
-    <Value>0.498369396</Value>
+    <Value>0.528273821</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>displacement</Name>
-    <Value>-72.756469727</Value>
+    <Value>-99.644470215</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseScale</Name>
-    <Value>0.002124779</Value>
+    <Value>0.003713990</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>displacedBarsShader</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -81,35 +81,5 @@
 <Widget>
     <Kind>2</Kind>
     <Name>displacedShader</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>facingRatioShader</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>normalShader</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>onionBarsHorzShader</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>onionBarsShader</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>onionDotsShader</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>onionShader</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>

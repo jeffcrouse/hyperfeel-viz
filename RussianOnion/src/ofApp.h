@@ -158,6 +158,17 @@ public:
 	};
 	
 	//animation
+	ofMatrix4x4 globalTransform;
+	float globalRotationAboutXAxis;
+	string globalRotX;
+	string rotatedBack;
+	string addRibbonTween;
+	float addRibbonVal;
+	bool bAddingRibbon;
+	float newRibbonScale;
+	float newRibbonRotY;
+	float newRibbonShaderScale;
+	
 	vector <string> animationPresets;
 	
 	map<string, float>* p0;

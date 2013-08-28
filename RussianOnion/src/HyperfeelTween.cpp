@@ -10,13 +10,10 @@ ofEvent <TweenEvent> TweenEvent::events;
 TWEEN::TWEEN()
 {
 	ofAddListener(ofEvents().update, this, &TWEEN::update );
-	
-//	ofAddListener( TweenEvent::events, this, &TWEEN::tweenEventHandler );
 };
 TWEEN::~TWEEN()
 {
 	ofRemoveListener(ofEvents().update, this, &TWEEN::update );
-//	ofRemoveListener( TweenEvent::events, this, &TWEEN::tweenEventHandler );
 };
 
 
@@ -89,7 +86,7 @@ void TWEEN::update( ofEventArgs &args)
 			
 		}
 		
-			if(it->second.bEnded && !it->second.bKeepAround){
+		if(it->second.bEnded && !it->second.bKeepAround){
 			//remove it
 			tweenMap.erase( it );
 		}
