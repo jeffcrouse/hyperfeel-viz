@@ -18,6 +18,13 @@ void ofApp::setup(){
 	s.numSamples = 4;
 	fbo.allocate(s);
 	
+	
+	fbo_mm1.allocate( fbo.getWidth()/2, fbo.getHeight()/2, GL_RGB );
+	fbo_mm2.allocate( fbo_mm1.getWidth()/2, fbo_mm1.getHeight()/2, GL_RGB );
+	fbo_mm3.allocate( fbo_mm2.getWidth()/2, fbo_mm2.getHeight()/2, GL_RGB );
+	fbo_mm4.allocate( fbo_mm3.getWidth()/2, fbo_mm3.getHeight()/2, GL_RGB );
+	fbo_mm5.allocate( fbo_mm4.getWidth()/2, fbo_mm4.getHeight()/2, GL_RGB );
+	
 	//
     ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
     options.host = "brainz.io"; //laserstorms-MacBook-Pro.local"; //
@@ -75,7 +82,7 @@ void ofApp::setup(){
 	}
 	
 	//animation
-	newRibbonScaleDuration = 60; // <---- this controls the time it takes for the journey to animate in.
+	newRibbonScaleDuration = 10; // <---- this controls the time it takes for the journey to animate in.
 	animationPresetVariationTime = 10;
 	animationPresetIndex0 = 0;
 	animationPresetIndex1 = 1;
@@ -517,15 +524,66 @@ void ofApp::draw()
 	ofPushStyle();
 	ofEnableAlphaBlending();
 	
+	
+	//mip your own maps
+	
+	ofSetColor(255,255,255,255);
+	
+	fbo_mm1.begin();
+	ofClear(0,0,0,255);
+	fbo.draw(0, 0, fbo_mm1.getWidth(), fbo_mm1.getHeight() );
+	fbo_mm1.end();
+	
+	fbo_mm2.begin();
+	ofClear(0,0,0,255);
+	fbo_mm1.draw(0, 0, fbo_mm2.getWidth(), fbo_mm2.getHeight() );
+	fbo_mm2.end();
+	
+	fbo_mm3.begin();
+	ofClear(0,0,0,255);
+	fbo_mm2.draw(0, 0, fbo_mm3.getWidth(), fbo_mm3.getHeight() );
+	fbo_mm3.end();
+	
+	fbo_mm4.begin();
+	ofClear(0,0,0,255);
+	fbo_mm3.draw(0, 0, fbo_mm4.getWidth(), fbo_mm4.getHeight() );
+	fbo_mm4.end();
+	
+	fbo_mm5.begin();
+	ofClear(0,0,0,255);
+	fbo_mm4.draw(0, 0, fbo_mm5.getWidth(), fbo_mm5.getHeight() );
+	fbo_mm5.end();
+	
+	
+	//post shader. draw to the screen
 	post.begin();
 	post.setUniform2f("center", ofGetWidth()/2, ofGetHeight()/2);
 	post.setUniform1f("circleRadius", circleRadius );
 	post.setUniform1f("edgeAADist", edgeAADist );
 	post.setUniformTexture("fbo", fbo.getTextureReference(), 0);
+	post.setUniformTexture("mm1", fbo_mm1.getTextureReference(), 1);
+	post.setUniformTexture("mm2", fbo_mm2.getTextureReference(), 2);
+	post.setUniformTexture("mm3", fbo_mm3.getTextureReference(), 3);
+	post.setUniformTexture("mm4", fbo_mm4.getTextureReference(), 4);
+	post.setUniformTexture("mm5", fbo_mm5.getTextureReference(), 5);
+	
 	fbo.draw(0, 0, ofGetWidth(), ofGetHeight() );
 	
 	post.end();
 	ofPopStyle();
+	
+	if(guis[0]->isVisible()) {
+		
+		glDisable( GL_DEPTH_TEST );
+		ofSetColor(255,255,255,255);
+		fbo_mm1.draw(ofGetWidth() - 210, 10, 200, 200 );
+		fbo_mm2.draw(ofGetWidth() - 210, 210, 200, 200 );
+		fbo_mm3.draw(ofGetWidth() - 210, 420, 200, 200 );
+		fbo_mm4.draw(ofGetWidth() - 210, 630, 200, 200 );
+		fbo_mm5.draw(ofGetWidth() - 210, 840, 200, 200 );
+		glEnable( GL_DEPTH_TEST );
+	}
+	
 	
 //	if( captrure ){
 //		captrure = false;

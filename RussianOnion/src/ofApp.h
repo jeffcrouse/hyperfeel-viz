@@ -216,6 +216,12 @@ public:
 	ofShader fboShader;
 	ofFbo fboMap;
 	
+	ofFbo fbo_mm1;
+	ofFbo fbo_mm2;
+	ofFbo fbo_mm3;
+	ofFbo fbo_mm4;
+	ofFbo fbo_mm5;
+	
 	//ofxUI
 	vector<string> getPresetNames();
 	vector<string> renderTypes;
