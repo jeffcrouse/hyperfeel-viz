@@ -712,6 +712,7 @@ void ofApp::drawOnion(){
 	currentShader->setUniform1f("noiseScale", noiseScale );
 	currentShader->setUniform1f("slope", slope );
 	
+	//
 	ofPushMatrix();
 	ofScale( radius, radius, radius );
 	
@@ -723,6 +724,7 @@ void ofApp::drawOnion(){
 	
 	glEnable(GL_CULL_FACE);
 	
+	//draw each onion
 	for (int i=0; i<onions.size(); i++) {
 		
 		//crazr transforms
@@ -739,6 +741,7 @@ void ofApp::drawOnion(){
 		currentShader->setUniformTexture("dataTexture", onions[i].dataTexture, 0);
 		currentShader->setUniform2f("texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
 		
+		//we only animimate the outer onion
 		if( bAddingRibbon && i == onions.size()-1 ){
 			currentShader->setUniform1f("animateIn", newRibbonShaderScale );
 		}
