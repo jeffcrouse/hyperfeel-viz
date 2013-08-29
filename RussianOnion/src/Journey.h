@@ -60,6 +60,7 @@ public:
     Journey(Json::Value& json, bool buildIn=true) {
 		
 		//corresponds tp ipod 0-6 roygbiv. 1 == orange
+        // JRC NOTE: No longer corresponds to this -- it's the name of the device that sent it...
         client_id = json["client_id"].asInt();
 		
 		//16 digit hash
@@ -71,17 +72,19 @@ public:
 		//READINGS
 		//each reading is a message sent from the ipod
         for(int i=0; i<json["readings"].size(); i++) {
-			
+			float meditation = json["readings"][i]["data"]["meditation"].asFloat() * .01;
+            float attention = json["readings"][i]["data"]["attention"].asFloat() * .01;
             Reading r;
             r.setTime( iso8601toTimestamp( json["readings"][i]["date"].asString() ) ); //convert to timestamp
-            r.setMeditation( json["readings"][i]["data"]["meditation"].asFloat() * .01 ); //int btwn 0-100
-            r.setAttention( json["readings"][i]["data"]["attention"].asFloat() * .01 ) ; //int btwn 0-100
+            r.setMeditation( meditation ); //int btwn 0-100
+            r.setAttention( attention ) ; //int btwn 0-100
+            data.addVertex( ofVec2f(attention, meditation) );
             readings.push_back( r );
         }
         
         //EVENTS
         for(int i=0; i<json["events"].size(); i++) {
-            
+
             Event e;
             e.time = iso8601toTimestamp( json["events"][i]["date"].asString() ); //convert to timestamp
             e.type = json["events"][i]["eventType"].asString();
@@ -115,6 +118,7 @@ public:
 	void draw() {
 	}
 	
+    ofPolyline data;
 	int client_id;
 	string uid;
 	long created_at;

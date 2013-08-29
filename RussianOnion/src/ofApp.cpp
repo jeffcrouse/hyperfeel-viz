@@ -3,7 +3,6 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	ofSetVerticalSync(true);
-	
 	bDebug = true;
 		
 	//fbo
@@ -99,6 +98,8 @@ void ofApp::setup(){
 	bAddingRibbon = false;
 	newRibbonScale = 1;
 	
+    soundManager.setup();
+    
 	//add tween listener
 	ofAddListener( TweenEvent::events, this, &ofApp::tweenEventHandler );
 }
@@ -306,11 +307,20 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 	if( bAddingRibbon && e.name == "globalRotX" && e.message == "ended" )
 	{
 		addRibbonScaleTween = tween.addTween( newRibbonShaderScale, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonShaderScale", TWEEN_SINUSOIDAL, TWEEN_INOUT );
+        
+        onJourneyBuildInStart(journeys.back()); // JRC
 	}
 	
+    // JRC
+    if(e.name== addRibbonScaleTween && e.message=="updated") {
+        onJourneyBuildInUpdate(journeys.back(), *tween.getTween(addRibbonScaleTween)->value);
+    }
+    
 	//if the ribbon is done scalling in rotate it back and remove any old journeys
 	if(e.name == addRibbonScaleTween && e.message == "ended"){
-		
+        
+		onJourneyBuildInEnd(journeys.back()); // JRC
+        
 		//TODO: magic number
 		//remove the old journeys & onions
 		if(onions.size() > 30){ // could be while() here?
@@ -477,6 +487,8 @@ void ofApp::update()
 	elapsedTime += timedelta * timeScale;
 	
 	//tweens auto update vi ofListener
+    
+  
 }
 
 void ofApp::retryColors(){
@@ -1108,6 +1120,27 @@ void ofApp::onMessage( ofxLibwebsockets::Event& args )
 void ofApp::onBroadcast( ofxLibwebsockets::Event& args )
 {
     cout<<"got broadcast "<<args.message<<endl;
+}
+
+
+#pragma mark - Journey BuildIn events
+
+//--------------------------------------------------------------
+void ofApp::onJourneyBuildInStart(Journey* j) {
+    soundManager.startJourney(j);
+    // TO DO:  Start recording video.
+}
+
+//--------------------------------------------------------------
+void ofApp::onJourneyBuildInUpdate(Journey* j, float pct) {
+    soundManager.updateJorney(j, pct);
+    // TO DO: update recording?
+}
+
+//--------------------------------------------------------------
+void ofApp::onJourneyBuildInEnd(Journey* j) {
+    soundManager.endJourney(j);
+    // TO DO: end recording and deal with result...
 }
 
 

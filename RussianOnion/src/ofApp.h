@@ -6,6 +6,7 @@
 #include "Journey.h"
 #include "Onion.h"
 #include "HyperfeelTween.h"
+#include "SoundManager.h"
 
 class HyperFeel_Data {
 public:
@@ -35,6 +36,11 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 	
+    void onJourneyBuildInStart(Journey* j);
+    void onJourneyBuildInUpdate(Journey* j, float pct);
+    void onJourneyBuildInEnd(Journey* j);
+    SoundManager soundManager;
+    
 	//rendertypes
 	void drawRibbons();
 	
