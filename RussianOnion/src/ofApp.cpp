@@ -295,11 +295,9 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			if(!bAddingRibbon)
 			{
 				bAddingRibbon = true;
-				tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, globalRotationAboutXAxis+HALF_PI, ofGetElapsedTimef(), newRibbonAnimationSpan, "globalRotX" );
+				tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, globalRotationAboutXAxis+HALF_PI, ofGetElapsedTimef(), newRibbonAnimationSpan, "globalRotX", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 				
-				tween.addTween(newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonScale" );
-//				newRibbonScale = startScale;
-				
+				tween.addTween(newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonScale", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 				newRibbonShaderScale = 0;
 			}
 		}
@@ -308,7 +306,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 	//if we're adding a journey && it's rotated down then we create a tween to animate in the new ribbon
 	if( bAddingRibbon && e.name == "globalRotX" && e.message == "ended" )
 	{
-		addRibbonScaleTween = tween.addTween( newRibbonShaderScale, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonShaderScale" );
+		addRibbonScaleTween = tween.addTween( newRibbonShaderScale, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonShaderScale", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 	}
 	
 	//if the ribbon is done scalling in rotate it back and remove any old journeys
@@ -321,7 +319,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			journeys.erase( journeys.begin() );
 		}
 		
-		rotatedBack = tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, 0, ofGetElapsedTimef(), newRibbonAnimationSpan, "rotatedBack" );
+		rotatedBack = tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, 0, ofGetElapsedTimef(), newRibbonAnimationSpan, "rotatedBack", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 	}
 	
 	//end the adding new ribbon transition
@@ -687,7 +685,7 @@ void ofApp::drawOnion(){
 	{
 		if(i == onions.size()-1)
 		{
-			onions[i].transform.setScale( newRibbonScale,newRibbonScale,newRibbonScale*squish ); // newRibbonScale scales down to 1.
+			onions[i].transform.setScale( newRibbonScale,newRibbonScale,newRibbonScale * squish ); // newRibbonScale scales down to 1.
 			onions[i].transform.setOrientation( q + q.inverse() * (1.f - newRibbonShaderScale) ); // newRibbonShaderScale == val btwn 0-1
 		}
 		else
@@ -698,7 +696,7 @@ void ofApp::drawOnion(){
 	}
 	
 	globalTransform.makeIdentityMatrix();
-	globalTransform.rotateRad(-globalRotationAboutXAxis, 1, 0, 0);
+	globalTransform.rotateRad(globalRotationAboutXAxis, 1, 0, 0);
 	
 	//draw it
 	camera.begin();
@@ -727,15 +725,12 @@ void ofApp::drawOnion(){
 	
 	for (int i=0; i<onions.size(); i++) {
 		
+		//crazr transforms
 		ofPushMatrix();
 		
 		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
 		
-		
-		//TODO: magic number
-		
-		ofRotate( ( max( (float) onions.size() - i - 1.f + newRibbonShaderScale, 0.f) ) * vortexRotVal, 0, 0, 1);
-		
+		ofRotate( ( max( (float) onions.size() - i - 2 + newRibbonShaderScale, 0.f) ) * vortexRotVal, 0, 0, 1);
 		
 		//set ribbon color
 		ofSetColor( onions[i].color );
@@ -1071,7 +1066,7 @@ void ofApp::handleRoute( Json::Value& _json)
         journeys.push_back( new Journey(json["journey"], true) );
 		bJourniesNeedUpdate = true;
 		
-		addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), 4, "addRibbon", TWEEN_SMOOTHERSTEP );
+		addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), 4, "addRibbon", TWEEN_SINUSOIDAL, TWEEN_INOUT );
     }
 	
     else if(route=="removeJourney") {
