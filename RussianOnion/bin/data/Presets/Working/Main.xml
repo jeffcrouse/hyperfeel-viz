@@ -1,7 +1,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>playAnimation</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -21,57 +21,62 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>20.355768204</Value>
+    <Value>15.278845787</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.979889870</Value>
+    <Value>0.918269217</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>squish</Name>
-    <Value>0.778958857</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingThreshold</Name>
-    <Value>0.006410256</Value>
+    <Value>0.304487169</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingScale</Name>
-    <Value>0.379386395</Value>
+    <Value>0.073461533</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>onionAlpha</Name>
-    <Value>0.855486155</Value>
+    <Value>0.454230785</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>dataSmoothing</Name>
-    <Value>0.787403822</Value>
+    <Value>0.727115393</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>facingRatio</Name>
-    <Value>0.627171338</Value>
+    <Value>0.209903836</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>displacement</Name>
-    <Value>-75.279418945</Value>
+    <Value>89.743652344</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseScale</Name>
-    <Value>0.005419539</Value>
+    <Value>0.006009615</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>slope</Name>
-    <Value>0.050000001</Value>
+    <Value>0.084615387</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>rotateOnNewJourney</Name>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>

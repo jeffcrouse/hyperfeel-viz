@@ -194,5 +194,5 @@ void main(void)
 	//color
 	vec3 col = color * fr;
 	
-	gl_FragColor = vec4( col, a);
+	gl_FragColor = vec4( col * vec3(uv, 1.), a);
 }

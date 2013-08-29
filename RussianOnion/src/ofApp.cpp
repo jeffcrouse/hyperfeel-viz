@@ -114,6 +114,8 @@ void ofApp::setDefaults(){
 	bDepthTest = true;
 	
 	slope = .05;
+	bRotateOnNewJourney = false;
+	newRibbonShaderScale = 1;
 }
 
 
@@ -161,6 +163,7 @@ void ofApp::setupUI(){
 	guiMain->addSlider("displacement", -1000, 1000., &displacement );
 	guiMain->addSlider("noiseScale", 0, .025, &noiseScale );
 	guiMain->addSlider("slope", 0., .2, &slope );
+	guiMain->addToggle("rotateOnNewJourney", &bRotateOnNewJourney );
 	
 	//create a radio for switching renderTypes
 	guiMain->addSpacer();
@@ -278,9 +281,11 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 void ofApp::tweenEventHandler(TweenEvent &e)
 {
 	//TODO: make some sliders
-	float newRibbonAnimationSpan = .5;
+	float newRibbonAnimationSpan = bRotateOnNewJourney? .5 : .01;
 	
 	float newRibbonScaleDuration = 10;
+	
+	float startScale = 1. / recursiveScale;
 	
 	//action when a new ribbon animates in
 	if(e.name == addRibbonTween)
@@ -292,8 +297,8 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 				bAddingRibbon = true;
 				tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, globalRotationAboutXAxis+HALF_PI, ofGetElapsedTimef(), newRibbonAnimationSpan, "globalRotX" );
 				
-				float startScale = 1. / recursiveScale;
-				tween.addTween(newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonAnimationSpan, "newRibbonScale" );
+				tween.addTween(newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonScale" );
+//				newRibbonScale = startScale;
 				
 				newRibbonShaderScale = 0;
 			}
@@ -311,10 +316,10 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 		
 		//TODO: magic number
 		//remove the old journeys & onions
-		if(onions.size() > 30){ // could be while() here?
-			onions.erase( onions.begin() );
-			journeys.erase( journeys.begin() );
-		}
+//		if(onions.size() > 30){ // could be while() here?
+//			onions.erase( onions.begin() );
+//			journeys.erase( journeys.begin() );
+//		}
 		
 		rotatedBack = tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, 0, ofGetElapsedTimef(), newRibbonAnimationSpan, "rotatedBack" );
 	}
@@ -675,15 +680,21 @@ void ofApp::drawOnion(){
 	ofVec3f Eul( 0, pow(sin(elapsedTime * .8), 3.)*3, pow(sin(elapsedTime * .4), 3.)*10. );
 	ofQuaternion q;
 	q.makeRotate(Eul.x, ofVec3f(1,0,0), Eul.y, ofVec3f(0,1,0), Eul.z, ofVec3f(0,0,1));
+	
+	float startScale = 1. / recursiveScale;
+	
 	for (int i=onions.size()-1; i>=0; i--) {
 		
-		if(i<onions.size()-1){
+		
+		if(i == onions.size()-1){
+			onions[i].transform.setScale( newRibbonScale ); // newRibbonScale scales down to 1.
+			onions[i].transform.setOrientation( q + q.inverse() * (1.f - newRibbonShaderScale) ); // newRibbonShaderScale == val btwn 0-1
+		}
+		else{
 			onions[i].transform.setScale( onions[i+1].transform.getScale() * recursiveScale );
 			onions[i].transform.setOrientation( onions[i+1].transform.getOrientationQuat() * q );
-		}else{
-			onions[i].transform.setScale( newRibbonScale );
-			onions[i].transform.setOrientation( Eul );
 		}
+		
 	}
 	
 	globalTransform.makeIdentityMatrix();
@@ -703,26 +714,24 @@ void ofApp::drawOnion(){
 	currentShader->setUniform1f("noiseScale", noiseScale );
 	currentShader->setUniform1f("slope", slope );
 	
-	float scaleStep = 1./float(onions.size());
 	ofPushMatrix();
 	ofScale( radius, radius, radius * squish );
 	
 	ofPushMatrix();
-	ofMultMatrix( globalTransform );
+	if( bRotateOnNewJourney )	ofMultMatrix( globalTransform );//<-- this rotates the onion on transition in
 	
-//	cout << globalRotationAboutXAxis / PI << endl;
 	ofRotate( newRibbonShaderScale * -360 + 90 - slope * 180., 0, 0, 1);
 	
 	glEnable(GL_CULL_FACE);
 //	for (int i=onions.size()-1; i>=0; i--) {
 	for (int i=0; i<onions.size(); i++) {
-
+		
 		ofPushMatrix();
 		
 		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
 		
 		//TODO: magic number
-		ofRotate(((onions.size()-i-1)*elapsedTime)*3., 0, 0, 1);
+//		ofRotate(((onions.size()-i-1)*elapsedTime)*3., 0, 0, 1);
 		
 		
 		//set ribbon color
@@ -739,6 +748,7 @@ void ofApp::drawOnion(){
 			currentShader->setUniform1f("animateIn", 1 );
 		}
 		
+		//draw front and back in diferent passes
 		glCullFace(GL_BACK);
 		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );
 		

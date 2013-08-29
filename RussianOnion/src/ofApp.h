@@ -117,6 +117,7 @@ public:
 	float displacement;
 	float noiseScale;
 	float slope;
+	bool bRotateOnNewJourney;
 	
     /**
      *  Journeys
