@@ -20,10 +20,8 @@ public:
     
     void setup(ofEventArgs &args);
     void update(ofEventArgs &args);
-    void startJourney(Journey* j);
-    void endJourney(Journey* j);
-
-    
+    void startJourney(Journey* j, float duration);
+    void endJourney(Journey* j);    
     void newResponse(ofxHttpResponse & response);
     void audioIn(float * input, int bufferSize, int nChannels);
     
@@ -37,13 +35,19 @@ public:
     //
     bool bEnabled;
     bool bRecording;
-    ofxVideoRecorder    vidRecorder;
+    ofxVideoRecorder vidRecorder;
     
-    ofImage             frame;
+    vector<float> photoStripTimes;
+    string photoStripFilename;
+    ofFbo photoStrip;
+    ofImage exporter;
+    
+    ofImage frame;
+    float lastSnapshot, snapshotInterval;
     int sampleRate;
     int channels;
     int frameRate;
-    string filename;
+    string videoFilename;
     string journey_id;
 };
 

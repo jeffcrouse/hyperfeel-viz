@@ -38,7 +38,7 @@ void SoundManager::setup(ofEventArgs &args) {
     attention_sounds.push_back("Loops/BRainWave16-Attn.wav");
     attention_sounds.push_back("Loops/BrainWave07-Attn.wav");
     attention_sounds.push_back("Loops/BrainWave10-Attn.wav");
-    attention_sounds.push_back("Loops/5minsilence.wav");
+    attention_sounds.push_back("Loops/Silence.wav");
     attention_sounds.push_back("Loops/BrainWave09-Attn.wav");
     attention_sounds.push_back("Loops/BrainWave17-Attn.wav");
     attention_sounds.push_back("Loops/Silence.wav");

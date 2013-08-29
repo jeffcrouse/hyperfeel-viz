@@ -8,8 +8,6 @@
 
 #include "RecordManager.h"
 
-#define FRAME_WIDTH 1024
-#define FRAME_HEIGHT 1024
 
 // -------------------------------------------------
 RecordManager::~RecordManager() {
@@ -23,21 +21,30 @@ RecordManager::RecordManager() {
     channels = 2;
     frameRate = 30;
     bEnabled = true;
+    snapshotInterval = 15;
+    lastSnapshot = 0;
     
     ofAddListener(ofEvents().setup, this, &RecordManager::setup );
-    ofAddListener(ofEvents().update, this, &RecordManager::update );
+    ofAddListener(ofEvents().draw, this, &RecordManager::update );
 }
 
 
 // -------------------------------------------------
 void RecordManager::setup(ofEventArgs &args) {
     
-    //frame.allocate(512, 512, OF_IMAGE_COLOR);
-
-//    vidRecorder.setVideoCodec("mpeg4");
-//    vidRecorder.setVideoBitrate("1500k");
-//    vidRecorder.setAudioCodec("mp3");
-//    vidRecorder.setAudioBitrate("192k");
+    photoStrip.allocate(ofGetWidth()*2, ofGetHeight()*2, GL_RGB);
+    exporter.allocate(ofGetWidth()*2, ofGetHeight()*2, OF_IMAGE_COLOR);
+    
+    frame.setUseTexture(false);
+    
+    photoStrip.begin();
+    ofClear(0);
+    photoStrip.end();
+    
+    vidRecorder.setVideoCodec("mpeg4");
+    vidRecorder.setVideoBitrate("2500k");
+    vidRecorder.setAudioCodec("mp3");
+    vidRecorder.setAudioBitrate("192k");
     
     ofAddListener(httpUtils.newResponseEvent, this, &RecordManager::newResponse);
 	httpUtils.start();
@@ -51,43 +58,88 @@ void RecordManager::newResponse(ofxHttpResponse & response)
 }
 
 //--------------------------------------------------------------
-void RecordManager::audioIn(float *input, int bufferSize, int nChannels){
+void RecordManager::audioIn(float *input, int bufferSize, int nChannels)
+{
     if(bRecording) {
         vidRecorder.addAudioSamples(input, bufferSize, nChannels);
     }
 }
 
 // -------------------------------------------------
-void RecordManager::update(ofEventArgs &args) {
-    if(bRecording) {
-        frame.grabScreen(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+void RecordManager::update(ofEventArgs &args)
+{
+    float now = ofGetElapsedTimef();
+    
+    if(bRecording)
+    {
+        frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
+        
+        if(photoStripTimes.size()>0 && now > photoStripTimes.back())
+        {
+            photoStrip.begin();
+            switch(photoStripTimes.size())
+            {
+                case 1:
+                    frame.draw(ofGetWidth(), ofGetHeight());
+                    break;
+                case 2:
+                    frame.draw(0, ofGetHeight());
+                    break;
+                case 3:
+                    frame.draw(ofGetWidth(), 0);
+                    break;
+                case 4:
+                    frame.draw(0, 0);
+                    break;
+            }
+            photoStrip.end();
+            
+            photoStripTimes.pop_back();
+        }
+        
         vidRecorder.addFrame(frame.getPixelsRef());
     }
+    else if(now-lastSnapshot > snapshotInterval)
+    {
+        frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
+        frame.saveImage("Snapshots/"+ofGetTimestampString("%m%d%H%M%S")+".png");
+        lastSnapshot = now;
+    }
 }
 
 // -------------------------------------------------
-void RecordManager::startJourney(Journey* j) {
+void RecordManager::startJourney(Journey* j, float duration)
+{
     if(!bEnabled) return;
+    float now = ofGetElapsedTimef();
     
-    if(j->email!="")
+    //if(j->email!="")
     {
-        // ofGetTimestampString("%m%d%H%M%S");
-        filename = "Recordings/"+j->uid+".mov";
-        ofLogNotice() << "Recording to " << filename;
-        vidRecorder.setup(filename, FRAME_WIDTH, FRAME_HEIGHT, frameRate, sampleRate, channels);
+        photoStripTimes.clear();
+        photoStripTimes.push_back(now + (duration*0.9));
+        photoStripTimes.push_back(now + (duration*0.6));
+        photoStripTimes.push_back(now + (duration*0.4));
+        photoStripTimes.push_back(now + (duration*0.1));
+        photoStripFilename = "PhotoStrips/"+j->uid+".png";
+        
+        videoFilename = "Recordings/"+j->uid+".mov";
+        vidRecorder.setup(videoFilename, ofGetWidth(), ofGetHeight(), frameRate, sampleRate, channels);
         bRecording = true;
     }
-    else {
-        ofLogNotice() << "Not starting recording.  No email address present.";
-    }
+    //else ofLogNotice() << "Not starting recording.  No email address present.";
 }
 
 // -------------------------------------------------
-void RecordManager::endJourney(Journey* j) {
-    
-    if(vidRecorder.isInitialized() && bRecording)
+void RecordManager::endJourney(Journey* j)
+{    
+    if(bRecording)
     {
-        vidRecorder.close();
+        if(vidRecorder.isInitialized())
+            vidRecorder.close();
+        
+        photoStrip.readToPixels(exporter.getPixelsRef());
+        exporter.saveImage(photoStripFilename);
+
         bRecording = false;
         
         /*

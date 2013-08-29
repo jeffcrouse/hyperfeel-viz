@@ -82,7 +82,7 @@ void ofApp::setup(){
 	}
 	
 	//animation
-	newRibbonScaleDuration = 10; // <---- this controls the time it takes for the journey to animate in.
+	newRibbonScaleDuration = 30; // <---- this controls the time it takes for the journey to animate in.
 	animationPresetVariationTime = 10;
 	animationPresetIndex0 = 0;
 	animationPresetIndex1 = 1;
@@ -329,8 +329,9 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 				tween.addTween(newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonScale", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 				newRibbonShaderScale = 0;
                 
-                recordManager.startJourney(journeys.back());
                 
+                float totalDuration = newRibbonScaleDuration + (newRibbonAnimationSpan*2);
+                recordManager.startJourney(journeys.back(), totalDuration);
 			}
 		}
 	}
@@ -636,6 +637,7 @@ void ofApp::draw()
 //		outImage.update();
 //		outImage.saveImage("d_4Large"+ofGetTimestampString()+".png");
 //	}
+    
 }
 
 //--------------------------------------------------------------
