@@ -118,6 +118,7 @@ public:
 	float noiseScale;
 	float slope;
 	bool bRotateOnNewJourney;
+	float newRibbonScaleDuration;
 	
     /**
      *  Journeys
@@ -178,7 +179,7 @@ public:
 	map<string, float>* p0;
 	map<string, float>* p1;
 	
-	float animationPresetTime;
+	float animationPresetVariationTime;
 	int animationPresetIndex0, animationPresetIndex1;
 	bool bPlayAnimation;
 	void tweenEventHandler(TweenEvent &e);

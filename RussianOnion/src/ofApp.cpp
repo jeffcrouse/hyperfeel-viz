@@ -76,7 +76,8 @@ void ofApp::setup(){
 	}
 	
 	//animation
-	animationPresetTime = 10;
+	newRibbonScaleDuration = 60; // <---- this controls the time it takes for the journey to animate in.
+	animationPresetVariationTime = 10;
 	animationPresetIndex0 = 0;
 	animationPresetIndex1 = 1;
 	animationPresets.push_back("d_0");
@@ -283,8 +284,6 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 	//TODO: make some sliders
 	float newRibbonAnimationSpan = bRotateOnNewJourney? .5 : .01;
 	
-	float newRibbonScaleDuration = 10;
-	
 	float startScale = 1. / recursiveScale;
 	
 	//action when a new ribbon animates in
@@ -335,10 +334,10 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 	{
 		if( e.message == "ended")
 		{
-			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetTime, TWEEN_LINEAR, TWEEN_IN, "variation" );
+			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_LINEAR, TWEEN_IN, "variation" );
 			variationTween->bKeepAround = true;
 			
-			presetMixKey = tween.addTween( presetMix, 0, 1, ofGetElapsedTimef(), animationPresetTime*.99, "presetMix" );
+			presetMixKey = tween.addTween( presetMix, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime*.99, "presetMix" );
 		}
 	}
 	
