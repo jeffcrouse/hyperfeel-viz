@@ -605,11 +605,12 @@ void ofApp::draw()
 		
 		glDisable( GL_DEPTH_TEST );
 		ofSetColor(255,255,255,255);
-		fbo_mm1.draw(ofGetWidth() - 210, 10, 200, 200 );
-		fbo_mm2.draw(ofGetWidth() - 210, 210, 200, 200 );
-		fbo_mm3.draw(ofGetWidth() - 210, 420, 200, 200 );
-		fbo_mm4.draw(ofGetWidth() - 210, 630, 200, 200 );
-		fbo_mm5.draw(ofGetWidth() - 210, 840, 200, 200 );
+		fbo_mm1.draw(ofGetWidth() - 110, 10, 100, 100 );
+		fbo_mm2.draw(ofGetWidth() - 110, 110, 100, 100 );
+		fbo_mm3.draw(ofGetWidth() - 110, 220, 100, 100 );
+		fbo_mm4.draw(ofGetWidth() - 110, 330, 100, 100 );
+		fbo_mm5.draw(ofGetWidth() - 110, 440, 100, 100 );
+		fbo_mm6.draw(ofGetWidth() - 110, 550, 100, 100 );
 		glEnable( GL_DEPTH_TEST );
 	}
 	

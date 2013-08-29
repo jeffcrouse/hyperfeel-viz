@@ -6,7 +6,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>circleRadius</Name>
-    <Value>348.769226074</Value>
+    <Value>366.538452148</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -51,22 +51,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.979553044</Value>
+    <Value>0.934294879</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>squish</Name>
-    <Value>0.810967207</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingThreshold</Name>
-    <Value>0.006410256</Value>
+    <Value>0.153846160</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingScale</Name>
-    <Value>0.333707899</Value>
+    <Value>0.102019228</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -81,7 +81,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>facingRatio</Name>
-    <Value>0.771538496</Value>
+    <Value>0.723942339</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
