@@ -157,26 +157,9 @@ void main(void)
 		}
 		
 	}
-//	float attention = uv.y - data.x * readingScale * animateIn; //attention below .5
-//	float meditation = uv.y + data.y * readingScale * animateIn;//meditation above .5
-//	
-//	//if uv.y is above .
-//	float scaledReading = readingThreshold * pow( animateIn, 4.);
-//	float upThreshold = .5 + scaledReading;
-//	float downThreshold = .5 - scaledReading;
-//
-//	
+
 	float a = alpha;
-//	if(  attention  > upThreshold ){
-//		//sample the Attention
-//		discard;
-//	}
-//	
-//	else if( meditation < downThreshold){
-//		//sample the meditation
-//		discard;
-//	}
-//	
+
 //	//gradient alpha
 //	else if( attention > upThreshold - AACoefficient ){
 //		a = map( attention, upThreshold-AACoefficient, upThreshold, alpha , 0.);
@@ -194,5 +177,5 @@ void main(void)
 	//color
 	vec3 col = color * fr;
 	
-	gl_FragColor = vec4( col * vec3(uv, 1.), a);
+	gl_FragColor = vec4( col, a); // * vec4(uv, 1., 1.)
 }

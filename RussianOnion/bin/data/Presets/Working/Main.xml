@@ -21,52 +21,52 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>15.278845787</Value>
+    <Value>20.522830963</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.918269217</Value>
+    <Value>0.953103781</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>squish</Name>
-    <Value>1.000000000</Value>
+    <Value>0.803269207</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingThreshold</Name>
-    <Value>0.304487169</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>readingScale</Name>
-    <Value>0.073461533</Value>
+    <Value>0.452294230</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>onionAlpha</Name>
-    <Value>0.454230785</Value>
+    <Value>0.928163409</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>dataSmoothing</Name>
-    <Value>0.727115393</Value>
+    <Value>0.779468417</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>facingRatio</Name>
-    <Value>0.209903836</Value>
+    <Value>0.451730341</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>displacement</Name>
-    <Value>89.743652344</Value>
+    <Value>-96.153869629</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseScale</Name>
-    <Value>0.006009615</Value>
+    <Value>0.002340565</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

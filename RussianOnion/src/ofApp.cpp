@@ -316,10 +316,10 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 		
 		//TODO: magic number
 		//remove the old journeys & onions
-//		if(onions.size() > 30){ // could be while() here?
-//			onions.erase( onions.begin() );
-//			journeys.erase( journeys.begin() );
-//		}
+		if(onions.size() > 30){ // could be while() here?
+			onions.erase( onions.begin() );
+			journeys.erase( journeys.begin() );
+		}
 		
 		rotatedBack = tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, 0, ofGetElapsedTimef(), newRibbonAnimationSpan, "rotatedBack" );
 	}
@@ -687,7 +687,7 @@ void ofApp::drawOnion(){
 	{
 		if(i == onions.size()-1)
 		{
-			onions[i].transform.setScale( newRibbonScale ); // newRibbonScale scales down to 1.
+			onions[i].transform.setScale( newRibbonScale,newRibbonScale,newRibbonScale*squish ); // newRibbonScale scales down to 1.
 			onions[i].transform.setOrientation( q + q.inverse() * (1.f - newRibbonShaderScale) ); // newRibbonShaderScale == val btwn 0-1
 		}
 		else
@@ -698,7 +698,7 @@ void ofApp::drawOnion(){
 	}
 	
 	globalTransform.makeIdentityMatrix();
-	globalTransform.rotateRad(globalRotationAboutXAxis, 1, 0, 0);
+	globalTransform.rotateRad(-globalRotationAboutXAxis, 1, 0, 0);
 	
 	//draw it
 	camera.begin();
@@ -715,23 +715,26 @@ void ofApp::drawOnion(){
 	currentShader->setUniform1f("slope", slope );
 	
 	ofPushMatrix();
-	ofScale( radius, radius, radius * squish );
+	ofScale( radius, radius, radius );
 	
 	ofPushMatrix();
 	if( bRotateOnNewJourney )	ofMultMatrix( globalTransform );//<-- this rotates the onion on transition in
 	
-	ofRotate( newRibbonShaderScale * -360 + 90 - slope * 180., 0, 0, 1);
+	ofRotate( newRibbonShaderScale * -360 + 90 - slope*90., 0, 0, 1);
+	float vortexRotVal = -3. * elapsedTime;
 	
 	glEnable(GL_CULL_FACE);
-//	for (int i=onions.size()-1; i>=0; i--) {
+	
 	for (int i=0; i<onions.size(); i++) {
 		
 		ofPushMatrix();
 		
 		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
 		
+		
 		//TODO: magic number
-		ofRotate( ( ( max( (float) onions.size()-i-1.f+newRibbonShaderScale, 0.f) ) * elapsedTime) * -3., 0, 0, 1);
+		
+		ofRotate( ( max( (float) onions.size() - i - 1.f + newRibbonShaderScale, 0.f) ) * vortexRotVal, 0, 0, 1);
 		
 		
 		//set ribbon color
