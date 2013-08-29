@@ -6,6 +6,8 @@ uniform float readingScale;
 uniform float alpha;
 uniform float dataSmoothing;
 
+uniform float slope;
+
 uniform vec2 texDim;
 uniform sampler2DRect dataTexture;
 float AACoefficient = .00125;
@@ -110,38 +112,80 @@ void main(void)
 	vec2 dataLeft = texture2DRect( dataTexture, uv * texDim+vec2(1., 0.)).xy;
 	vec2 dataRight = texture2DRect( dataTexture, uv * texDim-vec2(1., 0.) ).xy;
 	
-	data += (dataLeft*.5 + dataRight*.5) * dataSmoothing;
-	data *= 1. - dataSmoothing;
+	float animateInScale = pow( animateIn, 4.);
 	
-	float attention = uv.y - data.x * readingScale * animateIn;
-	float meditation = uv.y + data.y * readingScale * animateIn;
+	//smooth and scale the data
+	data = dataSmoothing * (dataLeft*.5 + dataRight*.5) + (1. - dataSmoothing) * data;
+	data *= readingScale;// * animateInScale;
 	
-	//if uv.y is above .
-	float scaledReading = readingThreshold * pow( animateIn, 4.);
-	float upThreshold = .5 + scaledReading;
-	float downThreshold = .5 - scaledReading;
+	float attention = data.x;
+	float meditation = data.y;
+	
+	float threshold = readingThreshold;// * animateInScale;
+	
+//	float slope = .05;
+	
+	if( uv.x - slope > animateIn){
+		discard;
+	}
+	
+	float diff = min(1., max(0., (animateIn - uv.x+slope) / slope ));
+	
+	if(animateIn < slope){
+		diff *= animateIn / slope;
+	}
+	
+	diff = 1. - pow( 1. - diff, 3.0);
+	
+	//if above .5 we're in the top half handling attention
+	if( uv.y > .5){
+		//move our threshold up into the top half
+		threshold = .5 + threshold * diff;
+		
+		if( uv.y - attention*diff > threshold ){
+			discard;
+		}
 
-	
+	}
+	//otherwise we're in the bottom half and handling meditation
+	else{
+		//invert the threshold (measuring from the top down)
+		threshold = .5 - threshold * diff;
+		
+		if(uv.y + meditation * diff < threshold){
+			discard;
+		}
+		
+	}
+//	float attention = uv.y - data.x * readingScale * animateIn; //attention below .5
+//	float meditation = uv.y + data.y * readingScale * animateIn;//meditation above .5
+//	
+//	//if uv.y is above .
+//	float scaledReading = readingThreshold * pow( animateIn, 4.);
+//	float upThreshold = .5 + scaledReading;
+//	float downThreshold = .5 - scaledReading;
+//
+//	
 	float a = alpha;
-	if(  attention  > upThreshold ){
-		//sample the Attention
-		discard;
-	}
+//	if(  attention  > upThreshold ){
+//		//sample the Attention
+//		discard;
+//	}
+//	
+//	else if( meditation < downThreshold){
+//		//sample the meditation
+//		discard;
+//	}
+//	
+//	//gradient alpha
+//	else if( attention > upThreshold - AACoefficient ){
+//		a = map( attention, upThreshold-AACoefficient, upThreshold, alpha , 0.);
+//	}
+//	else if( meditation < downThreshold + AACoefficient ){
+//		a = map( meditation, downThreshold+AACoefficient, downThreshold, alpha , 0.);
+//	}
 	
-	else if( meditation < downThreshold ){
-		//sample the meditation
-		discard;
-	}
-	
-	//gradient alpha
-	else if( attention > upThreshold - AACoefficient ){
-		a = map( attention, upThreshold-AACoefficient, upThreshold, alpha , 0.);
-	}
-	else if( meditation < downThreshold + AACoefficient ){
-		a = map( meditation, downThreshold+AACoefficient, downThreshold, alpha , 0.);
-	}
-	
-	a *= min(1., animateIn * 2. );
+//	a *= min(1., animateIn * 2. );
 	
 
 	//facing ratio

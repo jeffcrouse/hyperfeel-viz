@@ -112,6 +112,8 @@ void ofApp::setDefaults(){
 	farDepthScale = 3500;
 	
 	bDepthTest = true;
+	
+	slope = .05;
 }
 
 
@@ -158,6 +160,7 @@ void ofApp::setupUI(){
 	guiMain->addSlider("facingRatio", .01, 1., &facingRatio );
 	guiMain->addSlider("displacement", -1000, 1000., &displacement );
 	guiMain->addSlider("noiseScale", 0, .025, &noiseScale );
+	guiMain->addSlider("slope", 0., .2, &slope );
 	
 	//create a radio for switching renderTypes
 	guiMain->addSpacer();
@@ -271,10 +274,14 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 	
 }
 
+//this is the engin that drives the animation
 void ofApp::tweenEventHandler(TweenEvent &e)
 {
+	//TODO: make some sliders
+	float newRibbonAnimationSpan = .5;
 	
-	float newRibbonAnimationSpan = 2;
+	float newRibbonScaleDuration = 10;
+	
 	//action when a new ribbon animates in
 	if(e.name == addRibbonTween)
 	{
@@ -291,33 +298,30 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 				newRibbonShaderScale = 0;
 			}
 		}
-		
-		else if( e.message == "updated" )
-		{
-			
-		}
-		
-		else if( e.message == "ended" )
-		{
-			//remove the old journeys & onions
-			onions.erase( onions.begin() );
-			journeys.erase( journeys.begin() );
-			
-			rotatedBack = tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, globalRotationAboutXAxis+HALF_PI, ofGetElapsedTimef(), 1, "rotatedBack" );
-		}
 	}
 	
-	//if it's rotated down animate in the new ribbon
+	//if we're adding a journey && it's rotated down then we create a tween to animate in the new ribbon
 	if( bAddingRibbon && e.name == "globalRotX" && e.message == "ended" )
 	{
-		tween.addTween( newRibbonShaderScale, 0, 1, ofGetElapsedTimef(), newRibbonAnimationSpan, "newRibbonShaderScale" );
+		addRibbonScaleTween = tween.addTween( newRibbonShaderScale, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonShaderScale" );
 	}
 	
+	//if the ribbon is done scalling in rotate it back and remove any old journeys
+	if(e.name == addRibbonScaleTween && e.message == "ended"){
+		
+		//TODO: magic number
+		//remove the old journeys & onions
+		if(onions.size() > 30){ // could be while() here?
+			onions.erase( onions.begin() );
+			journeys.erase( journeys.begin() );
+		}
+		
+		rotatedBack = tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, 0, ofGetElapsedTimef(), newRibbonAnimationSpan, "rotatedBack" );
+	}
 	
-	//ende the adding new ribbon transition
+	//end the adding new ribbon transition
 	if(e.name == rotatedBack && e.message == "ended" )
 	{
-		rotatedBack = "";
 		bAddingRibbon = false;
 	}
 	
@@ -326,19 +330,8 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 	//animation variation over time -> blending presets.
 	if(e.name == variationKey)
 	{
-		if( e.message == "started")
+		if( e.message == "ended")
 		{
-			//cout << e.name << " : " << e.message << endl;
-		}
-		
-		else if( e.message == "updated")
-		{
-			
-		}
-		
-		else if( e.message == "ended")
-		{
-			//cout << e.name << " : " << e.message << endl;
 			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetTime, TWEEN_LINEAR, TWEEN_IN, "variation" );
 			variationTween->bKeepAround = true;
 			
@@ -349,15 +342,9 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 	//this tween handles the animtion preset blending this allows us to spend time on a preset wothout any blending
 	if( bPlayAnimation && e.name == "presetMix")
 	{
-		//cout << e.name << " : " << e.message << endl;
 		if(p0 == NULL || p1 == NULL){
 			p0 = &presets[ animationPresets[ animationPresetIndex0 ] ];
 			p1 = &presets[ animationPresets[ animationPresetIndex1 ] ];
-		}
-		
-		if(e.message == "started")
-		{
-			//cout << e.name << " : " << "started" << endl;
 		}
 		
 		//mix current and target preset values and set the UI widget values which in turn control our variables
@@ -470,6 +457,13 @@ void ofApp::update()
 			if(!onions[i].bIsSetup){
 				onions[i].setup( journeys[i] );
 				onions[i].color = getRandomColor();
+				
+				//prevent neighbor color matches
+				if(i>0){
+					while (onions[i].color == onions[i-1].color) {
+						onions[i].color = getRandomColor();
+					}
+				}
 			}
 		}
 	}
@@ -707,6 +701,7 @@ void ofApp::drawOnion(){
 	currentShader->setUniform1f("facingRatio", facingRatio);
 	currentShader->setUniform1f("displacement", displacement );
 	currentShader->setUniform1f("noiseScale", noiseScale );
+	currentShader->setUniform1f("slope", slope );
 	
 	float scaleStep = 1./float(onions.size());
 	ofPushMatrix();
@@ -715,15 +710,20 @@ void ofApp::drawOnion(){
 	ofPushMatrix();
 	ofMultMatrix( globalTransform );
 	
+//	cout << globalRotationAboutXAxis / PI << endl;
+	ofRotate( newRibbonShaderScale * -360 + 90 - slope * 180., 0, 0, 1);
+	
 	glEnable(GL_CULL_FACE);
 //	for (int i=onions.size()-1; i>=0; i--) {
 	for (int i=0; i<onions.size(); i++) {
 
 		ofPushMatrix();
+		
 		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
 		
 		//TODO: magic number
 		ofRotate(((onions.size()-i-1)*elapsedTime)*3., 0, 0, 1);
+		
 		
 		//set ribbon color
 		ofSetColor( onions[i].color );

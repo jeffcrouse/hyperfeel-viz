@@ -116,6 +116,7 @@ public:
 	float facingRatio;
 	float displacement;
 	float noiseScale;
+	float slope;
 	
     /**
      *  Journeys
@@ -163,6 +164,8 @@ public:
 	string globalRotX;
 	string rotatedBack;
 	string addRibbonTween;
+	string addRibbonScaleTween;
+	
 	float addRibbonVal;
 	bool bAddingRibbon;
 	float newRibbonScale;
