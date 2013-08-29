@@ -67,8 +67,8 @@ class testApp : public ofBaseApp{
         float spread;
         ofxAudioUnitOutput output;
         //ofxAudioUnitTap tap;
-    vector<string> attention_sounds;
-    vector<string> meditation_sounds;
+        vector<string> attention_sounds;
+        vector<string> meditation_sounds;
         ofxAudioUnitFilePlayer* meditationLoops;
         ofxAudioUnitFilePlayer* attentionLoops;
         float* meditationVolume;

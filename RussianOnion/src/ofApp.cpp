@@ -37,7 +37,7 @@ void ofApp::setup(){
 	
 	//Journy stuff
 	bSaveJsonsToFile = false;//for debuggin it was faster to load them from file rather then wait for the server
-	bLoadJsonsFromFile = true;
+	bLoadJsonsFromFile = false;
 	
 	bJourniesNeedUpdate = false;
 	
@@ -185,6 +185,9 @@ void ofApp::setupUI(){
 	guiMain->addRadio("shaders", shaderNames );
 	
 	
+    guiMain->addSpacer();
+    guiMain->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
+    
 	guiMain->autoSizeToFitWidgets();
 	
 	
