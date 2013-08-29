@@ -121,6 +121,7 @@ public:
 	bool bRotateOnNewJourney;
 	float newRibbonScaleDuration;
 	float circleRadius;
+	float edgeAADist;
 	
     /**
      *  Journeys

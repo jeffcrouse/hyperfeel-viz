@@ -114,6 +114,7 @@ void ofApp::setDefaults(){
 	bDepthTest = true;
 	
 	circleRadius = ofGetHeight() / 2;
+	edgeAADist = 2;
 	
 	slope = .05;
 	bRotateOnNewJourney = false;
@@ -144,6 +145,7 @@ void ofApp::setupUI(){
 	guiMain->addSpacer();
 	guiMain->addToggle("playAnimation", &bPlayAnimation );
 	guiMain->addSlider("circleRadius", 100, 1024, &circleRadius );
+	guiMain->addSlider("edgeAADist", 1, 10, &edgeAADist );
 	guiMain->addLabel("render Types");
 	guiMain->addRadio("renderTypes", renderTypes );
 	
@@ -512,13 +514,18 @@ void ofApp::draw()
 	ofPopStyle();
 	
 	ofSetColor(255,255,255,255);
+	ofPushStyle();
+	ofEnableAlphaBlending();
+	
 	post.begin();
 	post.setUniform2f("center", ofGetWidth()/2, ofGetHeight()/2);
 	post.setUniform1f("circleRadius", circleRadius );
+	post.setUniform1f("edgeAADist", edgeAADist );
 	post.setUniformTexture("fbo", fbo.getTextureReference(), 0);
 	fbo.draw(0, 0, ofGetWidth(), ofGetHeight() );
 	
 	post.end();
+	ofPopStyle();
 	
 //	if( captrure ){
 //		captrure = false;
