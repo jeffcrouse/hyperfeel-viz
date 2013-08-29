@@ -683,18 +683,18 @@ void ofApp::drawOnion(){
 	
 	float startScale = 1. / recursiveScale;
 	
-	for (int i=onions.size()-1; i>=0; i--) {
-		
-		
-		if(i == onions.size()-1){
+	for (int i=onions.size()-1; i>=0; i--)
+	{
+		if(i == onions.size()-1)
+		{
 			onions[i].transform.setScale( newRibbonScale ); // newRibbonScale scales down to 1.
 			onions[i].transform.setOrientation( q + q.inverse() * (1.f - newRibbonShaderScale) ); // newRibbonShaderScale == val btwn 0-1
 		}
-		else{
+		else
+		{
 			onions[i].transform.setScale( onions[i+1].transform.getScale() * recursiveScale );
 			onions[i].transform.setOrientation( onions[i+1].transform.getOrientationQuat() * q );
 		}
-		
 	}
 	
 	globalTransform.makeIdentityMatrix();
@@ -731,7 +731,7 @@ void ofApp::drawOnion(){
 		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
 		
 		//TODO: magic number
-//		ofRotate(((onions.size()-i-1)*elapsedTime)*3., 0, 0, 1);
+		ofRotate( ( ( max( (float) onions.size()-i-1.f+newRibbonShaderScale, 0.f) ) * elapsedTime) * -3., 0, 0, 1);
 		
 		
 		//set ribbon color
