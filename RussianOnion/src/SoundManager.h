@@ -11,6 +11,7 @@
 #include "Journey.h"
 #include "ofxAudioUnit.h"
 
+#define AMBIENT_VOLUME 0.25
 
 class SoundManager
 {

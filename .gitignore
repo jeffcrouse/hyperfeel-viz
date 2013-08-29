@@ -37,5 +37,5 @@ xcuserdata
 *.mode*
 *.app/
 
+/RussianOnion/bin/data/Recordings/*.mov
 /RecordingTest/bin/data/sounds/
-/RecordingTest/bin/data/sounds2/

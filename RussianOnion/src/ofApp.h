@@ -38,6 +38,10 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 	
+    ofSoundStream soundStream;
+    void audioIn(float * input, int bufferSize, int nChannels);
+    
+    
     void onJourneyBuildInStart(Journey* j);
     void onJourneyBuildInUpdate(Journey* j, float pct);
     void onJourneyBuildInEnd(Journey* j);

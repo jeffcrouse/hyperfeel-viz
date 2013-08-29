@@ -22,5 +22,28 @@ public:
     void update(ofEventArgs &args);
     void startJourney(Journey* j);
     void endJourney(Journey* j);
+
+    
+    void newResponse(ofxHttpResponse & response);
+    void audioIn(float * input, int bufferSize, int nChannels);
+    
+    //
+    // Uploading
+    //
+    ofxHttpUtils httpUtils;
+    
+    //
+    // Recording stuff
+    //
+    bool bEnabled;
+    bool bRecording;
+    ofxVideoRecorder    vidRecorder;
+    
+    ofImage             frame;
+    int sampleRate;
+    int channels;
+    int frameRate;
+    string filename;
+    string journey_id;
 };
 

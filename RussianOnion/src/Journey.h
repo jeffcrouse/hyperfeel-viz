@@ -66,6 +66,8 @@ public:
 		//16 digit hash
         uid = json["_id"].asString();
 		
+        email = (json.isMember("email")) ? json["email"].asString() : "";
+ 
 		//date of save on interface. is0 8601.
         created_at = iso8601toTimestamp( json["created_at"].asString() );
 		
@@ -121,6 +123,7 @@ public:
     ofPolyline data;
 	int client_id;
 	string uid;
+    string email;
 	long created_at;
 	vector<Reading> readings;
 	vector<Event> events;

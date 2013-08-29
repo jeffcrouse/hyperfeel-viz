@@ -107,9 +107,17 @@ void ofApp::setup(){
     
 	//add tween listener
 	ofAddListener( TweenEvent::events, this, &ofApp::tweenEventHandler );
+    
+
+    soundStream.setup(this, 0, recordManager.channels, recordManager.sampleRate, 256, 4);
 }
 
+//--------------------------------------------------------------
+void ofApp::audioIn(float *input, int bufferSize, int nChannels){
+    recordManager.audioIn(input, bufferSize, nChannels);
+}
 
+//--------------------------------------------------------------
 void ofApp::setDefaults(){
 	camera.setFarClip(20000);
 	camera.setNearClip(20);
@@ -192,6 +200,7 @@ void ofApp::setupUI(){
 	
 	
     guiMain->addSpacer();
+    guiMain->addToggle("Record Manager Enabled", &recordManager.bEnabled);
     guiMain->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
     
 	guiMain->autoSizeToFitWidgets();
@@ -319,6 +328,9 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 				
 				tween.addTween(newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonScale", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 				newRibbonShaderScale = 0;
+                
+                recordManager.startJourney(journeys.back());
+                
 			}
 		}
 	}
@@ -355,6 +367,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 	if(e.name == rotatedBack && e.message == "ended" )
 	{
 		bAddingRibbon = false;
+        recordManager.endJourney(journeys.back());
 	}
 	
 	
@@ -1221,7 +1234,6 @@ void ofApp::onBroadcast( ofxLibwebsockets::Event& args )
 //--------------------------------------------------------------
 void ofApp::onJourneyBuildInStart(Journey* j) {
     soundManager.startJourney(j);
-    recordManager.startJourney(j);
 }
 
 //--------------------------------------------------------------
@@ -1232,7 +1244,6 @@ void ofApp::onJourneyBuildInUpdate(Journey* j, float pct) {
 //--------------------------------------------------------------
 void ofApp::onJourneyBuildInEnd(Journey* j) {
     soundManager.endJourney(j);
-    recordManager.endJourney(j);
 }
 
 

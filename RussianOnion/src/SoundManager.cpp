@@ -24,7 +24,7 @@ SoundManager::SoundManager() {
 void SoundManager::setup(ofEventArgs &args) {
     spread = 2.0;
     max_volume = 1/(float)ceil(spread);
-    masterVolume = masterVolumeTarget = 0;
+    masterVolume = masterVolumeTarget = AMBIENT_VOLUME;
     audioLevelsPreview.allocate(320, 240);
     attention = attentionTarget = 0;
     meditation = meditationTarget = 0;
@@ -120,7 +120,7 @@ void SoundManager::startJourney(Journey* j) {
 
 // -------------------------------------------------
 void SoundManager::endJourney(Journey* j) {
-    masterVolumeTarget = 0;
+    masterVolumeTarget = AMBIENT_VOLUME;
     attentionTarget = 0;
     meditationTarget = 0;
 }
