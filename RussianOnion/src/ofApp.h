@@ -7,6 +7,8 @@
 #include "Onion.h"
 #include "HyperfeelTween.h"
 #include "SoundManager.h"
+#include "RecordManager.h"
+
 
 class HyperFeel_Data {
 public:
@@ -40,6 +42,7 @@ public:
     void onJourneyBuildInUpdate(Journey* j, float pct);
     void onJourneyBuildInEnd(Journey* j);
     SoundManager soundManager;
+    RecordManager recordManager;
     
 	//rendertypes
 	void drawRibbons();

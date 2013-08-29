@@ -14,7 +14,14 @@ SoundManager::~SoundManager() {
 }
 
 // -------------------------------------------------
-void SoundManager::setup() {
+SoundManager::SoundManager() {
+    ofAddListener(ofEvents().setup, this, &SoundManager::setup );
+    ofAddListener(ofEvents().update, this, &SoundManager::update );
+}
+
+
+// -------------------------------------------------
+void SoundManager::setup(ofEventArgs &args) {
     spread = 2.0;
     max_volume = 1/(float)ceil(spread);
     masterVolume = masterVolumeTarget = 0;
@@ -78,7 +85,6 @@ void SoundManager::setup() {
     output.start();
     
 
-    ofAddListener(ofEvents().update, this, &SoundManager::update );
 }
 
 
@@ -87,7 +93,6 @@ void SoundManager::update(ofEventArgs &args)
 {
     masterVolume += (masterVolumeTarget-masterVolume) / 10.0;
     masterMixer.setOutputVolume(masterVolume);
-    
     
     attention += (attentionTarget-attention) / 10.0;
     for(int i=0; i<attention_sounds.size(); i++) {
@@ -109,14 +114,12 @@ void SoundManager::update(ofEventArgs &args)
 
 // -------------------------------------------------
 void SoundManager::startJourney(Journey* j) {
-    // fade in masterMixer
     masterVolumeTarget = 1;
 
 }
 
 // -------------------------------------------------
 void SoundManager::endJourney(Journey* j) {
-    // fade out masterMixer
     masterVolumeTarget = 0;
     attentionTarget = 0;
     meditationTarget = 0;

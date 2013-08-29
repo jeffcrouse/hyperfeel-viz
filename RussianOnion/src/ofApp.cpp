@@ -104,8 +104,6 @@ void ofApp::setup(){
 	
 	bAddingRibbon = false;
 	newRibbonScale = 1;
-	
-    soundManager.setup();
     
 	//add tween listener
 	ofAddListener( TweenEvent::events, this, &ofApp::tweenEventHandler );
@@ -1223,19 +1221,18 @@ void ofApp::onBroadcast( ofxLibwebsockets::Event& args )
 //--------------------------------------------------------------
 void ofApp::onJourneyBuildInStart(Journey* j) {
     soundManager.startJourney(j);
-    // TO DO:  Start recording video.
+    recordManager.startJourney(j);
 }
 
 //--------------------------------------------------------------
 void ofApp::onJourneyBuildInUpdate(Journey* j, float pct) {
     soundManager.updateJorney(j, pct);
-    // TO DO: update recording?
 }
 
 //--------------------------------------------------------------
 void ofApp::onJourneyBuildInEnd(Journey* j) {
     soundManager.endJourney(j);
-    // TO DO: end recording and deal with result...
+    recordManager.endJourney(j);
 }
 
 

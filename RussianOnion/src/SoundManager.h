@@ -15,9 +15,10 @@
 class SoundManager
 {
 public:
+    SoundManager();
     ~SoundManager();
     
-    void setup();
+    void setup(ofEventArgs &args);
     void startJourney(Journey* j);
     void endJourney(Journey* j);
     void updateJorney(Journey* j, float pct);

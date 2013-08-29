@@ -30,6 +30,8 @@
 		1F3E8F6117CFB40F004CDA73 /* ofxVideoRecorder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E8F5F17CFB40F004CDA73 /* ofxVideoRecorder.cpp */; };
 		1F3E8F6317CFB461004CDA73 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F3E8F6217CFB461004CDA73 /* AudioUnit.framework */; };
 		1F3E8F6517CFB472004CDA73 /* CoreAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F3E8F6417CFB472004CDA73 /* CoreAudioKit.framework */; };
+		1F3E8F6917CFC117004CDA73 /* RecordManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E8F6717CFC117004CDA73 /* RecordManager.cpp */; };
+		1F3E8F6E17CFC13A004CDA73 /* ofxHttpUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E8F6C17CFC13A004CDA73 /* ofxHttpUtils.cpp */; };
 		1FE89D9E17CFB06500AF8291 /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FE89D9C17CFB06500AF8291 /* SoundManager.cpp */; };
 		50138E5217C67C3F009E8A93 /* Onion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50138E5017C67C3F009E8A93 /* Onion.cpp */; };
 		50138E6917C683D4009E8A93 /* onion.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50138E6717C683D4009E8A93 /* onion.frag */; };
@@ -169,6 +171,11 @@
 		1F3E8F6017CFB40F004CDA73 /* ofxVideoRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVideoRecorder.h; sourceTree = "<group>"; };
 		1F3E8F6217CFB461004CDA73 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		1F3E8F6417CFB472004CDA73 /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
+		1F3E8F6717CFC117004CDA73 /* RecordManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RecordManager.cpp; sourceTree = "<group>"; };
+		1F3E8F6817CFC117004CDA73 /* RecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordManager.h; sourceTree = "<group>"; };
+		1F3E8F6B17CFC13A004CDA73 /* ofxHttpTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxHttpTypes.h; path = ../../../addons/ofxHttpUtils/src/ofxHttpTypes.h; sourceTree = "<group>"; };
+		1F3E8F6C17CFC13A004CDA73 /* ofxHttpUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxHttpUtils.cpp; path = ../../../addons/ofxHttpUtils/src/ofxHttpUtils.cpp; sourceTree = "<group>"; };
+		1F3E8F6D17CFC13A004CDA73 /* ofxHttpUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxHttpUtils.h; path = ../../../addons/ofxHttpUtils/src/ofxHttpUtils.h; sourceTree = "<group>"; };
 		1FE89D9C17CFB06500AF8291 /* SoundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundManager.cpp; sourceTree = "<group>"; };
 		1FE89D9D17CFB06500AF8291 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 		1c43cdb79bf40ea7424b96804209f474 /* ofxUISuperCanvas.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUISuperCanvas.h; path = ../../../addons/ofxUI/src/ofxUISuperCanvas.h; sourceTree = SOURCE_ROOT; };
@@ -400,6 +407,16 @@
 			path = ../../../addons/ofxVideoRecorder/src;
 			sourceTree = "<group>";
 		};
+		1F3E8F6A17CFC129004CDA73 /* ofxHttpUtils */ = {
+			isa = PBXGroup;
+			children = (
+				1F3E8F6B17CFC13A004CDA73 /* ofxHttpTypes.h */,
+				1F3E8F6C17CFC13A004CDA73 /* ofxHttpUtils.cpp */,
+				1F3E8F6D17CFC13A004CDA73 /* ofxHttpUtils.h */,
+			);
+			name = ofxHttpUtils;
+			sourceTree = "<group>";
+		};
 		1f4fb5c423662b96adfdcc0badec1cb0 /* ofxXmlSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +507,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				1F3E8F6A17CFC129004CDA73 /* ofxHttpUtils */,
 				1F3E8F1B17CFB3DB004CDA73 /* ofxAudioUnit */,
 				1F3E8F1A17CFB3D5004CDA73 /* ofxVideoRecorder */,
 				1f4fb5c423662b96adfdcc0badec1cb0 /* ofxXmlSettings */,
@@ -576,6 +594,8 @@
 				5096CB3817C29459007FAFFC /* Journey.h */,
 				1FE89D9C17CFB06500AF8291 /* SoundManager.cpp */,
 				1FE89D9D17CFB06500AF8291 /* SoundManager.h */,
+				1F3E8F6717CFC117004CDA73 /* RecordManager.cpp */,
+				1F3E8F6817CFC117004CDA73 /* RecordManager.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -812,6 +832,8 @@
 				1F3E8F5C17CFB405004CDA73 /* ofxAudioUnitTap.cpp in Sources */,
 				1F3E8F5D17CFB405004CDA73 /* TPCircularBuffer.c in Sources */,
 				1F3E8F6117CFB40F004CDA73 /* ofxVideoRecorder.cpp in Sources */,
+				1F3E8F6917CFC117004CDA73 /* RecordManager.cpp in Sources */,
+				1F3E8F6E17CFC13A004CDA73 /* ofxHttpUtils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
