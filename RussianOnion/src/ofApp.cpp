@@ -15,7 +15,7 @@ void ofApp::setup(){
 	s.internalformat    = GL_RGBA;
 	s.numColorbuffers   = 3;
 	s.useDepth = true;
-	s.numSamples = 0;
+	s.numSamples = 4;
 	fbo.allocate(s);
 	
 	//
@@ -31,7 +31,7 @@ void ofApp::setup(){
 	
 	//Journy stuff
 	bSaveJsonsToFile = false;//for debuggin it was faster to load them from file rather then wait for the server
-	bLoadJsonsFromFile = false;
+	bLoadJsonsFromFile = true;
 	
 	bJourniesNeedUpdate = false;
 	
@@ -45,8 +45,7 @@ void ofApp::setup(){
 	colorMap["blue"].set( 4, 184, 197 );			// = ofColor::blue;
 	colorMap["indigo"].set( 131, 102, 212 );		// = ofColor::indigo;
 	colorMap["violet"].set( 227, 59, 207 );			// = ofColor::violet;
-		
-//	fbo.allocate(1024*8, 1024*8);
+
 	// -
 	loadShaders();
 	
@@ -93,7 +92,7 @@ void ofApp::setup(){
 	bPlayAnimation = true;
 	
 	//kick off animation variation
-	variationKey = tween.addTween( variation, 0, 1, ofGetElapsedTimef(), ofGetElapsedTimef(), "variation");
+	variationKey = tween.addTween( variation, 0, 1, ofGetElapsedTimef(), ofGetElapsedTimef(), "variation", TWEEN_SINUSOIDAL, TWEEN_INOUT);
 	variationTween = tween.getTween( variationKey );//<--a looping tween( basically a timer ) that triggers transitions between presets
 	
 	bAddingRibbon = false;
@@ -113,6 +112,8 @@ void ofApp::setDefaults(){
 	farDepthScale = 3500;
 	
 	bDepthTest = true;
+	
+	circleRadius = ofGetHeight() / 2;
 	
 	slope = .05;
 	bRotateOnNewJourney = false;
@@ -142,6 +143,7 @@ void ofApp::setupUI(){
 	
 	guiMain->addSpacer();
 	guiMain->addToggle("playAnimation", &bPlayAnimation );
+	guiMain->addSlider("circleRadius", 100, 1024, &circleRadius );
 	guiMain->addLabel("render Types");
 	guiMain->addRadio("renderTypes", renderTypes );
 	
@@ -334,10 +336,10 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 	{
 		if( e.message == "ended")
 		{
-			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_LINEAR, TWEEN_IN, "variation" );
+			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
 			variationTween->bKeepAround = true;
 			
-			presetMixKey = tween.addTween( presetMix, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime*.99, "presetMix" );
+			presetMixKey = tween.addTween( presetMix, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime*.99, "presetMix", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 		}
 	}
 	
@@ -393,13 +395,10 @@ void ofApp::loadShaders()
 {
 	cout<<endl<<endl<< "loading shaders: " << ofGetFrameNum() <<endl<<endl;
 	
-	//load data shader
-//	facingRatioShader.load( "shaders/facingRatio" );
-//	shaderMap["facingRatioShader"] = &facingRatioShader;
-//	
-//	normalShader.load( "shaders/normal" );
-//	shaderMap["normalShader"] = &normalShader;
+	//load postprocess shaders
+	post.load( "shaders/post" );
 	
+	//load data shader
 	displacedShader.load( "shaders/displaced" );
 	shaderMap["displacedShader"] = &displacedShader;
 	
@@ -488,10 +487,11 @@ void ofApp::retryColors(){
 //--------------------------------------------------------------
 void ofApp::draw()
 {
+	ofBackground(30,33,39, 255);
 	ofPushStyle();
 	
-	if( captrure )	fbo.begin();
-	ofClear(0,0,0,0);
+	fbo.begin();
+	ofClear(0,0,0,255);
 		
 	if (bDepthTest) {
 		glEnable( GL_DEPTH_TEST);
@@ -507,17 +507,26 @@ void ofApp::draw()
 		glDisable(GL_DEPTH_TEST);
 	}
 	
-	if( captrure )	fbo.end();
+	fbo.end();
 	
 	ofPopStyle();
-	if( captrure ){
-		captrure = false;
-		
-		fbo.readToPixels(outImage);
-		outImage.update();
-		outImage.saveImage("d_4Large"+ofGetTimestampString()+".png");
-	}
-//	outImage.draw( 0, 0, ofGetWidth(), ofGetHeight() );
+	
+	ofSetColor(255,255,255,255);
+	post.begin();
+	post.setUniform2f("center", ofGetWidth()/2, ofGetHeight()/2);
+	post.setUniform1f("circleRadius", circleRadius );
+	post.setUniformTexture("fbo", fbo.getTextureReference(), 0);
+	fbo.draw(0, 0, ofGetWidth(), ofGetHeight() );
+	
+	post.end();
+	
+//	if( captrure ){
+//		captrure = false;
+//		
+//		fbo.readToPixels(outImage);
+//		outImage.update();
+//		outImage.saveImage("d_4Large"+ofGetTimestampString()+".png");
+//	}
 }
 
 //--------------------------------------------------------------
@@ -948,7 +957,7 @@ void ofApp::keyPressed(int key)
 	
 	if(key == ' '){
 		if(!bAddingRibbon){
-			addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), 4, "addRibbon", TWEEN_SMOOTHERSTEP );
+			addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), 4, "addRibbon", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 			
 			//load a journey from file
 			ofBuffer buffer = ofBufferFromFile("Journeys/journey_showJourney" + ofToString(int(ofRandom(4))) + ".json");

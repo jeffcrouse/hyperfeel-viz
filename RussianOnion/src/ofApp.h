@@ -78,6 +78,7 @@ public:
 	/**
 	 * shaders
 	 */
+	ofShader post;
 	ofShader facingRatioShader; 
 	ofShader normalShader;
 	ofShader displacedShader;
@@ -119,6 +120,7 @@ public:
 	float slope;
 	bool bRotateOnNewJourney;
 	float newRibbonScaleDuration;
+	float circleRadius;
 	
     /**
      *  Journeys
