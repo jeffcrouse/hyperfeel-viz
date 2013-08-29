@@ -126,8 +126,12 @@ public:
 	float slope;
 	bool bRotateOnNewJourney;
 	float newRibbonScaleDuration;
+	
 	float circleRadius;
 	float edgeAADist;
+	float glowCoefficient;
+	float glowExponent;
+	float glowUpscale;
 	
     /**
      *  Journeys
@@ -227,6 +231,7 @@ public:
 	ofFbo fbo_mm3;
 	ofFbo fbo_mm4;
 	ofFbo fbo_mm5;
+	ofFbo fbo_mm6;
 	
 	//ofxUI
 	vector<string> getPresetNames();

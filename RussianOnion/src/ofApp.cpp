@@ -23,6 +23,7 @@ void ofApp::setup(){
 	fbo_mm3.allocate( fbo_mm2.getWidth()/2, fbo_mm2.getHeight()/2, GL_RGB );
 	fbo_mm4.allocate( fbo_mm3.getWidth()/2, fbo_mm3.getHeight()/2, GL_RGB );
 	fbo_mm5.allocate( fbo_mm4.getWidth()/2, fbo_mm4.getHeight()/2, GL_RGB );
+	fbo_mm6.allocate( fbo_mm5.getWidth()/2, fbo_mm5.getHeight()/2, GL_RGB );
 	
 	//
     ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
@@ -123,6 +124,9 @@ void ofApp::setDefaults(){
 	
 	circleRadius = ofGetHeight() / 2;
 	edgeAADist = 2;
+	glowCoefficient = .5;
+	glowExponent = 2;
+	glowUpscale = .5;
 	
 	slope = .05;
 	bRotateOnNewJourney = false;
@@ -154,6 +158,10 @@ void ofApp::setupUI(){
 	guiMain->addToggle("playAnimation", &bPlayAnimation );
 	guiMain->addSlider("circleRadius", 100, 1024, &circleRadius );
 	guiMain->addSlider("edgeAADist", 1, 10, &edgeAADist );
+	guiMain->addSlider("glowCoefficient", 0., 1., &glowCoefficient);
+	guiMain->addSlider("glowExponent", 1., 10., &glowExponent);
+	guiMain->addSlider("glowUpscale", 0., 1., &glowUpscale);
+
 	guiMain->addLabel("render Types");
 	guiMain->addRadio("renderTypes", renderTypes );
 	
@@ -566,6 +574,11 @@ void ofApp::draw()
 	fbo_mm4.draw(0, 0, fbo_mm5.getWidth(), fbo_mm5.getHeight() );
 	fbo_mm5.end();
 	
+	fbo_mm6.begin();
+	ofClear(0,0,0,255);
+	fbo_mm5.draw(0, 0, fbo_mm6.getWidth(), fbo_mm6.getHeight() );
+	fbo_mm6.end();
+	
 	
 	//post shader. draw to the screen
 	post.begin();
@@ -578,6 +591,10 @@ void ofApp::draw()
 	post.setUniformTexture("mm3", fbo_mm3.getTextureReference(), 3);
 	post.setUniformTexture("mm4", fbo_mm4.getTextureReference(), 4);
 	post.setUniformTexture("mm5", fbo_mm5.getTextureReference(), 5);
+	post.setUniformTexture("mm6", fbo_mm6.getTextureReference(), 6);
+	post.setUniform1f("glowCoefficient", glowCoefficient );
+	post.setUniform1f("glowExponent", glowExponent );
+	post.setUniform1f("glowUpscale", glowUpscale );
 	
 	fbo.draw(0, 0, ofGetWidth(), ofGetHeight() );
 	

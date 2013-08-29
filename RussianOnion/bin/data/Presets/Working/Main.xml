@@ -1,7 +1,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>playAnimation</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -12,6 +12,21 @@
     <Kind>4</Kind>
     <Name>edgeAADist</Name>
     <Value>2.009615421</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>glowCoefficient</Name>
+    <Value>0.762820542</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>glowExponent</Name>
+    <Value>2.096153736</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>glowUpscale</Name>
+    <Value>0.397435904</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -36,12 +51,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.962091625</Value>
+    <Value>0.979553044</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>squish</Name>
-    <Value>0.803932428</Value>
+    <Value>0.810967207</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -51,12 +66,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>readingScale</Name>
-    <Value>0.343747020</Value>
+    <Value>0.333707899</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>onionAlpha</Name>
-    <Value>1.000000000</Value>
+    <Value>0.800138474</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -66,17 +81,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>facingRatio</Name>
-    <Value>0.438365400</Value>
+    <Value>0.771538496</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>displacement</Name>
-    <Value>-75.595581055</Value>
+    <Value>-82.015197754</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseScale</Name>
-    <Value>0.006144315</Value>
+    <Value>0.004948037</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
