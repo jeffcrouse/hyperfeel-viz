@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1FE89D9A17CFAA2200AF8291 /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FE89D9817CFAA2200AF8291 /* SoundManager.cpp */; };
 		50138E5217C67C3F009E8A93 /* Onion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50138E5017C67C3F009E8A93 /* Onion.cpp */; };
 		50138E6917C683D4009E8A93 /* onion.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50138E6717C683D4009E8A93 /* onion.frag */; };
 		50138E6A17C683D4009E8A93 /* onion.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50138E6817C683D4009E8A93 /* onion.vert */; };
+		502DAE7417CF9EFE001C8447 /* post.frag in Sources */ = {isa = PBXBuildFile; fileRef = 502DAE7217CF9EFE001C8447 /* post.frag */; };
+		502DAE7517CF9EFE001C8447 /* post.vert in Sources */ = {isa = PBXBuildFile; fileRef = 502DAE7317CF9EFE001C8447 /* post.vert */; };
 		5086E4EC17CBD0C300094645 /* HyperfeelTween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5086E4EA17CBD0C300094645 /* HyperfeelTween.cpp */; };
 		5096CB3917C29459007FAFFC /* Journey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5096CB3717C29459007FAFFC /* Journey.cpp */; };
 		50A150C417C7619B000FADB1 /* onionBars.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50A150C217C7619B000FADB1 /* onionBars.frag */; };
@@ -98,8 +99,6 @@
 		15c99204ff4d8d72ad034b63f410265d /* ofxUINumberDialer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUINumberDialer.h; path = ../../../addons/ofxUI/src/ofxUINumberDialer.h; sourceTree = SOURCE_ROOT; };
 		15e69017b5db282ef100ee15e7bce594 /* ofxUICustomImageButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUICustomImageButton.h; path = ../../../addons/ofxUI/src/ofxUICustomImageButton.h; sourceTree = SOURCE_ROOT; };
 		1902452f5e510a2dbc1e5bd6d62db983 /* ofxUIMultiImageToggle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUIMultiImageToggle.h; path = ../../../addons/ofxUI/src/ofxUIMultiImageToggle.h; sourceTree = SOURCE_ROOT; };
-		1FE89D9817CFAA2200AF8291 /* SoundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundManager.cpp; sourceTree = "<group>"; };
-		1FE89D9917CFAA2200AF8291 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 		1c43cdb79bf40ea7424b96804209f474 /* ofxUISuperCanvas.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUISuperCanvas.h; path = ../../../addons/ofxUI/src/ofxUISuperCanvas.h; sourceTree = SOURCE_ROOT; };
 		1e29c7e8c47e3e2db1c5876646df436b /* ofxUIRectangle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUIRectangle.h; path = ../../../addons/ofxUI/src/ofxUIRectangle.h; sourceTree = SOURCE_ROOT; };
 		2232a9453e355593ef36ada7af643673 /* Reactor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Reactor.cpp; path = ../../../addons/ofxLibwebsockets/libs/ofxLibwebsockets/src/Reactor.cpp; sourceTree = SOURCE_ROOT; };
@@ -120,6 +119,8 @@
 		50138E5117C67C3F009E8A93 /* Onion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Onion.h; sourceTree = "<group>"; };
 		50138E6717C683D4009E8A93 /* onion.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onion.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		50138E6817C683D4009E8A93 /* onion.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onion.vert; sourceTree = "<group>"; };
+		502DAE7217CF9EFE001C8447 /* post.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = post.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		502DAE7317CF9EFE001C8447 /* post.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = post.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		5086E4EA17CBD0C300094645 /* HyperfeelTween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HyperfeelTween.cpp; sourceTree = "<group>"; };
 		5086E4EB17CBD0C300094645 /* HyperfeelTween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyperfeelTween.h; sourceTree = "<group>"; };
 		5096CB3717C29459007FAFFC /* Journey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Journey.cpp; sourceTree = "<group>"; };
@@ -258,6 +259,8 @@
 		50FE7B2817C4043400F3DAA5 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				502DAE7217CF9EFE001C8447 /* post.frag */,
+				502DAE7317CF9EFE001C8447 /* post.vert */,
 				50A150CE17C76E15000FADB1 /* displaced.frag */,
 				50A150CF17C76E15000FADB1 /* displaced.vert */,
 				50A150D217C783AF000FADB1 /* displacedBars.frag */,
@@ -401,8 +404,6 @@
 				50138E5117C67C3F009E8A93 /* Onion.h */,
 				5096CB3717C29459007FAFFC /* Journey.cpp */,
 				5096CB3817C29459007FAFFC /* Journey.h */,
-				1FE89D9817CFAA2200AF8291 /* SoundManager.cpp */,
-				1FE89D9917CFAA2200AF8291 /* SoundManager.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -615,7 +616,8 @@
 				50A150D817C783B0000FADB1 /* displacedDots.frag in Sources */,
 				50A150D917C783B0000FADB1 /* displacedDots.vert in Sources */,
 				5086E4EC17CBD0C300094645 /* HyperfeelTween.cpp in Sources */,
-				1FE89D9A17CFAA2200AF8291 /* SoundManager.cpp in Sources */,
+				502DAE7417CF9EFE001C8447 /* post.frag in Sources */,
+				502DAE7517CF9EFE001C8447 /* post.vert in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

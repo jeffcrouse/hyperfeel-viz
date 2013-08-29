@@ -4,6 +4,16 @@
     <Value>1</Value>
 </Widget>
 <Widget>
+    <Kind>4</Kind>
+    <Name>circleRadius</Name>
+    <Value>348.769226074</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>edgeAADist</Name>
+    <Value>2.009615421</Value>
+</Widget>
+<Widget>
     <Kind>2</Kind>
     <Name>onion</Name>
     <Value>1</Value>
@@ -26,12 +36,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.980769217</Value>
+    <Value>0.962091625</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>squish</Name>
-    <Value>0.695384622</Value>
+    <Value>0.803932428</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -41,7 +51,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>readingScale</Name>
-    <Value>0.498653829</Value>
+    <Value>0.343747020</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -56,22 +66,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>facingRatio</Name>
-    <Value>0.698557675</Value>
+    <Value>0.438365400</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>displacement</Name>
-    <Value>-57.692260742</Value>
+    <Value>-75.595581055</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseScale</Name>
-    <Value>0.006650642</Value>
+    <Value>0.006144315</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>slope</Name>
-    <Value>0.084615387</Value>
+    <Value>0.023076924</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>

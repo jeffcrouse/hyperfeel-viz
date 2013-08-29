@@ -84,6 +84,7 @@ public:
 	/**
 	 * shaders
 	 */
+	ofShader post;
 	ofShader facingRatioShader; 
 	ofShader normalShader;
 	ofShader displacedShader;
@@ -125,6 +126,8 @@ public:
 	float slope;
 	bool bRotateOnNewJourney;
 	float newRibbonScaleDuration;
+	float circleRadius;
+	float edgeAADist;
 	
     /**
      *  Journeys
@@ -218,6 +221,12 @@ public:
 	ofFbo fbo;
 	ofShader fboShader;
 	ofFbo fboMap;
+	
+	ofFbo fbo_mm1;
+	ofFbo fbo_mm2;
+	ofFbo fbo_mm3;
+	ofFbo fbo_mm4;
+	ofFbo fbo_mm5;
 	
 	//ofxUI
 	vector<string> getPresetNames();
