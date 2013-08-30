@@ -11,6 +11,7 @@
 #include "Journey.h"
 #include "ofxVideoRecorder.h"
 #include "ofxHttpUtils.h"
+#include "ofxThreadedImageSaver.h"
 
 class RecordManager
 {
@@ -42,9 +43,9 @@ public:
     vector<float> photoStripTimes;
     string photoStripFilename;
     ofFbo photoStrip;
-    ofImage exporter;
+    ofxThreadedImageSaver photoStripSaver;
     
-    ofImage frame;
+    ofxThreadedImageSaver frame;
     float lastSnapshot, snapshotInterval;
     int sampleRate;
     int channels;

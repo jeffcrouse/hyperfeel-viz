@@ -96,7 +96,7 @@ void ofApp::setup(){
 	
 	//animation
 	//TODO: rename "newRibbonScaleDuration"
-	newRibbonScaleDuration = 10; // <---- this controls the time it takes for the journey to animate in.
+	newRibbonScaleDuration = 30; // <---- this controls the time it takes for the journey to animate in.
 	animationPresetVariationTime = 10;
 	animationPresetIndex0 = 0;
 	animationPresetIndex1 = 1;
@@ -120,7 +120,8 @@ void ofApp::setup(){
 	//add tween listener
 	ofAddListener( TweenEvent::events, this, &ofApp::tweenEventHandler );
     
-
+    //soundStream.listDevices();
+    //soundStream.setDeviceID(5);
     soundStream.setup(this, 0, recordManager.channels, recordManager.sampleRate, 256, 4);
 	
 	
@@ -1340,7 +1341,7 @@ void ofApp::handleRoute( Json::Value& _json)
 		bJourniesNeedUpdate = true;
     }
 	
-    else if(route=="addJourney") {
+    else if(route=="addJourney" || route == "replayJourney") {
 			
 		cout << "addJourney" << endl;
 		//true for animating in
