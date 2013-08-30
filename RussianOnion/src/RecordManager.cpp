@@ -16,11 +16,16 @@ RecordManager::~RecordManager() {
 
 // -------------------------------------------------
 RecordManager::RecordManager() {
-    bRecording = false;
+    
     sampleRate = 44100;
     channels = 2;
     frameRate = 30;
-    bEnabled = true;
+
+    bJourneyInProgress = false;
+    bMakeVideo = true;
+    bMakeSnapshots = true;
+    bMakePhotoStrips = true;
+    
     snapshotInterval = 15;
     lastSnapshot = 0;
     
@@ -30,7 +35,8 @@ RecordManager::RecordManager() {
 
 
 // -------------------------------------------------
-void RecordManager::setup(ofEventArgs &args) {
+void RecordManager::setup(ofEventArgs &args)
+{
     
     photoStrip.allocate(ofGetWidth()*2, ofGetHeight()*2, GL_RGB);
     exporter.allocate(ofGetWidth()*2, ofGetHeight()*2, OF_IMAGE_COLOR);
@@ -60,7 +66,7 @@ void RecordManager::newResponse(ofxHttpResponse & response)
 //--------------------------------------------------------------
 void RecordManager::audioIn(float *input, int bufferSize, int nChannels)
 {
-    if(bRecording) {
+    if(bJourneyInProgress && bMakeVideo && vidRecorder.isInitialized()) {
         vidRecorder.addAudioSamples(input, bufferSize, nChannels);
     }
 }
@@ -69,12 +75,16 @@ void RecordManager::audioIn(float *input, int bufferSize, int nChannels)
 void RecordManager::update(ofEventArgs &args)
 {
     float now = ofGetElapsedTimef();
+    frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
     
-    if(bRecording)
+    if(bJourneyInProgress)
     {
-        frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
+        if(bMakeVideo && vidRecorder.isInitialized())
+        {
+            vidRecorder.addFrame(frame.getPixelsRef());
+        }
         
-        if(photoStripTimes.size()>0 && now > photoStripTimes.back())
+        if(bMakePhotoStrips && photoStripTimes.size()>0 && now > photoStripTimes.back())
         {
             photoStrip.begin();
             switch(photoStripTimes.size())
@@ -93,64 +103,71 @@ void RecordManager::update(ofEventArgs &args)
                     break;
             }
             photoStrip.end();
-            
             photoStripTimes.pop_back();
         }
         
-        vidRecorder.addFrame(frame.getPixelsRef());
     }
-    else if(now-lastSnapshot > snapshotInterval)
+    else if(bMakeSnapshots && now-lastSnapshot > snapshotInterval)
     {
         frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
         frame.saveImage("Snapshots/"+ofGetTimestampString("%m%d%H%M%S")+".png");
         lastSnapshot = now;
-    }
+    }    
 }
 
 // -------------------------------------------------
 void RecordManager::startJourney(Journey* j, float duration)
 {
-    if(!bEnabled) return;
-    float now = ofGetElapsedTimef();
+    bJourneyInProgress = true;
     
-    //if(j->email!="")
+    if(j->email=="") {
+        ofLogNotice() << "Not starting recording.  No email address present.";
+        return;
+    }
+    
+    if(bMakePhotoStrips)
     {
+        photoStripFilename = "PhotoStrips/"+j->uid+".png";
+        float now = ofGetElapsedTimef();
         photoStripTimes.clear();
         photoStripTimes.push_back(now + (duration*0.9));
         photoStripTimes.push_back(now + (duration*0.6));
         photoStripTimes.push_back(now + (duration*0.4));
         photoStripTimes.push_back(now + (duration*0.1));
-        photoStripFilename = "PhotoStrips/"+j->uid+".png";
-        
+    }
+    
+    if(bMakeVideo)
+    {
         videoFilename = "Recordings/"+j->uid+".mov";
         vidRecorder.setup(videoFilename, ofGetWidth(), ofGetHeight(), frameRate, sampleRate, channels);
-        bRecording = true;
     }
-    //else ofLogNotice() << "Not starting recording.  No email address present.";
 }
 
 // -------------------------------------------------
 void RecordManager::endJourney(Journey* j)
 {    
-    if(bRecording)
+    bJourneyInProgress = false;
+    
+    if(bMakeVideo && vidRecorder.isInitialized())
     {
-        if(vidRecorder.isInitialized())
-            vidRecorder.close();
-        
+        vidRecorder.close();
+    }
+    
+    /*
+     ofxHttpForm form;
+     form.action = "http://cheese.local:3000/submit/video";
+     form.method = OFX_HTTP_POST;
+     form.addFormField("journey_id", journey_id);
+     form.addFormField("email", "jeff@crouse.cc");
+     form.addFile("video", filename);
+     httpUtils.addForm(form);
+     */
+
+    
+    if(bMakePhotoStrips)
+    {
         photoStrip.readToPixels(exporter.getPixelsRef());
         exporter.saveImage(photoStripFilename);
-
-        bRecording = false;
-        
-        /*
-         ofxHttpForm form;
-         form.action = "http://cheese.local:3000/submit/video";
-         form.method = OFX_HTTP_POST;
-         form.addFormField("journey_id", journey_id);
-         form.addFormField("email", "jeff@crouse.cc");
-         form.addFile("video", filename);
-         httpUtils.addForm(form);
-         */
     }
 }
 

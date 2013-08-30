@@ -38,4 +38,5 @@ xcuserdata
 *.app/
 
 /RussianOnion/bin/data/Recordings/*.mov
+/RussianOnion/bin/data/Snapshots/*.png
 /RecordingTest/bin/data/sounds/
