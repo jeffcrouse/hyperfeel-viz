@@ -70,8 +70,11 @@ public:
     /**
      *  Websocekts stuff...
      */
+    ofxLibwebsockets::ClientOptions options;
 	ofxLibwebsockets::Client client;
-	
+	bool bClientInitialized;
+    bool bClientConnected;
+    float lastConnectionAttempt;
 	// websocket methods
 	void onConnect( ofxLibwebsockets::Event& args );
 	void onOpen( ofxLibwebsockets::Event& args );

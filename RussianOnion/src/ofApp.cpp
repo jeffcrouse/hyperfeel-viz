@@ -32,19 +32,17 @@ void ofApp::setup(){
 	fbo_mm5.allocate( fbo_mm4.getWidth()/2, fbo_mm4.getHeight()/2, GL_RGB );
 	fbo_mm6.allocate( fbo_mm5.getWidth()/2, fbo_mm5.getHeight()/2, GL_RGB );
 	
-
-    ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
+    
+    bClientInitialized = false;
+    bClientConnected = false;
+    options = ofxLibwebsockets::defaultClientOptions();
     if(hostname()=="cheese.local")
         options.host = "cheese.local";
     else
         options.host = "brainz.io";
     options.port = 8080;
-    bool connected = client.connect( options );
-
-    
-
-    
     client.addListener(this);
+    
     ofSetFrameRate(60);
     
 //    ofSetLogLevel(OF_LOG_VERBOSE);
@@ -124,6 +122,7 @@ void ofApp::setup(){
 
     soundStream.setup(this, 0, recordManager.channels, recordManager.sampleRate, 256, 4);
 }
+
 
 //--------------------------------------------------------------
 void ofApp::audioIn(float *input, int bufferSize, int nChannels){
@@ -237,8 +236,12 @@ void ofApp::setupUI(){
 	guiUtils->setColorFillHighlight(ofxUIColor(255));
 	guiUtils->setColorBack(ofxUIColor(20, 20, 20, 100));
     
+    guiUtils->addLabel("Utils");
     guiUtils->addSpacer();
-    //guiMain->addToggle("Record Manager Enabled", &recordManager.bEnabled);
+    guiUtils->addToggle("Make Snapshots", &recordManager.bMakeSnapshots);
+    guiUtils->addToggle("Make Videos", &recordManager.bMakeVideo);
+    guiUtils->addToggle("Make Photo Strips", &recordManager.bMakePhotoStrips);
+    guiUtils->addSpacer();
     guiUtils->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
     
     guiUtils->autoSizeToFitWidgets();
@@ -607,7 +610,11 @@ void ofApp::update()
 	
 	//tweens auto update vi ofListener
     
-  
+    
+    if(!bClientConnected && currentTime-lastConnectionAttempt > 5) {
+        client.connect( options );
+        lastConnectionAttempt = currentTime;
+    }
 }
 
 void ofApp::retryColors(){
@@ -1233,18 +1240,26 @@ void ofApp::dragEvent(ofDragInfo dragInfo)
 void ofApp::onConnect( ofxLibwebsockets::Event& args )
 {
     cout<<"on connected"<<endl;
+
 }
 
 //--------------------------------------------------------------
 void ofApp::onOpen( ofxLibwebsockets::Event& args )
 {
     cout<<"on open"<<endl;
+    bClientConnected = true;
+    
+    if(!bClientInitialized) {
+        client.send("{\"route\": \"initMe\"}");
+        bClientInitialized = true;
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::onClose( ofxLibwebsockets::Event& args )
 {
     cout<<"on close"<<endl;
+    bClientConnected = false;
 }
 
 //--------------------------------------------------------------
