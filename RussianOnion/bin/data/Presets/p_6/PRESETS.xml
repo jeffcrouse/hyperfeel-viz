@@ -10,11 +10,6 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>p_2</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
     <Name>p_3</Name>
     <Value>0</Value>
 </Widget>
@@ -31,10 +26,10 @@
 <Widget>
     <Kind>2</Kind>
     <Name>p_6</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>Working</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>

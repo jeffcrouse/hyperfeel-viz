@@ -25,11 +25,11 @@ void ofApp::setup(){
 	fbo_mm5.allocate( fbo_mm4.getWidth()/2, fbo_mm4.getHeight()/2, GL_RGB );
 	fbo_mm6.allocate( fbo_mm5.getWidth()/2, fbo_mm5.getHeight()/2, GL_RGB );
 	
-	//
-    ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
-    options.host = "brainz.io"; //laserstorms-MacBook-Pro.local"; //
-    options.port = 8080;
-    bool connected = client.connect( options );
+//	//
+//    ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
+//    options.host = "brainz.io"; //laserstorms-MacBook-Pro.local"; //
+//    options.port = 8080;
+//    bool connected = client.connect( options );
     
     client.addListener(this);
     ofSetFrameRate(60);
@@ -132,7 +132,7 @@ void ofApp::setDefaults(){
 	edgeAADist = 2;
 	glowCoefficient = .5;
 	glowExponent = 2;
-	glowUpscale = .5;
+	glowScale = .5;
 	
 	slope = .05;
 	bRotateOnNewJourney = false;
@@ -149,48 +149,58 @@ void ofApp::setupUI(){
 	
 	float dim = 24;
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
-    float length = 320-xInit;
+    float length = 220-xInit;
 	
 	setDefaults();
 	
 	ofxUICanvas* guiMain = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
 	guiMain->setName("Main");
+	guiMain->setFont("GUI/OpenSans-Semibold.ttf");
+    guiMain->setFontSize(OFX_UI_FONT_LARGE, 6);
+    guiMain->setFontSize(OFX_UI_FONT_MEDIUM, 6);
+    guiMain->setFontSize(OFX_UI_FONT_SMALL, 6);
+	
+	guiMain->addLabel("hit 'h' to hide/show ui");
+	
 	guiMain->setPosition(10, 10);
 	guiMain->setColorFill(ofxUIColor(200));
 	guiMain->setColorFillHighlight(ofxUIColor(255));
-	guiMain->setColorBack(ofxUIColor(20, 20, 20, 150));
-	
+	guiMain->setColorBack(ofxUIColor(20, 20, 20, 100));
+
+	guiMain->addFPS();
 	guiMain->addSpacer();
-	guiMain->addToggle("playAnimation", &bPlayAnimation );
+	guiMain->addSlider("timeScl", -5, 5, &timeScale );
+	ofxUIToggle* toggle = guiMain->addToggle("playAnimation", &bPlayAnimation );
 	guiMain->addSlider("circleRadius", 100, 1024, &circleRadius );
 	guiMain->addSlider("edgeAADist", 1, 10, &edgeAADist );
-	guiMain->addSlider("glowCoefficient", 0., 1., &glowCoefficient);
-	guiMain->addSlider("glowExponent", 1., 10., &glowExponent);
-	guiMain->addSlider("glowUpscale", 0., 1., &glowUpscale);
-
+	
+	ofxUICanvas* guiPost = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
+	guiPost->setName("Post");
+	guiPost->setFont("GUI/OpenSans-Semibold.ttf");
+	guiPost->setFontSize(OFX_UI_FONT_LARGE, 6);
+	guiPost->setFontSize(OFX_UI_FONT_MEDIUM, 6);
+	guiPost->setFontSize(OFX_UI_FONT_SMALL, 6);
+	guiPost->setColorFill(ofxUIColor(200));
+	guiPost->setColorFillHighlight(ofxUIColor(255));
+	guiPost->setColorBack(ofxUIColor(20, 20, 20, 100));
+	guiPost->setPosition( 10 + guiMain->getRect()->getWidth() + guiMain->getRect()->getX(), 10);
+	
+	guiPost->addLabel("POST PROCESSING");
+	guiPost->addSlider("glowCoefficient", 0., 1., &glowCoefficient);
+	guiPost->addSlider("glowExponent", 1., 10., &glowExponent);
+	guiPost->addSlider("glowScale", 0., 4., &glowScale);
+	
+	guiPost->autoSizeToFitWidgets();
+	
+	
 	guiMain->addLabel("render Types");
 	guiMain->addRadio("renderTypes", renderTypes );
 	
 	guiMain->addLabel("main");
+
 	guiMain->addSpacer();
-	guiMain->addFPS();
-	guiMain->addSpacer();
-	guiMain->addSlider("timeScl", -5, 5, &timeScale );
 	guiMain->addLabel("global rendering");
 	guiMain->addToggle("depthTest", bDepthTest);
-
-	guiMain->addSlider("radius", 1, 100, &radius );
-	guiMain->addSlider("recursiveScale", .5, 1., &recursiveScale );
-	guiMain->addSlider("squish", .01, 1., &squish );
-	guiMain->addSlider("readingThreshold", 0., 1., &readingThreshold );
-	guiMain->addSlider("readingScale", .01, 1., &readingScale );
-	guiMain->addSlider("onionAlpha", .01, 1., &onionAlpha );
-	guiMain->addSlider("dataSmoothing", .01, 1., &dataSmoothing );
-	guiMain->addSlider("facingRatio", .01, 1., &facingRatio );
-	guiMain->addSlider("displacement", -1000, 1000., &displacement );
-	guiMain->addSlider("noiseScale", 0, .025, &noiseScale );
-	guiMain->addSlider("slope", 0., .2, &slope );
-	guiMain->addToggle("rotateOnNewJourney", &bRotateOnNewJourney );
 	
 	//create a radio for switching renderTypes
 	guiMain->addSpacer();
@@ -207,6 +217,49 @@ void ofApp::setupUI(){
 	
 	
 	
+	ofxUICanvas* guiShader = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
+	guiShader->setName("Shader");
+	guiShader->setFont("GUI/OpenSans-Semibold.ttf");
+	guiShader->setFontSize(OFX_UI_FONT_LARGE, 6);
+	guiShader->setFontSize(OFX_UI_FONT_MEDIUM, 6);
+	guiShader->setFontSize(OFX_UI_FONT_SMALL, 6);
+	guiShader->setColorFill(ofxUIColor(200));
+	guiShader->setColorFillHighlight(ofxUIColor(255));
+	guiShader->setColorBack(ofxUIColor(20, 20, 20, 100));
+	guiShader->setPosition( guiPost->getRect()->getX(), guiPost->getRect()->getY() + guiPost->getRect()->getHeight() + 10);
+	
+	guiShader->addLabel("SHADER");
+	
+	guiShader->addSlider("radius", 1, 30, &radius );
+	guiShader->addSlider("recursiveScale", .5, 1., &recursiveScale );
+	guiShader->addSlider("squish", .01, 1., &squish );
+//	guiShader->addSlider("readingThreshold", 0., 1., &readingThreshold );
+//	guiShader->addSlider("readingScale", .01, 1., &readingScale );
+//	guiShader->addSlider("onionAlpha", .01, 1., &onionAlpha );
+	guiShader->addSlider("dataSmoothing", .01, 1., &dataSmoothing );
+	guiShader->addSlider("facingRatio", .01, 1., &facingRatio );
+//	guiShader->addSlider("displacement", -1000, 1000., &displacement );
+	guiShader->addSlider("noiseScale", 0, .025, &noiseScale );
+	guiShader->addSlider("slope", 0., .2, &slope );
+	guiShader->addToggle("rotateOnNewJourney", &bRotateOnNewJourney );
+	guiShader->addSlider("outerDisplacement", -150, 150, &outerDisplacement );
+	guiShader->addSlider("innerDisplacement", -150, 150, &innerDisplacement );
+	
+	guiShader->addSlider("outerAlpha", .01, 1., &outerAlpha );
+	guiShader->addSlider("innerAlpha", .01, 1., &innerAlpha );
+	
+	guiShader->addSlider("outerReadingThreshold", .0, 1., &outerReadingThreshold );
+	guiShader->addSlider("innerReadingThreshold", .0, 1., &innerReadingThreshold );
+	
+	guiShader->addSlider("outerReadingScale", .01, 1., &outerReadingScale );
+	guiShader->addSlider("innerReadingScale", .01, 1., &innerReadingScale );
+	
+	
+	
+	guiShader->autoSizeToFitWidgets();
+	
+	
+	
 	//get our presets and them to the radio
 	presetGui = new ofxUICanvas();
 	
@@ -217,7 +270,7 @@ void ofApp::setupUI(){
 	
 	presetGui->setName("PRESETS");
 	presetGui->addLabel("Presets");
-	presetGui->setPosition( guiMain->getRect()->getX() + guiMain->getRect()->getWidth() + 20, guiMain->getRect()->getY() );
+	presetGui->setPosition( guiMain->getRect()->getX() + guiMain->getRect()->getWidth()*2 + 20, guiMain->getRect()->getY() );
 	presetGui->addSpacer();
 	presetRadio = presetGui->addRadio("presets", getPresetNames(), false );
 	
@@ -227,9 +280,13 @@ void ofApp::setupUI(){
 	//add listeners
 	guis.push_back( guiMain  );
 	guis.push_back( presetGui );
+	guis.push_back( guiShader  );
+	guis.push_back( guiPost  );
 	
 	ofAddListener( guiMain->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( presetGui->newGUIEvent,this,&ofApp::guiEvent );
+	ofAddListener( guiShader->newGUIEvent,this,&ofApp::guiEvent );
+	ofAddListener( guiPost->newGUIEvent,this,&ofApp::guiEvent );
 	
 	
 	//load our working sttings
@@ -609,15 +666,18 @@ void ofApp::draw()
 	post.setUniformTexture("mm6", fbo_mm6.getTextureReference(), 6);
 	post.setUniform1f("glowCoefficient", glowCoefficient );
 	post.setUniform1f("glowExponent", glowExponent );
-	post.setUniform1f("glowUpscale", glowUpscale );
+	post.setUniform1f("glowScale", glowScale );
 	
 	fbo.draw(0, 0, ofGetWidth(), ofGetHeight() );
 	
 	post.end();
 	ofPopStyle();
 	
+	
+	//draw mip maps if gui is visible 
 	if(guis[0]->isVisible()) {
 		
+		ofDisableAlphaBlending();
 		glDisable( GL_DEPTH_TEST );
 		ofSetColor(255,255,255,255);
 		fbo_mm1.draw(ofGetWidth() - 110, 10, 100, 100 );
@@ -626,7 +686,14 @@ void ofApp::draw()
 		fbo_mm4.draw(ofGetWidth() - 110, 330, 100, 100 );
 		fbo_mm5.draw(ofGetWidth() - 110, 440, 100, 100 );
 		fbo_mm6.draw(ofGetWidth() - 110, 550, 100, 100 );
+		
+		
+		for (int i=0; i<onions.size(); i++) {
+			onions[i].dataTexture.draw( ofGetWidth() - ofGetWidth()/6 - 5, ofGetHeight() - 10 - 5*i, ofGetWidth()/6, 4.5 );
+		}
+		
 		glEnable( GL_DEPTH_TEST );
+		ofEnableAlphaBlending();
 	}
 	
 	
@@ -800,17 +867,21 @@ void ofApp::drawOnion(){
 	
 	float startScale = 1. / recursiveScale;
 	
+	float minSampleVal = 10000000;
 	for (int i=onions.size()-1; i>=0; i--)
 	{
-		if(i == onions.size()-1)
+		if(i == onions.size()-1 )
 		{
-			onions[i].transform.setScale( newRibbonScale,newRibbonScale,newRibbonScale * squish ); // newRibbonScale scales down to 1.
+			onions[i].transform.setScale( newRibbonScale,newRibbonScale,newRibbonScale ); // newRibbonScale scales down to 1.
 			onions[i].transform.setOrientation( q + q.inverse() * (1.f - newRibbonShaderScale) ); // newRibbonShaderScale == val btwn 0-1
+			onions[i].sampleVal = newRibbonScale;
 		}
 		else
 		{
 			onions[i].transform.setScale( onions[i+1].transform.getScale() * recursiveScale );
 			onions[i].transform.setOrientation( onions[i+1].transform.getOrientationQuat() * q );
+			onions[i].sampleVal = onions[i+1].transform.getScale().x * recursiveScale;
+			minSampleVal = min( minSampleVal, onions[i].sampleVal );
 		}
 	}
 	
@@ -838,27 +909,35 @@ void ofApp::drawOnion(){
 	ofPushMatrix();
 	if( bRotateOnNewJourney )	ofMultMatrix( globalTransform );//<-- this rotates the onion on transition in
 	
+	ofScale(1, 1, squish );
+	
 	ofRotate( newRibbonShaderScale * -360 + 90 - slope*90., 0, 0, 1);
 	float vortexRotVal = -3. * elapsedTime;
 	
 	glEnable(GL_CULL_FACE);
 	
 	//draw each onion
+	float step = 1. / float(onions.size()-1);
 	for (int i=0; i<onions.size(); i++) {
 		
-		//crazr transforms
+		//crazy transforms
 		ofPushMatrix();
-		
 		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
 		
+		//vortex rotation
 		ofRotate( ( max( (float) onions.size() - i - 2 + newRibbonShaderScale, 0.f) ) * vortexRotVal, 0, 0, 1);
 		
 		//set ribbon color
 		ofSetColor( onions[i].color );
 		
 		//per ribbon uniforms
-		currentShader->setUniformTexture("dataTexture", onions[i].dataTexture, 0);
-		currentShader->setUniform2f("texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
+		currentShader->setUniformTexture( "dataTexture", onions[i].dataTexture, 0);
+		currentShader->setUniform2f( "texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
+		
+		currentShader->setUniform1f( "displacement", ofMap( onions[i].sampleVal, minSampleVal, 1., innerDisplacement, outerDisplacement, true ) );
+		currentShader->setUniform1f( "readingScale", ofMap( onions[i].sampleVal, minSampleVal, 1., innerReadingScale, outerReadingScale, true ) );
+		currentShader->setUniform1f( "readingThreshold", ofMap( onions[i].sampleVal, minSampleVal, 1., innerReadingThreshold, outerReadingThreshold, true ) );
+		currentShader->setUniform1f( "alpha", ofMap( onions[i].sampleVal, minSampleVal, 1., innerAlpha, outerAlpha, true ) );
 		
 		//we only animimate the outer onion
 		if( bAddingRibbon && i == onions.size()-1 ){
@@ -890,13 +969,6 @@ void ofApp::drawOnion(){
 	currentShader->end();
 	
 	camera.end();
-	
-	if(guis[0]->isVisible()){
-		ofSetColor(255,255,255);
-		for (int i=0; i<onions.size(); i++) {
-			onions[i].dataTexture.draw(5, ofGetHeight() - 10 - 5*i, ofGetWidth()/4, 4.5 );
-		}
-	}
 }
 
 
@@ -916,10 +988,8 @@ ofVec3f ofApp::normalFrom4Points(ofVec3f p0, ofVec3f p1, ofVec3f p2, ofVec3f p3)
 //--------------------------------------------------------------
 void ofApp::exit()
 {
-	
-	if(bDebug)	cout << "saving preset working" << endl;
 	savePreset("Working");
-	
+	cout << "saved preset working" << endl;
 	
 	if(bDebug)	cout << "removing listeners" << endl;
 	for(int i=0; i<guis.size(); i++){

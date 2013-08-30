@@ -1,0 +1,80 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>radius</Name>
+    <Value>15.910376549</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>recursiveScale</Name>
+    <Value>0.948113203</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>squish</Name>
+    <Value>0.668443382</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>dataSmoothing</Name>
+    <Value>0.243490577</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>facingRatio</Name>
+    <Value>0.430283010</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>noiseScale</Name>
+    <Value>0.006014151</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>slope</Name>
+    <Value>0.051886793</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>rotateOnNewJourney</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>outerDisplacement</Name>
+    <Value>39.622650146</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>innerDisplacement</Name>
+    <Value>16.981140137</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>outerAlpha</Name>
+    <Value>0.140754730</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>innerAlpha</Name>
+    <Value>0.444292456</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>outerReadingThreshold</Name>
+    <Value>0.193396226</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>innerReadingThreshold</Name>
+    <Value>0.250000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>outerReadingScale</Name>
+    <Value>0.182783023</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>innerReadingScale</Name>
+    <Value>0.010000000</Value>
+</Widget>

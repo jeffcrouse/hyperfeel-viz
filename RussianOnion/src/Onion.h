@@ -41,4 +41,5 @@ public:
 	ofNode transform;
 	ofColor color;
 	bool bIsSetup;
+	float sampleVal;
 };

@@ -133,12 +133,16 @@ public:
 	float slope;
 	bool bRotateOnNewJourney;
 	float newRibbonScaleDuration;
-	
+	float dispLow, dispHigh;
+	float outerDisplacement, innerDisplacement;
+	float innerReadingScale, outerReadingScale;
+	float innerReadingThreshold, outerReadingThreshold;
+	float innerAlpha, outerAlpha;
 	float circleRadius;
 	float edgeAADist;
 	float glowCoefficient;
 	float glowExponent;
-	float glowUpscale;
+	float glowScale;
 	
     /**
      *  Journeys

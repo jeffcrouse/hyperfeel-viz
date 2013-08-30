@@ -1,12 +1,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>timeScl</Name>
-    <Value>1.105659485</Value>
+    <Value>0.496153355</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>playAnimation</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -42,9 +42,4 @@
     <Kind>2</Kind>
     <Name>displacedShader</Name>
     <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>Record Manager Enabled</Name>
-    <Value>0</Value>
 </Widget>

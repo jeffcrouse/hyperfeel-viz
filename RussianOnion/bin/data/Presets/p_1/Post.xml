@@ -1,0 +1,15 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>glowCoefficient</Name>
+    <Value>0.792452812</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>glowExponent</Name>
+    <Value>1.297169805</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>glowScale</Name>
+    <Value>1.000000000</Value>
+</Widget>

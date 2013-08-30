@@ -9,7 +9,7 @@ uniform sampler2DRect mm5;
 uniform sampler2DRect mm6;
 uniform float glowCoefficient;
 uniform float glowExponent;
-uniform float glowUpscale;
+uniform float glowScale;
 
 uniform vec2 center;
 uniform float circleRadius;
@@ -27,7 +27,7 @@ void main(void)
 	
 	float mmScl = .5;
 	vec3 glowExpo = vec3( glowExponent );
-//	float glowUpscale = .75;
+//	float glowScale = .75;
 	vec3 glow;
 	glow = texture2DRect( mm1, uv * mmScl ).xyz;
 	mmScl *= .5;
@@ -41,7 +41,7 @@ void main(void)
 	mmScl *= .5;
 	glow += texture2DRect( mm6, uv * mmScl ).xyz;
 	
-	glow = pow( glow / 6. + glowUpscale, glowExpo );
+	glow = pow( glowScale * glow / 6., glowExpo );
 	
 	
 	
