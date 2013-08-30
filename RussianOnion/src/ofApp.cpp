@@ -38,7 +38,7 @@ void ofApp::setup(){
 	
 	//Journy stuff
 	bSaveJsonsToFile = false;//for debuggin it was faster to load them from file rather then wait for the server
-	bLoadJsonsFromFile = false;
+	bLoadJsonsFromFile = true;
 	
 	bJourniesNeedUpdate = false;
 	
@@ -618,39 +618,7 @@ void ofApp::draw()
 	
 	
 	//mip your own maps
-	
-	ofSetColor(255,255,255,255);
-	
-	fbo_mm1.begin();
-	ofClear(0,0,0,255);
-	fbo.draw(0, 0, fbo_mm1.getWidth(), fbo_mm1.getHeight() );
-	fbo_mm1.end();
-	
-	fbo_mm2.begin();
-	ofClear(0,0,0,255);
-	fbo_mm1.draw(0, 0, fbo_mm2.getWidth(), fbo_mm2.getHeight() );
-	fbo_mm2.end();
-	
-	fbo_mm3.begin();
-	ofClear(0,0,0,255);
-	fbo_mm2.draw(0, 0, fbo_mm3.getWidth(), fbo_mm3.getHeight() );
-	fbo_mm3.end();
-	
-	fbo_mm4.begin();
-	ofClear(0,0,0,255);
-	fbo_mm3.draw(0, 0, fbo_mm4.getWidth(), fbo_mm4.getHeight() );
-	fbo_mm4.end();
-	
-	fbo_mm5.begin();
-	ofClear(0,0,0,255);
-	fbo_mm4.draw(0, 0, fbo_mm5.getWidth(), fbo_mm5.getHeight() );
-	fbo_mm5.end();
-	
-	fbo_mm6.begin();
-	ofClear(0,0,0,255);
-	fbo_mm5.draw(0, 0, fbo_mm6.getWidth(), fbo_mm6.getHeight() );
-	fbo_mm6.end();
-	
+	drawMipMaps();	
 	
 	//post shader. draw to the screen
 	post.begin();
@@ -705,6 +673,42 @@ void ofApp::draw()
 //		outImage.saveImage("d_4Large"+ofGetTimestampString()+".png");
 //	}
     
+}
+
+void ofApp::drawMipMaps(){
+	
+	ofSetColor(255,255,255,255);
+	
+	fbo_mm1.begin();
+	ofClear(0,0,0,255);
+	fbo.draw(0, 0, fbo_mm1.getWidth(), fbo_mm1.getHeight() );
+	fbo_mm1.end();
+	
+	fbo_mm2.begin();
+	ofClear(0,0,0,255);
+	fbo_mm1.draw(0, 0, fbo_mm2.getWidth(), fbo_mm2.getHeight() );
+	fbo_mm2.end();
+	
+	fbo_mm3.begin();
+	ofClear(0,0,0,255);
+	fbo_mm2.draw(0, 0, fbo_mm3.getWidth(), fbo_mm3.getHeight() );
+	fbo_mm3.end();
+	
+	fbo_mm4.begin();
+	ofClear(0,0,0,255);
+	fbo_mm3.draw(0, 0, fbo_mm4.getWidth(), fbo_mm4.getHeight() );
+	fbo_mm4.end();
+	
+	fbo_mm5.begin();
+	ofClear(0,0,0,255);
+	fbo_mm4.draw(0, 0, fbo_mm5.getWidth(), fbo_mm5.getHeight() );
+	fbo_mm5.end();
+	
+	fbo_mm6.begin();
+	ofClear(0,0,0,255);
+	fbo_mm5.draw(0, 0, fbo_mm6.getWidth(), fbo_mm6.getHeight() );
+	fbo_mm6.end();
+
 }
 
 //--------------------------------------------------------------

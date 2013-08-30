@@ -27,6 +27,7 @@ public:
 	void draw();
 	
 	void exit();
+	void drawMipMaps();
 	
 	void keyPressed(int key);
 	void keyReleased(int key);
