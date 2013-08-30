@@ -100,7 +100,8 @@ float linearizeDepth( in float d ) {
 }
 
 float map(float value, float inputMin, float inputMax, float outputMin, float outputMax) {;
-	return ((value - inputMin) / (inputMax - inputMin) * (outputMax - outputMin) + outputMin);
+	float d = (inputMax - inputMin) * (outputMax - outputMin) + outputMin;
+	return (value - inputMin) / ( d==0. ? .00001 : d );
 }
 
 void main(void)
@@ -121,28 +122,33 @@ void main(void)
 	float attention = data.x;
 	float meditation = data.y;
 	
-	float threshold = readingThreshold;// * animateInScale;
+	float threshold = readingThreshold;
 	
-	//	float slope = .05;
-	
+	//if we're ahead of animate in we won't show up
 	if( uv.x - slope > animateIn){
 		discard;
 	}
 	
-	float diff = min(1., max(0., (animateIn - uv.x+slope) / slope ));
+	//smooth the end
+	float diffBack = min(1., max(0., (animateIn - uv.x+slope) / slope ));
+	if(animateIn < slope)	diffBack *= animateIn / slope;
 	
-	if(animateIn < slope){
-		diff *= animateIn / slope;
-	}
 	
-	diff = 1. - pow( 1. - diff, 3.0);
+	//smooth the oher end
+	float animVal = min(1., max(0., map( animateIn, 1. - slope, 1., 0., 1. ) ) );
+	float diffFront = min(1., max( 0.,  map( uv.x, 0., slope, animVal, 1.) ) );
+	
+	//smooth the front and back exponetially. goes from linear to expo curves
+	diffFront = 1. - pow( 1. - diffFront, 3.0);
+	diffBack = 1. - pow( 1. - diffBack, 3.0);
+	
 	
 	//if above .5 we're in the top half handling attention
 	if( uv.y > .5){
 		//move our threshold up into the top half
-		threshold = .5 + threshold * diff;
+		threshold = .5 + threshold * diffBack * diffFront;
 		
-		if( uv.y - attention*diff > threshold ){
+		if( uv.y - attention * diffBack * diffFront> threshold ){
 			discard;
 		}
 		
@@ -150,9 +156,9 @@ void main(void)
 	//otherwise we're in the bottom half and handling meditation
 	else{
 		//invert the threshold (measuring from the top down)
-		threshold = .5 - threshold * diff;
+		threshold = .5 - threshold * diffBack * diffFront;
 		
-		if(uv.y + meditation * diff < threshold){
+		if(uv.y + meditation * diffBack * diffFront < threshold){
 			discard;
 		}
 		
@@ -170,15 +176,14 @@ void main(void)
 	
 	//	a *= min(1., animateIn * 2. );
 	
-
-
+	
 	//facing ratio
 	float fr = dot( eye, norm) * facingRatio + 1. - facingRatio;
 	
 	//color
 	vec3 col = color * fr;
 	
-	float barSample = uv.x*250. + time;
+	float barSample = uv.x*750. + time;
 	a *= pow( abs(sin( barSample ) + cos( barSample )), 4.);
 	
 //	a *= min(1., animateIn * 2. );

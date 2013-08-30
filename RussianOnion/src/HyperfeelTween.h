@@ -99,7 +99,10 @@ public:
 	void tweenEventHandler( TweenEvent &e);
 	
 	Tween* getTween( string key ){
-		return &tweenMap[ key ];
+		if(tweenMap.find( key ) != tweenMap.end() ){
+			return &tweenMap[ key ];
+		}
+		return NULL;
 	}
 	
 	//calculations

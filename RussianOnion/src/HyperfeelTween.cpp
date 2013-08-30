@@ -86,6 +86,7 @@ void TWEEN::update( ofEventArgs &args)
 			
 		}
 		
+		//remove if it's dead
 		if(it->second.bEnded && !it->second.bKeepAround){
 			//remove it
 			tweenMap.erase( it );

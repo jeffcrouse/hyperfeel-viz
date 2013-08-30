@@ -68,6 +68,8 @@ public:
 	void journeyToVbo(ofVbo* vbo, Journey* journey);
 //	void journeyToVbo(ofVbo &vbo, Journey& journey, GLenum usage=GL_STATIC_DRAW);
 	
+	void addJourneyTween();
+	
     /**
      *  Websocekts stuff...
      */
@@ -128,7 +130,7 @@ public:
 	float readingScale;
 	float onionAlpha;
 	float dataSmoothing;
-	float facingRatio;
+	float facingRatio, innerFacingRatio, outerFacingRatio;
 	float displacement;
 	float noiseScale;
 	float slope;
@@ -144,6 +146,13 @@ public:
 	float glowCoefficient;
 	float glowExponent;
 	float glowScale;
+	
+	float rotateX, rotateY, rotateZ;
+	
+	string journeyTransitionTween;
+	float journeyTransitionVal;
+	
+	string journeyTransitionIntro;
 	
     /**
      *  Journeys
@@ -200,12 +209,16 @@ public:
 	float newRibbonShaderScale;
 	
 	vector <string> animationPresets;
+	vector <string> transitionPresets;
 	
 	map<string, float>* p0;
 	map<string, float>* p1;
+	map<string, float>* t0;
+	map<string, float>* t1;
 	
 	float animationPresetVariationTime;
 	int animationPresetIndex0, animationPresetIndex1;
+	int transitionPresetIndex0, transitionPresetIndex1;
 	bool bPlayAnimation;
 	void tweenEventHandler(TweenEvent &e);
 	TWEEN tween;

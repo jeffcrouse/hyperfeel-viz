@@ -82,20 +82,19 @@ void ofApp::setup(){
 	}
 	
 	//animation
-	newRibbonScaleDuration = 30; // <---- this controls the time it takes for the journey to animate in.
+	//TODO: rename "newRibbonScaleDuration"
+	newRibbonScaleDuration = 10; // <---- this controls the time it takes for the journey to animate in.
 	animationPresetVariationTime = 10;
 	animationPresetIndex0 = 0;
 	animationPresetIndex1 = 1;
-	animationPresets.push_back("d_0");
-	animationPresets.push_back("d_1");
-	animationPresets.push_back("d_2");
-	animationPresets.push_back("d_3");
-	animationPresets.push_back("d_4");
-	animationPresets.push_back("d_5");
-	animationPresets.push_back("d_6");
-	animationPresets.push_back("d_7");
-	animationPresets.push_back("d_8");
-	animationPresets.push_back("d_9");
+	
+	animationPresets.push_back("p_0");
+	animationPresets.push_back("p_4");
+	animationPresets.push_back("p_6");
+	
+	transitionPresets.push_back("t_0");
+	transitionPresets.push_back("t_1");
+	
 	bPlayAnimation = true;
 	
 	//kick off animation variation
@@ -110,6 +109,9 @@ void ofApp::setup(){
     
 
     soundStream.setup(this, 0, recordManager.channels, recordManager.sampleRate, 256, 4);
+	
+	
+	//camera
 }
 
 //--------------------------------------------------------------
@@ -133,6 +135,11 @@ void ofApp::setDefaults(){
 	glowCoefficient = .5;
 	glowExponent = 2;
 	glowScale = .5;
+	
+	
+	rotateX = 0;
+	rotateY = 0;
+	rotateZ = 0;
 	
 	slope = .05;
 	bRotateOnNewJourney = false;
@@ -174,6 +181,27 @@ void ofApp::setupUI(){
 	guiMain->addSlider("circleRadius", 100, 1024, &circleRadius );
 	guiMain->addSlider("edgeAADist", 1, 10, &edgeAADist );
 	
+	guiMain->addLabel("render Types");
+	guiMain->addRadio("renderTypes", renderTypes );
+	
+	guiMain->addLabel("main");
+
+	guiMain->addSpacer();
+	guiMain->addLabel("global rendering");
+	guiMain->addToggle("depthTest", bDepthTest);
+	
+	//create a radio for switching renderTypes
+	guiMain->addSpacer();
+	guiMain->addLabel("Shaders" );
+	cout << "shaderNames.size(): "<< shaderNames.size() << endl;
+	guiMain->addRadio("shaders", shaderNames );
+	
+    guiMain->addSpacer();
+    guiMain->addToggle("Record Manager Enabled", &recordManager.bEnabled);
+    guiMain->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
+	
+	guiMain->autoSizeToFitWidgets();
+	
 	ofxUICanvas* guiPost = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
 	guiPost->setName("Post");
 	guiPost->setFont("GUI/OpenSans-Semibold.ttf");
@@ -192,31 +220,6 @@ void ofApp::setupUI(){
 	
 	guiPost->autoSizeToFitWidgets();
 	
-	
-	guiMain->addLabel("render Types");
-	guiMain->addRadio("renderTypes", renderTypes );
-	
-	guiMain->addLabel("main");
-
-	guiMain->addSpacer();
-	guiMain->addLabel("global rendering");
-	guiMain->addToggle("depthTest", bDepthTest);
-	
-	//create a radio for switching renderTypes
-	guiMain->addSpacer();
-	guiMain->addLabel("Shaders" );
-	cout << "shaderNames.size(): "<< shaderNames.size() << endl;
-	guiMain->addRadio("shaders", shaderNames );
-	
-	
-    guiMain->addSpacer();
-    guiMain->addToggle("Record Manager Enabled", &recordManager.bEnabled);
-    guiMain->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
-    
-	guiMain->autoSizeToFitWidgets();
-	
-	
-	
 	ofxUICanvas* guiShader = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
 	guiShader->setName("Shader");
 	guiShader->setFont("GUI/OpenSans-Semibold.ttf");
@@ -227,9 +230,15 @@ void ofApp::setupUI(){
 	guiShader->setColorFillHighlight(ofxUIColor(255));
 	guiShader->setColorBack(ofxUIColor(20, 20, 20, 100));
 	guiShader->setPosition( guiPost->getRect()->getX(), guiPost->getRect()->getY() + guiPost->getRect()->getHeight() + 10);
+	guiShader->setWidth( 350 );
 	
 	guiShader->addLabel("SHADER");
 	
+	//	rotateX, rotateY, rotateZ
+	guiShader->addSlider( "rotateX", -360, 360, &rotateX );
+	guiShader->addSlider( "rotateY", -360, 360, &rotateY );
+	guiShader->addSlider( "rotateZ", -360, 360, &rotateZ );
+
 	guiShader->addSlider("radius", 1, 30, &radius );
 	guiShader->addSlider("recursiveScale", .5, 1., &recursiveScale );
 	guiShader->addSlider("squish", .01, 1., &squish );
@@ -237,7 +246,9 @@ void ofApp::setupUI(){
 //	guiShader->addSlider("readingScale", .01, 1., &readingScale );
 //	guiShader->addSlider("onionAlpha", .01, 1., &onionAlpha );
 	guiShader->addSlider("dataSmoothing", .01, 1., &dataSmoothing );
-	guiShader->addSlider("facingRatio", .01, 1., &facingRatio );
+	//	guiShader->addSlider("facingRatio", .01, 1., &facingRatio );
+	guiShader->addSlider("innerFacingRatio", .01, 1., &innerFacingRatio );
+	guiShader->addSlider("outerFacingRatio", .01, 1., &outerFacingRatio );
 //	guiShader->addSlider("displacement", -1000, 1000., &displacement );
 	guiShader->addSlider("noiseScale", 0, .025, &noiseScale );
 	guiShader->addSlider("slope", 0., .2, &slope );
@@ -270,7 +281,7 @@ void ofApp::setupUI(){
 	
 	presetGui->setName("PRESETS");
 	presetGui->addLabel("Presets");
-	presetGui->setPosition( guiMain->getRect()->getX() + guiMain->getRect()->getWidth()*2 + 20, guiMain->getRect()->getY() );
+	presetGui->setPosition( guiShader->getRect()->getX() + guiShader->getRect()->getWidth() + 10, 10 );
 	presetGui->addSpacer();
 	presetRadio = presetGui->addRadio("presets", getPresetNames(), false );
 	
@@ -368,10 +379,12 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 //this is the engin that drives the animation
 void ofApp::tweenEventHandler(TweenEvent &e)
 {
+	
 	//TODO: make some sliders
 	float newRibbonAnimationSpan = bRotateOnNewJourney? .5 : .01;
 	
 	float startScale = 1. / recursiveScale;
+	
 	
 	//action when a new ribbon animates in
 	if(e.name == addRibbonTween)
@@ -381,24 +394,25 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			if(!bAddingRibbon)
 			{
 				bAddingRibbon = true;
-				tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, globalRotationAboutXAxis+HALF_PI, ofGetElapsedTimef(), newRibbonAnimationSpan, "globalRotX", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 				
-				tween.addTween(newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonScale", TWEEN_SINUSOIDAL, TWEEN_INOUT );
+				//tells the shader where to clip the data texture
+				addRibbonScaleTween = tween.addTween( newRibbonShaderScale, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonShaderScale", TWEEN_SINUSOIDAL, TWEEN_INOUT );
+				
+				//scales up the outside mesh to prevent scale popping caused recurssivly scaling the array of onions.
+				//when we add a new layer the scales after the new layer sholud stay the same
+				tween.addTween( newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonScale", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 				newRibbonShaderScale = 0;
                 
-                
+				//audio
                 float totalDuration = newRibbonScaleDuration + (newRibbonAnimationSpan*2);
                 recordManager.startJourney(journeys.back(), totalDuration);
 			}
 		}
-	}
-	
-	//if we're adding a journey && it's rotated down then we create a tween to animate in the new ribbon
-	if( bAddingRibbon && e.name == "globalRotX" && e.message == "ended" )
-	{
-		addRibbonScaleTween = tween.addTween( newRibbonShaderScale, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonShaderScale", TWEEN_SINUSOIDAL, TWEEN_INOUT );
-        
-        onJourneyBuildInStart(journeys.back()); // JRC
+		
+		if( e.message == "ended" )
+		{
+			bAddingRibbon = false;
+		}
 	}
 	
     // JRC
@@ -418,7 +432,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			journeys.erase( journeys.begin() );
 		}
 		
-		rotatedBack = tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, 0, ofGetElapsedTimef(), newRibbonAnimationSpan, "rotatedBack", TWEEN_SINUSOIDAL, TWEEN_INOUT );
+//		rotatedBack = tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, 0, ofGetElapsedTimef(), newRibbonAnimationSpan, "rotatedBack", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 	}
 	
 	//end the adding new ribbon transition
@@ -428,8 +442,6 @@ void ofApp::tweenEventHandler(TweenEvent &e)
         recordManager.endJourney(journeys.back());
 	}
 	
-	
-	
 	//animation variation over time -> blending presets.
 	if(e.name == variationKey)
 	{
@@ -438,7 +450,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
 			variationTween->bKeepAround = true;
 			
-			presetMixKey = tween.addTween( presetMix, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime*.99, "presetMix", TWEEN_SINUSOIDAL, TWEEN_INOUT );
+			presetMixKey = tween.addTween( presetMix, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, "presetMix", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 		}
 	}
 	
@@ -588,6 +600,9 @@ void ofApp::retryColors(){
 //--------------------------------------------------------------
 void ofApp::draw()
 {
+	
+	camera.reset();
+	
 	ofBackground(30,33,39, 255);
 	ofPushStyle();
 	
@@ -853,12 +868,14 @@ void ofApp::setupSphere( float radians, float sphereRad )
 	
 }
 
-void ofApp::setupOnion(){
+void ofApp::setupOnion()
+{
 	bOnionSetup = true;
 	setupSphere();
 }
 
-void ofApp::drawOnion(){
+void ofApp::drawOnion()
+{
 	if(!bOnionSetup){
 		setupOnion();
 	}
@@ -897,18 +914,21 @@ void ofApp::drawOnion(){
 	
 	currentShader->begin();
 	currentShader->setUniform1f("time", elapsedTime );
-	currentShader->setUniform1f("readingThreshold", readingThreshold);
-	currentShader->setUniform1f("readingScale", readingScale);
-	currentShader->setUniform1f("alpha", onionAlpha);
+//	currentShader->setUniform1f("readingThreshold", readingThreshold);
+//	currentShader->setUniform1f("readingScale", readingScale);
+//	currentShader->setUniform1f("alpha", onionAlpha);
 	currentShader->setUniform1f("dataSmoothing", dataSmoothing);
-	currentShader->setUniform1f("facingRatio", facingRatio);
-	currentShader->setUniform1f("displacement", displacement );
+//	currentShader->setUniform1f("facingRatio", facingRatio);
+//	currentShader->setUniform1f("displacement", displacement );
 	currentShader->setUniform1f("noiseScale", noiseScale );
 	currentShader->setUniform1f("slope", slope );
 	
 	//
 	ofPushMatrix();
 	ofScale( radius, radius, radius );
+	ofRotate(rotateX, 1, 0, 0);
+	ofRotate(rotateY, 0, 1, 0);
+	ofRotate(rotateZ, 0, 0, 1);
 	
 	ofPushMatrix();
 	if( bRotateOnNewJourney )	ofMultMatrix( globalTransform );//<-- this rotates the onion on transition in
@@ -942,6 +962,7 @@ void ofApp::drawOnion(){
 		currentShader->setUniform1f( "readingScale", ofMap( onions[i].sampleVal, minSampleVal, 1., innerReadingScale, outerReadingScale, true ) );
 		currentShader->setUniform1f( "readingThreshold", ofMap( onions[i].sampleVal, minSampleVal, 1., innerReadingThreshold, outerReadingThreshold, true ) );
 		currentShader->setUniform1f( "alpha", ofMap( onions[i].sampleVal, minSampleVal, 1., innerAlpha, outerAlpha, true ) );
+		currentShader->setUniform1f("facingRatio", ofMap( onions[i].sampleVal, minSampleVal, 1., innerFacingRatio, outerFacingRatio, true ) );
 		
 		//we only animimate the outer onion
 		if( bAddingRibbon && i == onions.size()-1 ){
@@ -952,10 +973,12 @@ void ofApp::drawOnion(){
 		}
 		
 		//draw front and back in diferent passes
-		glCullFace(GL_BACK);
-		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );
+		
 		
 		glCullFace(GL_FRONT);
+		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );
+		
+		glCullFace(GL_BACK);
 		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );
 		
 		
@@ -1017,7 +1040,8 @@ void ofApp::exit()
 
 
 //--------------------------------------------------------------
-ofColor ofApp::getRandomColor(){
+ofColor ofApp::getRandomColor()
+{
 	
 	map<string, ofColor>::iterator it = colorMap.begin();
 	advance( it, floor( ofRandom(0., colorMap.size() ) ) );
@@ -1040,7 +1064,8 @@ vector<string> ofApp::getPresetNames()
 	return presetNames;
 }
 
-void ofApp::cachePresetValues(){
+void ofApp::cachePresetValues()
+{
 	vector<string> presetNames = getPresetNames();
 	
 	for (int i=0; i<presetNames.size(); i++) {
@@ -1078,6 +1103,7 @@ void ofApp::cachePresetValues(){
 //	}
 	
 }
+
 void ofApp::loadPreset( string presetName)
 {
 	currentPresetName = presetName;
@@ -1128,7 +1154,7 @@ void ofApp::keyPressed(int key)
 		savePreset();
 	}
 	
-	if(key == ' '){
+	if(key == 'l' || key == 'L' ){
 		loadShaders();
 	}
 	
@@ -1142,7 +1168,6 @@ void ofApp::keyPressed(int key)
 	
 	if(key == ' '){
 		if(!bAddingRibbon){
-			addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), 4, "addRibbon", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 			
 			//load a journey from file
 			ofBuffer buffer = ofBufferFromFile("Journeys/journey_showJourney" + ofToString(int(ofRandom(4))) + ".json");
@@ -1150,10 +1175,17 @@ void ofApp::keyPressed(int key)
 				reader.parse( buffer.getText(), json );
 				handleRoute( json );
 			}
+			
+			addJourneyTween();
 		}
 	}
 }
 
+
+void ofApp::addJourneyTween()
+{
+	addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "addRibbonTween" );
+}
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key)
@@ -1262,7 +1294,7 @@ void ofApp::handleRoute( Json::Value& _json)
         journeys.push_back( new Journey(json["journey"], true) );
 		bJourniesNeedUpdate = true;
 		
-		addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), 4, "addRibbon", TWEEN_SINUSOIDAL, TWEEN_INOUT );
+		addJourneyTween();
     }
 	
     else if(route=="removeJourney") {

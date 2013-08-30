@@ -26,8 +26,7 @@ void main(void)
 	vec4 color = texture2DRect( fbo, uv );
 	
 	float mmScl = .5;
-	vec3 glowExpo = vec3( glowExponent );
-//	float glowScale = .75;
+
 	vec3 glow;
 	glow = texture2DRect( mm1, uv * mmScl ).xyz;
 	mmScl *= .5;
@@ -41,7 +40,7 @@ void main(void)
 	mmScl *= .5;
 	glow += texture2DRect( mm6, uv * mmScl ).xyz;
 	
-	glow = pow( glowScale * glow / 6., glowExpo );
+	glow = pow( glowScale * glow / 6., vec3( glowExponent ) );
 	
 	
 	
@@ -51,5 +50,6 @@ void main(void)
 	float circleEdgeAA = 1. - (d + edgeAADist - circleRadius) / edgeAADist;
 	
 	gl_FragColor = color + vec4( glow * glowCoefficient, 0.);
+//	gl_FragColor = mix( color + vec4( glow * glowCoefficient, 0.), vec4( .3, 1., 1., .1), circleEdgeAA);
 	gl_FragColor.w *= circleEdgeAA;
 }
