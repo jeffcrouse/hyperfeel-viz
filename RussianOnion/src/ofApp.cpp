@@ -38,6 +38,8 @@ void ofApp::setup(){
     options = ofxLibwebsockets::defaultClientOptions();
     if(hostname()=="cheese.local")
         options.host = "brainz.io";
+    if(hostname()=="brainz.local")
+        options.host = "brainz.local";
     else
         options.host = "brainz.io";
     options.port = 8080;
@@ -209,9 +211,6 @@ void ofApp::setupUI(){
 	guiMain->addRadio("shaders", shaderNames );
 	
     guiMain->addSpacer();
-	//    guiMain->addToggle("Record Manager Enabled", &recordManager.bEnabled); //LB: <-- bEnabled "not a member of recordManager"
-    guiMain->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
-
 	guiMain->autoSizeToFitWidgets();
 	
 	ofxUICanvas* guiPost = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
@@ -453,11 +452,12 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 		if( e.message == "ended" )
 		{
 			bAddingRibbon = false;
+            recordManager.endJourney(journeys.back());
 		}
 	}
 	
     // JRC
-    if(e.name== addRibbonScaleTween && e.message=="updated") {
+    if(e.name == addRibbonScaleTween && e.message=="updated") {
         onJourneyBuildInUpdate(journeys.back(), *tween.getTween(addRibbonScaleTween)->value);
     }
     
@@ -480,7 +480,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 	if(e.name == rotatedBack && e.message == "ended" )
 	{
 		bAddingRibbon = false;
-        recordManager.endJourney(journeys.back());
+       
 	}
 	
 	//animation variation over time -> blending presets.

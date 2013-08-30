@@ -126,6 +126,7 @@ void RecordManager::update(ofEventArgs &args)
 // -------------------------------------------------
 void RecordManager::startJourney(Journey* j, float duration)
 {
+    ofLogNotice() << "RecordManager::startJourney";
     bJourneyInProgress = true;
     
 //    if(j->email=="") {
@@ -164,7 +165,8 @@ void RecordManager::startJourney(Journey* j, float duration)
 
 // -------------------------------------------------
 void RecordManager::endJourney(Journey* j)
-{    
+{
+    ofLogNotice() << "RecordManager::endJourney";
     bJourneyInProgress = false;
     
     if(bMakeVideo && vidRecorder.isInitialized())
