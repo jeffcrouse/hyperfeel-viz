@@ -28,7 +28,7 @@ uniform float nearClip;
 uniform float farClip;
 
 float rand(vec2 n){
-//	return 0.6 + 0.5 *fract(sin(dot(n.xy, vec2(12.9898, 78.233)))* 43758.5453);
+	//	return 0.6 + 0.5 *fract(sin(dot(n.xy, vec2(12.9898, 78.233)))* 43758.5453);
 	return 0.6 + .5 * fract( sin( dot( n.xy, n.yx * 10.)));
 }
 
@@ -100,8 +100,7 @@ float linearizeDepth( in float d ) {
 }
 
 float map(float value, float inputMin, float inputMax, float outputMin, float outputMax) {;
-	float d = (inputMax - inputMin) * (outputMax - outputMin) + outputMin;
-	return (value - inputMin) / ( d==0. ? .00001 : d );
+	return ((value - inputMin) / (inputMax - inputMin) * (outputMax - outputMin) + outputMin);
 }
 
 void main(void)
@@ -182,7 +181,7 @@ void main(void)
 	
 	//color
 	vec3 col = color * fr;
-	
+
 	float barSample = uv.x*750. + time;
 	a *= pow( abs(sin( barSample ) + cos( barSample )), 4.);
 	

@@ -1,4 +1,11 @@
 #include "ofApp.h"
+#include <unistd.h>
+
+string hostname() {
+    char myhost[255];
+    gethostname(myhost, (size_t)sizeof(myhost));
+    return string( myhost );
+}
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -25,13 +32,17 @@ void ofApp::setup(){
 	fbo_mm5.allocate( fbo_mm4.getWidth()/2, fbo_mm4.getHeight()/2, GL_RGB );
 	fbo_mm6.allocate( fbo_mm5.getWidth()/2, fbo_mm5.getHeight()/2, GL_RGB );
 	
-//	//
-//    ofxLibwebsockets::ClientOptions options = ofxLibwebsockets::defaultClientOptions();
-//    options.host = "brainz.io"; //laserstorms-MacBook-Pro.local"; //
-//    options.port = 8080;
-//    bool connected = client.connect( options );
     
+    bClientInitialized = false;
+    bClientConnected = false;
+    options = ofxLibwebsockets::defaultClientOptions();
+    if(hostname()=="cheese.local")
+        options.host = "brainz.io";
+    else
+        options.host = "brainz.io";
+    options.port = 8080;
     client.addListener(this);
+    
     ofSetFrameRate(60);
     
 //    ofSetLogLevel(OF_LOG_VERBOSE);
@@ -113,6 +124,7 @@ void ofApp::setup(){
 	
 	//camera
 }
+
 
 //--------------------------------------------------------------
 void ofApp::audioIn(float *input, int bufferSize, int nChannels){
@@ -197,9 +209,9 @@ void ofApp::setupUI(){
 	guiMain->addRadio("shaders", shaderNames );
 	
     guiMain->addSpacer();
-    guiMain->addToggle("Record Manager Enabled", &recordManager.bEnabled);
+	//    guiMain->addToggle("Record Manager Enabled", &recordManager.bEnabled); //LB: <-- bEnabled "not a member of recordManager"
     guiMain->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
-	
+
 	guiMain->autoSizeToFitWidgets();
 	
 	ofxUICanvas* guiPost = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
@@ -220,6 +232,34 @@ void ofApp::setupUI(){
 	
 	guiPost->autoSizeToFitWidgets();
 	
+    //
+    //  Utils
+    //
+    ofxUICanvas* guiUtils = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
+    guiUtils->setName("Utils");
+	guiUtils->setFont("GUI/OpenSans-Semibold.ttf");
+	guiUtils->setFontSize(OFX_UI_FONT_LARGE, 6);
+	guiUtils->setFontSize(OFX_UI_FONT_MEDIUM, 6);
+	guiUtils->setFontSize(OFX_UI_FONT_SMALL, 6);
+	guiUtils->setColorFill(ofxUIColor(200));
+	guiUtils->setColorFillHighlight(ofxUIColor(255));
+	guiUtils->setColorBack(ofxUIColor(20, 20, 20, 100));
+    
+    guiUtils->addLabel("Utils");
+    guiUtils->addSpacer();
+    guiUtils->addToggle("Make Snapshots", &recordManager.bMakeSnapshots);
+    guiUtils->addToggle("Make Videos", &recordManager.bMakeVideo);
+    guiUtils->addToggle("Make Photo Strips", &recordManager.bMakePhotoStrips);
+    guiUtils->addSpacer();
+    guiUtils->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
+    
+    guiUtils->autoSizeToFitWidgets();
+    guiUtils->setPosition( guiMain->getRect()->getX(), ofGetHeight()-guiUtils->getRect()->getHeight()-20);
+
+    //
+    //  Shader
+    //
+
 	ofxUICanvas* guiShader = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
 	guiShader->setName("Shader");
 	guiShader->setFont("GUI/OpenSans-Semibold.ttf");
@@ -293,12 +333,13 @@ void ofApp::setupUI(){
 	guis.push_back( presetGui );
 	guis.push_back( guiShader  );
 	guis.push_back( guiPost  );
-	
+	guis.push_back( guiUtils );
+    
 	ofAddListener( guiMain->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( presetGui->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( guiShader->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( guiPost->newGUIEvent,this,&ofApp::guiEvent );
-	
+	ofAddListener( guiUtils->newGUIEvent,this,&ofApp::guiEvent );
 	
 	//load our working sttings
 	//	loadPreset("Working");
@@ -588,7 +629,11 @@ void ofApp::update()
 	
 	//tweens auto update vi ofListener
     
-  
+    
+    if(!bClientConnected && currentTime-lastConnectionAttempt > 5) {
+        client.connect( options );
+        lastConnectionAttempt = currentTime;
+    }
 }
 
 void ofApp::retryColors(){
@@ -1238,18 +1283,26 @@ void ofApp::dragEvent(ofDragInfo dragInfo)
 void ofApp::onConnect( ofxLibwebsockets::Event& args )
 {
     cout<<"on connected"<<endl;
+
 }
 
 //--------------------------------------------------------------
 void ofApp::onOpen( ofxLibwebsockets::Event& args )
 {
     cout<<"on open"<<endl;
+    bClientConnected = true;
+    
+    if(!bClientInitialized) {
+        client.send("{\"route\": \"initMe\"}");
+        bClientInitialized = true;
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::onClose( ofxLibwebsockets::Event& args )
 {
     cout<<"on close"<<endl;
+    bClientConnected = false;
 }
 
 //--------------------------------------------------------------

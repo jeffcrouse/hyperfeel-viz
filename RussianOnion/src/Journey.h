@@ -61,8 +61,10 @@ public:
 		
 		//corresponds tp ipod 0-6 roygbiv. 1 == orange
         // JRC NOTE: No longer corresponds to this -- it's the name of the device that sent it...
-        client_id = json["client_id"].asInt();
-		
+        if(json["client_id"].isString())
+            client_id = json["client_id"].asString();
+
+        
 		//16 digit hash
         uid = json["_id"].asString();
 		
@@ -121,7 +123,7 @@ public:
 	}
 	
     ofPolyline data;
-	int client_id;
+	string client_id;
 	string uid;
     string email;
 	long created_at;

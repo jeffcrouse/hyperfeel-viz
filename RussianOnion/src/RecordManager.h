@@ -33,8 +33,10 @@ public:
     //
     // Recording stuff
     //
-    bool bEnabled;
-    bool bRecording;
+    bool bMakeVideo;
+    bool bMakeSnapshots;
+    bool bMakePhotoStrips;
+    bool bJourneyInProgress;
     ofxVideoRecorder vidRecorder;
     
     vector<float> photoStripTimes;
