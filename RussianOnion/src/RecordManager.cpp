@@ -30,7 +30,7 @@ RecordManager::RecordManager() {
     lastSnapshot = 0;
     
     ofAddListener(ofEvents().setup, this, &RecordManager::setup );
-    ofAddListener(ofEvents().update, this, &RecordManager::update );
+    ofAddListener(ofEvents().draw, this, &RecordManager::update );
 }
 
 
@@ -41,7 +41,7 @@ void RecordManager::setup(ofEventArgs &args)
     photoStrip.allocate(ofGetWidth()*2, ofGetHeight()*2, GL_RGB);
     exporter.allocate(ofGetWidth()*2, ofGetHeight()*2, OF_IMAGE_COLOR);
     
-    frame.setUseTexture(false);
+    //frame.setUseTexture(false);
     
     photoStrip.begin();
     ofClear(0);
