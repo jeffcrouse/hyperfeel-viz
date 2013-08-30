@@ -30,7 +30,7 @@ RecordManager::RecordManager() {
     lastSnapshot = 0;
     
     ofAddListener(ofEvents().setup, this, &RecordManager::setup );
-    ofAddListener(ofEvents().draw, this, &RecordManager::update );
+    ofAddListener(ofEvents().update, this, &RecordManager::update );
 }
 
 
@@ -71,21 +71,29 @@ void RecordManager::audioIn(float *input, int bufferSize, int nChannels)
     }
 }
 
+
 // -------------------------------------------------
 void RecordManager::update(ofEventArgs &args)
 {
     float now = ofGetElapsedTimef();
-    frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
-    
+   
     if(bJourneyInProgress)
     {
+        bool bScreenGrabbed = false;
         if(bMakeVideo && vidRecorder.isInitialized())
         {
+            frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
+            bScreenGrabbed = true;
             vidRecorder.addFrame(frame.getPixelsRef());
         }
         
         if(bMakePhotoStrips && photoStripTimes.size()>0 && now > photoStripTimes.back())
         {
+            if(!bScreenGrabbed) {
+                frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
+                bScreenGrabbed = true;
+            }
+            
             photoStrip.begin();
             switch(photoStripTimes.size())
             {
@@ -120,10 +128,10 @@ void RecordManager::startJourney(Journey* j, float duration)
 {
     bJourneyInProgress = true;
     
-    if(j->email=="") {
-        ofLogNotice() << "Not starting recording.  No email address present.";
-        return;
-    }
+//    if(j->email=="") {
+//        ofLogNotice() << "Not starting recording.  No email address present.";
+//        return;
+//    }
     
     if(bMakePhotoStrips)
     {

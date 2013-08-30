@@ -37,7 +37,7 @@ void ofApp::setup(){
     bClientConnected = false;
     options = ofxLibwebsockets::defaultClientOptions();
     if(hostname()=="cheese.local")
-        options.host = "cheese.local";
+        options.host = "brainz.io";
     else
         options.host = "brainz.io";
     options.port = 8080;
