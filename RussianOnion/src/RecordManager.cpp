@@ -47,10 +47,10 @@ void RecordManager::setup(ofEventArgs &args)
     ofClear(0);
     photoStrip.end();
     
-    vidRecorder.setVideoCodec("mpeg4");
-    vidRecorder.setVideoBitrate("2500k");
-    vidRecorder.setAudioCodec("mp3");
-    vidRecorder.setAudioBitrate("192k");
+//    vidRecorder.setVideoCodec("mpeg4");
+//    vidRecorder.setVideoBitrate("2500k");
+//    vidRecorder.setAudioCodec("mp3");
+//    vidRecorder.setAudioBitrate("192k");
     
     ofAddListener(httpUtils.newResponseEvent, this, &RecordManager::newResponse);
 	httpUtils.start();
@@ -147,7 +147,18 @@ void RecordManager::startJourney(Journey* j, float duration)
     if(bMakeVideo)
     {
         videoFilename = "Recordings/"+j->uid+".mov";
-        vidRecorder.setup(videoFilename, ofGetWidth(), ofGetHeight(), frameRate, sampleRate, channels);
+        //vidRecorder.setup(videoFilename, ofGetWidth(), ofGetHeight(), frameRate, sampleRate, channels);
+
+        stringstream settings;
+        settings << " -vcodec mpeg4 "
+                << " -b:v 2500k "
+                << " -acodec mp3 " 
+                << " -b:a 192k "
+                << " -s 640x640 "
+                << " -qscale 3 "
+                << ofFilePath::getAbsolutePath(videoFilename);
+
+        vidRecorder.setupCustomOutput(ofGetWidth(), ofGetHeight(), frameRate, sampleRate, channels, settings.str());   
     }
 }
 
