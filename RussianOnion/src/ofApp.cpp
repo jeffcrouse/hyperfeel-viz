@@ -71,10 +71,10 @@ void ofApp::setup()
 	colorMap["indigo"].set( 131, 102, 212 );		// = ofColor::indigo;
 	colorMap["violet"].set( 227, 59, 207 );			// = ofColor::violet;
 	
-	controlColors.resize(5);
+	controlColors.resize(32);
 	for (int i=0; i<controlColors.size(); i++) {
 		float val = float(i) / float( controlColors.size()-1 );
-		controlColors[i].set( val, val, val );
+		controlColors[i].set( val, val, val, 1. );
 	}
 	
 	colorMapImage.loadImage( "GUI/defaultColorPalette.png" );
@@ -385,8 +385,8 @@ void ofApp::setupUI()
 
 	
 	//COLOR
-	ofxUICanvas* guiColor = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
-	guiColor->setName("CAMERA");
+	guiColor = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
+	guiColor->setName("COLOR");
 	guiColor->setFont("GUI/OpenSans-Semibold.ttf");
 	guiColor->setFontSize(OFX_UI_FONT_LARGE, 6);
 	guiColor->setFontSize(OFX_UI_FONT_MEDIUM, 6);
@@ -396,20 +396,40 @@ void ofApp::setupUI()
 	guiColor->setColorBack(ofxUIColor( 90, 90, 90, 70));
 	guiColor->setPosition( guiCamera->getRect()->getX(), guiCamera->getRect()->getY() + guiCamera->getRect()->getHeight() + 10 );
 	guiColor->setWidth( 350 );
+
 	
 	guiColor->addLabel("COLOR");
-//	guiColor->addImageSampler("c_" + ofToString( 0 ), &colorMapImage, 120, 120 );
-	for (int i=0; i<controlColors.size(); i++) {
-		string color_name ="c_" + ofToString( i );
-		guiColor->addLabel(color_name);
-		guiColor->addImageSampler( color_name, &colorMapImage, 100, 100 );
+	addColorPalette( "palettes/roygbiv.png" );
+	addColorPalette( "palettes/redToWhite.png" );
+	addColorPalette( "palettes/cyanToWhite.png" );
+	
+	string palette_path = "palettes/";
+	ofDirectory palette_dir(palette_path);
+	palette_dir.listDir();
+	palette_dir.allowExt(".png");
+	
+	//go through and store our preset names
+	for(int i = 0; i < palette_dir.numFiles(); i++){
+		addColorPalette( palette_dir.getPath(i) );
 	}
 	
+	//create a bunch of hidden sliders for storing our color info. we need sliders for mixing between presets
+	ofxUISlider* slider;
+	for (int i=0; i<controlColors.size(); i++) {
+		string colorName = "c_" + ofToString(i);
+		slider = guiColor->addSlider( colorName + "_r", 0, 1, &controlColors[i].r, 0, 0 );
+		slider->setVisible( false );
+
+		slider = guiColor->addSlider( colorName + "_g", 0, 1, &controlColors[i].g, 0, 0 );
+		slider->setVisible( false );
+		
+		slider = guiColor->addSlider( colorName + "_b", 0, 1, &controlColors[i].b, 0, 0 );
+		slider->setVisible( false );
+	}
 	
 	guiColor->autoSizeToFitWidgets();
 	
-	
-	//add listeners
+	//hold on to pointers for saving 'n stuff
 	guis.push_back( guiMain );
 	guis.push_back( presetGui );
 	guis.push_back( guiShader );
@@ -417,7 +437,8 @@ void ofApp::setupUI()
 	guis.push_back( guiColor );
 	guis.push_back( guiPost );
 	guis.push_back( guiUtils );
-    
+	
+	//add listeners
 	ofAddListener( guiMain->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( presetGui->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( guiShader->newGUIEvent,this,&ofApp::guiEvent );
@@ -430,6 +451,12 @@ void ofApp::setupUI()
 	//	loadPreset("Working");
 	nextPreset = "Working";
 	bCachedPresetValues = false;
+}
+
+void ofApp::addColorPalette( string filePath )
+{
+	ofxUIImageButton* palette0 =  guiColor->addImageButton( "palette_" + ofToString(imageButtons.size()),  filePath, &palete_0, 100, 10 );
+	imageButtons.push_back( palette0 );
 }
 
 void ofApp::guiEvent(ofxUIEventArgs &e)
@@ -452,6 +479,7 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 		//check and change the render type
 		for (int i=0; i<renderTypes.size(); i++) {
 			if(name == renderTypes[i]){
+				//bFoundIt = true;
 				if(e.getToggle()->getValue()){
 					currentRenderType = name;
 					//					bFoundIt = true;
@@ -464,6 +492,7 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 			presetNames = getPresetNames();
 			for (int i=0; i<presetNames.size(); i++) {
 				if( name == presetNames[i] ){
+					//bFoundIt = true;
 					if(e.getToggle()->getValue()){
 						nextPreset = name;
 						//						bFoundIt = true;
@@ -476,6 +505,7 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 		if(!bFoundIt){
 			for(int i=0; i<shaderNames.size(); i++){
 				if(name == shaderNames[i]){
+					//bFoundIt = true;
 					if(e.getToggle()->getValue()){
 						if(shaderMap.find(name) != shaderMap.end()){
 							currentShader = shaderMap[name];
@@ -490,7 +520,7 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 			for(int i=0; i<renderTypes.size(); i++){
 				if(name == renderTypes[i]){
 					if(e.getToggle()->getValue()){
-						
+						//bFoundIt = true;
 						currentRenderType = name;
 						
 						cout << "currentRenderType: " << currentRenderType << endl;
@@ -501,19 +531,50 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 		
 		//look in the conrolColors
 		if(!bFoundIt){
-			string color_name;
-			for(int i=0; i<controlColors.size(); i++){
-				color_name = "c_" + ofToString( i );
+			for(int i=0; i<imageButtons.size(); i++){
 
-				if(name == color_name){
-					ofxUIImageSampler* sampler = (ofxUIImageSampler *) e.widget;
+				if(name == imageButtons[i]->getName() ){
+					ofxUIImageButton* button = (ofxUIImageButton *) e.widget;
 					
-					ofFloatColor col = sampler->getColor();
-					controlColors[i].set(col.r, col.g, col.b );
+					cout << imageButtons[i]->getName() << ": " << button->getValue() << endl;
+					if(button->getValue()){
+						//set our palette to true
+						button->setValue( true );
+						
+						//set the others to false
+						for (int j=0; j<imageButtons.size(); j++) {
+							if(i != j){
+								imageButtons[j]->setValue( false );
+							}
+						}
+						
+						//now load all the colorSamples into our controlColor array
+						ofImage* img = button->getImage();
+						int imgW = img->getWidth();
+						
+						float step = 1. / float(controlColors.size()-1);
+						ofxUISlider* slider;
+						string colorName;
+						ofFloatColor col;
+						for (int j=0; j<controlColors.size(); j++) {
+							
+							colorName = "c_" + ofToString(j);
+							col = ofFloatColor( img->getColor( (imgW-1) * step * j, 0) );
+							
+							slider = (ofxUISlider* )guiColor->getWidget( colorName + "_r" );
+							slider->setValue( col.r );
+							
+							slider = (ofxUISlider* )guiColor->getWidget( colorName + "_g" );
+							slider->setValue( col.g );
+							
+							slider = (ofxUISlider* )guiColor->getWidget( colorName + "_b" );
+							slider->setValue( col.b );
+						}
+					}
 				}
+				
 			}
 		}
-
 	}
 	
 }
@@ -1154,18 +1215,14 @@ void ofApp::setupOnion()
 	setupSphere();
 }
 
-ofVec3f ofApp::getColor(float sampleVal)
+ofFloatColor ofApp::getColor(float sampleVal)
 {
-//	sampleVal = tween.calcSmootherstep( sampleVal );
-	
-	float sv = sampleVal * float( controlColors.size()-1 );
+	float  sv = ofMap(sampleVal, 0, 1, 0, controlColors.size()-1, true );
 	
 	int lowIndex = floor( sv );
-	int hiIndex = min( controlColors.size()-1.f, ceil( sv ));
-	sv = sv - lowIndex;
+	sv -= lowIndex;
 	
-	
-	return controlColors[lowIndex] * (1.-sv) + controlColors[hiIndex]*sv;
+	return controlColors[lowIndex]*(1.-sv) + controlColors[ceil( sv )]*sv;
 }
 
 void ofApp::drawOnion()
@@ -1264,8 +1321,8 @@ void ofApp::drawOnion()
 		
 		float sampleVal = ofMap( onions[i].sampleVal, minSampleVal, 1., 0, 1, true );
 		currentShader->setUniform1f( "sampleVal", sampleVal );
-		ofVec3f col = getColor( sampleVal );
-		currentShader->setUniform3f( "blendColor", col.x, col.y, col.z );
+		ofFloatColor col = getColor( sampleVal );
+		currentShader->setUniform3f( "blendColor", col.r, col.g, col.b );
 		
 		//we only animimate the outer onion
 		if( bAddingRibbon && i == onions.size()-1 ){

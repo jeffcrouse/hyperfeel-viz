@@ -1,50 +1,30 @@
 <Widget>
-    <Kind>28</Kind>
-    <Name>c_0</Name>
-    <XValue>0.360000014</XValue>
-    <YValue>0.720000029</YValue>
-    <RColor>24</RColor>
-    <GColor>255</GColor>
-    <BColor>10</BColor>
-    <AColor>255</AColor>
+    <Kind>4</Kind>
+    <Name>rotateX</Name>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
-    <Kind>28</Kind>
-    <Name>c_1</Name>
-    <XValue>0.689999998</XValue>
-    <YValue>0.239999995</YValue>
-    <RColor>255</RColor>
-    <GColor>72</GColor>
-    <BColor>255</BColor>
-    <AColor>255</AColor>
+    <Kind>4</Kind>
+    <Name>rotateY</Name>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
-    <Kind>28</Kind>
-    <Name>c_2</Name>
-    <XValue>0.639999986</XValue>
-    <YValue>0.819999993</YValue>
-    <RColor>255</RColor>
-    <GColor>255</GColor>
-    <BColor>97</BColor>
-    <AColor>255</AColor>
+    <Kind>4</Kind>
+    <Name>rotateZ</Name>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
-    <Kind>28</Kind>
-    <Name>c_3</Name>
-    <XValue>0.769999981</XValue>
-    <YValue>0.500000000</YValue>
-    <RColor>255</RColor>
-    <GColor>17</GColor>
-    <BColor>21</BColor>
-    <AColor>255</AColor>
+    <Kind>4</Kind>
+    <Name>positionX</Name>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
-    <Kind>28</Kind>
-    <Name>c_4</Name>
-    <XValue>0.109999999</XValue>
-    <YValue>0.460000008</YValue>
-    <RColor>169</RColor>
-    <GColor>255</GColor>
-    <BColor>255</BColor>
-    <AColor>255</AColor>
+    <Kind>4</Kind>
+    <Name>positionY</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>positionZ</Name>
+    <Value>0.000000000</Value>
 </Widget>

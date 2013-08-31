@@ -1,0 +1,50 @@
+<Widget>
+    <Kind>28</Kind>
+    <Name>c_0</Name>
+    <XValue>0.779999971</XValue>
+    <YValue>0.509999990</YValue>
+    <RColor>255</RColor>
+    <GColor>29</GColor>
+    <BColor>25</BColor>
+    <AColor>255</AColor>
+</Widget>
+<Widget>
+    <Kind>28</Kind>
+    <Name>c_1</Name>
+    <XValue>0.620000005</XValue>
+    <YValue>0.800000012</YValue>
+    <RColor>255</RColor>
+    <GColor>255</GColor>
+    <BColor>71</BColor>
+    <AColor>255</AColor>
+</Widget>
+<Widget>
+    <Kind>28</Kind>
+    <Name>c_2</Name>
+    <XValue>0.699999988</XValue>
+    <YValue>0.230000004</YValue>
+    <RColor>255</RColor>
+    <GColor>89</GColor>
+    <BColor>255</BColor>
+    <AColor>255</AColor>
+</Widget>
+<Widget>
+    <Kind>28</Kind>
+    <Name>c_3</Name>
+    <XValue>0.170000002</XValue>
+    <YValue>0.529999971</YValue>
+    <RColor>104</RColor>
+    <GColor>255</GColor>
+    <BColor>255</BColor>
+    <AColor>255</AColor>
+</Widget>
+<Widget>
+    <Kind>28</Kind>
+    <Name>c_4</Name>
+    <XValue>0.379999995</XValue>
+    <YValue>0.759999990</YValue>
+    <RColor>86</RColor>
+    <GColor>255</GColor>
+    <BColor>34</BColor>
+    <AColor>255</AColor>
+</Widget>

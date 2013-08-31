@@ -106,10 +106,20 @@ public:
 	/**
 	 * color sampling...
 	 */
-	vector <ofVec3f> controlColors;
-	ofVec3f getColor(float sampleVal);
+	vector <ofFloatColor> controlColors;
+	ofFloatColor getColor(float sampleVal);
 	
 	ofImage colorMapImage;
+	
+	ofImage roygbiv;
+	ofImage redToWhite;
+	ofImage cyanToWhite;
+	
+	bool palete_0;
+	vector <ofxUIImageButton*> imageButtons;
+	vector<ofFloatColor> colorPalette;
+	ofxUICanvas* guiColor;
+	void addColorPalette( string filePath );
 	
 	
 	/**
