@@ -22,7 +22,9 @@ SoundManager::SoundManager() {
 
 // -------------------------------------------------
 void SoundManager::setup(ofEventArgs &args) {
+    bMuted = false;
     spread = 2.0;
+    
     max_volume = 1/(float)ceil(spread);
     masterVolume = masterVolumeTarget = AMBIENT_VOLUME;
     audioLevelsPreview.allocate(320, 240);
@@ -91,8 +93,14 @@ void SoundManager::setup(ofEventArgs &args) {
 // -------------------------------------------------
 void SoundManager::update(ofEventArgs &args)
 {
-    masterVolume += (masterVolumeTarget-masterVolume) / 10.0;
+    if(bMuted) {
+        masterVolume = masterVolumeTarget = 0;
+    } else {
+        masterVolume += (masterVolumeTarget-masterVolume) / 10.0;
+    }
+    
     masterMixer.setOutputVolume(masterVolume);
+    
     
     attention += (attentionTarget-attention) / 10.0;
     for(int i=0; i<attention_sounds.size(); i++) {
@@ -114,12 +122,14 @@ void SoundManager::update(ofEventArgs &args)
 
 // -------------------------------------------------
 void SoundManager::startJourney(Journey* j) {
+    ofLogNotice() << "SoundManager::startJourney";
     masterVolumeTarget = 1;
 
 }
 
 // -------------------------------------------------
 void SoundManager::endJourney(Journey* j) {
+    ofLogNotice() << "SoundManager::endJourney";
     masterVolumeTarget = AMBIENT_VOLUME;
     attentionTarget = 0;
     meditationTarget = 0;

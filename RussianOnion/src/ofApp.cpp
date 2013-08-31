@@ -247,6 +247,7 @@ void ofApp::setupUI(){
     
     guiUtils->addLabel("Utils");
     guiUtils->addSpacer();
+    guiUtils->addToggle("Mute Audio", &soundManager.bMuted);
     guiUtils->addToggle("Make Snapshots", &recordManager.bMakeSnapshots);
     guiUtils->addToggle("Make Videos", &recordManager.bMakeVideo);
     guiUtils->addToggle("Make Photo Strips", &recordManager.bMakePhotoStrips);
@@ -354,7 +355,7 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 	int kind = e.widget->getKind();
 	//	cout << endl << name << " : " << kind << " : " << e.widget->getParent()->getName() <<  endl;
 	
-	
+
 	if( name == "save preset" ){
 		bSavePreset = true;
 		//savePreset();
@@ -444,29 +445,33 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 				tween.addTween( newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonScale", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 				newRibbonShaderScale = 0;
                 
+                
 				//audio
                 float totalDuration = newRibbonScaleDuration + (newRibbonAnimationSpan*2);
                 recordManager.startJourney(journeys.back(), totalDuration);
+                soundManager.startJourney(journeys.back());
 			}
 		}
 		
+        if( e.message=="updated")
+        {
+            soundManager.updateJorney(journeys.back(), *tween.getTween(addRibbonTween)->value);
+        }
+        
 		if( e.message == "ended" )
 		{
 			bAddingRibbon = false;
+            
             recordManager.endJourney(journeys.back());
+            soundManager.endJourney(journeys.back());
 		}
 	}
 	
-    // JRC
-    if(e.name == addRibbonScaleTween && e.message=="updated") {
-        onJourneyBuildInUpdate(journeys.back(), *tween.getTween(addRibbonScaleTween)->value);
-    }
     
 	//if the ribbon is done scalling in rotate it back and remove any old journeys
 	if(e.name == addRibbonScaleTween && e.message == "ended"){
         
-		onJourneyBuildInEnd(journeys.back()); // JRC
-        
+		
 		//TODO: magic number
 		//remove the old journeys & onions
 		if(onions.size() > 30){ // could be while() here?
@@ -1388,24 +1393,6 @@ void ofApp::onMessage( ofxLibwebsockets::Event& args )
 void ofApp::onBroadcast( ofxLibwebsockets::Event& args )
 {
     cout<<"got broadcast "<<args.message<<endl;
-}
-
-
-#pragma mark - Journey BuildIn events
-
-//--------------------------------------------------------------
-void ofApp::onJourneyBuildInStart(Journey* j) {
-    soundManager.startJourney(j);
-}
-
-//--------------------------------------------------------------
-void ofApp::onJourneyBuildInUpdate(Journey* j, float pct) {
-    soundManager.updateJorney(j, pct);
-}
-
-//--------------------------------------------------------------
-void ofApp::onJourneyBuildInEnd(Journey* j) {
-    soundManager.endJourney(j);
 }
 
 

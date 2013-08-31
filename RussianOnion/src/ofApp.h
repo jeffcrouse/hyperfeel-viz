@@ -42,10 +42,6 @@ public:
     ofSoundStream soundStream;
     void audioIn(float * input, int bufferSize, int nChannels);
     
-    
-    void onJourneyBuildInStart(Journey* j);
-    void onJourneyBuildInUpdate(Journey* j, float pct);
-    void onJourneyBuildInEnd(Journey* j);
     SoundManager soundManager;
     RecordManager recordManager;
     
