@@ -50,18 +50,8 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>sideSceen_1</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
     <Name>sideScreen</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>sideScreen2</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -116,10 +106,15 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Working</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>sideSceen_2</Name>
+    <Name>sideScreen2</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>sideSceen_1</Name>
     <Value>0</Value>
 </Widget>

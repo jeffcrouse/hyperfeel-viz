@@ -176,6 +176,8 @@ void ofApp::setDefaults()
 	slope = .05;
 	bRotateOnNewJourney = false;
 	newRibbonShaderScale = 1;
+	
+	journeyMixTime = 4;
 }
 
 void ofApp::setupUI()
@@ -280,6 +282,7 @@ void ofApp::setupUI()
     //  Shader
     //
 
+	
 	ofxUICanvas* guiShader = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
 	guiShader->setName("Shader");
 	guiShader->setFont("GUI/OpenSans-Semibold.ttf");
@@ -293,26 +296,14 @@ void ofApp::setupUI()
 	guiShader->setWidth( 350 );
 	
 	guiShader->addLabel("SHADER");
-	
-	//	rotateX, rotateY, rotateZ
-	guiShader->addSlider( "rotateX", -360, 360, &rotateX );
-	guiShader->addSlider( "rotateY", -360, 360, &rotateY );
-	guiShader->addSlider( "rotateZ", -360, 360, &rotateZ );
-
 	guiShader->addSlider("radius", 1, 30, &radius );
 	guiShader->addSlider("recursiveScale", .5, 1., &recursiveScale );
 	guiShader->addSlider("squish", .01, 1., &squish );
-//	guiShader->addSlider("readingThreshold", 0., 1., &readingThreshold );
-//	guiShader->addSlider("readingScale", .01, 1., &readingScale );
-//	guiShader->addSlider("onionAlpha", .01, 1., &onionAlpha );
 	guiShader->addSlider("dataSmoothing", .01, 1., &dataSmoothing );
-	//	guiShader->addSlider("facingRatio", .01, 1., &facingRatio );
 	guiShader->addSlider("innerFacingRatio", .01, 1., &innerFacingRatio );
 	guiShader->addSlider("outerFacingRatio", .01, 1., &outerFacingRatio );
-//	guiShader->addSlider("displacement", -1000, 1000., &displacement );
 	guiShader->addSlider("noiseScale", 0, .025, &noiseScale );
 	guiShader->addSlider("slope", 0., .2, &slope );
-	guiShader->addToggle("rotateOnNewJourney", &bRotateOnNewJourney );
 	guiShader->addSlider("outerDisplacement", -150, 150, &outerDisplacement );
 	guiShader->addSlider("innerDisplacement", -150, 150, &innerDisplacement );
 	
@@ -325,10 +316,7 @@ void ofApp::setupUI()
 	guiShader->addSlider("outerReadingScale", .01, 1., &outerReadingScale );
 	guiShader->addSlider("innerReadingScale", .01, 1., &innerReadingScale );
 	
-	
-	
 	guiShader->autoSizeToFitWidgets();
-	
 	
 	
 	//get our presets and them to the radio
@@ -348,16 +336,46 @@ void ofApp::setupUI()
 	presetGui->autoSizeToFitWidgets();
 	
 	
+	
+	//CAMERA
+	ofxUICanvas* guiCamera = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
+	guiCamera->setName("CAMERA");
+	guiCamera->setFont("GUI/OpenSans-Semibold.ttf");
+	guiCamera->setFontSize(OFX_UI_FONT_LARGE, 6);
+	guiCamera->setFontSize(OFX_UI_FONT_MEDIUM, 6);
+	guiCamera->setFontSize(OFX_UI_FONT_SMALL, 6);
+	guiCamera->setColorFill(ofxUIColor(200));
+	guiCamera->setColorFillHighlight(ofxUIColor(255));
+	guiCamera->setColorBack(ofxUIColor( 90, 90, 90, 70));
+	guiCamera->setPosition( presetGui->getRect()->getX() + presetGui->getRect()->getWidth() + 10, 10 );
+	guiCamera->setWidth( 350 );
+	
+	guiCamera->addLabel("CAMERA");
+	
+	//	rotateX, rotateY, rotateZ
+	guiCamera->addSlider( "rotateX", -180, 180, &rotateX );
+	guiCamera->addSlider( "rotateY", -180, 180, &rotateY );
+	guiCamera->addSlider( "rotateZ", -180, 180, &rotateZ );
+	
+	guiCamera->addSlider( "positionX", -50, 50, &positionX );
+	guiCamera->addSlider( "positionY", -50, 50, &positionY );
+	guiCamera->addSlider( "positionZ", -50, 50, &positionZ );
+	
+	guiCamera->autoSizeToFitWidgets();
+	
+	
 	//add listeners
 	guis.push_back( guiMain  );
 	guis.push_back( presetGui );
 	guis.push_back( guiShader  );
+	guis.push_back( guiCamera  );
 	guis.push_back( guiPost  );
 	guis.push_back( guiUtils );
     
 	ofAddListener( guiMain->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( presetGui->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( guiShader->newGUIEvent,this,&ofApp::guiEvent );
+	ofAddListener( guiCamera->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( guiPost->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( guiUtils->newGUIEvent,this,&ofApp::guiEvent );
 	
@@ -485,20 +503,12 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			//Jeff, this is the correct setup?
             recordManager.endJourney(journeys.back());
             soundManager.endJourney(journeys.back());
-
-//<<<<<<< HEAD
-//			recordManager.endJourney(journeys.back());
-//		}
-//		
-//		
-//		if( e.message == "updated" )
-//		{
-//			
-//=======
-//            
-//            recordManager.endJourney(journeys.back());
-//            soundManager.endJourney(journeys.back());
-//>>>>>>> 9ed3f7ccdee7bc229fcd4a98c432a80f862d015a
+			
+			//=======
+			//
+			//            recordManager.endJourney(journeys.back());
+			//            soundManager.endJourney(journeys.back());
+			//>>>>>>> 9ed3f7ccdee7bc229fcd4a98c432a80f862d015a
 		}
 	}
 	
@@ -531,9 +541,6 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			lastValues = currentValues;
 		}
 	}
-	
-	
-	float journeyMixTime = 4;
 	
 	//this adds a journey and controls the variable that plays the music
 	if( e.name == "JourneyIntro")
@@ -620,11 +627,11 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 	{
 		if (e.message == "started")
 		{
-			cout << e.name << ": " << e.message << endl;
 			//make doublely sure
 			lastValues = currentValues;
 		}
 		
+		//if we're not loading a Journey and actively animating then we are mixing and tweening
 		if(bPlayAnimation && !bLaodingJourney)
 		{
 			if( e.message == "updated")
@@ -636,7 +643,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			
 			if( e.message == "ended")
 			{
-				cout << e.name << ": " << e.message << " : " << ofGetElapsedTimef() << endl;
+				//cout << e.name << ": " << e.message << " : " << ofGetElapsedTimef() << endl;
 
 				variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
 				variationTween->bKeepAround = true;
@@ -1132,9 +1139,13 @@ void ofApp::drawOnion()
 	//
 	ofPushMatrix();
 	ofScale( radius, radius, radius );
-	ofRotate(rotateX, 1, 0, 0);
-	ofRotate(rotateY, 0, 1, 0);
-	ofRotate(rotateZ, 0, 0, 1);
+	
+	ofTranslate( positionX, positionY, positionZ );
+	
+	ofRotateX( rotateX );
+	ofRotateY( rotateY );
+	ofRotateZ( rotateZ );
+	
 	
 	ofPushMatrix();
 	if( bRotateOnNewJourney )	ofMultMatrix( globalTransform );//<-- this rotates the onion on transition in

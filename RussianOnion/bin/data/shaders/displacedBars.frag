@@ -182,7 +182,7 @@ void main(void)
 	//color
 	vec3 col = color * fr;
 
-	float barSample = uv.x*750. + time;
+	float barSample = uv.x*628. + time; // 942
 	a *= pow( abs(sin( barSample ) + cos( barSample )), 4.);
 	
 //	a *= min(1., animateIn * 2. );

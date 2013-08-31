@@ -159,7 +159,10 @@ public:
 	float glowExponent;
 	float glowScale;
 	
+	float journeyMixTime;
+	
 	float rotateX, rotateY, rotateZ;
+	float positionX, positionY, positionZ;
 	
 	string journeyTransitionTween;
 	float journeyTransitionVal;

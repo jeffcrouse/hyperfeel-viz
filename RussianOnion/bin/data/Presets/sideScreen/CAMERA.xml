@@ -1,0 +1,30 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>rotateX</Name>
+    <Value>-180.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>rotateY</Name>
+    <Value>-89.999938965</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>rotateZ</Name>
+    <Value>112.631591797</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>positionX</Name>
+    <Value>0.000007629</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>positionY</Name>
+    <Value>-9.356723785</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>positionZ</Name>
+    <Value>9.064327240</Value>
+</Widget>
