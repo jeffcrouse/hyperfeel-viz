@@ -38,6 +38,8 @@ void ofApp::setup(){
     options = ofxLibwebsockets::defaultClientOptions();
     if(hostname()=="cheese.local")
         options.host = "brainz.io";
+    if(hostname()=="brainz.local")
+        options.host = "brainz.local";
     else
         options.host = "brainz.io";
     options.port = 8080;
@@ -95,7 +97,8 @@ void ofApp::setup(){
 	//animation
 	//TODO: rename "newRibbonScaleDuration"
 	newRibbonScaleDuration = 30; // <---- this controls the time it takes for the journey to animate in.
-	animationPresetVariationTime = 4;
+
+	animationPresetVariationTime = 10;
 	animationPresetIndex0 = 0;
 	animationPresetIndex1 = 1;
 	
@@ -127,7 +130,8 @@ void ofApp::setup(){
 	//add tween listener
 	ofAddListener( TweenEvent::events, this, &ofApp::tweenEventHandler );
     
-
+    //soundStream.listDevices();
+    //soundStream.setDeviceID(5);
     soundStream.setup(this, 0, recordManager.channels, recordManager.sampleRate, 256, 4);
 	
 	
@@ -218,7 +222,6 @@ void ofApp::setupUI(){
 	guiMain->addRadio("shaders", shaderNames );
 	
     guiMain->addSpacer();
-	//    guiMain->addToggle("Record Manager Enabled", &recordManager.bEnabled); //LB: <-- bEnabled "not a member of recordManager" ?
     guiMain->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
 
 	guiMain->autoSizeToFitWidgets();
@@ -256,6 +259,7 @@ void ofApp::setupUI(){
     
     guiUtils->addLabel("Utils");
     guiUtils->addSpacer();
+    guiUtils->addToggle("Mute Audio", &soundManager.bMuted);
     guiUtils->addToggle("Make Snapshots", &recordManager.bMakeSnapshots);
     guiUtils->addToggle("Make Videos", &recordManager.bMakeVideo);
     guiUtils->addToggle("Make Photo Strips", &recordManager.bMakePhotoStrips);
@@ -363,7 +367,7 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 	int kind = e.widget->getKind();
 	//	cout << endl << name << " : " << kind << " : " << e.widget->getParent()->getName() <<  endl;
 	
-	
+
 	if( name == "save preset" ){
 		bSavePreset = true;
 		//savePreset();
@@ -454,35 +458,47 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 				tween.addTween( newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonScale", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 				newRibbonShaderScale = 0;
                 
+                
 				//audio
                 float totalDuration = newRibbonScaleDuration + (newRibbonAnimationSpan*2);
                 recordManager.startJourney(journeys.back(), totalDuration);
+                soundManager.startJourney(journeys.back());
 			}
 		}
 		
+        if( e.message=="updated")
+        {
+            soundManager.updateJorney(journeys.back(), *tween.getTween(addRibbonTween)->value);
+        }
+        
 		if( e.message == "ended" )
 		{
 			bAddingRibbon = false;
-			recordManager.endJourney(journeys.back());
-		}
-		
-		
-		if( e.message == "updated" )
-		{
 			
+            recordManager.endJourney(journeys.back());
+            soundManager.endJourney(journeys.back());
+
+//<<<<<<< HEAD
+//			recordManager.endJourney(journeys.back());
+//		}
+//		
+//		
+//		if( e.message == "updated" )
+//		{
+//			
+//=======
+//            
+//            recordManager.endJourney(journeys.back());
+//            soundManager.endJourney(journeys.back());
+//>>>>>>> 9ed3f7ccdee7bc229fcd4a98c432a80f862d015a
 		}
 	}
 	
-    // JRC
-    if(e.name== addRibbonScaleTween && e.message=="updated") {
-        onJourneyBuildInUpdate(journeys.back(), *tween.getTween(addRibbonScaleTween)->value);
-    }
     
 	//if the ribbon is done animating in remove the oldest journey & onion
 	if(e.name == addRibbonScaleTween && e.message == "ended"){
         
-		onJourneyBuildInEnd(journeys.back()); // JRC
-        
+		
 		//TODO: magic number
 		//remove the old journeys & onions
 		if(onions.size() > 30){ // could be while() here?
@@ -1501,7 +1517,7 @@ void ofApp::handleRoute( Json::Value& _json)
 		bJourniesNeedUpdate = true;
     }
 	
-    else if(route=="addJourney") {
+    else if(route=="addJourney" || route == "replayJourney") {
 			
 		cout << "addJourney" << endl;
 		//true for animating in
@@ -1548,24 +1564,6 @@ void ofApp::onMessage( ofxLibwebsockets::Event& args )
 void ofApp::onBroadcast( ofxLibwebsockets::Event& args )
 {
     cout<<"got broadcast "<<args.message<<endl;
-}
-
-
-#pragma mark - Journey BuildIn events
-
-//--------------------------------------------------------------
-void ofApp::onJourneyBuildInStart(Journey* j) {
-    soundManager.startJourney(j);
-}
-
-//--------------------------------------------------------------
-void ofApp::onJourneyBuildInUpdate(Journey* j, float pct) {
-    soundManager.updateJorney(j, pct);
-}
-
-//--------------------------------------------------------------
-void ofApp::onJourneyBuildInEnd(Journey* j) {
-    soundManager.endJourney(j);
 }
 
 

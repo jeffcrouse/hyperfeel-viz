@@ -176,6 +176,7 @@
 		1F3E8F6B17CFC13A004CDA73 /* ofxHttpTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxHttpTypes.h; path = ../../../addons/ofxHttpUtils/src/ofxHttpTypes.h; sourceTree = "<group>"; };
 		1F3E8F6C17CFC13A004CDA73 /* ofxHttpUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxHttpUtils.cpp; path = ../../../addons/ofxHttpUtils/src/ofxHttpUtils.cpp; sourceTree = "<group>"; };
 		1F3E8F6D17CFC13A004CDA73 /* ofxHttpUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxHttpUtils.h; path = ../../../addons/ofxHttpUtils/src/ofxHttpUtils.h; sourceTree = "<group>"; };
+		1F9ABCDE17D12E3300ED1A12 /* ofxThreadedImageSaver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxThreadedImageSaver.h; sourceTree = "<group>"; };
 		1FE89D9C17CFB06500AF8291 /* SoundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundManager.cpp; sourceTree = "<group>"; };
 		1FE89D9D17CFB06500AF8291 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 		1c43cdb79bf40ea7424b96804209f474 /* ofxUISuperCanvas.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUISuperCanvas.h; path = ../../../addons/ofxUI/src/ofxUISuperCanvas.h; sourceTree = SOURCE_ROOT; };
@@ -596,6 +597,7 @@
 				1FE89D9D17CFB06500AF8291 /* SoundManager.h */,
 				1F3E8F6717CFC117004CDA73 /* RecordManager.cpp */,
 				1F3E8F6817CFC117004CDA73 /* RecordManager.h */,
+				1F9ABCDE17D12E3300ED1A12 /* ofxThreadedImageSaver.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

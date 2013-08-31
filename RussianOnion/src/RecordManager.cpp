@@ -39,7 +39,7 @@ void RecordManager::setup(ofEventArgs &args)
 {
     
     photoStrip.allocate(ofGetWidth()*2, ofGetHeight()*2, GL_RGB);
-    exporter.allocate(ofGetWidth()*2, ofGetHeight()*2, OF_IMAGE_COLOR);
+    photoStripSaver.allocate(ofGetWidth()*2, ofGetHeight()*2, OF_IMAGE_COLOR);
     
     //frame.setUseTexture(false);
     
@@ -118,7 +118,7 @@ void RecordManager::update(ofEventArgs &args)
     else if(bMakeSnapshots && now-lastSnapshot > snapshotInterval)
     {
         frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
-        frame.saveImage("Snapshots/"+ofGetTimestampString("%m%d%H%M%S")+".png");
+        frame.saveThreaded("Snapshots/"+ofGetTimestampString("%m%d%H%M%S")+".png");
         lastSnapshot = now;
     }    
 }
@@ -126,6 +126,7 @@ void RecordManager::update(ofEventArgs &args)
 // -------------------------------------------------
 void RecordManager::startJourney(Journey* j, float duration)
 {
+    ofLogNotice() << "RecordManager::startJourney";
     bJourneyInProgress = true;
     
 //    if(j->email=="") {
@@ -164,7 +165,8 @@ void RecordManager::startJourney(Journey* j, float duration)
 
 // -------------------------------------------------
 void RecordManager::endJourney(Journey* j)
-{    
+{
+    ofLogNotice() << "RecordManager::endJourney";
     bJourneyInProgress = false;
     
     if(bMakeVideo && vidRecorder.isInitialized())
@@ -185,8 +187,13 @@ void RecordManager::endJourney(Journey* j)
     
     if(bMakePhotoStrips)
     {
-        photoStrip.readToPixels(exporter.getPixelsRef());
-        exporter.saveImage(photoStripFilename);
+        photoStrip.readToPixels(photoStripSaver.getPixelsRef());
+        //exporter.saveImage(photoStripFilename);
+        photoStripSaver.saveThreaded(photoStripFilename);
+        
+        photoStrip.begin();
+        ofClear(0);
+        photoStrip.end();
     }
 }
 

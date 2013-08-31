@@ -26,6 +26,8 @@ public:
     void updateLevelsPreview();
     void update(ofEventArgs &args);
     
+    bool bMuted;
+    
     float spread;
     float max_volume;
     float masterVolume;
