@@ -1,1 +1,0 @@
-This is where the recorded videos will go.

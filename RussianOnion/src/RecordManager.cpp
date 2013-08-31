@@ -25,9 +25,12 @@ RecordManager::RecordManager() {
     bMakeVideo = true;
     bMakeSnapshots = true;
     bMakePhotoStrips = true;
+    bScreenGrabbed = false;
     
     snapshotInterval = 15;
     lastSnapshot = 0;
+    
+    frameDimension = ofGetHeight();
     
     ofAddListener(ofEvents().setup, this, &RecordManager::setup );
     ofAddListener(ofEvents().draw, this, &RecordManager::update );
@@ -38,8 +41,8 @@ RecordManager::RecordManager() {
 void RecordManager::setup(ofEventArgs &args)
 {
     
-    photoStrip.allocate(ofGetWidth()*2, ofGetHeight()*2, GL_RGB);
-    photoStripSaver.allocate(ofGetWidth()*2, ofGetHeight()*2, OF_IMAGE_COLOR);
+    photoStrip.allocate(frameDimension*2, frameDimension*2, GL_RGB);
+    photoStripSaver.allocate(frameDimension*2, frameDimension*2, OF_IMAGE_COLOR);
     
     //frame.setUseTexture(false);
     
@@ -52,16 +55,16 @@ void RecordManager::setup(ofEventArgs &args)
 //    vidRecorder.setAudioCodec("mp3");
 //    vidRecorder.setAudioBitrate("192k");
     
-    ofAddListener(httpUtils.newResponseEvent, this, &RecordManager::newResponse);
-	httpUtils.start();
+    //ofAddListener(httpUtils.newResponseEvent, this, &RecordManager::newResponse);
+	//httpUtils.start();
     
 }
-
+/*
 //--------------------------------------------------------------
 void RecordManager::newResponse(ofxHttpResponse & response)
 {
 	cout << ofToString(response.status) + ": " + (string)response.responseBody << endl;
-}
+}*/
 
 //--------------------------------------------------------------
 void RecordManager::audioIn(float *input, int bufferSize, int nChannels)
@@ -71,40 +74,44 @@ void RecordManager::audioIn(float *input, int bufferSize, int nChannels)
     }
 }
 
+// -------------------------------------------------
+void RecordManager::grabScreen()
+{
+    if(!bScreenGrabbed)
+    {
+        int x = (ofGetWidth()/2) - (frameDimension/2);
+        frame.grabScreen(x, 0, frameDimension, frameDimension);
+        bScreenGrabbed = true;
+    }
+}
 
 // -------------------------------------------------
 void RecordManager::update(ofEventArgs &args)
 {
     float now = ofGetElapsedTimef();
-   
+
     if(bJourneyInProgress)
     {
-        bool bScreenGrabbed = false;
         if(bMakeVideo && vidRecorder.isInitialized())
         {
-            frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
-            bScreenGrabbed = true;
+            grabScreen();
             vidRecorder.addFrame(frame.getPixelsRef());
         }
         
         if(bMakePhotoStrips && photoStripTimes.size()>0 && now > photoStripTimes.back())
         {
-            if(!bScreenGrabbed) {
-                frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
-                bScreenGrabbed = true;
-            }
-            
+            grabScreen();
             photoStrip.begin();
             switch(photoStripTimes.size())
             {
                 case 1:
-                    frame.draw(ofGetWidth(), ofGetHeight());
+                    frame.draw(frameDimension, frameDimension);
                     break;
                 case 2:
-                    frame.draw(0, ofGetHeight());
+                    frame.draw(0, frameDimension);
                     break;
                 case 3:
-                    frame.draw(ofGetWidth(), 0);
+                    frame.draw(frameDimension, 0);
                     break;
                 case 4:
                     frame.draw(0, 0);
@@ -117,26 +124,30 @@ void RecordManager::update(ofEventArgs &args)
     }
     else if(bMakeSnapshots && now-lastSnapshot > snapshotInterval)
     {
-        frame.grabScreen(0, 0, ofGetWidth(), ofGetHeight());
-        frame.saveThreaded("Snapshots/"+ofGetTimestampString("%m%d%H%M%S")+".png");
+        grabScreen();
+        stringstream path;
+        path << SHARE_ROOT << "/Snapshots/" << ofGetTimestampString("%m%d%H%M%S") << ".png";
+        frame.saveThreaded(path.str());
         lastSnapshot = now;
-    }    
+    }
+    
+    
+    bScreenGrabbed = false;
 }
 
 // -------------------------------------------------
 void RecordManager::startJourney(Journey* j, float duration)
 {
-    ofLogNotice() << "RecordManager::startJourney";
+    ofLogNotice() << "RecordManager::startJourney " << j->uid;
     bJourneyInProgress = true;
     
-//    if(j->email=="") {
-//        ofLogNotice() << "Not starting recording.  No email address present.";
-//        return;
-//    }
+    stringstream path;
+    path << SHARE_ROOT << "/" << j->uid;
+    ofDirectory::createDirectory(path.str(), false, true);
+
     
     if(bMakePhotoStrips)
-    {
-        photoStripFilename = "PhotoStrips/"+j->uid+".png";
+    {        
         float now = ofGetElapsedTimef();
         photoStripTimes.clear();
         photoStripTimes.push_back(now + (duration*0.9));
@@ -147,27 +158,29 @@ void RecordManager::startJourney(Journey* j, float duration)
     
     if(bMakeVideo)
     {
-        videoFilename = "Recordings/"+j->uid+".mov";
-        //vidRecorder.setup(videoFilename, ofGetWidth(), ofGetHeight(), frameRate, sampleRate, channels);
-
         stringstream settings;
         settings << " -vcodec mpeg4 "
                 << " -b:v 2500k "
                 << " -acodec mp3 " 
                 << " -b:a 192k "
                 << " -s 640x640 "
-                << " -qscale 3 "
-                << ofFilePath::getAbsolutePath(videoFilename);
-
-        vidRecorder.setupCustomOutput(ofGetWidth(), ofGetHeight(), frameRate, sampleRate, channels, settings.str());   
+                << " -q:v 3 "
+                << SHARE_ROOT << "/" << j->uid << "/video.mov";
+        
+        vidRecorder.setupCustomOutput(frameDimension, frameDimension, frameRate, sampleRate, channels, settings.str());
     }
 }
+
+
 
 // -------------------------------------------------
 void RecordManager::endJourney(Journey* j)
 {
-    ofLogNotice() << "RecordManager::endJourney";
+    ofLogNotice() << "RecordManager::endJourney "<< j->uid;
     bJourneyInProgress = false;
+    
+    
+    stringstream path;
     
     if(bMakeVideo && vidRecorder.isInitialized())
     {
@@ -187,13 +200,28 @@ void RecordManager::endJourney(Journey* j)
     
     if(bMakePhotoStrips)
     {
+        path << SHARE_ROOT << "/" << j->uid << "/photoStrip.png";
+        
         photoStrip.readToPixels(photoStripSaver.getPixelsRef());
-        //exporter.saveImage(photoStripFilename);
-        photoStripSaver.saveThreaded(photoStripFilename);
+        photoStripSaver.saveThreaded(path.str());
+        path.str("");
         
         photoStrip.begin();
         ofClear(0);
         photoStrip.end();
     }
+    
+    
+    Json::Value json;
+    json["email"] = j->email;
+    json["uid"] = j->uid;
+    json["created_at"] = (int)j->created_at;
+    
+    
+    Json::StyledWriter writer;
+    path << SHARE_ROOT << "/" << j->uid << "/info.json";
+    ofstream fs( path.str().c_str() );
+    fs << writer.write( json ) << endl;
+    fs.close();
 }
 

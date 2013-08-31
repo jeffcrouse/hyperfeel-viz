@@ -10,8 +10,11 @@
 
 #include "Journey.h"
 #include "ofxVideoRecorder.h"
-#include "ofxHttpUtils.h"
+//#include "ofxHttpUtils.h"
 #include "ofxThreadedImageSaver.h"
+
+
+#define SHARE_ROOT "/Users/jeff/Desktop/Sharing"
 
 class RecordManager
 {
@@ -23,13 +26,14 @@ public:
     void update(ofEventArgs &args);
     void startJourney(Journey* j, float duration);
     void endJourney(Journey* j);    
-    void newResponse(ofxHttpResponse & response);
+    //void newResponse(ofxHttpResponse & response);
     void audioIn(float * input, int bufferSize, int nChannels);
+    void grabScreen();
     
     //
     // Uploading
     //
-    ofxHttpUtils httpUtils;
+    //ofxHttpUtils httpUtils;
     
     //
     // Recording stuff
@@ -40,8 +44,10 @@ public:
     bool bJourneyInProgress;
     ofxVideoRecorder vidRecorder;
     
+    int frameDimension;
+    bool bScreenGrabbed;
+    
     vector<float> photoStripTimes;
-    string photoStripFilename;
     ofFbo photoStrip;
     ofxThreadedImageSaver photoStripSaver;
     
@@ -50,7 +56,5 @@ public:
     int sampleRate;
     int channels;
     int frameRate;
-    string videoFilename;
-    string journey_id;
 };
 

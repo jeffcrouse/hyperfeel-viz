@@ -1,1 +1,0 @@
-This is where photo strips will go.
