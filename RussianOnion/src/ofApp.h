@@ -167,6 +167,9 @@ public:
 	
 	string journeyTransitionIntro;
 	
+	bool bLaodingJourney;
+	int presetMixIndex;
+	
     /**
      *  Journeys
      */
