@@ -38,12 +38,15 @@ void ofApp::setup()
     bClientInitialized = false;
     bClientConnected = false;
     options = ofxLibwebsockets::defaultClientOptions();
+    
+    ofLogNotice() << "hostname = " << hostname();
     if(hostname()=="cheese.local")
-        options.host = "brainz.io";
-    if(hostname()=="brainz.local")
+        options.host = "cheese.local";
+    else if(hostname()=="brainz.local")
         options.host = "brainz.local";
     else
         options.host = "brainz.io";
+    ofLogNotice() << "options.host " << options.host;
     options.port = 8080;
     client.addListener(this);
     
@@ -53,7 +56,7 @@ void ofApp::setup()
 	
 	//Journy stuff
 	bSaveJsonsToFile = false;//for debuggin it was faster to load them from file rather then wait for the server
-	bLoadJsonsFromFile = true;
+	bLoadJsonsFromFile = false;
 	
 	bJourniesNeedUpdate = false;
 	
@@ -245,8 +248,8 @@ void ofApp::setupUI()
 	cout << "shaderNames.size(): "<< shaderNames.size() << endl;
 	guiMain->addRadio("shaders", shaderNames );
 	
-    guiMain->addSpacer();
-    guiMain->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
+    //guiMain->addSpacer();
+    //guiMain->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
 
 	guiMain->autoSizeToFitWidgets();
 	
@@ -1586,7 +1589,7 @@ void ofApp::onIdle( ofxLibwebsockets::Event& args )
 void ofApp::handleRoute( Json::Value& _json)
 {
 	string route = _json["route"].asString();
-	
+
 	if(bSaveJsonsToFile){
 		
 		string fileIndex = ofToString( journeys.size() );
