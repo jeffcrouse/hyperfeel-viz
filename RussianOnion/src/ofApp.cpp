@@ -67,6 +67,15 @@ void ofApp::setup()
 	colorMap["blue"].set( 4, 184, 197 );			// = ofColor::blue;
 	colorMap["indigo"].set( 131, 102, 212 );		// = ofColor::indigo;
 	colorMap["violet"].set( 227, 59, 207 );			// = ofColor::violet;
+	
+	controlColors.resize(5);
+	for (int i=0; i<controlColors.size(); i++) {
+		float val = float(i) / float( controlColors.size()-1 );
+		controlColors[i].set( val, val, val );
+	}
+	
+	colorMapImage.loadImage( "GUI/defaultColorPalette.png" );
+	
 
 	// -
 	loadShaders();
@@ -106,10 +115,15 @@ void ofApp::setup()
 	
 	animationPresets.push_back("p_0");
 	animationPresets.push_back("p_1");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("t_69");
 	animationPresets.push_back("p_2");
 	animationPresets.push_back("p_3");
+	animationPresets.push_back("keyVis");
 	animationPresets.push_back("p_4");
+	animationPresets.push_back("keyVis");
 	animationPresets.push_back("p_5");
+	animationPresets.push_back("t_68");
 	animationPresets.push_back("p_6");
 	
 	transitionPresetIndex0 = 0;
@@ -139,6 +153,7 @@ void ofApp::setup()
 	
 	
 	//camera
+	
 }
 
 
@@ -364,18 +379,47 @@ void ofApp::setupUI()
 	guiCamera->autoSizeToFitWidgets();
 	
 	
+
+	
+	//COLOR
+	ofxUICanvas* guiColor = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
+	guiColor->setName("CAMERA");
+	guiColor->setFont("GUI/OpenSans-Semibold.ttf");
+	guiColor->setFontSize(OFX_UI_FONT_LARGE, 6);
+	guiColor->setFontSize(OFX_UI_FONT_MEDIUM, 6);
+	guiColor->setFontSize(OFX_UI_FONT_SMALL, 6);
+	guiColor->setColorFill(ofxUIColor(200));
+	guiColor->setColorFillHighlight(ofxUIColor(255));
+	guiColor->setColorBack(ofxUIColor( 90, 90, 90, 70));
+	guiColor->setPosition( guiCamera->getRect()->getX(), guiCamera->getRect()->getY() + guiCamera->getRect()->getHeight() + 10 );
+	guiColor->setWidth( 350 );
+	
+	guiColor->addLabel("COLOR");
+//	guiColor->addImageSampler("c_" + ofToString( 0 ), &colorMapImage, 120, 120 );
+	for (int i=0; i<controlColors.size(); i++) {
+		string color_name ="c_" + ofToString( i );
+		guiColor->addLabel(color_name);
+		guiColor->addImageSampler( color_name, &colorMapImage, 100, 100 );
+	}
+	
+	
+	guiColor->autoSizeToFitWidgets();
+	
+	
 	//add listeners
-	guis.push_back( guiMain  );
+	guis.push_back( guiMain );
 	guis.push_back( presetGui );
-	guis.push_back( guiShader  );
-	guis.push_back( guiCamera  );
-	guis.push_back( guiPost  );
+	guis.push_back( guiShader );
+	guis.push_back( guiCamera );
+	guis.push_back( guiColor );
+	guis.push_back( guiPost );
 	guis.push_back( guiUtils );
     
 	ofAddListener( guiMain->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( presetGui->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( guiShader->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( guiCamera->newGUIEvent,this,&ofApp::guiEvent );
+	ofAddListener( guiColor->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( guiPost->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( guiUtils->newGUIEvent,this,&ofApp::guiEvent );
 	
@@ -451,6 +495,22 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 				}
 			}
 		}
+		
+		//look in the conrolColors
+		if(!bFoundIt){
+			string color_name;
+			for(int i=0; i<controlColors.size(); i++){
+				color_name = "c_" + ofToString( i );
+
+				if(name == color_name){
+					ofxUIImageSampler* sampler = (ofxUIImageSampler *) e.widget;
+					
+					ofFloatColor col = sampler->getColor();
+					controlColors[i].set(col.r, col.g, col.b );
+				}
+			}
+		}
+
 	}
 	
 }
@@ -803,10 +863,15 @@ void ofApp::update()
     }
 }
 
-void ofApp::retryColors(){
+void ofApp::retryColors()
+{
 	for(int i=0; i<onions.size(); i++){
 		onions[i].color = getRandomColor();
 	}
+	
+//	for (int i=0; i<controlColors.size(); i++) {
+//		controlColors[i].set( ofVec3f( ofRandom(.3, 1.3), ofRandom(.3, 1.3), ofRandom(.3, 1.3)) );
+//	}
 }
 
 //--------------------------------------------------------------
@@ -1086,6 +1151,20 @@ void ofApp::setupOnion()
 	setupSphere();
 }
 
+ofVec3f ofApp::getColor(float sampleVal)
+{
+//	sampleVal = tween.calcSmootherstep( sampleVal );
+	
+	float sv = sampleVal * float( controlColors.size()-1 );
+	
+	int lowIndex = floor( sv );
+	int hiIndex = min( controlColors.size()-1.f, ceil( sv ));
+	sv = sv - lowIndex;
+	
+	
+	return controlColors[lowIndex] * (1.-sv) + controlColors[hiIndex]*sv;
+}
+
 void ofApp::drawOnion()
 {
 	if(!bOnionSetup){
@@ -1180,6 +1259,11 @@ void ofApp::drawOnion()
 		currentShader->setUniform1f( "alpha", ofMap( onions[i].sampleVal, minSampleVal, 1., innerAlpha, outerAlpha, true ) );
 		currentShader->setUniform1f("facingRatio", ofMap( onions[i].sampleVal, minSampleVal, 1., innerFacingRatio, outerFacingRatio, true ) );
 		
+		float sampleVal = ofMap( onions[i].sampleVal, minSampleVal, 1., 0, 1, true );
+		currentShader->setUniform1f( "sampleVal", sampleVal );
+		ofVec3f col = getColor( sampleVal );
+		currentShader->setUniform3f( "blendColor", col.x, col.y, col.z );
+		
 		//we only animimate the outer onion
 		if( bAddingRibbon && i == onions.size()-1 ){
 			currentShader->setUniform1f("animateIn", newRibbonShaderScale );
@@ -1213,7 +1297,6 @@ void ofApp::drawOnion()
 	
 	camera.end();
 }
-
 
 
 ofVec3f ofApp::normalFrom3Points(ofVec3f p0, ofVec3f p1, ofVec3f p2)

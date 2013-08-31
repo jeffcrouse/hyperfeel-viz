@@ -60,11 +60,6 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>sideScreen_1</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
     <Name>t_0</Name>
     <Value>0</Value>
 </Widget>

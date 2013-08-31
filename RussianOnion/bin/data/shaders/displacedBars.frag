@@ -1,3 +1,5 @@
+uniform vec3 blendColor;
+uniform float sampleVal;
 uniform float animateIn;
 uniform float time;
 uniform float facingRatio;
@@ -180,14 +182,14 @@ void main(void)
 	float fr = dot( eye, norm) * facingRatio + 1. - facingRatio;
 	
 	//color
-	vec3 col = color * fr;
+	vec3 col = blendColor * fr;// color * fr;
 
 	float barSample = uv.x*628. + time; // 942
 	a *= pow( abs(sin( barSample ) + cos( barSample )), 4.);
 	
 //	a *= min(1., animateIn * 2. );
 	
-	if(a == 0.)	discard;
+	if(a <= 0.)	discard;
 	
 	gl_FragColor = vec4( col, a);
 }

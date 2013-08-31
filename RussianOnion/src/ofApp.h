@@ -104,6 +104,15 @@ public:
 	
 	
 	/**
+	 * color sampling...
+	 */
+	vector <ofVec3f> controlColors;
+	ofVec3f getColor(float sampleVal);
+	
+	ofImage colorMapImage;
+	
+	
+	/**
 	 * shaders
 	 */
 	ofShader post;
