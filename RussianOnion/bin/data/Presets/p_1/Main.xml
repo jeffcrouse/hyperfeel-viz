@@ -31,7 +31,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>displacedBarsShader</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -41,10 +41,5 @@
 <Widget>
     <Kind>2</Kind>
     <Name>displacedShader</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>Record Manager Enabled</Name>
     <Value>0</Value>
 </Widget>

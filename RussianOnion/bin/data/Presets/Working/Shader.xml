@@ -11,7 +11,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>squish</Name>
-    <Value>0.670000017</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -31,7 +31,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>noiseScale</Name>
-    <Value>0.005482456</Value>
+    <Value>0.003874269</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -41,12 +41,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerDisplacement</Name>
-    <Value>59.649124146</Value>
+    <Value>89.473678589</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerDisplacement</Name>
-    <Value>28.451690674</Value>
+    <Value>-1.754394531</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -71,7 +71,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerReadingScale</Name>
-    <Value>0.154076695</Value>
+    <Value>0.256052643</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

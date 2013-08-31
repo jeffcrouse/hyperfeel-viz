@@ -623,7 +623,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 	
 	//perpetual mixing of presets
 	//TODO: rename variationKey
-	if(e.name == variationKey)
+	if(e.name == variationKey && !bLaodingJourney)
 	{
 		if (e.message == "started")
 		{
@@ -632,7 +632,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 		}
 		
 		//if we're not loading a Journey and actively animating then we are mixing and tweening
-		if(bPlayAnimation && !bLaodingJourney)
+		if(bPlayAnimation)
 		{
 			if( e.message == "updated")
 			{
@@ -644,7 +644,6 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			if( e.message == "ended")
 			{
 				//cout << e.name << ": " << e.message << " : " << ofGetElapsedTimef() << endl;
-
 				variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
 				variationTween->bKeepAround = true;
 				
