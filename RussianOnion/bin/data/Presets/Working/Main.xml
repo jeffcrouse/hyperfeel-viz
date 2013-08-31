@@ -6,12 +6,12 @@
 <Widget>
     <Kind>2</Kind>
     <Name>playAnimation</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>circleRadius</Name>
-    <Value>562.000000000</Value>
+    <Value>387.660369873</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

@@ -94,17 +94,26 @@ void ofApp::setup(){
 	
 	//animation
 	//TODO: rename "newRibbonScaleDuration"
-	newRibbonScaleDuration = 10; // <---- this controls the time it takes for the journey to animate in.
-	animationPresetVariationTime = 10;
+	newRibbonScaleDuration = 30; // <---- this controls the time it takes for the journey to animate in.
+	animationPresetVariationTime = 4;
 	animationPresetIndex0 = 0;
 	animationPresetIndex1 = 1;
 	
 	animationPresets.push_back("p_0");
+	animationPresets.push_back("p_1");
+	animationPresets.push_back("p_2");
+	animationPresets.push_back("p_3");
 	animationPresets.push_back("p_4");
+	animationPresets.push_back("p_5");
 	animationPresets.push_back("p_6");
 	
-	transitionPresets.push_back("t_0");
-	transitionPresets.push_back("t_1");
+	transitionPresetIndex0 = 0;
+//	transitionPresets.push_back("t_66");
+	transitionPresets.push_back("t_67");
+	transitionPresets.push_back("t_68");
+	transitionPresets.push_back("t_69");
+	
+	keyVis = "keyVis";
 	
 	bPlayAnimation = true;
 	
@@ -209,7 +218,7 @@ void ofApp::setupUI(){
 	guiMain->addRadio("shaders", shaderNames );
 	
     guiMain->addSpacer();
-	//    guiMain->addToggle("Record Manager Enabled", &recordManager.bEnabled); //LB: <-- bEnabled "not a member of recordManager"
+	//    guiMain->addToggle("Record Manager Enabled", &recordManager.bEnabled); //LB: <-- bEnabled "not a member of recordManager" ?
     guiMain->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
 
 	guiMain->autoSizeToFitWidgets();
@@ -421,6 +430,7 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 void ofApp::tweenEventHandler(TweenEvent &e)
 {
 	
+	
 	//TODO: make some sliders
 	float newRibbonAnimationSpan = bRotateOnNewJourney? .5 : .01;
 	
@@ -453,6 +463,13 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 		if( e.message == "ended" )
 		{
 			bAddingRibbon = false;
+			recordManager.endJourney(journeys.back());
+		}
+		
+		
+		if( e.message == "updated" )
+		{
+			
 		}
 	}
 	
@@ -461,7 +478,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
         onJourneyBuildInUpdate(journeys.back(), *tween.getTween(addRibbonScaleTween)->value);
     }
     
-	//if the ribbon is done scalling in rotate it back and remove any old journeys
+	//if the ribbon is done animating in remove the oldest journey & onion
 	if(e.name == addRibbonScaleTween && e.message == "ended"){
         
 		onJourneyBuildInEnd(journeys.back()); // JRC
@@ -472,74 +489,201 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			onions.erase( onions.begin() );
 			journeys.erase( journeys.begin() );
 		}
-		
-//		rotatedBack = tween.addTween(globalRotationAboutXAxis, globalRotationAboutXAxis, 0, ofGetElapsedTimef(), newRibbonAnimationSpan, "rotatedBack", TWEEN_SINUSOIDAL, TWEEN_INOUT );
 	}
+
 	
-	//end the adding new ribbon transition
-	if(e.name == rotatedBack && e.message == "ended" )
-	{
-		bAddingRibbon = false;
-        recordManager.endJourney(journeys.back());
-	}
+//	//animation variation over time -> blending presets.
+//	if(e.name == variationKey)
+//	{
+//		if( e.message == "ended")
+//		{
+//			cout << "variationKey ended" << endl;
+//			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
+//			variationTween->bKeepAround = true;
+//			
+//			presetMixKey = tween.addTween( presetMix, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, "presetMix", TWEEN_SINUSOIDAL, TWEEN_INOUT );
+//		}
+//	}
+//	
+//	//this tween handles the animtion preset blending this allows us to spend time on a preset wothout any blending
+//	if( bPlayAnimation && e.name == "presetMix")
+//	{
+////		if(p0 == NULL || p1 == NULL){
+////			p0 = &presets[ animationPresets[ animationPresetIndex0 ] ];
+////			p1 = &presets[ animationPresets[ animationPresetIndex1 ] ];
+////		}
+//		if(e.message == "started")
+//		{
+//			cout << "presetMix started" << endl;
+//			
+//			//incase we want to animate against lastValues
+//			lastValues = currentValues;
+//		}
+//		
+//		//mix current and target preset values and set the UI widget values which in turn control our variables
+//		if(e.message == "updated")
+//		{
+////			mixPresets( p0, p1, e.value );
+//			mixPresets( animationPresets[ animationPresetIndex0 ], e.value );
+//		}
+//		
+//		if(e.message == "ended")
+//		{
+//			lastValues = currentValues;
+//			
+//			animationPresetIndex0++;
+//			animationPresetIndex1++;
+//			
+//			if( animationPresetIndex0 >= animationPresets.size() ){
+//				animationPresetIndex0 = 0;
+//			}
+//			if( animationPresetIndex1 >= animationPresets.size() ){
+//				animationPresetIndex1 = 0;
+//			}
+//			
+////			p0 = &presets[ animationPresets[ animationPresetIndex0 ] ];
+////			p1 = &presets[ animationPresets[ animationPresetIndex1 ] ];
+//		}
+//	}
+
 	
-	//animation variation over time -> blending presets.
-	if(e.name == variationKey)
+	float journeyMixTime = 4;
+	if( e.name == "keyVisTween" )
 	{
+		if( e.message == "started")
+		{
+			cout << e.name << " STARTED " << endl << endl;
+			lastValues = currentValues;
+		}
+		if( e.message == "updated")
+		{
+			mixPresets( "keyVis", e.value );
+		}
 		if( e.message == "ended")
 		{
-			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
-			variationTween->bKeepAround = true;
+			cout << e.name << " ENDED " << endl;
+			lastValues = currentValues;
 			
-			presetMixKey = tween.addTween( presetMix, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, "presetMix", TWEEN_SINUSOIDAL, TWEEN_INOUT );
+			////start a tween that will time our journey intro as we move through some presets
+			//tween.addTween( journeyVal, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "JourneyIntro" );
+			
 		}
 	}
 	
-	//this tween handles the animtion preset blending this allows us to spend time on a preset wothout any blending
-	if( bPlayAnimation && e.name == "presetMix")
+	
+	//this adds a journey and controls the variable that plays the music
+	if( e.name == "JourneyIntro")
 	{
-		if(p0 == NULL || p1 == NULL){
-			p0 = &presets[ animationPresets[ animationPresetIndex0 ] ];
-			p1 = &presets[ animationPresets[ animationPresetIndex1 ] ];
+		if( e.message == "started" )
+		{
+			//stop the perpetual transitions
+			bPlayAnimation = false;
+			
+			//start our journey transition meedly tween. create it if it doesn't exist
+			Tween* t = tween.getTween("journeyMix");
+			if(t == NULL)
+			{
+				cout << "creating tween journeyMix" << endl;
+				tween.addTween(journeyTransitionVal, 0, 1, ofGetElapsedTimef(), journeyMixTime, "journeyMix" );
+			}
+			else
+			{
+				t->setup( &journeyTransitionVal, 0, 1, ofGetElapsedTimef(), journeyMixTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "journeyMix" );
+			}
+		}
+		if( e.message == "updated" ){
+			
+		}
+		if( e.message == "ended" ){
+			//play the perpetual transitions again
+			bPlayAnimation = true;
+			lastValues = currentValues;
+			
+		}
+	}
+	
+	//journey transition meedly tween. plays while the new journey is loading
+	if (e.name == "journeyMix")
+	{
+		if (e.message == "started")
+		{
+			lastValues = currentValues;
 		}
 		
-		//mix current and target preset values and set the UI widget values which in turn control our variables
 		if(e.message == "updated")
 		{
-			if(bPlayAnimation && p0 != NULL && p1 != NULL)
-			{
-				ofxUIWidget *w;
-				for (map<string, float>::iterator it=p0->begin(); it!=p0->end(); it++)
-				{
-					for (int i=0; i<guis.size(); i++)
-					{
-						w = guis[i]->getWidget( it->first );
-						if(w != NULL )
-						{
-							//set the slider value as a mix of p0 & p1 values assuming presetMix is between 0&1
-							((ofxUISlider *)w)->setValue( ofMap(presetMix, 0, 1, (*p0)[it->first], (*p1)[it->first]) );
-						}
-					}
-				}
-			}
+			mixPresets( transitionPresets[transitionPresetIndex0], e.value );
 		}
 		
 		if(e.message == "ended")
 		{
-			animationPresetIndex0++;
-			animationPresetIndex1++;
+			cout <<"journey mix ended: " << ofGetElapsedTimef() <<  endl;
 			
-			if( animationPresetIndex0 >= animationPresets.size() ){
-				animationPresetIndex0 = 0;
+			lastValues = currentValues;
+			
+			Tween* jIntro = tween.getTween( "JourneyIntro" );
+			if( jIntro != NULL &&  jIntro->endTime > ofGetElapsedTimef() + journeyMixTime*2 )
+			{
+				
+				Tween* t = tween.getTween("journeyMix");
+				t->setup( &journeyTransitionVal, 0, 1, ofGetElapsedTimef(), journeyMixTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "journeyMix" );
+				t->bKeepAround = true;
+				
+				transitionPresetIndex0++;
+				if(transitionPresetIndex0 >= transitionPresets.size() )	transitionPresetIndex0 = 0;
 			}
-			if( animationPresetIndex1 >= animationPresets.size() ){
-				animationPresetIndex1 = 0;
+			else
+			{
+				cout  << "stop journey mixing cus we're at the end of the journey intro" << endl;
+				float span = jIntro->endTime - ofGetElapsedTimef();
+				cout << "span == " << span << endl;
+				tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), span, "keyVisTween" );
 			}
 			
-			p0 = &presets[ animationPresets[ animationPresetIndex0 ] ];
-			p1 = &presets[ animationPresets[ animationPresetIndex1 ] ];
+			lastValues = currentValues;
 		}
 	}
+}
+
+
+void ofApp::addJourneyTween()
+{
+	addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "addRibbonTween" );
+}
+
+void ofApp::mixPresets( map<string, float>* p_0, map<string, float>* p_1, float mixval )
+{
+
+	if( p_0 != NULL && p_1 != NULL )
+	{
+		ofxUIWidget *w;
+		for (map<string, float>::iterator it=p_0->begin(); it!=p_0->end(); it++)
+		{
+			for (int i=0; i<guis.size(); i++)
+			{
+				w = guis[i]->getWidget( it->first );
+				
+				if(w != NULL && (*p_0).find( it->first ) != (*p_0).end() && (*p_1).find( it->first ) != (*p_1).end() )
+				{
+					currentValues[it->first] = ofMap( mixval, 0, 1, (*p_0)[it->first], (*p_1)[it->first], false );
+					
+					((ofxUISlider *)w)->setValue( currentValues[it->first] );
+				}
+			}
+		}
+	}
+}
+
+
+void ofApp::mixPresets( string p_0, string p_1, float mixval )
+{
+	mixPresets( &presets[p_0], &presets[p_1], mixval );
+}
+
+
+void ofApp::mixPresets( string p, float mixval )
+{
+	mixPresets( &lastValues, &presets[p], mixval );
 }
 
 //--------------------------------------------------------------
@@ -597,6 +741,9 @@ void ofApp::update()
 			cachePresetValues();
 		}
 		loadPreset( nextPreset );
+		
+		currentValues = presets[ nextPreset ];
+		lastValues = presets[ nextPreset ];
 	}
 	
 	//add new journeys
@@ -648,7 +795,7 @@ void ofApp::draw()
 	
 	camera.reset();
 	
-	ofBackground(30,33,39, 255);
+	ofBackground( 0, 0, 0, 255);
 	ofPushStyle();
 	
 	fbo.begin();
@@ -1211,7 +1358,27 @@ void ofApp::keyPressed(int key)
 //		captrure = true;
 	}
 	
-	if(key == ' '){
+	if( key == ' ' )
+	{
+		//load a journey from file
+		ofBuffer buffer = ofBufferFromFile("Journeys/journey_showJourney" + ofToString(int(ofRandom(4))) + ".json");
+		if(buffer.size()){
+			reader.parse( buffer.getText(), json );
+			handleRoute( json );
+		}
+		
+		//draws the individual journey
+		addJourneyTween();
+		
+		//tween back to out key kis
+		float keyVisTime = 2;
+		tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), keyVisTime, "keyVisTween" );
+		
+		//start our journey transition medley after we get to the key vis. on ending we go back to key vis
+		tween.addTween( journeyVal, 0, 1, ofGetElapsedTimef() + keyVisTime, newRibbonScaleDuration - keyVisTime*2, "JourneyIntro" );
+	}
+	
+	if(key == 'j'){
 		if(!bAddingRibbon){
 			
 			//load a journey from file
@@ -1224,12 +1391,6 @@ void ofApp::keyPressed(int key)
 			addJourneyTween();
 		}
 	}
-}
-
-
-void ofApp::addJourneyTween()
-{
-	addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "addRibbonTween" );
 }
 
 //--------------------------------------------------------------

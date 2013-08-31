@@ -6,7 +6,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>rotateY</Name>
-    <Value>-8.407012939</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -21,27 +21,27 @@
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.888635576</Value>
+    <Value>0.736842096</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>squish</Name>
-    <Value>0.806091189</Value>
+    <Value>0.829210520</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>dataSmoothing</Name>
-    <Value>0.243212506</Value>
+    <Value>0.076578945</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerFacingRatio</Name>
-    <Value>0.979625940</Value>
+    <Value>0.913157880</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>outerFacingRatio</Name>
-    <Value>0.690779209</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -66,17 +66,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>innerDisplacement</Name>
-    <Value>14.947357178</Value>
+    <Value>35.964920044</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>outerAlpha</Name>
-    <Value>0.141202420</Value>
+    <Value>0.409473687</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerAlpha</Name>
-    <Value>0.445174873</Value>
+    <Value>0.973947346</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -86,7 +86,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>innerReadingThreshold</Name>
-    <Value>0.003352642</Value>
+    <Value>0.260233909</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -96,5 +96,5 @@
 <Widget>
     <Kind>4</Kind>
     <Name>innerReadingScale</Name>
-    <Value>0.258648366</Value>
+    <Value>0.079473682</Value>
 </Widget>

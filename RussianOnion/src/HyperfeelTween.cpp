@@ -51,14 +51,6 @@ void TWEEN::update( ofEventArgs &args)
 			*it->second.otherValuePointers[j] = *it->second.value;
 		}
 		
-		//update event
-		if(!it->second.bEnded){
-			static TweenEvent updateEvent;
-			updateEvent.message = "updated";
-			updateEvent.name = it->second.name;
-			updateEvent.value = *it->second.value;
-			ofNotifyEvent( TweenEvent::events, updateEvent );
-		}
 		
 		//start it if it isn't started
 		if( !it->second.bStarted && it->second.startTime <= elapsedTime){
@@ -84,6 +76,16 @@ void TWEEN::update( ofEventArgs &args)
 			endEvent.value = *it->second.value;
 			ofNotifyEvent( TweenEvent::events, endEvent );
 			
+		}
+		
+		
+		//update event
+		if( it->second.bStarted && !it->second.bEnded ){
+			static TweenEvent updateEvent;
+			updateEvent.message = "updated";
+			updateEvent.name = it->second.name;
+			updateEvent.value = *it->second.value;
+			ofNotifyEvent( TweenEvent::events, updateEvent );
 		}
 		
 		//remove if it's dead

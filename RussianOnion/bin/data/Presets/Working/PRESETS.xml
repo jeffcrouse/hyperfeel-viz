@@ -10,6 +10,11 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
+    <Name>keyVis</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>p_0</Name>
     <Value>0</Value>
 </Widget>
@@ -71,6 +76,21 @@
 <Widget>
     <Kind>2</Kind>
     <Name>t_66</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>t_67</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>t_68</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>t_69</Name>
     <Value>0</Value>
 </Widget>
 <Widget>

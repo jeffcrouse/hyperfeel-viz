@@ -76,11 +76,6 @@
 <Widget>
     <Kind>2</Kind>
     <Name>t_66</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>Working</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
@@ -96,5 +91,10 @@
 <Widget>
     <Kind>2</Kind>
     <Name>t_69</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>Working</Name>
     <Value>0</Value>
 </Widget>

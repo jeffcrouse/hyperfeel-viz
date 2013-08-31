@@ -64,11 +64,24 @@ public:
 		return data;
 	};
 	
+	float keyVisVar;
+	map < string, float > currentValues;
+	map < string, float > lastValues;
+	
+	void tweenToPreset( map<string, float>* p, float mixval );
+	void tweenToPreset( string presetName, float mixval );
+	
+	void mixPresets( string p_0, string p_1,  float mixval );
+	void mixPresets( string p,  float mixval );
+	void mixPresets( map<string, float>* p_0, map<string, float>* p_1, float mixval );
+	
 	vector<ofVec3f> vData;
 	void journeyToVbo(ofVbo* vbo, Journey* journey);
 //	void journeyToVbo(ofVbo &vbo, Journey& journey, GLenum usage=GL_STATIC_DRAW);
 	
 	void addJourneyTween();
+	string keyVis;
+	string activePreset;
 	
     /**
      *  Websocekts stuff...
@@ -154,6 +167,7 @@ public:
 	
 	string journeyTransitionTween;
 	float journeyTransitionVal;
+	float journeyVal;
 	
 	string journeyTransitionIntro;
 	
