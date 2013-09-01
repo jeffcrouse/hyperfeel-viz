@@ -116,7 +116,8 @@ public:
 	ofImage cyanToWhite;
 	
 	bool palete_0;
-	vector <ofxUIImageButton*> imageButtons;
+	ofFloatColor journeyIntroColor;
+	vector <ofxUIImageToggle*> imageButtons;
 	vector<ofFloatColor> colorPalette;
 	ofxUICanvas* guiColor;
 	void addColorPalette( string filePath );

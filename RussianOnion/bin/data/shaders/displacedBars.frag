@@ -191,5 +191,5 @@ void main(void)
 	
 	if(a <= 0.)	discard;
 	
-	gl_FragColor = vec4(blendColor, 1.);// vec4( col, a);
+	gl_FragColor = vec4( col, a);
 }

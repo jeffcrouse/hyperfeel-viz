@@ -399,9 +399,8 @@ void ofApp::setupUI()
 
 	
 	guiColor->addLabel("COLOR");
-	addColorPalette( "palettes/roygbiv.png" );
-	addColorPalette( "palettes/redToWhite.png" );
-	addColorPalette( "palettes/cyanToWhite.png" );
+	
+	guiColor->addImageSampler("journeyIntroColor", &colorMapImage, 100, 100);
 	
 	string palette_path = "palettes/";
 	ofDirectory palette_dir(palette_path);
@@ -455,7 +454,7 @@ void ofApp::setupUI()
 
 void ofApp::addColorPalette( string filePath )
 {
-	ofxUIImageButton* palette0 =  guiColor->addImageButton( "palette_" + ofToString(imageButtons.size()),  filePath, &palete_0, 100, 10 );
+	ofxUIImageToggle* palette0 =  guiColor->addImageToggle( "palette_" + ofToString(imageButtons.size()),  filePath, &palete_0, 100, 10 );
 	imageButtons.push_back( palette0 );
 }
 
@@ -529,26 +528,37 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 			}
 		}
 		
+		if (name == "journeyIntroColor")
+		{
+			ofxUIImageSampler* sampler = (ofxUIImageSampler*)e.widget;
+			
+			journeyIntroColor = sampler->getColor();
+		}
+		
 		//look in the conrolColors
-		if(!bFoundIt){
-			for(int i=0; i<imageButtons.size(); i++){
-
-				if(name == imageButtons[i]->getName() ){
+		if(!bFoundIt)
+		{
+			for(int i=0; i<imageButtons.size(); i++)
+			{
+				if(name == imageButtons[i]->getName() )
+				{
 					ofxUIImageButton* button = (ofxUIImageButton *) e.widget;
 					
 					cout << imageButtons[i]->getName() << ": " << button->getValue() << endl;
-					if(button->getValue()){
+					if(button->getValue())
+					{
 						//set our palette to true
 						button->setValue( true );
 						
 						//set the others to false
-						for (int j=0; j<imageButtons.size(); j++) {
+						for (int j=0; j<imageButtons.size(); j++)
+						{
 							if(i != j){
 								imageButtons[j]->setValue( false );
 							}
 						}
 						
-						//now load all the colorSamples into our controlColor array
+						//now load all the colorSamples into our hidden sliders which intern update our controlColor array
 						ofImage* img = button->getImage();
 						int imgW = img->getWidth();
 						
@@ -556,27 +566,20 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 						ofxUISlider* slider;
 						string colorName;
 						ofFloatColor col;
-						for (int j=0; j<controlColors.size(); j++) {
-							
+						for (int j=0; j<controlColors.size(); j++)
+						{	
 							colorName = "c_" + ofToString(j);
 							col = ofFloatColor( img->getColor( (imgW-1) * step * j, 0) );
-							
-							slider = (ofxUISlider* )guiColor->getWidget( colorName + "_r" );
-							slider->setValue( col.r );
-							
-							slider = (ofxUISlider* )guiColor->getWidget( colorName + "_g" );
-							slider->setValue( col.g );
-							
-							slider = (ofxUISlider* )guiColor->getWidget( colorName + "_b" );
-							slider->setValue( col.b );
+
+							((ofxUISlider* )guiColor->getWidget( colorName + "_r" ))->setValue( col.r );
+							((ofxUISlider* )guiColor->getWidget( colorName + "_g" ))->setValue( col.g );
+							((ofxUISlider* )guiColor->getWidget( colorName + "_b" ))->setValue( col.b );
 						}
 					}
 				}
-				
 			}
 		}
 	}
-	
 }
 
 //this is the engin that drives the animation
@@ -1316,6 +1319,12 @@ void ofApp::drawOnion()
 		ofSetColor( onions[i].color );
 		
 		//per ribbon uniforms
+		
+		float sampleVal = ofMap( onions[i].sampleVal, minSampleVal, 1., 0, 1, true );
+		ofFloatColor col = getColor( sampleVal );
+		currentShader->setUniform1f( "sampleVal", sampleVal );
+		currentShader->setUniform3f( "blendColor", col.r, col.g, col.b );
+		
 		currentShader->setUniformTexture( "dataTexture", onions[i].dataTexture, 0);
 		currentShader->setUniform2f( "texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
 		
@@ -1325,16 +1334,20 @@ void ofApp::drawOnion()
 		currentShader->setUniform1f( "alpha", ofMap( onions[i].sampleVal, minSampleVal, 1., innerAlpha, outerAlpha, true ) );
 		currentShader->setUniform1f("facingRatio", ofMap( onions[i].sampleVal, minSampleVal, 1., innerFacingRatio, outerFacingRatio, true ) );
 		
-		float sampleVal = ofMap( onions[i].sampleVal, minSampleVal, 1., 0, 1, true );
-		currentShader->setUniform1f( "sampleVal", sampleVal );
-		ofFloatColor col = getColor( sampleVal );
-		currentShader->setUniform3f( "blendColor", col.r, col.g, col.b );// sampleVal, sampleVal, sampleVal );//
-		
 		//we only animimate the outer onion
-		if( bAddingRibbon && i == onions.size()-1 ){
+		if( bAddingRibbon && i == onions.size()-1 )
+		{
 			currentShader->setUniform1f("animateIn", newRibbonShaderScale );
+			
+			// after .95 it fades to the normal preset color
+			float mixVal = ofMap( newRibbonShaderScale, .95, 1, 0, 1, true );
+			float mMixVal = 1. - mixVal;
+			
+			currentShader->setUniform3f( "blendColor", mMixVal*journeyIntroColor.r+mixVal*col.r, mMixVal*journeyIntroColor.g+mixVal*col.g, mMixVal*journeyIntroColor.b+mixVal*col.b );
 		}
-		else{
+		else
+		{
+			//1 == no animation.
 			currentShader->setUniform1f("animateIn", 1 );
 		}
 		
