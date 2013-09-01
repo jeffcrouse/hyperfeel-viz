@@ -56,7 +56,7 @@ void ofApp::setup()
 	
 	//Journy stuff
 	bSaveJsonsToFile = false;//for debuggin it was faster to load them from file rather then wait for the server
-	bLoadJsonsFromFile = false;
+	bLoadJsonsFromFile = true;
 	
 	bJourniesNeedUpdate = false;
 	
@@ -71,7 +71,7 @@ void ofApp::setup()
 	colorMap["indigo"].set( 131, 102, 212 );		// = ofColor::indigo;
 	colorMap["violet"].set( 227, 59, 207 );			// = ofColor::violet;
 	
-	controlColors.resize(32);
+	controlColors.resize(64);
 	for (int i=0; i<controlColors.size(); i++) {
 		float val = float(i) / float( controlColors.size()-1 );
 		controlColors[i].set( val, val, val, 1. );
@@ -1220,9 +1220,15 @@ ofFloatColor ofApp::getColor(float sampleVal)
 	float  sv = ofMap(sampleVal, 0, 1, 0, controlColors.size()-1, true );
 	
 	int lowIndex = floor( sv );
+	int hiIndex = ceil( sv );
 	sv -= lowIndex;
+	float msv = 1. - sv;
 	
-	return controlColors[lowIndex]*(1.-sv) + controlColors[ceil( sv )]*sv;
+	ofFloatColor c0 = controlColors[lowIndex];
+	ofFloatColor c1 = controlColors[hiIndex];
+	
+	
+	return ofFloatColor( c0.r*msv + c1.r*sv, c0.g*msv + c1.g*sv, c0.b*msv + c1.b*sv, 1. );  ;//*.5 + controlColors[lowIndex]*5;
 }
 
 void ofApp::drawOnion()
@@ -1322,7 +1328,7 @@ void ofApp::drawOnion()
 		float sampleVal = ofMap( onions[i].sampleVal, minSampleVal, 1., 0, 1, true );
 		currentShader->setUniform1f( "sampleVal", sampleVal );
 		ofFloatColor col = getColor( sampleVal );
-		currentShader->setUniform3f( "blendColor", col.r, col.g, col.b );
+		currentShader->setUniform3f( "blendColor", col.r, col.g, col.b );// sampleVal, sampleVal, sampleVal );//
 		
 		//we only animimate the outer onion
 		if( bAddingRibbon && i == onions.size()-1 ){
