@@ -116,18 +116,14 @@ void ofApp::setup()
 	animationPresetIndex0 = 0;
 	animationPresetIndex1 = 1;
 	
-	animationPresets.push_back("p_0");
-	animationPresets.push_back("p_1");
+	animationPresets.push_back("k_0");
+	animationPresets.push_back("k_1");
 	animationPresets.push_back("keyVis");
-	animationPresets.push_back("t_69");
-	animationPresets.push_back("p_2");
-	animationPresets.push_back("p_3");
+	animationPresets.push_back("k_2");
+	animationPresets.push_back("k_3");
 	animationPresets.push_back("keyVis");
-	animationPresets.push_back("p_4");
-	animationPresets.push_back("keyVis");
-	animationPresets.push_back("p_5");
-	animationPresets.push_back("t_68");
-	animationPresets.push_back("p_6");
+	animationPresets.push_back("k_4");
+	animationPresets.push_back("k_5");
 	
 	transitionPresetIndex0 = 0;
 //	transitionPresets.push_back("t_66");
@@ -1489,7 +1485,7 @@ void ofApp::cachePresetValues()
 				string name = xml.getValue("Name", "no_name");
 				int kind = xml.getValue("Kind", 0);
 					
-				if( kind == 4 ){
+				if( kind == 4 || kind == 5 ){
 					presets[ presetNames[i] ][ name ] = xml.getValue("Value", 0.);
 				}
 

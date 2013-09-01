@@ -1,0 +1,50 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>timeScl</Name>
+    <Value>1.105659485</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>playAnimation</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>circleRadius</Name>
+    <Value>422.528289795</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>edgeAADist</Name>
+    <Value>2.413461685</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>onion</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>depthTest</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>displacedBarsShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>displacedDotsShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>displacedShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>keyVisualShader</Name>
+    <Value>1</Value>
+</Widget>
