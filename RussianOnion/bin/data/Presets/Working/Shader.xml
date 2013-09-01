@@ -61,7 +61,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerReadingThreshold</Name>
-    <Value>0.230994150</Value>
+    <Value>0.256401628</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -96,5 +96,5 @@
 <Widget>
     <Kind>4</Kind>
     <Name>noiseSpread</Name>
-    <Value>-0.649122834</Value>
+    <Value>-0.336926103</Value>
 </Widget>

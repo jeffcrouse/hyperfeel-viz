@@ -1,22 +1,22 @@
 <Widget>
     <Kind>28</Kind>
     <Name>journeyIntroColor</Name>
-    <XValue>0.670000017</XValue>
-    <YValue>0.250000000</YValue>
-    <RColor>255</RColor>
-    <GColor>54</GColor>
+    <XValue>0.259999990</XValue>
+    <YValue>0.280000001</YValue>
+    <RColor>99</RColor>
+    <GColor>181</GColor>
     <BColor>255</BColor>
     <AColor>255</AColor>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>journeyIntroColor_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.388235331</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>journeyIntroColor_g</Name>
-    <Value>0.211764723</Value>
+    <Value>0.709803939</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -156,31 +156,6 @@
 <Widget>
     <Kind>20</Kind>
     <Name>palette_26</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>20</Kind>
-    <Name>palette_27</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>20</Kind>
-    <Name>palette_28</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>20</Kind>
-    <Name>palette_29</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>20</Kind>
-    <Name>palette_30</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>20</Kind>
-    <Name>palette_31</Name>
     <Value>0</Value>
 </Widget>
 <Widget>

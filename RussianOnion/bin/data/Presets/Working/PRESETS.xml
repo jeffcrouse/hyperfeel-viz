@@ -10,6 +10,21 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
+    <Name>k_10</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>k_11</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>k_12</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>k_3</Name>
     <Value>0</Value>
 </Widget>
@@ -21,6 +36,26 @@
 <Widget>
     <Kind>2</Kind>
     <Name>k_5</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>k_6</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>k_7</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>k_8</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>k_9</Name>
     <Value>0</Value>
 </Widget>
 <Widget>

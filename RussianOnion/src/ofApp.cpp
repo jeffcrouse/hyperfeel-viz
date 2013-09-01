@@ -118,18 +118,28 @@ void ofApp::setup()
 	
 	animationPresets.push_back("k_0");
 	animationPresets.push_back("k_1");
-	animationPresets.push_back("keyVis");
+//	animationPresets.push_back("keyVis");
 	animationPresets.push_back("k_2");
-	animationPresets.push_back("k_3");
-	animationPresets.push_back("keyVis");
+//	animationPresets.push_back("k_3");
+	//	animationPresets.push_back("keyVis");
 	animationPresets.push_back("k_4");
-	animationPresets.push_back("k_5");
+//	animationPresets.push_back("k_5");
+	animationPresets.push_back("k_6");
+	animationPresets.push_back("k_7");
+	animationPresets.push_back("k_8");
+	animationPresets.push_back("k_9");
+	animationPresets.push_back("k_10");
+	animationPresets.push_back("k_11");
+	animationPresets.push_back("k_12");
 	
 	transitionPresetIndex0 = 0;
-//	transitionPresets.push_back("t_66");
-	transitionPresets.push_back("t_67");
-	transitionPresets.push_back("t_68");
-	transitionPresets.push_back("t_69");
+	transitionPresets.push_back("k_1");
+	transitionPresets.push_back("k_2");
+//	transitionPresets.push_back("k_8");
+	transitionPresets.push_back("k_5");
+	transitionPresets.push_back("k_7");
+	transitionPresets.push_back("k_12");
+	
 	
 	keyVis = "keyVis";
 	
