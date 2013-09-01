@@ -401,6 +401,15 @@ void ofApp::setupUI()
 	guiColor->addLabel("COLOR");
 	
 	guiColor->addImageSampler("journeyIntroColor", &colorMapImage, 100, 100);
+
+	//invisible sliders. for tweening we need floats
+	ofxUISlider* slider;
+	slider = guiColor->addSlider( "journeyIntroColor_r", 0, 1, &journeyIntroColor.r, 0, 0 );
+	slider->setVisible( false );
+	slider = guiColor->addSlider( "journeyIntroColor_g", 0, 1, &journeyIntroColor.g, 0, 0 );
+	slider->setVisible( false );
+	slider = guiColor->addSlider( "journeyIntroColor_b", 0, 1, &journeyIntroColor.b, 0, 0 );
+	slider->setVisible( false );
 	
 	string palette_path = "palettes/";
 	ofDirectory palette_dir(palette_path);
@@ -413,7 +422,7 @@ void ofApp::setupUI()
 	}
 	
 	//create a bunch of hidden sliders for storing our color info. we need sliders for mixing between presets
-	ofxUISlider* slider;
+
 	for (int i=0; i<controlColors.size(); i++) {
 		string colorName = "c_" + ofToString(i);
 		slider = guiColor->addSlider( colorName + "_r", 0, 1, &controlColors[i].r, 0, 0 );
@@ -532,7 +541,11 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 		{
 			ofxUIImageSampler* sampler = (ofxUIImageSampler*)e.widget;
 			
-			journeyIntroColor = sampler->getColor();
+			ofFloatColor col = sampler->getColor();
+			
+			((ofxUISlider* )guiColor->getWidget( "journeyIntroColor_r" ))->setValue( col.r );
+			((ofxUISlider* )guiColor->getWidget( "journeyIntroColor_g" ))->setValue( col.g );
+			((ofxUISlider* )guiColor->getWidget( "journeyIntroColor_b" ))->setValue( col.b );
 		}
 		
 		//look in the conrolColors
@@ -1272,14 +1285,10 @@ void ofApp::drawOnion()
 	//draw it
 	camera.begin();
 	
+	//global onion uniforms
 	currentShader->begin();
 	currentShader->setUniform1f("time", elapsedTime );
-//	currentShader->setUniform1f("readingThreshold", readingThreshold);
-//	currentShader->setUniform1f("readingScale", readingScale);
-//	currentShader->setUniform1f("alpha", onionAlpha);
 	currentShader->setUniform1f("dataSmoothing", dataSmoothing);
-//	currentShader->setUniform1f("facingRatio", facingRatio);
-//	currentShader->setUniform1f("displacement", displacement );
 	currentShader->setUniform1f("noiseScale", noiseScale );
 	currentShader->setUniform1f("slope", slope );
 	
@@ -1319,20 +1328,18 @@ void ofApp::drawOnion()
 		ofSetColor( onions[i].color );
 		
 		//per ribbon uniforms
-		
 		float sampleVal = ofMap( onions[i].sampleVal, minSampleVal, 1., 0, 1, true );
 		ofFloatColor col = getColor( sampleVal );
+		
 		currentShader->setUniform1f( "sampleVal", sampleVal );
-		currentShader->setUniform3f( "blendColor", col.r, col.g, col.b );
-		
-		currentShader->setUniformTexture( "dataTexture", onions[i].dataTexture, 0);
-		currentShader->setUniform2f( "texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
-		
 		currentShader->setUniform1f( "displacement", ofMap( onions[i].sampleVal, minSampleVal, 1., innerDisplacement, outerDisplacement, true ) );
 		currentShader->setUniform1f( "readingScale", ofMap( onions[i].sampleVal, minSampleVal, 1., innerReadingScale, outerReadingScale, true ) );
 		currentShader->setUniform1f( "readingThreshold", ofMap( onions[i].sampleVal, minSampleVal, 1., innerReadingThreshold, outerReadingThreshold, true ) );
 		currentShader->setUniform1f( "alpha", ofMap( onions[i].sampleVal, minSampleVal, 1., innerAlpha, outerAlpha, true ) );
-		currentShader->setUniform1f("facingRatio", ofMap( onions[i].sampleVal, minSampleVal, 1., innerFacingRatio, outerFacingRatio, true ) );
+		currentShader->setUniform1f( "facingRatio", ofMap( onions[i].sampleVal, minSampleVal, 1., innerFacingRatio, outerFacingRatio, true ) );
+		currentShader->setUniform2f( "texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
+		currentShader->setUniform3f( "blendColor", col.r, col.g, col.b );
+		currentShader->setUniformTexture( "dataTexture", onions[i].dataTexture, 0);
 		
 		//we only animimate the outer onion
 		if( bAddingRibbon && i == onions.size()-1 )

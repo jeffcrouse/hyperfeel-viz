@@ -1,12 +1,27 @@
 <Widget>
     <Kind>28</Kind>
     <Name>journeyIntroColor</Name>
-    <XValue>0.730000019</XValue>
-    <YValue>0.270000011</YValue>
-    <RColor>255</RColor>
-    <GColor>78</GColor>
+    <XValue>0.180000007</XValue>
+    <YValue>0.479999989</YValue>
+    <RColor>95</RColor>
+    <GColor>255</GColor>
     <BColor>255</BColor>
     <AColor>255</AColor>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>journeyIntroColor_r</Name>
+    <Value>0.372549027</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>journeyIntroColor_g</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>journeyIntroColor_b</Name>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -71,92 +86,92 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_0_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.078431375</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_0_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.278431386</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_0_b</Name>
-    <Value>0.000000000</Value>
+    <Value>0.200000018</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_1_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.078431375</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_1_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.278431386</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_1_b</Name>
-    <Value>0.000000000</Value>
+    <Value>0.200000018</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_2_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.078431375</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_2_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.278431386</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_2_b</Name>
-    <Value>0.000000000</Value>
+    <Value>0.200000018</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_3_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.078431375</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_3_g</Name>
-    <Value>0.003921569</Value>
+    <Value>0.278431386</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_3_b</Name>
-    <Value>0.003921569</Value>
+    <Value>0.200000018</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_4_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.078431375</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_4_g</Name>
-    <Value>0.011764707</Value>
+    <Value>0.278431386</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_4_b</Name>
-    <Value>0.011764707</Value>
+    <Value>0.200000018</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_5_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.078431375</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_5_g</Name>
-    <Value>0.015686275</Value>
+    <Value>0.278431386</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_5_b</Name>
-    <Value>0.015686275</Value>
+    <Value>0.200000018</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -166,12 +181,12 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_6_g</Name>
-    <Value>0.023529414</Value>
+    <Value>0.337254912</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_6_b</Name>
-    <Value>0.023529414</Value>
+    <Value>0.674509823</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -181,12 +196,12 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_7_g</Name>
-    <Value>0.031372551</Value>
+    <Value>0.337254912</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_7_b</Name>
-    <Value>0.031372551</Value>
+    <Value>0.674509823</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -196,12 +211,12 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_8_g</Name>
-    <Value>0.039215688</Value>
+    <Value>0.337254912</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_8_b</Name>
-    <Value>0.039215688</Value>
+    <Value>0.674509823</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -211,12 +226,12 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_9_g</Name>
-    <Value>0.050980397</Value>
+    <Value>0.337254912</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_9_b</Name>
-    <Value>0.050980397</Value>
+    <Value>0.674509823</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -226,12 +241,12 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_10_g</Name>
-    <Value>0.062745102</Value>
+    <Value>0.337254912</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_10_b</Name>
-    <Value>0.062745102</Value>
+    <Value>0.674509823</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -241,457 +256,457 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_11_g</Name>
-    <Value>0.074509807</Value>
+    <Value>0.337254912</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_11_b</Name>
-    <Value>0.074509807</Value>
+    <Value>0.674509823</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_12_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.490196109</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_12_g</Name>
-    <Value>0.090196081</Value>
+    <Value>0.298039228</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_12_b</Name>
-    <Value>0.090196081</Value>
+    <Value>0.223529428</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_13_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.490196109</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_13_g</Name>
-    <Value>0.101960793</Value>
+    <Value>0.298039228</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_13_b</Name>
-    <Value>0.101960793</Value>
+    <Value>0.223529428</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_14_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.490196109</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_14_g</Name>
-    <Value>0.117647067</Value>
+    <Value>0.298039228</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_14_b</Name>
-    <Value>0.117647067</Value>
+    <Value>0.223529428</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_15_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.490196109</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_15_g</Name>
-    <Value>0.137254909</Value>
+    <Value>0.298039228</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_15_b</Name>
-    <Value>0.137254909</Value>
+    <Value>0.223529428</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_16_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.490196109</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_16_g</Name>
-    <Value>0.152941182</Value>
+    <Value>0.298039228</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_16_b</Name>
-    <Value>0.152941182</Value>
+    <Value>0.223529428</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_17_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.490196109</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_17_g</Name>
-    <Value>0.172549024</Value>
+    <Value>0.792156935</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_17_b</Name>
-    <Value>0.172549024</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_18_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.490196109</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_18_g</Name>
-    <Value>0.192156881</Value>
+    <Value>0.792156935</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_18_b</Name>
-    <Value>0.192156881</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_19_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.490196109</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_19_g</Name>
-    <Value>0.211764723</Value>
+    <Value>0.792156935</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_19_b</Name>
-    <Value>0.211764723</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_20_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.490196109</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_20_g</Name>
-    <Value>0.231372565</Value>
+    <Value>0.792156935</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_20_b</Name>
-    <Value>0.231372565</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_21_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.490196109</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_21_g</Name>
-    <Value>0.250980407</Value>
+    <Value>0.792156935</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_21_b</Name>
-    <Value>0.250980407</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_22_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.490196109</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_22_g</Name>
-    <Value>0.274509817</Value>
+    <Value>0.792156935</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_22_b</Name>
-    <Value>0.274509817</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_23_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.717647076</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_23_g</Name>
-    <Value>0.294117659</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_23_b</Name>
-    <Value>0.294117659</Value>
+    <Value>0.211764723</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_24_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.717647076</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_24_g</Name>
-    <Value>0.317647070</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_24_b</Name>
-    <Value>0.317647070</Value>
+    <Value>0.211764723</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_25_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.717647076</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_25_g</Name>
-    <Value>0.341176480</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_25_b</Name>
-    <Value>0.341176480</Value>
+    <Value>0.211764723</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_26_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.717647076</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_26_g</Name>
-    <Value>0.364705890</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_26_b</Name>
-    <Value>0.364705890</Value>
+    <Value>0.211764723</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_27_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.717647076</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_27_g</Name>
-    <Value>0.388235331</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_27_b</Name>
-    <Value>0.388235331</Value>
+    <Value>0.211764723</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_28_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.717647076</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_28_g</Name>
-    <Value>0.411764741</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_28_b</Name>
-    <Value>0.411764741</Value>
+    <Value>0.211764723</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_29_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.819607913</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_29_g</Name>
-    <Value>0.435294151</Value>
+    <Value>0.600000024</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_29_b</Name>
-    <Value>0.435294151</Value>
+    <Value>0.694117665</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_30_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.819607913</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_30_g</Name>
-    <Value>0.462745130</Value>
+    <Value>0.600000024</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_30_b</Name>
-    <Value>0.462745130</Value>
+    <Value>0.694117665</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_31_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.819607913</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_31_g</Name>
-    <Value>0.486274540</Value>
+    <Value>0.600000024</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_31_b</Name>
-    <Value>0.486274540</Value>
+    <Value>0.694117665</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_32_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.819607913</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_32_g</Name>
-    <Value>0.509803951</Value>
+    <Value>0.600000024</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_32_b</Name>
-    <Value>0.509803951</Value>
+    <Value>0.694117665</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_33_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.819607913</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_33_g</Name>
-    <Value>0.533333361</Value>
+    <Value>0.600000024</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_33_b</Name>
-    <Value>0.533333361</Value>
+    <Value>0.694117665</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_34_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.819607913</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_34_g</Name>
-    <Value>0.560784340</Value>
+    <Value>0.600000024</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_34_b</Name>
-    <Value>0.560784340</Value>
+    <Value>0.694117665</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_35_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.607843161</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_35_g</Name>
-    <Value>0.584313750</Value>
+    <Value>0.403921604</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_35_b</Name>
-    <Value>0.584313750</Value>
+    <Value>0.250980407</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_36_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.607843161</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_36_g</Name>
-    <Value>0.607843161</Value>
+    <Value>0.403921604</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_36_b</Name>
-    <Value>0.607843161</Value>
+    <Value>0.250980407</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_37_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.607843161</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_37_g</Name>
-    <Value>0.631372571</Value>
+    <Value>0.403921604</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_37_b</Name>
-    <Value>0.631372571</Value>
+    <Value>0.250980407</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_38_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.607843161</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_38_g</Name>
-    <Value>0.654901981</Value>
+    <Value>0.403921604</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_38_b</Name>
-    <Value>0.654901981</Value>
+    <Value>0.250980407</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_39_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.607843161</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_39_g</Name>
-    <Value>0.678431392</Value>
+    <Value>0.403921604</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_39_b</Name>
-    <Value>0.678431392</Value>
+    <Value>0.250980407</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_40_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.607843161</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_40_g</Name>
-    <Value>0.701960802</Value>
+    <Value>0.403921604</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_40_b</Name>
-    <Value>0.701960802</Value>
+    <Value>0.250980407</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_41_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.352941185</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_41_g</Name>
-    <Value>0.721568644</Value>
+    <Value>0.568627477</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -701,152 +716,152 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_42_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.352941185</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_42_g</Name>
-    <Value>0.745098054</Value>
+    <Value>0.568627477</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_42_b</Name>
-    <Value>0.745098054</Value>
+    <Value>0.721568644</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_43_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.352941185</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_43_g</Name>
-    <Value>0.764705956</Value>
+    <Value>0.568627477</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_43_b</Name>
-    <Value>0.764705956</Value>
+    <Value>0.721568644</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_44_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.352941185</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_44_g</Name>
-    <Value>0.784313798</Value>
+    <Value>0.568627477</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_44_b</Name>
-    <Value>0.784313798</Value>
+    <Value>0.721568644</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_45_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.352941185</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_45_g</Name>
-    <Value>0.803921640</Value>
+    <Value>0.568627477</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_45_b</Name>
-    <Value>0.803921640</Value>
+    <Value>0.721568644</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_46_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.352941185</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_46_g</Name>
-    <Value>0.823529482</Value>
+    <Value>0.568627477</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_46_b</Name>
-    <Value>0.823529482</Value>
+    <Value>0.721568644</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_47_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.650980413</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_47_g</Name>
-    <Value>0.843137324</Value>
+    <Value>0.168627456</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_47_b</Name>
-    <Value>0.843137324</Value>
+    <Value>0.407843173</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_48_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.650980413</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_48_g</Name>
-    <Value>0.858823597</Value>
+    <Value>0.168627456</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_48_b</Name>
-    <Value>0.858823597</Value>
+    <Value>0.407843173</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_49_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.650980413</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_49_g</Name>
-    <Value>0.878431439</Value>
+    <Value>0.168627456</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_49_b</Name>
-    <Value>0.878431439</Value>
+    <Value>0.407843173</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_50_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.650980413</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_50_g</Name>
-    <Value>0.894117713</Value>
+    <Value>0.168627456</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_50_b</Name>
-    <Value>0.894117713</Value>
+    <Value>0.407843173</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_51_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.650980413</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_51_g</Name>
-    <Value>0.905882418</Value>
+    <Value>0.168627456</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_51_b</Name>
-    <Value>0.905882418</Value>
+    <Value>0.407843173</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -856,12 +871,12 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_52_g</Name>
-    <Value>0.921568692</Value>
+    <Value>0.082352944</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_52_b</Name>
-    <Value>0.921568692</Value>
+    <Value>0.498039246</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -871,12 +886,12 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_53_g</Name>
-    <Value>0.933333397</Value>
+    <Value>0.082352944</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_53_b</Name>
-    <Value>0.933333397</Value>
+    <Value>0.498039246</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -886,12 +901,12 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_54_g</Name>
-    <Value>0.945098102</Value>
+    <Value>0.082352944</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_54_b</Name>
-    <Value>0.945098102</Value>
+    <Value>0.498039246</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -901,12 +916,12 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_55_g</Name>
-    <Value>0.956862807</Value>
+    <Value>0.082352944</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_55_b</Name>
-    <Value>0.956862807</Value>
+    <Value>0.498039246</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -916,12 +931,12 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_56_g</Name>
-    <Value>0.964705944</Value>
+    <Value>0.082352944</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_56_b</Name>
-    <Value>0.964705944</Value>
+    <Value>0.498039246</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -931,100 +946,100 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_57_g</Name>
-    <Value>0.972549081</Value>
+    <Value>0.082352944</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_57_b</Name>
-    <Value>0.972549081</Value>
+    <Value>0.498039246</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_58_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.827451050</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_58_g</Name>
-    <Value>0.980392218</Value>
+    <Value>0.572549045</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_58_b</Name>
-    <Value>0.980392218</Value>
+    <Value>0.572549045</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_59_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.827451050</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_59_g</Name>
-    <Value>0.984313786</Value>
+    <Value>0.572549045</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_59_b</Name>
-    <Value>0.984313786</Value>
+    <Value>0.572549045</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_60_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.827451050</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_60_g</Name>
-    <Value>0.992156923</Value>
+    <Value>0.572549045</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_60_b</Name>
-    <Value>0.992156923</Value>
+    <Value>0.572549045</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_61_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.827451050</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_61_g</Name>
-    <Value>0.996078491</Value>
+    <Value>0.572549045</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_61_b</Name>
-    <Value>0.996078491</Value>
+    <Value>0.572549045</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_62_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.827451050</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_62_g</Name>
-    <Value>0.996078491</Value>
+    <Value>0.572549045</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_62_b</Name>
-    <Value>0.996078491</Value>
+    <Value>0.572549045</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_63_r</Name>
-    <Value>1.000000000</Value>
+    <Value>0.827451050</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_63_g</Name>
-    <Value>1.000000000</Value>
+    <Value>0.572549045</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>c_63_b</Name>
-    <Value>1.000000000</Value>
+    <Value>0.572549045</Value>
 </Widget>
