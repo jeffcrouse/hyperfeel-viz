@@ -26,7 +26,7 @@ void ofApp::setup()
 	s.numSamples = 4;
 	fbo.allocate(s);
 	
-	
+	//mip mapping for the glow
 	fbo_mm1.allocate( fbo.getWidth()/2, fbo.getHeight()/2, GL_RGB );
 	fbo_mm2.allocate( fbo_mm1.getWidth()/2, fbo_mm1.getHeight()/2, GL_RGB );
 	fbo_mm3.allocate( fbo_mm2.getWidth()/2, fbo_mm2.getHeight()/2, GL_RGB );
@@ -855,6 +855,9 @@ void ofApp::loadShaders()
 	post.load( "shaders/post" );
 	
 	//load data shader
+	keyVisualShader.load( "shaders/keyVisual" );
+	shaderMap["keyVisualShader"] = &keyVisualShader;
+	
 	displacedShader.load( "shaders/displaced" );
 	shaderMap["displacedShader"] = &displacedShader;
 	

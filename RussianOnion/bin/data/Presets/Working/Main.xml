@@ -1,7 +1,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>timeScl</Name>
-    <Value>1.043072701</Value>
+    <Value>0.936698914</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -11,7 +11,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>circleRadius</Name>
-    <Value>382.737304688</Value>
+    <Value>374.370025635</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -31,7 +31,7 @@
 <Widget>
     <Kind>2</Kind>
     <Name>displacedBarsShader</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -42,4 +42,9 @@
     <Kind>2</Kind>
     <Name>displacedShader</Name>
     <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>keyVisualShader</Name>
+    <Value>1</Value>
 </Widget>

@@ -38,6 +38,8 @@
 		50138E6A17C683D4009E8A93 /* onion.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50138E6817C683D4009E8A93 /* onion.vert */; };
 		502DAE7417CF9EFE001C8447 /* post.frag in Sources */ = {isa = PBXBuildFile; fileRef = 502DAE7217CF9EFE001C8447 /* post.frag */; };
 		502DAE7517CF9EFE001C8447 /* post.vert in Sources */ = {isa = PBXBuildFile; fileRef = 502DAE7317CF9EFE001C8447 /* post.vert */; };
+		505F856217D3014A00AB0295 /* keyVisual.frag in Sources */ = {isa = PBXBuildFile; fileRef = 505F856017D3014A00AB0295 /* keyVisual.frag */; };
+		505F856317D3014A00AB0295 /* keyVisual.vert in Sources */ = {isa = PBXBuildFile; fileRef = 505F856117D3014A00AB0295 /* keyVisual.vert */; };
 		5086E4EC17CBD0C300094645 /* HyperfeelTween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5086E4EA17CBD0C300094645 /* HyperfeelTween.cpp */; };
 		5096CB3917C29459007FAFFC /* Journey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5096CB3717C29459007FAFFC /* Journey.cpp */; };
 		50A150C417C7619B000FADB1 /* onionBars.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50A150C217C7619B000FADB1 /* onionBars.frag */; };
@@ -201,6 +203,8 @@
 		50138E6817C683D4009E8A93 /* onion.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onion.vert; sourceTree = "<group>"; };
 		502DAE7217CF9EFE001C8447 /* post.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = post.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		502DAE7317CF9EFE001C8447 /* post.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = post.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		505F856017D3014A00AB0295 /* keyVisual.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = keyVisual.frag; sourceTree = "<group>"; };
+		505F856117D3014A00AB0295 /* keyVisual.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = keyVisual.vert; sourceTree = "<group>"; };
 		5086E4EA17CBD0C300094645 /* HyperfeelTween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HyperfeelTween.cpp; sourceTree = "<group>"; };
 		5086E4EB17CBD0C300094645 /* HyperfeelTween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyperfeelTween.h; sourceTree = "<group>"; };
 		5096CB3717C29459007FAFFC /* Journey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Journey.cpp; sourceTree = "<group>"; };
@@ -443,6 +447,8 @@
 		50FE7B2817C4043400F3DAA5 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				505F856017D3014A00AB0295 /* keyVisual.frag */,
+				505F856117D3014A00AB0295 /* keyVisual.vert */,
 				502DAE7217CF9EFE001C8447 /* post.frag */,
 				502DAE7317CF9EFE001C8447 /* post.vert */,
 				50A150CE17C76E15000FADB1 /* displaced.frag */,
@@ -836,6 +842,8 @@
 				1F3E8F6117CFB40F004CDA73 /* ofxVideoRecorder.cpp in Sources */,
 				1F3E8F6917CFC117004CDA73 /* RecordManager.cpp in Sources */,
 				1F3E8F6E17CFC13A004CDA73 /* ofxHttpUtils.cpp in Sources */,
+				505F856217D3014A00AB0295 /* keyVisual.frag in Sources */,
+				505F856317D3014A00AB0295 /* keyVisual.vert in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

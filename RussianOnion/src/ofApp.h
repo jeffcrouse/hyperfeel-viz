@@ -126,6 +126,7 @@ public:
 	/**
 	 * shaders
 	 */
+	ofShader keyVisualShader;
 	ofShader post;
 	ofShader facingRatioShader; 
 	ofShader normalShader;
