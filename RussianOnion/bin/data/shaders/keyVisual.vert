@@ -1,3 +1,4 @@
+
 uniform float displacement;
 uniform float time;
 uniform float noiseScale;
@@ -109,7 +110,7 @@ void main()
 	float roundingWeight = .5;
 	float offset = displacement;
 
-	float timeScaled = time * -.3;
+	float timeScaled = time * .5;
 	float tangentScale = 50.;
 	
 	uv = gl_MultiTexCoord0.xy;

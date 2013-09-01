@@ -179,6 +179,10 @@ public:
 	float glowCoefficient;
 	float glowExponent;
 	float glowScale;
+	float noiseExponent;
+	float noiseMixExponent;
+	float noisePosScale;
+	float noiseSpread;
 	
 	float journeyMixTime;
 	

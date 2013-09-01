@@ -10,7 +10,22 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
+    <Name>k_0</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>k_1</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>keyVis</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>kk_0</Name>
     <Value>0</Value>
 </Widget>
 <Widget>

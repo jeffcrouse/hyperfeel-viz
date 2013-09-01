@@ -196,6 +196,11 @@ void ofApp::setDefaults()
 	newRibbonShaderScale = 1;
 	
 	journeyMixTime = 4;
+	
+	noiseExponent = 2;
+	noiseMixExponent = 4;
+	noisePosScale = 100;
+	noiseSpread = -.25;
 }
 
 void ofApp::setupUI()
@@ -318,6 +323,10 @@ void ofApp::setupUI()
 	guiShader->addSlider("recursiveScale", .5, 1., &recursiveScale );
 	guiShader->addSlider("squish", .01, 1., &squish );
 	guiShader->addSlider("dataSmoothing", .01, 1., &dataSmoothing );
+	
+	guiShader->addSlider("outerAlpha", .01, 1., &outerAlpha );
+	guiShader->addSlider("innerAlpha", .01, 1., &innerAlpha );
+	
 	guiShader->addSlider("innerFacingRatio", .01, 1., &innerFacingRatio );
 	guiShader->addSlider("outerFacingRatio", .01, 1., &outerFacingRatio );
 	guiShader->addSlider("noiseScale", 0, .025, &noiseScale );
@@ -325,14 +334,16 @@ void ofApp::setupUI()
 	guiShader->addSlider("outerDisplacement", -150, 150, &outerDisplacement );
 	guiShader->addSlider("innerDisplacement", -150, 150, &innerDisplacement );
 	
-	guiShader->addSlider("outerAlpha", .01, 1., &outerAlpha );
-	guiShader->addSlider("innerAlpha", .01, 1., &innerAlpha );
-	
 	guiShader->addSlider("outerReadingThreshold", .0, 1., &outerReadingThreshold );
 	guiShader->addSlider("innerReadingThreshold", .0, 1., &innerReadingThreshold );
 	
 	guiShader->addSlider("outerReadingScale", .01, 1., &outerReadingScale );
 	guiShader->addSlider("innerReadingScale", .01, 1., &innerReadingScale );
+	
+	guiShader->addSlider("noiseExponent", 1., 10., &noiseExponent );
+	guiShader->addSlider("noiseMixExponent", 1., 10., &noiseMixExponent );
+	guiShader->addSlider("noisePosScale", 1., 300., &noisePosScale );
+	guiShader->addSlider("noiseSpread", -1., 1., &noiseSpread );
 	
 	guiShader->autoSizeToFitWidgets();
 	
@@ -1294,6 +1305,12 @@ void ofApp::drawOnion()
 	currentShader->setUniform1f("dataSmoothing", dataSmoothing);
 	currentShader->setUniform1f("noiseScale", noiseScale );
 	currentShader->setUniform1f("slope", slope );
+	
+	
+	currentShader->setUniform1f("noiseExponent", noiseExponent );
+	currentShader->setUniform1f("noiseMixExponent", noiseMixExponent );
+	currentShader->setUniform1f("noisePosScale", noisePosScale );
+	currentShader->setUniform1f("noiseSpread", noiseSpread );
 	
 	//
 	ofPushMatrix();

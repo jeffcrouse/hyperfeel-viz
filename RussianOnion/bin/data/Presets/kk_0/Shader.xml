@@ -6,7 +6,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.940058470</Value>
+    <Value>0.932748556</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -41,7 +41,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>noiseScale</Name>
-    <Value>0.007090643</Value>
+    <Value>0.005701754</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -56,7 +56,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>innerDisplacement</Name>
-    <Value>99.122802734</Value>
+    <Value>109.649108887</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -81,20 +81,15 @@
 <Widget>
     <Kind>4</Kind>
     <Name>noiseExponent</Name>
-    <Value>1.026315808</Value>
+    <Value>1.578947306</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseMixExponent</Name>
-    <Value>1.947368383</Value>
+    <Value>4.473684311</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noisePosScale</Name>
-    <Value>94.546783447</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>noiseSpread</Name>
-    <Value>-0.649122834</Value>
+    <Value>116.403503418</Value>
 </Widget>

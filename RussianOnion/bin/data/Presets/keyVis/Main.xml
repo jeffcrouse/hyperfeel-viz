@@ -1,17 +1,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>timeScl</Name>
-    <Value>0.496153355</Value>
+    <Value>1.105659485</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>playAnimation</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>circleRadius</Name>
-    <Value>339.716979980</Value>
+    <Value>422.528289795</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
