@@ -1,15 +1,5 @@
 <Widget>
     <Kind>2</Kind>
-    <Name>j_0</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>j_10</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
     <Name>k_0</Name>
     <Value>0</Value>
 </Widget>
@@ -96,5 +86,15 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Working</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>j_0</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>j_10</Name>
     <Value>1</Value>
 </Widget>

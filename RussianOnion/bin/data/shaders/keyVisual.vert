@@ -93,18 +93,26 @@ float remapValue( float t, float roundingWeight ){
 	return pow( p0*t, 2.) + p1*2.*t*(1.-t) + pow(p2*(1.-t), 2.);
 }
 
+
+float noise(vec3 p) //Thx to Las^Mercury
+{
+	vec3 i = floor(p);
+	vec4 a = dot(i, vec3(1., 57., 21.)) + vec4(0., 57., 21., 78.);
+	vec3 f = cos((p-i)*acos(-1.))*(-.5)+.5;
+	a = mix(sin(cos(a)*a),sin(cos(1.+a)*(1.+a)), f.x);
+	a.xy = mix(a.xz, a.yw, f.y);
+	return mix(a.x, a.y, f.z);
+}
+
 float scldNoise( vec3 s ){
 	
 	
-	float outval = snoise( s ) * (snoise( s * 2.) * .25 + .75);
-//	outval = 1. - pow( 1. - outval, 2. );
+	float outval = noise( s * 2.) * (noise( s * 4.) * .25 + .75);
 	return remapValue( outval*.5 + .5, .5);
 }
 vec4 getOffset( vec3 s, vec3 n, float offset ){
 	return vec4( n * offset * scldNoise( s ), 0.);
 }
-
-
 void main()
 {
 	float roundingWeight = .5;

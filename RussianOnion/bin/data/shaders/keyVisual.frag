@@ -33,6 +33,16 @@ varying float delta;
 uniform float nearClip;
 uniform float farClip;
 
+float noise(vec3 p) //Thx to Las^Mercury
+{
+	vec3 i = floor(p);
+	vec4 a = dot(i, vec3(1., 57., 21.)) + vec4(0., 57., 21., 78.);
+	vec3 f = cos((p-i)*acos(-1.))*(-.5)+.5;
+	a = mix(sin(cos(a)*a),sin(cos(1.+a)*(1.+a)), f.x);
+	a.xy = mix(a.xz, a.yw, f.y);
+	return mix(a.x, a.y, f.z);
+}
+
 float rand(vec2 n){
 	//	return 0.6 + 0.5 *fract(sin(dot(n.xy, vec2(12.9898, 78.233)))* 43758.5453);
 	return 0.6 + .5 * fract( sin( dot( n.xy, n.yx * 10.)));
@@ -186,6 +196,8 @@ void main(void)
 	if(a <= 0.)	discard;
 	
 	//noise
+	
+//	float nVal = pow( abs( noise( vec3( vec2(uv.x + sampleVal, uv.y + sampleVal + time*.005), 10.)  * noisePosScale )*2. - 1. ), 2.);
 	
 	float nVal = max( 0., snoise( vec2(uv.x + sampleVal, uv.y + sampleVal + time*.005)  * noisePosScale ) );
 	
