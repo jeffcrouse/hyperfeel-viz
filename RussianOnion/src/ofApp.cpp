@@ -56,7 +56,7 @@ void ofApp::setup()
 	
 	//Journy stuff
 	bSaveJsonsToFile = false;//for debuggin it was faster to load them from file rather then wait for the server
-	bLoadJsonsFromFile = true;
+	bLoadJsonsFromFile = false;
 	
 	bJourniesNeedUpdate = false;
 	
@@ -110,7 +110,7 @@ void ofApp::setup()
 	
 	//animation
 	//TODO: rename "newRibbonScaleDuration"
-	newRibbonScaleDuration = 30; // <---- this controls the time it takes for the journey to animate in.
+	newRibbonScaleDuration = 45; // <---- this controls the time it takes for the journey to animate in.
 
 	animationPresetVariationTime = 10;
 	animationPresetIndex0 = 0;
@@ -951,6 +951,8 @@ void ofApp::loadShaders()
 //--------------------------------------------------------------
 void ofApp::update()
 {
+    ofSetWindowTitle(ofToString(ofGetFrameRate())+"fps");
+    
 	//preset load/save
 	if(bSavePreset){
 		savePreset();
@@ -995,7 +997,9 @@ void ofApp::update()
 	elapsedTime += timedelta * timeScale;
 	
 	//tweens auto update vi ofListener
+    Eul.set( 0, pow(sin(elapsedTime * .8), 3.)*3, pow(sin(elapsedTime * .4), 3.)*10. );
     
+    soundManager.rotVel.set( Eul );
     
     if(!bClientConnected && currentTime-lastConnectionAttempt > 5) {
         client.connect( options );
@@ -1315,7 +1319,7 @@ void ofApp::drawOnion()
 	
 	//TODO: magic number
 	//update onion transforms
-	ofVec3f Eul( 0, pow(sin(elapsedTime * .8), 3.)*3, pow(sin(elapsedTime * .4), 3.)*10. );
+	
 	ofQuaternion q;
 	q.makeRotate(Eul.x, ofVec3f(1,0,0), Eul.y, ofVec3f(0,1,0), Eul.z, ofVec3f(0,0,1));
 	

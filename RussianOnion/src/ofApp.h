@@ -159,7 +159,8 @@ public:
 	int spherVboIndexCount;
 	
 	vector<Onion> onions;
-	
+	ofVec3f Eul;
+    
 	float recursiveScale;
 	float squish, squishY;
 	float readingThreshold;

@@ -31,14 +31,28 @@ void SoundManager::setup(ofEventArgs &args) {
     attention = attentionTarget = 0;
     meditation = meditationTarget = 0;
     
-    masterMixer.setInputBusCount(2);
+    
+	lowpass = ofxAudioUnit(kAudioUnitType_Effect, kAudioUnitSubType_LowPassFilter);
+	bandpass = ofxAudioUnit(kAudioUnitType_Effect, kAudioUnitSubType_BandPassFilter);
+    varispeed = ofxAudioUnit(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
+    //varispeed.showUI();
+    
+    
+    masterMixer.setInputBusCount(3);
+    
+    ambientLoop.setFile(ofFilePath::getAbsolutePath("Loops/Wind.wav"));
+    ambientLoop.connectTo(varispeed).connectTo(masterMixer, 2);
+    ambientLoop.loop();
+    masterMixer.setInputVolume(0.3, 2);
+    
     
     attention_sounds.push_back("Loops/Silence.wav");
-    attention_sounds.push_back("Loops/BrainWave03-Attn.wav");
+    //attention_sounds.push_back("Loops/BrainWave03-Attn.wav");
     attention_sounds.push_back("Loops/BrainWave06-Attn.wav"); // DON'T USE WITH 4
     attention_sounds.push_back("Loops/Silence.wav");
     attention_sounds.push_back("Loops/BRainWave16-Attn.wav");
-    attention_sounds.push_back("Loops/BrainWave07-Attn.wav");
+    attention_sounds.push_back("Loops/Silence.wav");
+    //attention_sounds.push_back("Loops/BrainWave07-Attn.wav");
     attention_sounds.push_back("Loops/BrainWave10-Attn.wav");
     attention_sounds.push_back("Loops/Silence.wav");
     attention_sounds.push_back("Loops/BrainWave09-Attn.wav");
@@ -46,7 +60,7 @@ void SoundManager::setup(ofEventArgs &args) {
     attention_sounds.push_back("Loops/Silence.wav");
     
     meditation_sounds.push_back("Loops/Silence.wav");
-    meditation_sounds.push_back("Loops/BrainWave15-Med.wav");
+    //meditation_sounds.push_back("Loops/BrainWave15-Med.wav");
     meditation_sounds.push_back("Loops/BrainWave11-Med.wav");
     meditation_sounds.push_back("Loops/Silence.wav"); //BrainWave08-Med.wav"); // lower level
     meditation_sounds.push_back("Loops/BrainWave04-Both.wav");
@@ -73,7 +87,8 @@ void SoundManager::setup(ofEventArgs &args) {
     meditationVolume = new float[ meditation_sounds.size() ];
     meditationLoops = new ofxAudioUnitFilePlayer[ meditation_sounds.size() ];
     meditationMixer.setInputBusCount(meditation_sounds.size());
-    meditationMixer.connectTo(masterMixer, 1);
+    meditationMixer.connectTo(lowpass).connectTo(masterMixer, 1);
+    //masterMixer.setInputVolume(0.5, 1);
     for(int i=0; i<meditation_sounds.size(); i++) {
         string fname = meditation_sounds[i];
         meditationLoops[i].setFile(ofFilePath::getAbsolutePath(fname));
@@ -83,16 +98,20 @@ void SoundManager::setup(ofEventArgs &args) {
         meditationVolume[i] = 0;
     }
     
+
+    
+    
     masterMixer.connectTo(output);
     output.start();
     
-
 }
 
 
 // -------------------------------------------------
 void SoundManager::update(ofEventArgs &args)
 {
+    //ambientLoopVolume += (ambientLoopVolumeTarget-ambientLoopVolume) / 10.0;
+    
     if(bMuted) {
         masterVolume = masterVolumeTarget = 0;
     } else {
@@ -117,6 +136,18 @@ void SoundManager::update(ofEventArgs &args)
         meditationMixer.setInputVolume(meditationVolume[i], i);
     }
     
+    //masterMixer.setInputVolume(ambientLoopVolume, 2);
+    
+    float freq = ofMap(fabs(rotVel.y), 0, 3, 7000, 500, true);
+    float resonance = ofMap(fabs(rotVel.z), 0, 10, 0, 10, true);
+
+    AudioUnitSetParameter(lowpass.getUnit(), kLowPassParam_CutoffFrequency, kAudioUnitScope_Global, 0, freq, 0);
+    AudioUnitSetParameter(lowpass.getUnit(), kLowPassParam_Resonance, kAudioUnitScope_Global, 0, resonance, 0);
+    
+
+    float newSpeed = ofMap(fabs(rotVel.y), 0, 3, 1, 1.7);
+    AudioUnitSetParameter(varispeed.getUnit(), kVarispeedParam_PlaybackRate, kAudioUnitScope_Global, 0, newSpeed, 0);
+    
     updateLevelsPreview();
 }
 
@@ -124,7 +155,6 @@ void SoundManager::update(ofEventArgs &args)
 void SoundManager::startJourney(Journey* j) {
     ofLogNotice() << "SoundManager::startJourney";
     masterVolumeTarget = 1;
-
 }
 
 // -------------------------------------------------

@@ -11,7 +11,7 @@
 #include "Journey.h"
 #include "ofxAudioUnit.h"
 
-#define AMBIENT_VOLUME 0.25
+#define AMBIENT_VOLUME 0.5
 
 class SoundManager
 {
@@ -38,10 +38,13 @@ public:
     
     ofFbo audioLevelsPreview;
     
+    ofVec3f rotVel;
+    
     vector<string> attention_sounds;
     vector<string> meditation_sounds;
     ofxAudioUnitFilePlayer* meditationLoops;
     ofxAudioUnitFilePlayer* attentionLoops;
+    ofxAudioUnitFilePlayer ambientLoop;
     
     float* meditationVolume;
     float* attentionVolume;
@@ -50,5 +53,8 @@ public:
     ofxAudioUnitMixer attentionMixer;
     ofxAudioUnitMixer masterMixer;
     ofxAudioUnitOutput output;
+    ofxAudioUnit lowpass;
+    ofxAudioUnit bandpass;
+    ofxAudioUnit varispeed;
 };
 
