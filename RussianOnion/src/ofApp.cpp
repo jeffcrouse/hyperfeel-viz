@@ -207,6 +207,10 @@ void ofApp::setDefaults()
 	noiseMixExponent = 4;
 	noisePosScale = 100;
 	noiseSpread = -.25;
+	
+	squish = squishY = 1.;
+	onionPosX = onionPosY = onionPosZ = 0;
+	
 }
 
 void ofApp::setupUI()
@@ -251,7 +255,7 @@ void ofApp::setupUI()
 
 	guiMain->addSpacer();
 	guiMain->addLabel("global rendering");
-	guiMain->addToggle("depthTest", bDepthTest);
+	guiMain->addToggle("depthTest", &bDepthTest);
 	
 	//create a radio for switching renderTypes
 	guiMain->addSpacer();
@@ -328,6 +332,7 @@ void ofApp::setupUI()
 	guiShader->addSlider("radius", 1, 30, &radius );
 	guiShader->addSlider("recursiveScale", .5, 1., &recursiveScale );
 	guiShader->addSlider("squish", .01, 1., &squish );
+	guiShader->addSlider("squishY", .01, 1., &squishY );
 	guiShader->addSlider("dataSmoothing", .01, 1., &dataSmoothing );
 	
 	guiShader->addSlider("outerAlpha", .01, 1., &outerAlpha );
@@ -371,36 +376,6 @@ void ofApp::setupUI()
 	presetGui->autoSizeToFitWidgets();
 	
 	
-	
-	//CAMERA
-	ofxUICanvas* guiCamera = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
-	guiCamera->setName("CAMERA");
-	guiCamera->setFont("GUI/OpenSans-Semibold.ttf");
-	guiCamera->setFontSize(OFX_UI_FONT_LARGE, 6);
-	guiCamera->setFontSize(OFX_UI_FONT_MEDIUM, 6);
-	guiCamera->setFontSize(OFX_UI_FONT_SMALL, 6);
-	guiCamera->setColorFill(ofxUIColor(200));
-	guiCamera->setColorFillHighlight(ofxUIColor(255));
-	guiCamera->setColorBack(ofxUIColor( 90, 90, 90, 70));
-	guiCamera->setPosition( presetGui->getRect()->getX() + presetGui->getRect()->getWidth() + 10, 10 );
-	guiCamera->setWidth( 350 );
-	
-	guiCamera->addLabel("CAMERA");
-	
-	//	rotateX, rotateY, rotateZ
-	guiCamera->addSlider( "rotateX", -180, 180, &rotateX );
-	guiCamera->addSlider( "rotateY", -180, 180, &rotateY );
-	guiCamera->addSlider( "rotateZ", -180, 180, &rotateZ );
-	
-	guiCamera->addSlider( "positionX", -50, 50, &positionX );
-	guiCamera->addSlider( "positionY", -50, 50, &positionY );
-	guiCamera->addSlider( "positionZ", -50, 50, &positionZ );
-	
-	guiCamera->autoSizeToFitWidgets();
-	
-	
-
-	
 	//COLOR
 	guiColor = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
 	guiColor->setName("COLOR");
@@ -411,13 +386,15 @@ void ofApp::setupUI()
 	guiColor->setColorFill(ofxUIColor(200));
 	guiColor->setColorFillHighlight(ofxUIColor(255));
 	guiColor->setColorBack(ofxUIColor( 90, 90, 90, 70));
-	guiColor->setPosition( guiCamera->getRect()->getX(), guiCamera->getRect()->getY() + guiCamera->getRect()->getHeight() + 10 );
-	guiColor->setWidth( 350 );
+	guiColor->setPosition( presetGui->getRect()->getX() + presetGui->getRect()->getWidth() + 10, 10 );
+	guiColor->setWidth( 150 );
 
 	
 	guiColor->addLabel("COLOR");
 	
-	guiColor->addImageSampler("journeyIntroColor", &colorMapImage, 100, 100);
+	guiColor->addSlider( "JourneyColorMixer", 0, 1, &journeyColorMixer );
+	
+	ofxUIImageSampler* journeySampler = guiColor->addImageSampler("journeyIntroColor", &colorMapImage, 100, 100);
 
 	//invisible sliders. for tweening we need floats
 	ofxUISlider* slider;
@@ -454,6 +431,39 @@ void ofApp::setupUI()
 	
 	guiColor->autoSizeToFitWidgets();
 	
+	
+	
+	//CAMERA
+	ofxUICanvas* guiCamera = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
+	guiCamera->setName("CAMERA");
+	guiCamera->setFont("GUI/OpenSans-Semibold.ttf");
+	guiCamera->setFontSize(OFX_UI_FONT_LARGE, 6);
+	guiCamera->setFontSize(OFX_UI_FONT_MEDIUM, 6);
+	guiCamera->setFontSize(OFX_UI_FONT_SMALL, 6);
+	guiCamera->setColorFill(ofxUIColor(200));
+	guiCamera->setColorFillHighlight(ofxUIColor(255));
+	guiCamera->setColorBack(ofxUIColor( 90, 90, 90, 70));
+	guiCamera->setPosition( guiColor->getRect()->getX() + guiColor->getRect()->getWidth() + 10, 10 );
+	guiCamera->setWidth( 350 );
+	
+	guiCamera->addLabel("CAMERA");
+	
+	//	rotateX, rotateY, rotateZ
+	guiCamera->addSlider( "rotateX", -180, 180, &rotateX );
+	guiCamera->addSlider( "rotateY", -180, 180, &rotateY );
+	guiCamera->addSlider( "rotateZ", -180, 180, &rotateZ );
+	
+	guiCamera->addSlider( "positionX", -50, 50, &positionX );
+	guiCamera->addSlider( "positionY", -50, 50, &positionY );
+	guiCamera->addSlider( "positionZ", -50, 50, &positionZ );
+	
+	guiCamera->addSlider( "onionPosX", -50, 50, &onionPosX );
+	guiCamera->addSlider( "onionPosY", -50, 50, &onionPosY );
+	guiCamera->addSlider( "onionPosZ", -50, 50, &onionPosZ );
+	
+	guiCamera->autoSizeToFitWidgets();
+
+	
 	//hold on to pointers for saving 'n stuff
 	guis.push_back( guiMain );
 	guis.push_back( presetGui );
@@ -471,6 +481,7 @@ void ofApp::setupUI()
 	ofAddListener( guiColor->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( guiPost->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( guiUtils->newGUIEvent,this,&ofApp::guiEvent );
+
 	
 	//load our working sttings
 	//	loadPreset("Working");
@@ -1320,7 +1331,10 @@ void ofApp::drawOnion()
 	
 	//
 	ofPushMatrix();
+	
 	ofScale( radius, radius, radius );
+	ofTranslate( onionPosX, onionPosY, onionPosZ );
+	
 	
 	ofTranslate( positionX, positionY, positionZ );
 	
@@ -1328,16 +1342,20 @@ void ofApp::drawOnion()
 	ofRotateY( rotateY );
 	ofRotateZ( rotateZ );
 	
-	
 	ofPushMatrix();
+	
 	if( bRotateOnNewJourney )	ofMultMatrix( globalTransform );//<-- this rotates the onion on transition in
 	
-	ofScale(1, 1, squish );
+	ofScale(1, squishY, squish );
 	
 	ofRotate( newRibbonShaderScale * -360 + 90 - slope*90., 0, 0, 1);
 	float vortexRotVal = -3. * elapsedTime;
 	
+	
+	if(!bDepthTest)	glDisable( GL_DEPTH_TEST );
+	
 	glEnable(GL_CULL_FACE);
+	
 	
 	//draw each onion
 	float step = 1. / float(onions.size()-1);
@@ -1356,6 +1374,10 @@ void ofApp::drawOnion()
 		//per ribbon uniforms
 		float sampleVal = ofMap( onions[i].sampleVal, minSampleVal, 1., 0, 1, true );
 		ofFloatColor col = getColor( sampleVal );
+		
+		col.r = ofMap(journeyColorMixer, 0, 1, col.r, float(onions[i].color.r)/255. );
+		col.g = ofMap(journeyColorMixer, 0, 1, col.g, float(onions[i].color.g)/255. );
+		col.b = ofMap(journeyColorMixer, 0, 1, col.b, float(onions[i].color.b)/255. );
 		
 		currentShader->setUniform1f( "sampleVal", sampleVal );
 		currentShader->setUniform1f( "displacement", ofMap( onions[i].sampleVal, minSampleVal, 1., innerDisplacement, outerDisplacement, true ) );
@@ -1399,6 +1421,9 @@ void ofApp::drawOnion()
 	}
 	
 	glDisable(GL_CULL_FACE);
+	
+	if(!bDepthTest)	glEnable( GL_DEPTH_TEST );
+	
 	
 	ofPopMatrix();
 	

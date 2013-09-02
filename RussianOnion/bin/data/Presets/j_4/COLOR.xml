@@ -1,0 +1,1125 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>JourneyColorMixer</Name>
+    <Value>0.021126760</Value>
+</Widget>
+<Widget>
+    <Kind>28</Kind>
+    <Name>journeyIntroColor</Name>
+    <XValue>0.270000011</XValue>
+    <YValue>0.239999995</YValue>
+    <RColor>124</RColor>
+    <GColor>166</GColor>
+    <BColor>255</BColor>
+    <AColor>255</AColor>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>journeyIntroColor_r</Name>
+    <Value>0.486274540</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>journeyIntroColor_g</Name>
+    <Value>0.650980413</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>journeyIntroColor_b</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_0</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_1</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_2</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_3</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_4</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_5</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_6</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_7</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_8</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_9</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_10</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_11</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_12</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_13</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_14</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_15</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_16</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_17</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_18</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_19</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_20</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_21</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_22</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_23</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_24</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_25</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>20</Kind>
+    <Name>palette_26</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_0_r</Name>
+    <Value>0.400883764</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_0_g</Name>
+    <Value>0.174159050</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_0_b</Name>
+    <Value>0.394084454</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_1_r</Name>
+    <Value>0.395301759</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_1_g</Name>
+    <Value>0.169693425</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_1_b</Name>
+    <Value>0.394084454</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_2_r</Name>
+    <Value>0.390864432</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_2_g</Name>
+    <Value>0.162995011</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_2_b</Name>
+    <Value>0.399694800</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_3_r</Name>
+    <Value>0.387543529</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_3_g</Name>
+    <Value>0.155180186</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_3_b</Name>
+    <Value>0.404188722</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_4_r</Name>
+    <Value>0.390377015</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_4_g</Name>
+    <Value>0.148481756</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_4_b</Name>
+    <Value>0.412604213</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_5_r</Name>
+    <Value>0.398248434</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_5_g</Name>
+    <Value>0.145132542</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_5_b</Name>
+    <Value>0.421019733</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_6_r</Name>
+    <Value>0.415079445</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_6_g</Name>
+    <Value>0.145132542</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_6_b</Name>
+    <Value>0.432240367</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_7_r</Name>
+    <Value>0.430221677</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_7_g</Name>
+    <Value>0.144016132</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_7_b</Name>
+    <Value>0.445149779</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_8_r</Name>
+    <Value>0.450974226</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_8_g</Name>
+    <Value>0.142899737</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_8_b</Name>
+    <Value>0.458059251</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_9_r</Name>
+    <Value>0.468921602</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_9_g</Name>
+    <Value>0.139550522</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_9_b</Name>
+    <Value>0.470968604</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_10_r</Name>
+    <Value>0.492479324</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_10_g</Name>
+    <Value>0.136201307</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_10_b</Name>
+    <Value>0.487255573</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_11_r</Name>
+    <Value>0.517153442</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_11_g</Name>
+    <Value>0.131735697</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_11_b</Name>
+    <Value>0.501853764</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_12_r</Name>
+    <Value>0.542943954</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_12_g</Name>
+    <Value>0.126153678</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_12_b</Name>
+    <Value>0.518140674</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_13_r</Name>
+    <Value>0.569850922</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_13_g</Name>
+    <Value>0.121688060</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_13_b</Name>
+    <Value>0.537232816</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_14_r</Name>
+    <Value>0.595069110</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_14_g</Name>
+    <Value>0.116106041</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_14_b</Name>
+    <Value>0.552403331</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_15_r</Name>
+    <Value>0.627014041</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_15_g</Name>
+    <Value>0.108291209</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_15_b</Name>
+    <Value>0.567573905</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_16_r</Name>
+    <Value>0.655581415</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_16_g</Name>
+    <Value>0.101592779</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_16_b</Name>
+    <Value>0.578822851</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_17_r</Name>
+    <Value>0.684148788</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_17_g</Name>
+    <Value>0.093777947</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_17_b</Name>
+    <Value>0.592304647</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_18_r</Name>
+    <Value>0.713832617</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_18_g</Name>
+    <Value>0.085963123</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_18_b</Name>
+    <Value>0.606358767</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_19_r</Name>
+    <Value>0.741827607</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_19_g</Name>
+    <Value>0.078148291</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_19_b</Name>
+    <Value>0.614802539</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_20_r</Name>
+    <Value>0.767017484</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_20_g</Name>
+    <Value>0.070333466</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_20_b</Name>
+    <Value>0.620441198</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_21_r</Name>
+    <Value>0.791634977</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_21_g</Name>
+    <Value>0.061402231</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_21_b</Name>
+    <Value>0.628885031</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_22_r</Name>
+    <Value>0.812330961</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_22_g</Name>
+    <Value>0.052470993</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_22_b</Name>
+    <Value>0.627796888</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_23_r</Name>
+    <Value>0.835259676</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_23_g</Name>
+    <Value>0.043539762</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_23_b</Name>
+    <Value>0.628941596</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_24_r</Name>
+    <Value>0.851461709</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_24_g</Name>
+    <Value>0.034608528</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_24_b</Name>
+    <Value>0.626164734</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_25_r</Name>
+    <Value>0.865974963</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_25_g</Name>
+    <Value>0.024560891</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_25_b</Name>
+    <Value>0.620582700</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_26_r</Name>
+    <Value>0.873761475</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_26_g</Name>
+    <Value>0.011164041</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_26_b</Name>
+    <Value>0.616117120</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_27_r</Name>
+    <Value>0.878742814</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_27_g</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_27_b</Name>
+    <Value>0.613340259</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_28_r</Name>
+    <Value>0.878113866</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_28_g</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_28_b</Name>
+    <Value>0.610563397</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_29_r</Name>
+    <Value>0.876368463</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_29_g</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_29_b</Name>
+    <Value>0.615629673</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_30_r</Name>
+    <Value>0.869012773</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_30_g</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_30_b</Name>
+    <Value>0.617890775</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_31_r</Name>
+    <Value>0.860540688</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_31_g</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_31_b</Name>
+    <Value>0.619035482</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_32_r</Name>
+    <Value>0.845341802</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_32_g</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_32_b</Name>
+    <Value>0.624101818</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_33_r</Name>
+    <Value>0.825105011</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_33_g</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_33_b</Name>
+    <Value>0.633089662</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_34_r</Name>
+    <Value>0.802063048</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_34_g</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_34_b</Name>
+    <Value>0.639272332</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_35_r</Name>
+    <Value>0.776788175</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_35_g</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_35_b</Name>
+    <Value>0.644338608</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_36_r</Name>
+    <Value>0.748708248</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_36_g</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_36_b</Name>
+    <Value>0.657248020</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_37_r</Name>
+    <Value>0.718395472</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_37_g</Name>
+    <Value>0.028051645</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_37_b</Name>
+    <Value>0.670157433</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_38_r</Name>
+    <Value>0.686966300</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_38_g</Name>
+    <Value>0.061713614</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_38_b</Name>
+    <Value>0.681378126</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_39_r</Name>
+    <Value>0.650499165</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_39_g</Name>
+    <Value>0.086960107</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_39_b</Name>
+    <Value>0.695403934</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_40_r</Name>
+    <Value>0.615720809</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_40_g</Name>
+    <Value>0.109401420</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_40_b</Name>
+    <Value>0.708313406</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_41_r</Name>
+    <Value>0.575904489</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_41_g</Name>
+    <Value>0.131842732</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_41_b</Name>
+    <Value>0.717301250</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_42_r</Name>
+    <Value>0.541698456</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_42_g</Name>
+    <Value>0.154284060</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_42_b</Name>
+    <Value>0.731899381</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_43_r</Name>
+    <Value>0.503570855</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_43_g</Name>
+    <Value>0.176725373</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_43_b</Name>
+    <Value>0.740343213</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_44_r</Name>
+    <Value>0.469937146</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_44_g</Name>
+    <Value>0.196361527</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_44_b</Name>
+    <Value>0.749903440</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_45_r</Name>
+    <Value>0.435187101</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_45_g</Name>
+    <Value>0.215997666</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_45_b</Name>
+    <Value>0.758347213</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_46_r</Name>
+    <Value>0.402125776</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_46_g</Name>
+    <Value>0.235633820</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_46_b</Name>
+    <Value>0.764558196</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_47_r</Name>
+    <Value>0.371869624</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_47_g</Name>
+    <Value>0.255269974</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_47_b</Name>
+    <Value>0.766275287</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_48_r</Name>
+    <Value>0.341613472</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_48_g</Name>
+    <Value>0.272100985</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_48_b</Name>
+    <Value>0.773602664</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_49_r</Name>
+    <Value>0.314734876</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_49_g</Name>
+    <Value>0.291737139</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_49_b</Name>
+    <Value>0.777008533</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_50_r</Name>
+    <Value>0.292894214</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_50_g</Name>
+    <Value>0.305762947</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_50_b</Name>
+    <Value>0.777609110</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_51_r</Name>
+    <Value>0.272742301</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_51_g</Name>
+    <Value>0.316983610</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_51_b</Name>
+    <Value>0.779898584</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_52_r</Name>
+    <Value>0.255395591</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_52_g</Name>
+    <Value>0.331009448</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_52_b</Name>
+    <Value>0.780499279</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_53_r</Name>
+    <Value>0.240854025</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_53_g</Name>
+    <Value>0.342230082</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_53_b</Name>
+    <Value>0.779411197</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_54_r</Name>
+    <Value>0.229117617</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_54_g</Name>
+    <Value>0.350645602</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_54_b</Name>
+    <Value>0.780011833</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_55_r</Name>
+    <Value>0.219614029</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_55_g</Name>
+    <Value>0.359061062</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_55_b</Name>
+    <Value>0.777234972</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_56_r</Name>
+    <Value>0.208994046</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_56_g</Name>
+    <Value>0.361866236</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_56_b</Name>
+    <Value>0.774458110</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_57_r</Name>
+    <Value>0.200606853</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_57_g</Name>
+    <Value>0.364671409</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_57_b</Name>
+    <Value>0.771681249</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_58_r</Name>
+    <Value>0.193908438</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_58_g</Name>
+    <Value>0.364671409</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_58_b</Name>
+    <Value>0.767215610</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_59_r</Name>
+    <Value>0.197858304</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_59_g</Name>
+    <Value>0.373086900</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_59_b</Name>
+    <Value>0.763866425</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_60_r</Name>
+    <Value>0.208534926</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_60_g</Name>
+    <Value>0.389917880</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_60_b</Name>
+    <Value>0.763322353</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_61_r</Name>
+    <Value>0.228743434</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_61_g</Name>
+    <Value>0.409554034</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_61_b</Name>
+    <Value>0.761089504</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_62_r</Name>
+    <Value>0.251757085</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_62_g</Name>
+    <Value>0.426385045</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_62_b</Name>
+    <Value>0.758856714</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_63_r</Name>
+    <Value>0.265782923</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_63_g</Name>
+    <Value>0.437605679</Value>
+</Widget>
+<Widget>
+    <Kind>5</Kind>
+    <Name>c_63_b</Name>
+    <Value>0.758856714</Value>
+</Widget>

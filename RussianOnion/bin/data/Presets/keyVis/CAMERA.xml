@@ -28,3 +28,18 @@
     <Name>positionZ</Name>
     <Value>0.000000000</Value>
 </Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>onionPosX</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>onionPosY</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>onionPosZ</Name>
+    <Value>0.000000000</Value>
+</Widget>

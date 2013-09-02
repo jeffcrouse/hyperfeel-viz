@@ -190,10 +190,13 @@ void main(void)
 	vec3 col = blendColor * fr;// color * fr;
 
 	//bars
-	float barSample = uv.x*628. + time; // 942
-	a *= pow( abs(sin( barSample ) + cos( barSample )), 4.);
+//	float barSample = uv.x*628. + time; // 942
+//	a *= pow( abs(sin( barSample ) + cos( barSample )), 4.);
 	
-	if(a <= 0.)	discard;
+	float barSample = uv.x*628. * 2. + time; // 942
+	a *= pow( sin( barSample ) + 1., 2.) ;
+	
+	if(a <= 0.0)	discard;
 	
 	//noise
 	
@@ -204,6 +207,8 @@ void main(void)
 	nVal = pow( nVal, noiseExponent );
 	
 	a *=  mix( pow( nVal, 1.+sampleVal*1.), 1., pow( sampleVal, noiseMixExponent ) + noiseSpread);
+	
+	if(a <= 0.0)	discard;
 	
 	
 	gl_FragColor = vec4( col, a);

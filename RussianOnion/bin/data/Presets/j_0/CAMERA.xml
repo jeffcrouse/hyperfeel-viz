@@ -21,10 +21,25 @@
 <Widget>
     <Kind>4</Kind>
     <Name>positionY</Name>
-    <Value>0.000000000</Value>
+    <Value>2.339179993</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>positionZ</Name>
-    <Value>5.555557251</Value>
+    <Value>16.374267578</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>onionPosX</Name>
+    <Value>7.602340698</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>onionPosY</Name>
+    <Value>-2.631576538</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>onionPosZ</Name>
+    <Value>-2.631576538</Value>
 </Widget>

@@ -11,7 +11,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>circleRadius</Name>
-    <Value>387.660369873</Value>
+    <Value>422.528289795</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -26,12 +26,12 @@
 <Widget>
     <Kind>2</Kind>
     <Name>depthTest</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>displacedBarsShader</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -42,4 +42,9 @@
     <Kind>2</Kind>
     <Name>displacedShader</Name>
     <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>keyVisualShader</Name>
+    <Value>1</Value>
 </Widget>

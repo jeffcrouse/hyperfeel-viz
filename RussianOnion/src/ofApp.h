@@ -121,7 +121,7 @@ public:
 	vector<ofFloatColor> colorPalette;
 	ofxUICanvas* guiColor;
 	void addColorPalette( string filePath );
-	
+	float journeyColorMixer;
 	
 	/**
 	 * shaders
@@ -158,7 +158,7 @@ public:
 	vector<Onion> onions;
 	
 	float recursiveScale;
-	float squish;
+	float squish, squishY;
 	float readingThreshold;
 	float readingScale;
 	float onionAlpha;
@@ -188,6 +188,7 @@ public:
 	
 	float rotateX, rotateY, rotateZ;
 	float positionX, positionY, positionZ;
+	float onionPosX, onionPosY, onionPosZ;
 	
 	string journeyTransitionTween;
 	float journeyTransitionVal;
