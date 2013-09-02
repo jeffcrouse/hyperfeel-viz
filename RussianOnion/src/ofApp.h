@@ -75,6 +75,9 @@ public:
 	void journeyToVbo(ofVbo* vbo, Journey* journey);
 //	void journeyToVbo(ofVbo &vbo, Journey& journey, GLenum usage=GL_STATIC_DRAW);
 	
+	Reading sampleJourney( int i, float u );
+	float cameraOffsetVal;
+	
 	void addJourneyTween();
 	string keyVis;
 	string activePreset;
@@ -302,6 +305,8 @@ public:
 	ofFbo fbo_mm4;
 	ofFbo fbo_mm5;
 	ofFbo fbo_mm6;
+	
+	ofImage noiseImage;
 	
 	//ofxUI
 	vector<string> getPresetNames();

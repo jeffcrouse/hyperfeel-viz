@@ -163,6 +163,26 @@ void ofApp::setup()
 	
 	//camera
 	
+	noiseImage.allocate(1024, 300, OF_IMAGE_COLOR );
+	
+	float stepi = 1. / float(noiseImage.getWidth());
+	float stepj = 1. / float(noiseImage.getHeight());
+	for (int i=0; i<noiseImage.getWidth(); i++) {
+		for (int j=0; j<noiseImage.getHeight(); j++) {
+			float n = ofNoise( stepi*i*2, stepj*j*2);
+			float n0 = ofNoise( stepi*i*4, stepj*j*4);
+			float n1 = ofNoise( stepi*i*8, stepj*j*8);
+			float n2 = ofNoise( stepi*i*16, stepj*j*16);
+			float n3 = ofNoise( stepi*i*32, stepj*j*32);
+			
+//			ofColor c( 255 * (n0 + n1 + n2 + n3) / 4 );
+//			ofColor c( 255 * (n3 * n0 * n1 * n2) );
+			ofColor c( 255*(n+n0+n1)/3, 255*(n0+n1+n2)/3, 255*(n1+n2+n3)/3 );
+			
+			noiseImage.setColor( i, j, c );
+		}
+	}
+	noiseImage.update();
 }
 
 
@@ -461,6 +481,8 @@ void ofApp::setupUI()
 	guiCamera->addSlider( "onionPosY", -50, 50, &onionPosY );
 	guiCamera->addSlider( "onionPosZ", -50, 50, &onionPosZ );
 	
+	guiCamera->addImage("noiseImage", &noiseImage, 255, 255 );
+	
 	guiCamera->autoSizeToFitWidgets();
 
 	
@@ -663,6 +685,13 @@ void ofApp::tweenEventHandler(TweenEvent &e)
         {
             soundManager.updateJorney(journeys.back(), *tween.getTween(addRibbonTween)->value);
         }
+		
+		if ( e.message == "updated") {
+//			cout << e.name << ": "<< e.value << " ::: " << sampleJourney(journeys.size()-1, e.value) << endl;
+			Reading sample = sampleJourney(journeys.size()-1, e.value);
+			cameraOffsetVal = sample.getAttention();// - sample.getMeditation();
+			cameraOffsetVal *= -3;
+		}
         
 		if( e.message == "ended" )
 		{
@@ -1336,7 +1365,7 @@ void ofApp::drawOnion()
 	ofTranslate( onionPosX, onionPosY, onionPosZ );
 	
 	
-	ofTranslate( positionX, positionY, positionZ );
+	ofTranslate( positionX, positionY + cameraOffsetVal, positionZ );
 	
 	ofRotateX( rotateX );
 	ofRotateY( rotateY );
@@ -1433,6 +1462,24 @@ void ofApp::drawOnion()
 	currentShader->end();
 	
 	camera.end();
+}
+
+Reading ofApp::sampleJourney( int i, float u )
+{
+	Reading outVal;
+	
+	float sv = u * float(i);
+	int low = floor( sv );
+	int hi = ceil( sv );
+	
+	sv -= low;
+	
+	sv = tween.calcSinusoidal( sv, TWEEN_INOUT );
+	
+	outVal.setAttention( journeys[i]->readings[low].getAttention() * (1. - sv) + journeys[i]->readings[hi].getAttention() * sv );
+	outVal.setMeditation( journeys[i]->readings[low].getMeditation() * (1. - sv) + journeys[i]->readings[hi].getMeditation() * sv );
+	
+	return outVal;
 }
 
 
