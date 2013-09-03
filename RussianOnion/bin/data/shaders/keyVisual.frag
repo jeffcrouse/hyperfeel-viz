@@ -1,3 +1,9 @@
+
+uniform float tunnelMix;
+uniform float tunnelDeltaScl;
+uniform float tunnelTimeScl;
+uniform float tunnelDepthScl;
+
 uniform vec3 blendColor;
 uniform float noiseExponent;
 uniform float noiseSpread;
@@ -185,7 +191,7 @@ void main(void)
 	
 	//facing ratio
 	float fr = dot( eye, norm) * facingRatio + 1. - facingRatio;
-	
+	fr = .8 * fr + .2;
 	//color
 	vec3 col = blendColor * fr;// color * fr;
 
@@ -210,6 +216,11 @@ void main(void)
 	
 	if(a <= 0.0)	discard;
 	
+	
+//	/light tunnel
+	float tunnelVal = sin( (sampleVal+delta*tunnelDeltaScl) * tunnelDepthScl - time * tunnelTimeScl ) + 1.2;
+	col = col * tunnelVal * tunnelMix + col * (1.-tunnelMix);
+	a = a * tunnelVal * tunnelMix + a * (1.-tunnelMix);
 	
 	gl_FragColor = vec4( col, a);
 }

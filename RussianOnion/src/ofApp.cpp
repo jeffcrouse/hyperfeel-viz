@@ -56,7 +56,7 @@ void ofApp::setup()
 	
 	//Journy stuff
 	bSaveJsonsToFile = false;//for debuggin it was faster to load them from file rather then wait for the server
-	bLoadJsonsFromFile = false;
+	bLoadJsonsFromFile = true;
 	
 	bJourniesNeedUpdate = false;
 	
@@ -230,7 +230,10 @@ void ofApp::setDefaults()
 	
 	squish = squishY = 1.;
 	onionPosX = onionPosY = onionPosZ = 0;
-	
+	tunnelMix = 1.;
+	tunnelDeltaScl = .1;
+	tunnelTimeScl = 4.;
+	tunnelDepthScl = 15.;
 }
 
 void ofApp::setupUI()
@@ -427,7 +430,7 @@ void ofApp::setupUI()
 	string palette_path = "palettes/";
 	ofDirectory palette_dir(palette_path);
 	palette_dir.listDir();
-	palette_dir.allowExt(".png");
+//	palette_dir.allowExt(".png");
 	
 	//go through and store our preset names
 	for(int i = 0; i < palette_dir.numFiles(); i++){
@@ -476,9 +479,14 @@ void ofApp::setupUI()
 	guiCamera->addSlider( "positionY", -50, 50, &positionY );
 	guiCamera->addSlider( "positionZ", -50, 50, &positionZ );
 	
-	guiCamera->addSlider( "onionPosX", -50, 50, &onionPosX );
-	guiCamera->addSlider( "onionPosY", -50, 50, &onionPosY );
-	guiCamera->addSlider( "onionPosZ", -50, 50, &onionPosZ );
+//	guiCamera->addSlider( "onionPosX", -50, 50, &onionPosX );
+//	guiCamera->addSlider( "onionPosY", -50, 50, &onionPosY );
+//	guiCamera->addSlider( "onionPosZ", -50, 50, &onionPosZ );
+
+	guiCamera->addSlider( "tunnelMix", 0, 1, &tunnelMix );
+	guiCamera->addSlider( "tunnelDeltaScl", 0, 1, &tunnelDeltaScl );
+	guiCamera->addSlider( "tunnelTimeScl", -10, 10, &tunnelTimeScl );
+	guiCamera->addSlider( "tunnelDepthScl", 1, 30, &tunnelDepthScl );
 	
 	guiCamera->addImage("noiseImage", &noiseImage, 255, 255 );
 	
@@ -1377,6 +1385,11 @@ void ofApp::drawOnion()
 	currentShader->setUniform1f("noiseMixExponent", noiseMixExponent );
 	currentShader->setUniform1f("noisePosScale", noisePosScale );
 	currentShader->setUniform1f("noiseSpread", noiseSpread );
+	
+	currentShader->setUniform1f("tunnelMix", tunnelMix );
+	currentShader->setUniform1f("tunnelDeltaScl", tunnelDeltaScl );
+	currentShader->setUniform1f("tunnelTimeScl", tunnelTimeScl );
+	currentShader->setUniform1f("tunnelDepthScl", tunnelDepthScl );
 	
 	//
 	ofPushMatrix();

@@ -193,6 +193,11 @@ public:
 	float positionX, positionY, positionZ;
 	float onionPosX, onionPosY, onionPosZ;
 	
+	float tunnelMix;
+	float tunnelDeltaScl;
+	float tunnelTimeScl;
+	float tunnelDepthScl;
+	
 	string journeyTransitionTween;
 	float journeyTransitionVal;
 	float journeyVal;

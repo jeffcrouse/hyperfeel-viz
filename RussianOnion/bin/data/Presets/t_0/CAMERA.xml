@@ -31,7 +31,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>tunnelMix</Name>
-    <Value>0.961988330</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -41,10 +41,10 @@
 <Widget>
     <Kind>4</Kind>
     <Name>tunnelTimeScl</Name>
-    <Value>-4.210526466</Value>
+    <Value>3.304093361</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>tunnelDepthScl</Name>
-    <Value>15.000000000</Value>
+    <Value>15.754386902</Value>
 </Widget>
