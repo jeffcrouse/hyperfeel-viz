@@ -163,17 +163,17 @@ void ofApp::setup()
 	
 	//camera
 	
-	noiseImage.allocate(1024, 300, OF_IMAGE_COLOR );
+	noiseImage.allocate(256, 256, OF_IMAGE_COLOR );
 	
 	float stepi = 1. / float(noiseImage.getWidth());
 	float stepj = 1. / float(noiseImage.getHeight());
 	for (int i=0; i<noiseImage.getWidth(); i++) {
 		for (int j=0; j<noiseImage.getHeight(); j++) {
-			float n = ofNoise( stepi*i*2, stepj*j*2);
-			float n0 = ofNoise( stepi*i*4, stepj*j*4);
-			float n1 = ofNoise( stepi*i*8, stepj*j*8);
-			float n2 = ofNoise( stepi*i*16, stepj*j*16);
-			float n3 = ofNoise( stepi*i*32, stepj*j*32);
+			float n = ofNoise( stepi*i, stepj*j);
+			float n0 = ofNoise( stepi*i*20, stepj*j*20);
+			float n1 = ofNoise( stepi*i*40, stepj*j*40);
+			float n2 = ofNoise( stepi*i*80, stepj*j*80);
+			float n3 = ofNoise( stepi*i*160, stepj*j*160);
 			
 //			ofColor c( 255 * (n0 + n1 + n2 + n3) / 4 );
 //			ofColor c( 255 * (n3 * n0 * n1 * n2) );
@@ -411,8 +411,7 @@ void ofApp::setupUI()
 
 	
 	guiColor->addLabel("COLOR");
-	
-	guiColor->addSlider( "JourneyColorMixer", 0, 1, &journeyColorMixer );
+	guiColor->addRangeSlider( "journeyColorRange", 0, 1, &journeyColorMixLow, &journeyColorMixHi );
 	
 	ofxUIImageSampler* journeySampler = guiColor->addImageSampler("journeyIntroColor", &colorMapImage, 100, 100);
 
@@ -1325,6 +1324,19 @@ void ofApp::drawOnion()
 	
 	float startScale = 1. / recursiveScale;
 	
+//	float minSampleVal = 10000000;
+//	for (int i=onions.size()-1; i>=0; i--)
+//	{
+//
+//		float s = ofMap( i, 0, onions.size(), 0., 1. );
+//		s = fmod( s + elapsedTime, 1.f );
+//		if(s < 0.)	s+= 1.;
+//		
+//		s = ofMap(s, 0, 1, .5, 1., true );
+//		
+//		onions[i].transform.setScale(s,s,s);
+//	}
+	
 	float minSampleVal = 10000000;
 	for (int i=onions.size()-1; i>=0; i--)
 	{
@@ -1336,9 +1348,11 @@ void ofApp::drawOnion()
 		}
 		else
 		{
-			onions[i].transform.setScale( onions[i+1].transform.getScale() * recursiveScale );
+			float scl = onions[i+1].transform.getScale().x * recursiveScale;
+			scl -= floor(scl);
+			onions[i].transform.setScale( scl, scl, scl );
 			onions[i].transform.setOrientation( onions[i+1].transform.getOrientationQuat() * q );
-			onions[i].sampleVal = onions[i+1].transform.getScale().x * recursiveScale;
+			onions[i].sampleVal = scl;//onions[i+1].transform.getScale().x * recursiveScale;
 			minSampleVal = min( minSampleVal, onions[i].sampleVal );
 		}
 	}
@@ -1355,6 +1369,8 @@ void ofApp::drawOnion()
 	currentShader->setUniform1f("dataSmoothing", dataSmoothing);
 	currentShader->setUniform1f("noiseScale", noiseScale );
 	currentShader->setUniform1f("slope", slope );
+	currentShader->setUniformTexture( "noiseTexture", noiseImage.getTextureReference(), 1 );
+	currentShader->setUniform2f("noiseDim", noiseImage.getWidth(), noiseImage.getHeight() );
 	
 	
 	currentShader->setUniform1f("noiseExponent", noiseExponent );
@@ -1369,7 +1385,8 @@ void ofApp::drawOnion()
 	ofTranslate( onionPosX, onionPosY, onionPosZ );
 	
 	
-	ofTranslate( positionX, positionY + cameraOffsetVal, positionZ );
+//	ofTranslate( positionX, positionY + cameraOffsetVal, positionZ );
+	ofTranslate( positionX, positionY, positionZ );
 	
 	ofRotateX( rotateX );
 	ofRotateY( rotateY );
@@ -1408,11 +1425,14 @@ void ofApp::drawOnion()
 		float sampleVal = ofMap( onions[i].sampleVal, minSampleVal, 1., 0, 1, true );
 		ofFloatColor col = getColor( sampleVal );
 		
-		col.r = ofMap(journeyColorMixer, 0, 1, col.r, float(onions[i].color.r)/255. );
-		col.g = ofMap(journeyColorMixer, 0, 1, col.g, float(onions[i].color.g)/255. );
-		col.b = ofMap(journeyColorMixer, 0, 1, col.b, float(onions[i].color.b)/255. );
+		float mixVal = ofMap(sampleVal, 0, 1, journeyColorMixLow, journeyColorMixHi, true);
+		
+		col.r = ofMap(mixVal, 0, 1, col.r, float(onions[i].color.r)/255., true );
+		col.g = ofMap(mixVal, 0, 1, col.g, float(onions[i].color.g)/255., true );
+		col.b = ofMap(mixVal, 0, 1, col.b, float(onions[i].color.b)/255., true );
 		
 		currentShader->setUniform1f( "sampleVal", sampleVal );
+		currentShader->setUniform1f( "randomOffset", onions[i].randomNumer );
 		currentShader->setUniform1f( "displacement", ofMap( onions[i].sampleVal, minSampleVal, 1., innerDisplacement, outerDisplacement, true ) );
 		currentShader->setUniform1f( "readingScale", ofMap( onions[i].sampleVal, minSampleVal, 1., innerReadingScale, outerReadingScale, true ) );
 		currentShader->setUniform1f( "readingThreshold", ofMap( onions[i].sampleVal, minSampleVal, 1., innerReadingThreshold, outerReadingThreshold, true ) );

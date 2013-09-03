@@ -124,8 +124,7 @@ public:
 	vector<ofFloatColor> colorPalette;
 	ofxUICanvas* guiColor;
 	void addColorPalette( string filePath );
-	float journeyColorMixer;
-	
+	float journeyColorMixLow, journeyColorMixHi;
 	/**
 	 * shaders
 	 */

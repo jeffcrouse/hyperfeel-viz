@@ -65,6 +65,26 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
+    <Name>k_13</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>k_14</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>k_15</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>k_16</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>k_3</Name>
     <Value>0</Value>
 </Widget>

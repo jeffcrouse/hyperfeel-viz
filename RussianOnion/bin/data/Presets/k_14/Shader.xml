@@ -1,17 +1,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>20.163742065</Value>
+    <Value>19.824562073</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.940058470</Value>
+    <Value>0.906432748</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>squish</Name>
-    <Value>0.345789462</Value>
+    <Value>0.458684206</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -21,32 +21,32 @@
 <Widget>
     <Kind>4</Kind>
     <Name>dataSmoothing</Name>
-    <Value>0.227105275</Value>
+    <Value>0.536842108</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>outerAlpha</Name>
-    <Value>0.496315777</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>innerAlpha</Name>
-    <Value>0.010000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>innerFacingRatio</Name>
     <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
+    <Name>innerAlpha</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>innerFacingRatio</Name>
+    <Value>0.380526304</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
     <Name>outerFacingRatio</Name>
-    <Value>0.962368429</Value>
+    <Value>0.652631581</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseScale</Name>
-    <Value>0.008187135</Value>
+    <Value>0.007090643</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -56,32 +56,32 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerDisplacement</Name>
-    <Value>31.578948975</Value>
+    <Value>53.508758545</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerDisplacement</Name>
-    <Value>99.122802734</Value>
+    <Value>-7.017547607</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>outerReadingThreshold</Name>
-    <Value>0.000000000</Value>
+    <Value>0.201754391</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerReadingThreshold</Name>
-    <Value>0.000000000</Value>
+    <Value>0.292397648</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>outerReadingScale</Name>
-    <Value>0.201052636</Value>
+    <Value>0.143157899</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerReadingScale</Name>
-    <Value>0.010000000</Value>
+    <Value>0.085263155</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
