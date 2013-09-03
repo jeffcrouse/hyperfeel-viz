@@ -193,6 +193,13 @@ public:
 	float positionX, positionY, positionZ;
 	float onionPosX, onionPosY, onionPosZ;
 	
+	float tunnelMix;
+	float tunnelDeltaScl;
+	float tunnelTimeScl;
+	float tunnelDepthScl;
+	
+	float EulScale;
+	
 	string journeyTransitionTween;
 	float journeyTransitionVal;
 	float journeyVal;
@@ -201,6 +208,8 @@ public:
 	
 	bool bLaodingJourney;
 	int presetMixIndex;
+	
+	bool bSideView;
 	
     /**
      *  Journeys
@@ -324,4 +333,13 @@ public:
 	
 	string currentPresetName, nextPreset;
 	bool bSavePreset;
+	
+	
+	//particles
+	int numParticles;
+	ofVbo particleVbo;
+	
+	
+	
+	
 };

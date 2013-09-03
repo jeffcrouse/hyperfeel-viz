@@ -1,4 +1,10 @@
 <Widget>
+    <Kind>6</Kind>
+    <Name>journeyColorRange</Name>
+    <HighValue>0.619718194</HighValue>
+    <LowValue>0.098591536</LowValue>
+</Widget>
+<Widget>
     <Kind>28</Kind>
     <Name>journeyIntroColor</Name>
     <XValue>0.670000017</XValue>
