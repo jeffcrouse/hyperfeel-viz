@@ -17,6 +17,8 @@ public:
 	~Onion(){
 		//???: do we need to do more to deallocate this
 		dataTexture.clear();
+		
+		randomNumer = ofRandom(-1, 1);
 	};
 	
 	void setup( Journey* j ){
@@ -34,6 +36,9 @@ public:
 		dataTexture.loadData( &data[0], j->readings.size(), 1, GL_RGB );
 		
 		bIsSetup = true;
+		
+		
+		randomNumer = ofRandom(-100, 100);
 	}
 	
 	ofTexture dataTexture;
@@ -42,4 +47,5 @@ public:
 	ofColor color;
 	bool bIsSetup;
 	float sampleVal;
+	float randomNumer;
 };

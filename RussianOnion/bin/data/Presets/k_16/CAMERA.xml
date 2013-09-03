@@ -1,45 +1,45 @@
 <Widget>
     <Kind>4</Kind>
     <Name>rotateX</Name>
-    <Value>-85.263153076</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>rotateY</Name>
     <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
+    <Name>rotateY</Name>
+    <Value>-1.052627563</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
     <Name>rotateZ</Name>
-    <Value>172.631591797</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>positionX</Name>
-    <Value>-3.801170349</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>positionY</Name>
-    <Value>5.263156891</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>positionZ</Name>
-    <Value>9.941516876</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>onionPosX</Name>
-    <Value>7.602340698</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>onionPosY</Name>
-    <Value>-2.631576538</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>onionPosZ</Name>
-    <Value>-2.631576538</Value>
+    <Value>0.000000000</Value>
 </Widget>
