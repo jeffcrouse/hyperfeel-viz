@@ -234,6 +234,10 @@ void ofApp::setDefaults()
 	tunnelDeltaScl = .1;
 	tunnelTimeScl = 4.;
 	tunnelDepthScl = 15.;
+	
+	EulScale = 1.;
+	
+	bSideView = false;
 }
 
 void ofApp::setupUI()
@@ -479,6 +483,8 @@ void ofApp::setupUI()
 	guiCamera->addSlider( "positionY", -50, 50, &positionY );
 	guiCamera->addSlider( "positionZ", -50, 50, &positionZ );
 	
+	guiCamera->addToggle("bSideView", &bSideView ); 
+	
 //	guiCamera->addSlider( "onionPosX", -50, 50, &onionPosX );
 //	guiCamera->addSlider( "onionPosY", -50, 50, &onionPosY );
 //	guiCamera->addSlider( "onionPosZ", -50, 50, &onionPosZ );
@@ -487,6 +493,8 @@ void ofApp::setupUI()
 	guiCamera->addSlider( "tunnelDeltaScl", 0, 1, &tunnelDeltaScl );
 	guiCamera->addSlider( "tunnelTimeScl", -10, 10, &tunnelTimeScl );
 	guiCamera->addSlider( "tunnelDepthScl", 1, 30, &tunnelDepthScl );
+	
+	guiCamera->addSlider("EulScale", -2., 2., &EulScale);
 	
 	guiCamera->addImage("noiseImage", &noiseImage, 255, 255 );
 	
@@ -1005,6 +1013,7 @@ void ofApp::update()
 	
 	//tweens auto update vi ofListener
     Eul.set( 0, pow(sin(elapsedTime * .8), 3.)*3, pow(sin(elapsedTime * .4), 3.)*10. );
+	Eul *= EulScale;
     
     soundManager.rotVel.set( Eul );
     
@@ -1398,8 +1407,8 @@ void ofApp::drawOnion()
 	ofTranslate( onionPosX, onionPosY, onionPosZ );
 	
 	
-//	ofTranslate( positionX, positionY + cameraOffsetVal, positionZ );
-	ofTranslate( positionX, positionY, positionZ );
+	if(bSideView)	ofTranslate( positionX, positionY + cameraOffsetVal, positionZ );
+	else	ofTranslate( positionX, positionY, positionZ );
 	
 	ofRotateX( rotateX );
 	ofRotateY( rotateY );

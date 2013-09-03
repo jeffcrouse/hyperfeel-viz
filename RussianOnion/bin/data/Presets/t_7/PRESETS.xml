@@ -175,11 +175,16 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>Working</Name>
+    <Name>t_7</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>t_8</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>t_7</Name>
-    <Value>1</Value>
+    <Name>Working</Name>
+    <Value>0</Value>
 </Widget>

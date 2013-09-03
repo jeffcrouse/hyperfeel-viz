@@ -198,6 +198,8 @@ public:
 	float tunnelTimeScl;
 	float tunnelDepthScl;
 	
+	float EulScale;
+	
 	string journeyTransitionTween;
 	float journeyTransitionVal;
 	float journeyVal;
@@ -206,6 +208,8 @@ public:
 	
 	bool bLaodingJourney;
 	int presetMixIndex;
+	
+	bool bSideView;
 	
     /**
      *  Journeys

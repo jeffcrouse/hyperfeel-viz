@@ -16,30 +16,45 @@
 <Widget>
     <Kind>4</Kind>
     <Name>positionX</Name>
-    <Value>-16.081871033</Value>
+    <Value>-9.356723785</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>positionY</Name>
-    <Value>2.046783447</Value>
+    <Value>1.754386902</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>positionZ</Name>
-    <Value>14.619880676</Value>
+    <Value>12.573097229</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>bSideView</Name>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>onionPosX</Name>
-    <Value>7.602340698</Value>
+    <Name>tunnelMix</Name>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>onionPosY</Name>
-    <Value>-2.631576538</Value>
+    <Name>tunnelDeltaScl</Name>
+    <Value>0.131578952</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>onionPosZ</Name>
-    <Value>-2.631576538</Value>
+    <Name>tunnelTimeScl</Name>
+    <Value>-4.210526466</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>tunnelDepthScl</Name>
+    <Value>15.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>EulScale</Name>
+    <Value>1.000000954</Value>
 </Widget>
