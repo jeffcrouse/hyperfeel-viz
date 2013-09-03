@@ -183,6 +183,19 @@ void ofApp::setup()
 		}
 	}
 	noiseImage.update();
+	
+	
+	vector <ofVec3f> particlePositions;
+	numParticles = 100000;
+	particlePositions.resize(numParticles);
+	
+	for (int i=0; i<numParticles; i++) {
+		particlePositions[i].set( ofRandom(-1024, 1024), ofRandom(-1024, 1024), ofRandom(-1024, 1024) );
+	}
+	
+	particleVbo.setVertexData( &particlePositions[0], particlePositions.size(), GL_STATIC_DRAW );
+	
+	
 }
 
 
@@ -1051,10 +1064,8 @@ void ofApp::draw()
 	}else{
 		glDisable(GL_DEPTH_TEST);
 	}
-//
-	if( currentRenderType == "onion"){
-		drawOnion();
-	}
+
+	drawOnion();
 	
 	if (!bDepthTest) {
 		glDisable(GL_DEPTH_TEST);
@@ -1495,18 +1506,24 @@ void ofApp::drawOnion()
 		
 	}
 	
+	
 	glDisable(GL_CULL_FACE);
-	
-	if(!bDepthTest)	glEnable( GL_DEPTH_TEST );
-	
-	
-	ofPopMatrix();
-	
-	ofPopMatrix();
-	
 	
 	currentShader->end();
 	
+//	//AMBIENT PARTICLES
+//	glPointSize( 10 );
+//	glEnable( GL_VERTEX_PROGRAM_POINT_SIZE );
+//	
+//	ofSetColor(255, 0, 0);
+//	particleVbo.draw( GL_POINTS, 0, numParticles );
+	
+	ofPopMatrix();
+	
+	ofPopMatrix();
+	
+	
+	if(!bDepthTest)	glEnable( GL_DEPTH_TEST );
 	camera.end();
 }
 

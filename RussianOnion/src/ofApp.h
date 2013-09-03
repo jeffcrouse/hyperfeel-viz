@@ -333,4 +333,13 @@ public:
 	
 	string currentPresetName, nextPreset;
 	bool bSavePreset;
+	
+	
+	//particles
+	int numParticles;
+	ofVbo particleVbo;
+	
+	
+	
+	
 };
