@@ -1596,6 +1596,8 @@ void ofApp::exit()
 		delete vbos[i];
 	}
 	
+    soundManager.exit();
+    
 	if(bDebug)	cout << "end of ofApp::exit" << endl;
 	
 	//???: we're getting this error every now and again on exit:

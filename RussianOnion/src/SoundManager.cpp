@@ -153,6 +153,11 @@ void SoundManager::update(ofEventArgs &args)
 }
 
 // -------------------------------------------------
+void SoundManager::exit() {
+    output.stop();
+}
+
+// -------------------------------------------------
 void SoundManager::startJourney(Journey* j) {
     ofLogNotice() << "SoundManager::startJourney";
     masterVolumeTarget = 1;
