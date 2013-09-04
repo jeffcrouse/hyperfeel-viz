@@ -1,12 +1,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>22.622806549</Value>
+    <Value>21.520467758</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.961988330</Value>
+    <Value>0.957602382</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -41,7 +41,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerFacingRatio</Name>
-    <Value>0.629473686</Value>
+    <Value>0.600526273</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -56,7 +56,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerDisplacement</Name>
-    <Value>-71.052627563</Value>
+    <Value>-52.631576538</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -66,7 +66,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerReadingThreshold</Name>
-    <Value>0.263157904</Value>
+    <Value>0.269005835</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

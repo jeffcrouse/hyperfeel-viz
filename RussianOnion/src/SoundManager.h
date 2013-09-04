@@ -25,6 +25,7 @@ public:
     void updateJorney(Journey* j, float pct);
     void updateLevelsPreview();
     void update(ofEventArgs &args);
+    void exit();
     
     bool bMuted;
     

@@ -18,10 +18,10 @@ void ofApp::setup()
 //	fbo.allocate( ofGetWidth(), ofGetHeight(), GL_RGBA16F, 4 );
 	
 	ofFbo::Settings s;
-	s.width         = ofGetWidth();
+	s.width         = ofGetWidth()/2;
 	s.height            = ofGetHeight();
 	s.internalformat    = GL_RGBA;
-	s.numColorbuffers   = 3;
+	s.numColorbuffers   = 1;
 	s.useDepth = true;
 	s.numSamples = 4;
 	fbo.allocate(s);
@@ -34,19 +34,39 @@ void ofApp::setup()
 	fbo_mm5.allocate( fbo_mm4.getWidth()/2, fbo_mm4.getHeight()/2, GL_RGB );
 	fbo_mm6.allocate( fbo_mm5.getWidth()/2, fbo_mm5.getHeight()/2, GL_RGB );
 	
+	//side view fbo
+	ofFbo::Settings sideviewFboSettings;
+	sideviewFboSettings.width         = ofGetWidth()/2;
+	sideviewFboSettings.height            = ofGetHeight();
+	sideviewFboSettings.internalformat    = GL_RGBA;
+	sideviewFboSettings.numColorbuffers   = 1;
+	sideviewFboSettings.useDepth = true;
+	sideviewFboSettings.numSamples = 4;
+	sideViewFbo.allocate( sideviewFboSettings );
+	
+	cout << "sideviewFboSettings.width: " << sideviewFboSettings.width  << endl;
+	cout << "sideViewFbo.width: " << sideViewFbo.getWidth()  << endl;
+	
+	sideView_mm1.allocate( sideViewFbo.getWidth()/2, sideViewFbo.getHeight()/2, GL_RGB );
+	sideView_mm2.allocate( sideView_mm1.getWidth()/2, sideView_mm1.getHeight()/2, GL_RGB );
+	sideView_mm3.allocate( sideView_mm2.getWidth()/2, sideView_mm2.getHeight()/2, GL_RGB );
+	sideView_mm4.allocate( sideView_mm3.getWidth()/2, sideView_mm3.getHeight()/2, GL_RGB );
+	sideView_mm5.allocate( sideView_mm4.getWidth()/2, sideView_mm4.getHeight()/2, GL_RGB );
+	sideView_mm6.allocate( sideView_mm5.getWidth()/2, sideView_mm5.getHeight()/2, GL_RGB );
+	
     
+	//web sockets
     bClientInitialized = false;
     bClientConnected = false;
     options = ofxLibwebsockets::defaultClientOptions();
     
     ofLogNotice() << "hostname = " << hostname();
-    if(hostname()=="cheese.local")
-        options.host = "cheese.local";
+    if(hostname()=="brainz.lan")
+        options.host = "localhost";
     else if(hostname()=="brainz.local")
         options.host = "brainz.local";
     else
         options.host = "brainz.io";
-    
     ofLogNotice() << "options.host " << options.host;
     options.port = 8080;
     client.addListener(this);
@@ -56,32 +76,27 @@ void ofApp::setup()
 //    ofSetLogLevel(OF_LOG_VERBOSE);
 	
 	//Journy stuff
-	bSaveJsonsToFile = false;//for debuggin it was faster to load them from file rather then wait for the server
 	bLoadJsonsFromFile = false;
-	
 	bJourniesNeedUpdate = false;
-	
 	bOnionSetup = false;
 	
 	//	journey colors
-    //TODO: cycle through color map
-    // get a broader range of colors( 10-15 )
-	colorMap["red"].set( 255, 99, 99 );             // = ofColor::red;
+	colorMap["red"].set( 255, 99, 99 );			// = ofColor::red;
 	colorMap["orange"].set( 255, 182, 42 );			// = ofColor::orange;
 	colorMap["yellow"].set( 236,  236, 146 );		// = ofColor::yellow;
 	colorMap["green"].set( 79, 230, 60 );			// = ofColor::green;
 	colorMap["blue"].set( 4, 184, 197 );			// = ofColor::blue;
 	colorMap["indigo"].set( 131, 102, 212 );		// = ofColor::indigo;
 	colorMap["violet"].set( 227, 59, 207 );			// = ofColor::violet;
-    
-    colorArray.push_back(colorMap["red"]);
-    colorArray.push_back(colorMap["orange"]);
-    colorArray.push_back(colorMap["yellow"]);
-    colorArray.push_back(colorMap["green"]);
-    colorArray.push_back(colorMap["blue"]);
-    colorArray.push_back(colorMap["indigo"]);
-    colorArray.push_back(colorMap["violet"]);
-    colorIndex = 0;
+	
+	colorArrayIndex = 0;
+	colorArray.push_back( colorMap["red"] );
+	colorArray.push_back( colorMap["orange"] );
+	colorArray.push_back( colorMap["yellow"] );
+	colorArray.push_back( colorMap["green"] );
+	colorArray.push_back( colorMap["blue"] );
+	colorArray.push_back( colorMap["indigo"] );
+	colorArray.push_back( colorMap["violet"] );
 	
 	controlColors.resize(64);
 	for (int i=0; i<controlColors.size(); i++) {
@@ -124,35 +139,77 @@ void ofApp::setup()
 	//TODO: rename "newRibbonScaleDuration"
 	newRibbonScaleDuration = 45; // <---- this controls the time it takes for the journey to animate in.
 
-	animationPresetVariationTime = 10;
+	animationPresetVariationTime = 6;
 	animationPresetIndex0 = 0;
 	animationPresetIndex1 = 1;
-    
 	
 	animationPresets.push_back("k_0");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("k_0");
+	animationPresets.push_back("k_12");
 	animationPresets.push_back("k_1");
-//	animationPresets.push_back("keyVis");
-	animationPresets.push_back("k_2");
-//	animationPresets.push_back("k_3");
-	//	animationPresets.push_back("keyVis");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("k_3");
 	animationPresets.push_back("k_4");
-//	animationPresets.push_back("k_5");
+	animationPresets.push_back("k_5");
 	animationPresets.push_back("k_6");
 	animationPresets.push_back("k_7");
 	animationPresets.push_back("k_8");
+	animationPresets.push_back("keyVis");
 	animationPresets.push_back("k_9");
 	animationPresets.push_back("k_10");
 	animationPresets.push_back("k_11");
 	animationPresets.push_back("k_12");
+	animationPresets.push_back("k_13");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("k_14");
+	animationPresets.push_back("k_15");
+	animationPresets.push_back("k_16");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("t_0");
+	animationPresets.push_back("t_1");
+	animationPresets.push_back("t_3");
+	animationPresets.push_back("t_4");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("t_5");
+	animationPresets.push_back("t_6");
+	animationPresets.push_back("t_7");
+	animationPresets.push_back("t_8");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("t_66");
+	animationPresets.push_back("t_67");
+	animationPresets.push_back("t_68");
+	animationPresets.push_back("t_69");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("j_0");
+	animationPresets.push_back("j_2");
+	animationPresets.push_back("j_3");
+	animationPresets.push_back("j_4");
+	animationPresets.push_back("j_5");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("j_6");
+	animationPresets.push_back("j_7");
+	animationPresets.push_back("j_10");
 	
 	transitionPresetIndex0 = 0;
 	transitionPresets.push_back("k_1");
+	transitionPresets.push_back("t_0");
+	transitionPresets.push_back("t_1");
+	transitionPresets.push_back("t_3");
 	transitionPresets.push_back("k_2");
-//	transitionPresets.push_back("k_8");
-	transitionPresets.push_back("k_5");
-	transitionPresets.push_back("k_7");
+	transitionPresets.push_back("t_4");
+	transitionPresets.push_back("t_5");
 	transitionPresets.push_back("k_12");
-	
+	transitionPresets.push_back("t_6");
+	transitionPresets.push_back("t_7");
+	transitionPresets.push_back("k_7");
+	transitionPresets.push_back("t_8");
+	transitionPresets.push_back("t_66");
+	transitionPresets.push_back("t_67");
+	transitionPresets.push_back("t_68");
+	transitionPresets.push_back("k_5");
+	transitionPresets.push_back("t_69");
+
 	
 	keyVis = "keyVis";
 	
@@ -176,37 +233,16 @@ void ofApp::setup()
 	
 	//camera
 	
-	noiseImage.allocate(256, 256, OF_IMAGE_COLOR );
 	
-	float stepi = 1. / float(noiseImage.getWidth());
-	float stepj = 1. / float(noiseImage.getHeight());
-	for (int i=0; i<noiseImage.getWidth(); i++) {
-		for (int j=0; j<noiseImage.getHeight(); j++) {
-			float n = ofNoise( stepi*i, stepj*j);
-			float n0 = ofNoise( stepi*i*20, stepj*j*20);
-			float n1 = ofNoise( stepi*i*40, stepj*j*40);
-			float n2 = ofNoise( stepi*i*80, stepj*j*80);
-			float n3 = ofNoise( stepi*i*160, stepj*j*160);
-			
-//			ofColor c( 255 * (n0 + n1 + n2 + n3) / 4 );
-//			ofColor c( 255 * (n3 * n0 * n1 * n2) );
-			ofColor c( 255*(n+n0+n1)/3, 255*(n0+n1+n2)/3, 255*(n1+n2+n3)/3 );
-			
-			noiseImage.setColor( i, j, c );
-		}
-	}
-	noiseImage.update();
-	
-	
-	vector <ofVec3f> particlePositions;
-	numParticles = 100000;
-	particlePositions.resize(numParticles);
-	
-	for (int i=0; i<numParticles; i++) {
-		particlePositions[i].set( ofRandom(-1024, 1024), ofRandom(-1024, 1024), ofRandom(-1024, 1024) );
-	}
-	
-	particleVbo.setVertexData( &particlePositions[0], particlePositions.size(), GL_STATIC_DRAW );
+//	vector <ofVec3f> particlePositions;
+//	numParticles = 100000;
+//	particlePositions.resize(numParticles);
+//	
+//	for (int i=0; i<numParticles; i++) {
+//		particlePositions[i].set( ofRandom(-1024, 1024), ofRandom(-1024, 1024), ofRandom(-1024, 1024) );
+//	}
+//	
+//	particleVbo.setVertexData( &particlePositions[0], particlePositions.size(), GL_STATIC_DRAW );
 }
 
 
@@ -262,8 +298,10 @@ void ofApp::setDefaults()
 	EulScale = 1.;
 	
 	bSideView = false;
-    
-    onJourneyRot = 1.;
+	
+	keyVisSpan = 2;
+	
+	vortexScl = 1;
 }
 
 void ofApp::setupUI()
@@ -300,6 +338,7 @@ void ofApp::setupUI()
 	ofxUIToggle* toggle = guiMain->addToggle("playAnimation", &bPlayAnimation );
 	guiMain->addSlider("circleRadius", 100, 1024, &circleRadius );
 	guiMain->addSlider("edgeAADist", 1, 10, &edgeAADist );
+	guiMain->addSlider("vortexScl", -1, 1, &vortexScl );
 	
 	guiMain->addLabel("render Types");
 	guiMain->addRadio("renderTypes", renderTypes );
@@ -313,8 +352,9 @@ void ofApp::setupUI()
 	//create a radio for switching renderTypes
 	guiMain->addSpacer();
 	guiMain->addLabel("Shaders" );
-	cout << "shaderNames.size(): "<< shaderNames.size() << endl;
+//	cout << "shaderNames.size(): "<< shaderNames.size() << endl;
 	guiMain->addRadio("shaders", shaderNames );
+	
 	
     //guiMain->addSpacer();
     //guiMain->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
@@ -414,6 +454,14 @@ void ofApp::setupUI()
 	
 	//get our presets and them to the radio
 	presetGui = new ofxUICanvas();
+	presetGui->setName("COLOR");
+	presetGui->setFont("GUI/OpenSans-Semibold.ttf");
+	presetGui->setFontSize(OFX_UI_FONT_LARGE, 4);
+	presetGui->setFontSize(OFX_UI_FONT_MEDIUM, 4);
+	presetGui->setFontSize(OFX_UI_FONT_SMALL, 4);
+	presetGui->setColorFill(ofxUIColor(200));
+	presetGui->setColorFillHighlight(ofxUIColor(255));
+	presetGui->setColorBack(ofxUIColor( 90, 90, 90, 170));
 	
 	//save button
 	presetGui->addSpacer();
@@ -424,7 +472,8 @@ void ofApp::setupUI()
 	presetGui->addLabel("Presets");
 	presetGui->setPosition( guiShader->getRect()->getX() + guiShader->getRect()->getWidth() + 10, 10 );
 	presetGui->addSpacer();
-	presetRadio = presetGui->addRadio("presets", getPresetNames(), false );
+//	presetRadio = presetGui->addRadio("presets", getPresetNames(), OFX_UI_ORIENTATION_VERTICAL );
+	presetRadio = presetGui->addRadio("presets", getPresetNames(), OFX_UI_ORIENTATION_VERTICAL, 100, 10, 0,0 );
 	
 	presetGui->autoSizeToFitWidgets();
 	
@@ -438,7 +487,7 @@ void ofApp::setupUI()
 	guiColor->setFontSize(OFX_UI_FONT_SMALL, 6);
 	guiColor->setColorFill(ofxUIColor(200));
 	guiColor->setColorFillHighlight(ofxUIColor(255));
-	guiColor->setColorBack(ofxUIColor( 90, 90, 90, 70));
+	guiColor->setColorBack(ofxUIColor( 90, 90, 90, 170));
 	guiColor->setPosition( presetGui->getRect()->getX() + presetGui->getRect()->getWidth() + 10, 10 );
 	guiColor->setWidth( 150 );
 
@@ -494,7 +543,7 @@ void ofApp::setupUI()
 	guiCamera->setFontSize(OFX_UI_FONT_SMALL, 6);
 	guiCamera->setColorFill(ofxUIColor(200));
 	guiCamera->setColorFillHighlight(ofxUIColor(255));
-	guiCamera->setColorBack(ofxUIColor( 90, 90, 90, 70));
+	guiCamera->setColorBack(ofxUIColor( 90, 90, 90, 170));
 	guiCamera->setPosition( guiColor->getRect()->getX() + guiColor->getRect()->getWidth() + 10, 10 );
 	guiCamera->setWidth( 350 );
 	
@@ -521,9 +570,8 @@ void ofApp::setupUI()
 	guiCamera->addSlider( "tunnelDepthScl", 1, 30, &tunnelDepthScl );
 	
 	guiCamera->addSlider("EulScale", -2., 2., &EulScale);
-    guiCamera->addSlider("onJourneyRot", -2, 2, &onJourneyRot );
 	
-	guiCamera->addImage("noiseImage", &noiseImage, 255, 255 );
+//	guiCamera->addImage("noiseImage", &noiseImage, 255, 255 );
 	
 	guiCamera->autoSizeToFitWidgets();
 
@@ -623,7 +671,7 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 						//bFoundIt = true;
 						currentRenderType = name;
 						
-						cout << "currentRenderType: " << currentRenderType << endl;
+//						cout << "currentRenderType: " << currentRenderType << endl;
 					}
 				}
 			}
@@ -649,7 +697,7 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 				{
 					ofxUIImageButton* button = (ofxUIImageButton *) e.widget;
 					
-					cout << imageButtons[i]->getName() << ": " << button->getValue() << endl;
+//					cout << imageButtons[i]->getName() << ": " << button->getValue() << endl;
 					if(button->getValue())
 					{
 						//set our palette to true
@@ -708,11 +756,11 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 				bAddingRibbon = true;
 				
 				//tells the shader where to clip the data texture
-				addRibbonScaleTween = tween.addTween( newRibbonShaderScale, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonShaderScale", TWEEN_SINUSOIDAL, TWEEN_INOUT );
+				addRibbonScaleTween = tween.addTween( newRibbonShaderScale, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonShaderScale", TWEEN_SINUSOIDAL, TWEEN_OUT );
 				
 				//scales up the outside mesh to prevent scale popping caused recurssivly scaling the array of onions.
 				//when we add a new layer the scales after the new layer sholud stay the same
-				tween.addTween( newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonScale", TWEEN_SINUSOIDAL, TWEEN_INOUT );
+				tween.addTween( newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonScale", TWEEN_LINEAR, TWEEN_INOUT );
 				newRibbonShaderScale = 0;
                 
                 
@@ -742,12 +790,6 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			//Jeff, this is the correct setup?
             recordManager.endJourney(journeys.back());
             soundManager.endJourney(journeys.back());
-			
-			//=======
-			//
-			//            recordManager.endJourney(journeys.back());
-			//            soundManager.endJourney(journeys.back());
-			//>>>>>>> 9ed3f7ccdee7bc229fcd4a98c432a80f862d015a
 		}
 	}
 	
@@ -763,31 +805,14 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			journeys.erase( journeys.begin() );
 		}
 	}
-	
-//	if( e.name == "keyVisTween" )
-//	{
-//		if(e.message == "started")
-//		{
-//			lastValues = currentValues;
-//			bPlayAnimation = false;
-//		}
-//		if(e.message == "updated")
-//		{
-////			mixPresets( "keyVis", e.value );
-//		}
-//		if(e.message == "ended")
-//		{
-//			lastValues = currentValues;
-//		}
-//	}
+
 	
 	//this adds a journey and controls the variable that plays the music
 	if( e.name == "JourneyIntro")
 	{
 		if( e.message == "started" )
 		{
-			//stop the perpetual transitions
-			bPlayAnimation = false;
+			bLaodingJourney = true;
 			
 			//start our journey transition meedly tween. create it if it doesn't exist
 			Tween* t = tween.getTween("journeyMix");
@@ -805,74 +830,110 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 		if( e.message == "ended" )
 		{
 			//play the perpetual transitions again
-			bPlayAnimation = true;
+			//			bPlayAnimation = true;
 			lastValues = currentValues;
+			
+			tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), keyVisSpan, "endJournyIntro" );
 		}
 	}
 	
-//	//journey transition meedly tween. plays while the new journey is loading
-//	if (e.name == "journeyMix")
-//	{
-//		if (e.message == "started")
-//		{
-//			bLaodingJourney = true;
-//			//making doublely sure that we're tweening from the most recent values
-//			lastValues = currentValues;
-//		}
-//		
-//		if(e.message == "updated")
-//		{
-//			//mix the target preset with our lastValues
-//			mixPresets( transitionPresets[transitionPresetIndex0], e.value );
-//		}
-//		
-//		if(e.message == "ended")
-//		{
-//			bLaodingJourney = false;
-//			//if we're still journeying the keep on mixing
-//			Tween* jIntro = tween.getTween( "JourneyIntro" );
-//			if( jIntro != NULL &&  jIntro->endTime > ofGetElapsedTimef() + journeyMixTime*2 )
-//			{
-//				
-//				Tween* t = tween.getTween("journeyMix");
-//				t->setup( &journeyTransitionVal, 0, 1, ofGetElapsedTimef(), journeyMixTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "journeyMix" );
-//				t->bKeepAround = true;
-//				
-//				transitionPresetIndex0++;
-//				if(transitionPresetIndex0 >= transitionPresets.size() )	transitionPresetIndex0 = 0;
-//			}
-//			
-//			//otherwise end the mix
-//			else
-//			{
-//				//cout  << "stop journey mixing cus we're at the end of the journey intro" << endl;
-//				float span = jIntro->endTime - ofGetElapsedTimef();
-//				tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), span, "keyVisTween" );
-//				
-//				//start our mixing again AFTER the keyvisual has been restored ==  ofGetElapsedTimef() + span, ...
-//				variationTween->setup( &variation, 0, 1, ofGetElapsedTimef() + span, animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
-//				variationTween->bKeepAround = true;
-//			}
-//			
-//			//store the lastValues for future mixing
-//			lastValues = currentValues;
-//		}
-//	}
+	if( e.name == "startJournyIntro" )
+	{
+		if (e.message == "started") {
+			lastValues = currentValues;
+			bLaodingJourney = true;
+		}
+		if (e.message == "updated") {
+			cout << e.name << ": " <<  e.value << endl;
+			mixPresets("keyVis", e.value );
+		}
+		if (e.message == "ended") {
+			
+			lastValues = currentValues;
+			
+			//start the preset mix medley 
+			tween.addTween( journeyVal, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration - keyVisSpan, "JourneyIntro" );
+		}
+	}
+	
+	if( e.name == "endJournyIntro" )
+	{
+		if (e.message == "started") {
+			lastValues = currentValues;
+		}
+		if (e.message == "updated") {
+			cout << e.name << ": " <<  e.value << endl;
+			mixPresets("keyVis", e.value );
+		}
+		if (e.message == "ended") {
+			
+			lastValues = currentValues;
+			bLaodingJourney = true;
+		}
+	}
+	
+	//journey transition meedly tween. plays while the new journey is loading
+	if (e.name == "journeyMix")
+	{
+		if (e.message == "started")
+		{
+			//making doublely sure that we're tweening from the most recent values
+			lastValues = currentValues;
+		}
+		
+		if(e.message == "updated")
+		{
+			//mix the target preset with our lastValues
+			mixPresets( transitionPresets[transitionPresetIndex0], e.value );
+		}
+		
+		if(e.message == "ended")
+		{
+			
+			//if we're still journeying the keep on mixing
+			Tween* jIntro = tween.getTween( "JourneyIntro" );
+			if( jIntro != NULL &&  jIntro->endTime > ofGetElapsedTimef() + journeyMixTime*2 )
+			{
+				
+				Tween* t = tween.getTween("journeyMix");
+				t->setup( &journeyTransitionVal, 0, 1, ofGetElapsedTimef(), journeyMixTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "journeyMix" );
+				t->bKeepAround = true;
+				
+				transitionPresetIndex0++;
+				if(transitionPresetIndex0 >= transitionPresets.size() )	transitionPresetIndex0 = 0;
+			}
+			
+			//otherwise end the mix
+			else
+			{
+				//cout  << "stop journey mixing cus we're at the end of the journey intro" << endl;
+				float span = jIntro->endTime - ofGetElapsedTimef();
+				tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), span, "keyVisTween" );
+				
+				//start our mixing again AFTER the keyvisual has been restored ==  ofGetElapsedTimef() + span, ...
+				variationTween->setup( &variation, 0, 1, ofGetElapsedTimef() + span, animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
+				variationTween->bKeepAround = true;
+			}
+			
+			//store the lastValues for future mixing
+			lastValues = currentValues;
+		}
+	}
 	
 	
 	//perpetual mixing of presets
 	//TODO: rename variationKey
 	if(e.name == variationKey && !bLaodingJourney)
 	{
+		if (e.message == "started")
+		{
+			//make doublely sure
+			lastValues = currentValues;
+		}
+		
 		//if we're not loading a Journey and actively animating then we are mixing and tweening
 		if(bPlayAnimation)
 		{
-            if (e.message == "started")
-            {
-                //make doublely sure
-                lastValues = currentValues;
-            }
-            
 			if( e.message == "updated")
 			{
 				//transition to the next preset
@@ -901,25 +962,63 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 		{
 			//we must be loading a journey. so no mixing here.
 		}
-	}	
+	}
+	
+	if(e.name == "returnToKeyVis" ){
+		if (e.message == "started") {
+//			bPlayAnimation = false;
+			lastValues = currentValues;
+		}
+		if (e.message == "updated") {
+			cout << e.name << ": " <<  e.value << endl;
+			mixPresets("keyVis", e.value );
+		}
+		if (e.message == "ended") {
+			
+			lastValues = currentValues;
+//			bPlayAnimation = true;
+		}
+	}
+	
+	
+	if( e.name == "keyVisTween" )
+	{
+		if(e.message == "started")
+		{
+			lastValues = currentValues;
+		}
+		if(e.message == "updated")
+		{
+			mixPresets( "keyVis", e.value );
+		}
+		if(e.message == "ended")
+		{
+			lastValues = currentValues;
+		}
+	}
 }
 
 
 void ofApp::addJourneyTween()
 {
 	addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "addRibbonTween" );
-        
-//    //tween back to out key kis
-//    float keyVisTime = 4;
-//    tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), keyVisTime, "keyVisTween" );
-//
-//    //start our journey transition medley after we get to the key vis. on ending we go back to key vis
-//    tween.addTween( journeyVal, 0, 1, ofGetElapsedTimef() + keyVisTime, newRibbonScaleDuration - keyVisTime*2, "JourneyIntro" );
+	
+	//this goes to keyVis -> transition medley - > keyVis over newRibbonScaleDuration
+	tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), keyVisSpan, "startJourneyIntro" );
 }
 
-void ofApp::mixPresets( map<string, float>* p_0, map<string, float>* p_1, float mixval )
-{
+void ofApp::mixPresets( map<string, float>* p_0, map<string, float>* p_1, float mixval ){
+	mixPresets( p_0, p_1, mixval, &currentValues);
+}
 
+
+void ofApp::mixPresets( string p_0, string p_1, float mixval, map<string, float> * values )
+{
+	mixPresets( &presets[p_0], &presets[p_1], mixval, values );
+}
+
+void ofApp::mixPresets( map<string, float>* p_0, map<string, float>* p_1, float mixval, map<string, float> * values )
+{
 	if( p_0 != NULL && p_1 != NULL )
 	{
 		ofxUIWidget *w;
@@ -931,9 +1030,9 @@ void ofApp::mixPresets( map<string, float>* p_0, map<string, float>* p_1, float 
 				
 				if(w != NULL && (*p_0).find( it->first ) != (*p_0).end() && (*p_1).find( it->first ) != (*p_1).end() )
 				{
-					currentValues[it->first] = ofMap( mixval, 0, 1, (*p_0)[it->first], (*p_1)[it->first], false );
+					(*values)[it->first] = ofMap( mixval, 0, 1, (*p_0)[it->first], (*p_1)[it->first], false );
 					
-					((ofxUISlider *)w)->setValue( currentValues[it->first] );
+					((ofxUISlider *)w)->setValue( (*values)[it->first] );
 				}
 			}
 		}
@@ -1006,10 +1105,17 @@ void ofApp::update()
 	if(bSavePreset){
 		savePreset();
 	}
+    
 	if(currentPresetName != nextPreset){
 		if(!bCachedPresetValues){
 			bCachedPresetValues = true;
 			cachePresetValues();
+			
+			sideviewValues = presets["sideView"];
+//			for (map<string, float>::iterator it = sideviewValues.begin(); it!=sideviewValues.end(); it++) {
+//				cout << it->first << " : " << it->second << endl;
+//			}
+			
 		}
 		loadPreset( nextPreset );
 		
@@ -1017,6 +1123,21 @@ void ofApp::update()
 		lastValues = presets[ nextPreset ];
 	}
 	
+    
+    
+    if(!bAddingRibbon && queue.size() > 0)
+    {
+		ofLogNotice() << "adding journey from queue";
+        
+		//true for animating in
+        journeys.push_back( queue[0] );
+        queue.erase(queue.begin());
+        
+		bJourniesNeedUpdate = true;
+		addJourneyTween();
+    }
+    
+    
 	//add new journeys
 	if(bJourniesNeedUpdate){
 		bJourniesNeedUpdate = false;
@@ -1027,12 +1148,12 @@ void ofApp::update()
 		{
 			if(!onions[i].bIsSetup){
 				onions[i].setup( journeys[i] );
-				onions[i].color = getNextColor();//getRandomColor();
+				onions[i].color = getNextJourneyColor();//getRandomColor();
 				
 				//prevent neighbor color matches
 				if(i>0){
 					while (onions[i].color == onions[i-1].color) {
-						onions[i].color = getNextColor();
+						onions[i].color = getNextJourneyColor();// getRandomColor();
 					}
 				}
 			}
@@ -1051,22 +1172,19 @@ void ofApp::update()
     
     soundManager.rotVel.set( Eul );
     
+
+    
     if(!bClientConnected && currentTime-lastConnectionAttempt > 5) {
-        ofLogNotice() << "Attempting connection to " << options.host;
-        lastConnectionAttempt = currentTime;
         client.connect( options );
+        lastConnectionAttempt = currentTime;
     }
 }
 
 void ofApp::retryColors()
 {
 	for(int i=0; i<onions.size(); i++){
-		onions[i].color = getRandomColor();
+		onions[i].color = getNextJourneyColor();//getRandomColor();
 	}
-	
-//	for (int i=0; i<controlColors.size(); i++) {
-//		controlColors[i].set( ofVec3f( ofRandom(.3, 1.3), ofRandom(.3, 1.3), ofRandom(.3, 1.3)) );
-//	}
 }
 
 //--------------------------------------------------------------
@@ -1097,17 +1215,37 @@ void ofApp::draw()
 	
 	ofPopStyle();
 	
+	ofPushStyle();
+	
+	sideViewFbo.begin();
+	ofClear(0,0,0,255);
+		
+	if (bDepthTest) {
+		glEnable( GL_DEPTH_TEST);
+	}else{
+		glDisable(GL_DEPTH_TEST);
+	}
+	
+	drawSideView();
+	
+	if (!bDepthTest) {
+		glDisable(GL_DEPTH_TEST);
+	}
+	
+	sideViewFbo.end();
+	
+	//mip your own maps
+	drawMipMaps();
+	
+	
+	ofPopStyle();
 	ofSetColor(255,255,255,255);
 	ofPushStyle();
 	ofEnableAlphaBlending();
 	
-	
-	//mip your own maps
-	drawMipMaps();	
-	
 	//post shader. draw to the screen
 	post.begin();
-	post.setUniform2f("center", ofGetWidth()/2, ofGetHeight()/2);
+	post.setUniform2f("center", ofGetWidth()/4, ofGetHeight()/2);
 	post.setUniform1f("circleRadius", circleRadius );
 	post.setUniform1f("edgeAADist", edgeAADist );
 	post.setUniformTexture("fbo", fbo.getTextureReference(), 0);
@@ -1121,7 +1259,34 @@ void ofApp::draw()
 	post.setUniform1f("glowExponent", glowExponent );
 	post.setUniform1f("glowScale", glowScale );
 	
-	fbo.draw(0, 0, ofGetWidth(), ofGetHeight() );
+	fbo.draw(0, 0, fbo.getWidth(), ofGetHeight() );
+	
+	post.end();
+	ofPopStyle();
+	ofPopStyle();
+	ofSetColor(255,255,255,255);
+	ofPushStyle();
+	ofEnableAlphaBlending();
+	
+	//post shader. draw to the screen
+	glDisable(GL_DEPTH_TEST);
+	
+	post.begin();
+	post.setUniform2f("center", ofGetWidth()/2, ofGetHeight()/2);
+	post.setUniform1f("circleRadius", 1920 );// circleRadius );
+	post.setUniform1f("edgeAADist", edgeAADist );
+	post.setUniformTexture("fbo", sideViewFbo.getTextureReference(), 0);
+	post.setUniformTexture("mm1", sideView_mm1.getTextureReference(), 1);
+	post.setUniformTexture("mm2", sideView_mm2.getTextureReference(), 2);
+	post.setUniformTexture("mm3", sideView_mm3.getTextureReference(), 3);
+	post.setUniformTexture("mm4", sideView_mm4.getTextureReference(), 4);
+	post.setUniformTexture("mm5", sideView_mm5.getTextureReference(), 5);
+	post.setUniformTexture("mm6", sideView_mm6.getTextureReference(), 6);
+	post.setUniform1f("glowCoefficient", glowCoefficient );
+	post.setUniform1f("glowExponent", glowExponent );
+	post.setUniform1f("glowScale", glowScale );
+	
+	sideViewFbo.draw( fbo.getWidth(), 0, sideViewFbo.getWidth(), ofGetHeight() );
 	
 	post.end();
 	ofPopStyle();
@@ -1148,16 +1313,347 @@ void ofApp::draw()
 		glEnable( GL_DEPTH_TEST );
 		ofEnableAlphaBlending();
 	}
+}
+
+void ofApp::drawOnion()
+{
+	if(!bOnionSetup){
+		setupOnion();
+	}
+	
+	//update onion transforms
+	ofQuaternion q;
+	q.makeRotate(Eul.x, ofVec3f(1,0,0), Eul.y, ofVec3f(0,1,0), Eul.z, ofVec3f(0,0,1));
+	
+	float startScale = 1. / recursiveScale;
+	
+	minSampleVal = 10000000;
+	for (int i=onions.size()-1; i>=0; i--)
+	{
+		if(i == onions.size()-1 )
+		{
+			onions[i].transform.setScale( newRibbonScale,newRibbonScale,newRibbonScale ); // newRibbonScale scales down to 1.
+			onions[i].transform.setOrientation( q + q.inverse() * (1.f - newRibbonShaderScale) ); // newRibbonShaderScale == val btwn 0-1
+			onions[i].sampleVal = newRibbonScale;
+		}
+		else
+		{
+			float scl = onions[i+1].transform.getScale().x * recursiveScale;
+			scl -= floor(scl);
+			onions[i].transform.setScale( scl, scl, scl );
+			onions[i].transform.setOrientation( onions[i+1].transform.getOrientationQuat() * q );
+			onions[i].sampleVal = scl;//onions[i+1].transform.getScale().x * recursiveScale;
+			minSampleVal = min( minSampleVal, onions[i].sampleVal );
+			
+			
+			if(onions[i+1].transform.getScale().x > 1.01 ){
+				onions[i+1].transform.setScale( 1.01, 1.01, 1.01 );
+			}
+		}
+	}
+	
+	globalTransform.makeIdentityMatrix();
+	globalTransform.rotateRad(globalRotationAboutXAxis, 1, 0, 0);
+	
+	//draw it
+	camera.begin();
+	
+	//global onion uniforms
+	currentShader->begin();
+	currentShader->setUniform1f("time", elapsedTime );
+	currentShader->setUniform1f("dataSmoothing", dataSmoothing);
+	currentShader->setUniform1f("noiseScale", noiseScale );
+	currentShader->setUniform1f("slope", slope );
+	
+	currentShader->setUniform1f("noiseExponent", noiseExponent );
+	currentShader->setUniform1f("noiseMixExponent", noiseMixExponent );
+	currentShader->setUniform1f("noisePosScale", noisePosScale );
+	currentShader->setUniform1f("noiseSpread", noiseSpread );
+	
+	currentShader->setUniform1f("tunnelMix", tunnelMix );
+	currentShader->setUniform1f("tunnelDeltaScl", tunnelDeltaScl );
+	currentShader->setUniform1f("tunnelTimeScl", tunnelTimeScl );
+	currentShader->setUniform1f("tunnelDepthScl", tunnelDepthScl );
+	
+	//
+	ofPushMatrix();
+	
+	ofScale( radius, radius, radius );
+	ofTranslate( onionPosX, onionPosY, onionPosZ );
+	
+	ofTranslate( positionX, positionY, positionZ );
+	
+	ofRotateX( rotateX );
+	ofRotateY( rotateY );
+	ofRotateZ( rotateZ );
+	
+	ofPushMatrix();
+	
+	if( bRotateOnNewJourney )	ofMultMatrix( globalTransform );//<-- this rotates the onion on transition in
+	
+	ofScale(1, squishY, squish );
+	
+	ofRotate( newRibbonShaderScale * -360 + 90 - slope*90., 0, 0, 1);
+	float vortexRotVal = -3. * elapsedTime * vortexScl;
 	
 	
-//	if( captrure ){
-//		captrure = false;
-//		
-//		fbo.readToPixels(outImage);
-//		outImage.update();
-//		outImage.saveImage("d_4Large"+ofGetTimestampString()+".png");
-//	}
-    
+	if(!bDepthTest)	glDisable( GL_DEPTH_TEST );
+	
+	glEnable(GL_CULL_FACE);
+	
+	
+	//draw each onion
+	float step = 1. / float(onions.size()-1);
+	for (int i=0; i<onions.size(); i++) {
+		
+		//crazy transforms
+		ofPushMatrix();
+		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
+		
+		//vortex rotation
+		ofRotate( ( max( (float) onions.size() - i - 2 + newRibbonShaderScale, 0.f) ) * vortexRotVal, 0, 0, 1);
+		
+		//set ribbon color
+		ofSetColor( onions[i].color );
+		
+		//per ribbon uniforms
+		float sampleVal = ofMap( onions[i].sampleVal, minSampleVal, 1., 0, 1, true );
+		ofFloatColor col = getColor( sampleVal, &controlColors );
+		
+		float mixVal = ofMap(sampleVal, 0, 1, journeyColorMixLow, journeyColorMixHi, true);
+		
+		col.r = ofMap(mixVal, 0, 1, col.r, float(onions[i].color.r)/255., true );
+		col.g = ofMap(mixVal, 0, 1, col.g, float(onions[i].color.g)/255., true );
+		col.b = ofMap(mixVal, 0, 1, col.b, float(onions[i].color.b)/255., true );
+		
+		currentShader->setUniform1f( "sampleVal", sampleVal );
+		currentShader->setUniform1f( "randomOffset", onions[i].randomNumer );
+		currentShader->setUniform1f( "displacement", ofMap( onions[i].sampleVal, minSampleVal, 1., innerDisplacement, outerDisplacement, true ) );
+		currentShader->setUniform1f( "readingScale", ofMap( onions[i].sampleVal, minSampleVal, 1., innerReadingScale, outerReadingScale, true ) );
+		currentShader->setUniform1f( "readingThreshold", ofMap( onions[i].sampleVal, minSampleVal, 1., innerReadingThreshold, outerReadingThreshold, true ) );
+		currentShader->setUniform1f( "alpha", ofMap( onions[i].sampleVal, minSampleVal, 1., innerAlpha, outerAlpha, true ) );
+		currentShader->setUniform1f( "facingRatio", ofMap( onions[i].sampleVal, minSampleVal, 1., innerFacingRatio, outerFacingRatio, true ) );
+		currentShader->setUniform2f( "texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
+		currentShader->setUniform3f( "blendColor", col.r, col.g, col.b );
+		currentShader->setUniformTexture( "dataTexture", onions[i].dataTexture, 0);
+		
+		//we only animimate the outer onion
+		if( bAddingRibbon && i == onions.size()-1 )
+		{
+			currentShader->setUniform1f("animateIn", newRibbonShaderScale );
+			
+//			// after .95 it fades to the normal preset color
+//			float mixVal = ofMap( newRibbonShaderScale, .95, 1, 0, 1, true );
+//			float mMixVal = 1. - mixVal;
+//			
+//			currentShader->setUniform3f( "blendColor", mMixVal*journeyIntroColor.r+mixVal*col.r, mMixVal*journeyIntroColor.g+mixVal*col.g, mMixVal*journeyIntroColor.b+mixVal*col.b );
+		}
+		else
+		{
+			//1 == no animation.
+			currentShader->setUniform1f("animateIn", 1 );
+		}
+		
+		//draw front and back in diferent passes
+		glCullFace(GL_FRONT);
+		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );
+		
+		glCullFace(GL_BACK);
+		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );
+		
+		ofPopMatrix();
+	}
+	
+	
+	glDisable(GL_CULL_FACE);
+	
+	currentShader->end();
+	
+	//	//AMBIENT PARTICLES
+	//	glPointSize( 10 );
+	//	glEnable( GL_VERTEX_PROGRAM_POINT_SIZE );
+	//
+	//	ofSetColor(255, 0, 0);
+	//	particleVbo.draw( GL_POINTS, 0, numParticles );
+	
+	ofPopMatrix();
+	
+	ofPopMatrix();
+	
+	
+	if(!bDepthTest)	glEnable( GL_DEPTH_TEST );
+	camera.end();
+}
+
+void ofApp::drawSideView(){
+	
+	ofQuaternion q;
+	q.makeRotate(Eul.x, ofVec3f(1,0,0), Eul.y, ofVec3f(0,1,0), Eul.z, ofVec3f(0,0,1));
+	
+	float startScale = 1. / recursiveScale;
+	
+	minSampleVal = 10000000;
+	for (int i=onions.size()-1; i>=0; i--)
+	{
+		if(i == onions.size()-1 )
+		{
+			onions[i].transform.setScale( newRibbonScale,newRibbonScale,newRibbonScale ); // newRibbonScale scales down to 1.
+			onions[i].transform.setOrientation( q + q.inverse() * (1.f - newRibbonShaderScale) ); // newRibbonShaderScale == val btwn 0-1
+			onions[i].sampleVal = newRibbonScale;
+		}
+		else
+		{
+			float scl = onions[i+1].transform.getScale().x * recursiveScale;
+			scl -= floor(scl);
+			onions[i].transform.setScale( scl, scl, scl );
+			onions[i].transform.setOrientation( onions[i+1].transform.getOrientationQuat() * q );
+			onions[i].sampleVal = scl;//onions[i+1].transform.getScale().x * recursiveScale;
+			minSampleVal = min( minSampleVal, onions[i].sampleVal );
+		}
+	}
+	
+	globalTransform.makeIdentityMatrix();
+	globalTransform.rotateRad(globalRotationAboutXAxis, 1, 0, 0);
+	
+	//draw it
+	camera.begin();
+	
+	//global onion uniforms
+	currentShader->begin();
+	currentShader->setUniform1f("time", elapsedTime );
+	
+	currentShader->setUniform1f("dataSmoothing", sideviewValues["dataSmoothing"]);
+	currentShader->setUniform1f("noiseScale", sideviewValues["noiseScale"] );
+	currentShader->setUniform1f("slope", sideviewValues["slope"] );
+	
+	currentShader->setUniform1f("dataSmoothing", sideviewValues["dataSmoothing"]);
+	currentShader->setUniform1f("noiseScale", sideviewValues["noiseScale"] );
+	currentShader->setUniform1f("slope", sideviewValues["slope"] );
+	
+	currentShader->setUniform1f("noiseExponent", sideviewValues["noiseExponent"] );
+	currentShader->setUniform1f("noiseMixExponent", sideviewValues["noiseMixExponent"] );
+	currentShader->setUniform1f("noisePosScale", sideviewValues["noisePosScale"] );
+	currentShader->setUniform1f("noiseSpread", sideviewValues["noiseSpread"] );
+	
+	currentShader->setUniform1f("tunnelMix", sideviewValues["tunnelMix"] );
+	currentShader->setUniform1f("tunnelDeltaScl", sideviewValues["tunnelDeltaScl"] );
+	currentShader->setUniform1f("tunnelTimeScl", sideviewValues["tunnelTimeScl"] );
+
+	currentShader->setUniform1f("tunnelDepthScl", sideviewValues["tunnelDepthScl"] );
+	
+	//
+	ofPushMatrix();
+	
+	ofScale( sideviewValues["radius"], sideviewValues["radius"], sideviewValues["radius"] );
+	ofTranslate( sideviewValues["onionPosX"], sideviewValues["onionPosY"], sideviewValues["onionPosZ"] );
+	ofTranslate( sideviewValues["positionX"], sideviewValues["positionY"] + cameraOffsetVal, sideviewValues["positionZ"] );
+
+	ofRotateX( sideviewValues["rotateX"] );
+	ofRotateY( sideviewValues["rotateY"] );
+	ofRotateZ( sideviewValues["rotateZ"] );
+	
+	ofPushMatrix();
+	
+	if( bRotateOnNewJourney )	ofMultMatrix( globalTransform );//<-- this rotates the onion on transition in
+	
+	ofScale(1, sideviewValues["squishY"], sideviewValues["squish"] );
+	
+	ofRotate( newRibbonShaderScale * -360 + 90 - slope*90., 0, 0, 1);
+	float vortexRotVal = -3. * elapsedTime * vortexScl;
+	
+	
+	if(!bDepthTest)	glDisable( GL_DEPTH_TEST );
+	glEnable( GL_DEPTH_TEST );
+	
+	glEnable(GL_CULL_FACE);
+	
+	
+	//draw each onion
+	float step = 1. / float(onions.size()-1);
+	for (int i=onions.size()-8; i<onions.size(); i++) {
+		
+		//crazy transforms
+		ofPushMatrix();
+		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
+		
+		//vortex rotation
+		ofRotate( ( max( (float) onions.size() - i - 2 + newRibbonShaderScale, 0.f) ) * vortexRotVal, 0, 0, 1);
+		
+		//set ribbon color
+		ofSetColor( onions[i].color );
+		
+		//per ribbon uniforms
+		float sampleVal = ofMap( onions[i].sampleVal, minSampleVal, 1., 0, 1, true );
+		ofFloatColor col = getColor( sampleVal, &controlColors );
+		
+		float mixVal = ofMap(sampleVal, 0, 1, journeyColorMixLow, journeyColorMixHi, true);
+		
+		col.r = ofMap(mixVal, 0, 1, col.r, float(onions[i].color.r)/255., true );
+		col.g = ofMap(mixVal, 0, 1, col.g, float(onions[i].color.g)/255., true );
+		col.b = ofMap(mixVal, 0, 1, col.b, float(onions[i].color.b)/255., true );
+		
+		currentShader->setUniform1f( "sampleVal", sampleVal );
+		currentShader->setUniform1f( "randomOffset", onions[i].randomNumer );
+		currentShader->setUniform1f( "displacement", ofMap( onions[i].sampleVal, minSampleVal, 1., sideviewValues["innerDisplacement"], sideviewValues["outerDisplacement"], true ) );
+		currentShader->setUniform1f( "readingScale", ofMap( onions[i].sampleVal, minSampleVal, 1., sideviewValues["innerReadingScale"], sideviewValues["outerReadingScale"], true ) );
+		currentShader->setUniform1f( "readingThreshold", ofMap( onions[i].sampleVal, minSampleVal, 1., sideviewValues["innerReadingThreshold"], sideviewValues["outerReadingThreshold"], true ) );
+		currentShader->setUniform1f( "alpha", ofMap( onions[i].sampleVal, minSampleVal, 1., sideviewValues["innerAlpha"], sideviewValues["outerAlpha"], true ) );
+		currentShader->setUniform1f( "facingRatio", ofMap( onions[i].sampleVal, minSampleVal, 1., sideviewValues["innerFacingRatio"], sideviewValues["outerFacingRatio"], true ) );
+		currentShader->setUniform2f( "texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
+		currentShader->setUniform3f( "blendColor", col.r, col.g, col.b );
+		currentShader->setUniformTexture( "dataTexture", onions[i].dataTexture, 0);
+		
+		//we only animimate the outer onion
+		if( bAddingRibbon && i == onions.size()-1 )
+		{
+			currentShader->setUniform1f("animateIn", newRibbonShaderScale );
+			
+//			// after .95 it fades to the normal preset color
+//			float mixVal = ofMap( newRibbonShaderScale, .95, 1, 0, 1, true );
+//			float mMixVal = 1. - mixVal;
+//			
+//			currentShader->setUniform3f( "blendColor", mMixVal*journeyIntroColor.r+mixVal*col.r, mMixVal*journeyIntroColor.g+mixVal*col.g, mMixVal*journeyIntroColor.b+mixVal*col.b );
+		}
+		else
+		{
+			//1 == no animation.
+			currentShader->setUniform1f("animateIn", 1 );
+		}
+		
+		//draw front and back in diferent passes
+		
+		
+		glCullFace(GL_FRONT);
+		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );
+		
+		glCullFace(GL_BACK);
+		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );
+		
+		
+		ofPopMatrix();
+		
+	}
+	
+	
+	glDisable(GL_CULL_FACE);
+	
+	currentShader->end();
+	
+	//	//AMBIENT PARTICLES
+	//	glPointSize( 10 );
+	//	glEnable( GL_VERTEX_PROGRAM_POINT_SIZE );
+	//
+	//	ofSetColor(255, 0, 0);
+	//	particleVbo.draw( GL_POINTS, 0, numParticles );
+	
+	ofPopMatrix();
+	
+	ofPopMatrix();
+	
+	
+	if(!bDepthTest)	glEnable( GL_DEPTH_TEST );
+	camera.end();
+	
 }
 
 void ofApp::drawMipMaps(){
@@ -1193,6 +1689,38 @@ void ofApp::drawMipMaps(){
 	ofClear(0,0,0,255);
 	fbo_mm5.draw(0, 0, fbo_mm6.getWidth(), fbo_mm6.getHeight() );
 	fbo_mm6.end();
+	
+	
+	
+	sideView_mm1.begin();
+	ofClear(0,0,0,255);
+	sideViewFbo.draw(0, 0, sideView_mm1.getWidth(), sideView_mm1.getHeight() );
+	sideView_mm1.end();
+	
+	sideView_mm2.begin();
+	ofClear(0,0,0,255);
+	sideView_mm1.draw(0, 0, sideView_mm2.getWidth(), sideView_mm2.getHeight() );
+	sideView_mm2.end();
+	
+	sideView_mm3.begin();
+	ofClear(0,0,0,255);
+	sideView_mm2.draw(0, 0, sideView_mm3.getWidth(), sideView_mm3.getHeight() );
+	sideView_mm3.end();
+	
+	sideView_mm4.begin();
+	ofClear(0,0,0,255);
+	sideView_mm3.draw(0, 0, sideView_mm4.getWidth(), sideView_mm4.getHeight() );
+	sideView_mm4.end();
+	
+	sideView_mm5.begin();
+	ofClear(0,0,0,255);
+	sideView_mm4.draw(0, 0, sideView_mm5.getWidth(), sideView_mm5.getHeight() );
+	sideView_mm5.end();
+	
+	sideView_mm6.begin();
+	ofClear(0,0,0,255);
+	sideView_mm5.draw(0, 0, sideView_mm6.getWidth(), sideView_mm6.getHeight() );
+	sideView_mm6.end();
 
 }
 
@@ -1344,208 +1872,20 @@ void ofApp::setupOnion()
 	setupSphere();
 }
 
-ofFloatColor ofApp::getColor(float sampleVal)
+ofFloatColor ofApp::getColor(float sampleVal, vector<ofFloatColor> * _controlColors )
 {
-	float  sv = ofMap(sampleVal, 0, 1, 0, controlColors.size()-1, true );
+	float  sv = ofMap(sampleVal, 0, 1, 0, _controlColors->size()-1, true );
 	
 	int lowIndex = floor( sv );
 	int hiIndex = ceil( sv );
 	sv -= lowIndex;
 	float msv = 1. - sv;
 	
-	ofFloatColor c0 = controlColors[lowIndex];
-	ofFloatColor c1 = controlColors[hiIndex];
+	ofFloatColor c0 = (*_controlColors)[lowIndex];
+	ofFloatColor c1 = (*_controlColors)[hiIndex];
 	
 	
 	return ofFloatColor( c0.r*msv + c1.r*sv, c0.g*msv + c1.g*sv, c0.b*msv + c1.b*sv, 1. );  ;//*.5 + controlColors[lowIndex]*5;
-}
-
-void ofApp::drawOnion()
-{
-	if(!bOnionSetup){
-		setupOnion();
-	}
-	
-	//TODO: magic number
-	//update onion transforms
-	
-	ofQuaternion q;
-	q.makeRotate(Eul.x, ofVec3f(1,0,0), Eul.y, ofVec3f(0,1,0), Eul.z, ofVec3f(0,0,1));
-	
-	float startScale = 1. / recursiveScale;
-	
-//	float minSampleVal = 10000000;
-//	for (int i=onions.size()-1; i>=0; i--)
-//	{
-//
-//		float s = ofMap( i, 0, onions.size(), 0., 1. );
-//		s = fmod( s + elapsedTime, 1.f );
-//		if(s < 0.)	s+= 1.;
-//		
-//		s = ofMap(s, 0, 1, .5, 1., true );
-//		
-//		onions[i].transform.setScale(s,s,s);
-//	}
-	
-	float minSampleVal = 10000000;
-	for (int i=onions.size()-1; i>=0; i--)
-	{
-		if(i == onions.size()-1 )
-		{
-			onions[i].transform.setScale( newRibbonScale,newRibbonScale,newRibbonScale ); // newRibbonScale scales down to 1.
-			onions[i].transform.setOrientation( q + q.inverse() * (1.f - newRibbonShaderScale) ); // newRibbonShaderScale == val btwn 0-1
-			onions[i].sampleVal = newRibbonScale;
-		}
-		else
-		{
-			float scl = onions[i+1].transform.getScale().x * recursiveScale;
-			scl -= floor(scl);
-			onions[i].transform.setScale( scl, scl, scl );
-			onions[i].transform.setOrientation( onions[i+1].transform.getOrientationQuat() * q );
-			onions[i].sampleVal = scl;//onions[i+1].transform.getScale().x * recursiveScale;
-			minSampleVal = min( minSampleVal, onions[i].sampleVal );
-		}
-	}
-	
-	globalTransform.makeIdentityMatrix();
-	globalTransform.rotateRad(globalRotationAboutXAxis, 1, 0, 0);
-	
-	//draw it
-	camera.begin();
-	
-	//global onion uniforms
-	currentShader->begin();
-	currentShader->setUniform1f("time", elapsedTime );
-	currentShader->setUniform1f("dataSmoothing", dataSmoothing);
-	currentShader->setUniform1f("noiseScale", noiseScale );
-	currentShader->setUniform1f("slope", slope );
-	currentShader->setUniformTexture( "noiseTexture", noiseImage.getTextureReference(), 1 );
-	currentShader->setUniform2f("noiseDim", noiseImage.getWidth(), noiseImage.getHeight() );
-	
-	currentShader->setUniform1f("noiseExponent", noiseExponent );
-	currentShader->setUniform1f("noiseMixExponent", noiseMixExponent );
-	currentShader->setUniform1f("noisePosScale", noisePosScale );
-	currentShader->setUniform1f("noiseSpread", noiseSpread );
-	
-	currentShader->setUniform1f("tunnelMix", tunnelMix );
-	currentShader->setUniform1f("tunnelDeltaScl", tunnelDeltaScl );
-	currentShader->setUniform1f("tunnelTimeScl", tunnelTimeScl );
-	currentShader->setUniform1f("tunnelDepthScl", tunnelDepthScl );
-	
-	//
-	ofPushMatrix();
-	
-	ofScale( radius, radius, radius );
-	ofTranslate( onionPosX, onionPosY, onionPosZ );
-	
-	
-	if(bSideView)	ofTranslate( positionX, positionY + cameraOffsetVal, positionZ );
-	else	ofTranslate( positionX, positionY, positionZ );
-	
-	ofRotateX( rotateX );
-	ofRotateY( rotateY );
-	ofRotateZ( rotateZ );
-	
-	ofPushMatrix();
-	
-	if( bRotateOnNewJourney )	ofMultMatrix( globalTransform );//<-- this rotates the onion on transition in
-	
-	ofScale(1, squishY, squish );
-	
-	ofRotate( newRibbonShaderScale * -360 + 90 - slope*90., 0, 0, 1);
-	float vortexRotVal = -3. * elapsedTime * onJourneyRot;
-	
-	
-	if(!bDepthTest)	glDisable( GL_DEPTH_TEST );
-	
-	glEnable(GL_CULL_FACE);
-	
-	
-	//draw each onion
-	float step = 1. / float(onions.size()-1);
-	for (int i=0; i<onions.size(); i++) {
-		
-		//crazy transforms
-		ofPushMatrix();
-		ofMultMatrix( onions[i].transform.getGlobalTransformMatrix() );
-		
-		//vortex rotation
-		ofRotate( ( max( (float) onions.size() - i - 2 + newRibbonShaderScale, 0.f) ) * vortexRotVal, 0, 0, 1);
-		
-		//set ribbon color
-		ofSetColor( onions[i].color );
-		
-		//per ribbon uniforms
-		float sampleVal = ofMap( onions[i].sampleVal, minSampleVal, 1., 0, 1, true );
-		ofFloatColor col = getColor( sampleVal );
-		
-		float mixVal = ofMap(sampleVal, 0, 1, journeyColorMixLow, journeyColorMixHi, true);
-		
-		col.r = ofMap(mixVal, 0, 1, col.r, float(onions[i].color.r)/255., true );
-		col.g = ofMap(mixVal, 0, 1, col.g, float(onions[i].color.g)/255., true );
-		col.b = ofMap(mixVal, 0, 1, col.b, float(onions[i].color.b)/255., true );
-		
-		currentShader->setUniform1f( "sampleVal", sampleVal );
-		currentShader->setUniform1f( "randomOffset", onions[i].randomNumer );
-		currentShader->setUniform1f( "displacement", ofMap( onions[i].sampleVal, minSampleVal, 1., innerDisplacement, outerDisplacement, true ) );
-		currentShader->setUniform1f( "readingScale", ofMap( onions[i].sampleVal, minSampleVal, 1., innerReadingScale, outerReadingScale, true ) );
-		currentShader->setUniform1f( "readingThreshold", ofMap( onions[i].sampleVal, minSampleVal, 1., innerReadingThreshold, outerReadingThreshold, true ) );
-		currentShader->setUniform1f( "alpha", ofMap( onions[i].sampleVal, minSampleVal, 1., innerAlpha, outerAlpha, true ) );
-		currentShader->setUniform1f( "facingRatio", ofMap( onions[i].sampleVal, minSampleVal, 1., innerFacingRatio, outerFacingRatio, true ) );
-		currentShader->setUniform2f( "texDim", onions[i].dataTexture.getWidth(), onions[i].dataTexture.getHeight() );
-		currentShader->setUniform3f( "blendColor", col.r, col.g, col.b );
-		currentShader->setUniformTexture( "dataTexture", onions[i].dataTexture, 0);
-		
-		//we only animimate the outer onion
-		if( bAddingRibbon && i == onions.size()-1 )
-		{
-			currentShader->setUniform1f("animateIn", newRibbonShaderScale );
-			
-//			// after .95 it fades to the normal preset color
-//			float mixVal = ofMap( newRibbonShaderScale, .95, 1, 0, 1, true );
-//			float mMixVal = 1. - mixVal;
-//			
-//			currentShader->setUniform3f( "blendColor", mMixVal*journeyIntroColor.r+mixVal*col.r, mMixVal*journeyIntroColor.g+mixVal*col.g, mMixVal*journeyIntroColor.b+mixVal*col.b );
-		}
-		else
-		{
-			//1 == no animation.
-			currentShader->setUniform1f("animateIn", 1 );
-		}
-		
-		//draw front and back in diferent passes
-		
-		
-		glCullFace(GL_FRONT);
-		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );
-		
-		glCullFace(GL_BACK);
-		sphereVbo.drawElements( GL_TRIANGLES, spherVboIndexCount );
-		
-		
-		ofPopMatrix();
-		
-	}
-	
-	
-	glDisable(GL_CULL_FACE);
-	
-	currentShader->end();
-	
-//	//AMBIENT PARTICLES
-//	glPointSize( 10 );
-//	glEnable( GL_VERTEX_PROGRAM_POINT_SIZE );
-//	
-//	ofSetColor(255, 0, 0);
-//	particleVbo.draw( GL_POINTS, 0, numParticles );
-	
-	ofPopMatrix();
-	
-	ofPopMatrix();
-	
-	
-	if(!bDepthTest)	glEnable( GL_DEPTH_TEST );
-	camera.end();
 }
 
 Reading ofApp::sampleJourney( int i, float u )
@@ -1566,7 +1906,6 @@ Reading ofApp::sampleJourney( int i, float u )
 	return outVal;
 }
 
-
 ofVec3f ofApp::normalFrom3Points(ofVec3f p0, ofVec3f p1, ofVec3f p2)
 {
 	ofVec3f norm = (p2 - p1).cross( p0 - p1);
@@ -1583,7 +1922,7 @@ ofVec3f ofApp::normalFrom4Points(ofVec3f p0, ofVec3f p1, ofVec3f p2, ofVec3f p3)
 void ofApp::exit()
 {
 	savePreset("Working");
-	cout << "saved preset working" << endl;
+//	cout << "saved preset working" << endl;
 	
 	if(bDebug)	cout << "removing listeners" << endl;
 	for(int i=0; i<guis.size(); i++){
@@ -1599,12 +1938,21 @@ void ofApp::exit()
 		delete vbos[i];
 	}
 	
+    soundManager.exit();
+    
 	if(bDebug)	cout << "end of ofApp::exit" << endl;
 	
 	//???: we're getting this error every now and again on exit:
 	//	libc++abi.dylib: terminate called throwing an exception
 }
 
+ofColor ofApp::getNextJourneyColor()
+{
+	ofColor outColor = colorArray[colorArrayIndex];
+	colorArrayIndex++;
+	if(colorArrayIndex >= colorArray.size())	colorArrayIndex = 0;
+	return outColor;
+}
 
 //--------------------------------------------------------------
 ofColor ofApp::getRandomColor()
@@ -1613,17 +1961,6 @@ ofColor ofApp::getRandomColor()
 	map<string, ofColor>::iterator it = colorMap.begin();
 	advance( it, floor( ofRandom(0., colorMap.size() ) ) );
 	return  it->second;
-}
-
-
-//--------------------------------------------------------------
-ofColor ofApp::getNextColor()
-{
-    ofColor outColor = colorArray[ colorIndex ];
-    colorIndex ++;
-    if(colorIndex >= colorArray.size() ) colorIndex = 0;
-    
-    return outColor;
 }
 
 //--------------------------------------------------------------
@@ -1688,11 +2025,12 @@ void ofApp::loadPreset( string presetName)
 	
 	for(int i = 0; i < guis.size(); i++)
     {
-		cout << "Presets/" + presetName + "/"+guis[i]->getName()+".xml" << endl;
+//		cout << "Presets/" + presetName + "/"+guis[i]->getName()+".xml" << endl;
 		guis[i]->loadSettings( "Presets/" + presetName + "/"+guis[i]->getName()+".xml");
 		presetRadio->activateToggle( presetName );
     }
 }
+
 
 void ofApp::savePreset( string presetName )
 {
@@ -1744,22 +2082,7 @@ void ofApp::keyPressed(int key)
 //		captrure = true;
 	}
 	
-	if( key == ' ' )
-	{
-		if(!bLaodingJourney)
-		{
-			//load a journey from file
-			ofBuffer buffer = ofBufferFromFile("Journeys/journey_showJourney" + ofToString(int(ofRandom(4))) + ".json");
-			if(buffer.size()){
-				reader.parse( buffer.getText(), json );
-				handleRoute( json );
-			}
-            
-            addJourneyTween();
-		}
-	}
-	
-	if(key == 'j'){
+	if(key == 'j' || key == ' '){
 		if(!bAddingRibbon){
 			
 			//load a journey from file
@@ -1831,11 +2154,10 @@ void ofApp::onConnect( ofxLibwebsockets::Event& args )
 //--------------------------------------------------------------
 void ofApp::onOpen( ofxLibwebsockets::Event& args )
 {
-    ofLogNotice() << "Connected to" << options.host;
+    cout<<"on open"<<endl;
     bClientConnected = true;
     
     if(!bClientInitialized) {
-        ofLogNotice() << "Seding initMe message";
         client.send("{\"route\": \"initMe\"}");
         bClientInitialized = true;
     }
@@ -1866,7 +2188,7 @@ void ofApp::handleRoute( Json::Value& _json)
 		string journeyDirectory = ofToDataPath("Journeys/");
 		if(!dir.doesDirectoryExist(journeyDirectory))	dir.createDirectory(journeyDirectory);
 		
-		cout << ( journeyDirectory + "journey_" + route + fileIndex  +".json").c_str() << endl;
+//		cout << ( journeyDirectory + "journey_" + route + fileIndex  +".json").c_str() << endl;
 		ofstream    fs( ( journeyDirectory + "journey_" + route + fileIndex+".json").c_str() );
 		
 		fs << _json << endl;
@@ -1884,13 +2206,9 @@ void ofApp::handleRoute( Json::Value& _json)
     }
 	
     else if(route=="addJourney" || route == "replayJourney") {
-			
-		cout << "addJourney" << endl;
-		//true for animating in
-        journeys.push_back( new Journey(json["journey"], true) );
-		bJourniesNeedUpdate = true;
-		
-		addJourneyTween();
+        ofLogNotice() << "ading journey to queue";
+        queue.push_back( new Journey(json["journey"], true) );
+
     }
 	
     else if(route=="removeJourney") {

@@ -10,7 +10,8 @@
 
 // -------------------------------------------------
 SoundManager::~SoundManager() {
-    
+    delete[] attentionLoops;
+    delete[] meditationLoops;
 }
 
 // -------------------------------------------------
@@ -149,6 +150,11 @@ void SoundManager::update(ofEventArgs &args)
     AudioUnitSetParameter(varispeed.getUnit(), kVarispeedParam_PlaybackRate, kAudioUnitScope_Global, 0, newSpeed, 0);
     
     updateLevelsPreview();
+}
+
+// -------------------------------------------------
+void SoundManager::exit() {
+    output.stop();
 }
 
 // -------------------------------------------------
