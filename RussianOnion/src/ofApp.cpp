@@ -21,7 +21,7 @@ void ofApp::setup()
 	s.width         = ofGetWidth()/2;
 	s.height            = ofGetHeight();
 	s.internalformat    = GL_RGBA;
-	s.numColorbuffers   = 3;
+	s.numColorbuffers   = 1;
 	s.useDepth = true;
 	s.numSamples = 4;
 	fbo.allocate(s);
@@ -176,11 +176,10 @@ void ofApp::setup()
 	
 	
 	ofFbo::Settings sideviewFboSettings;
-	sideviewFboSettings.width         = ofGetWidth();
-//	sideviewFboSettings.width         = ofGetWidth()/2;
+	sideviewFboSettings.width         = ofGetWidth()/2;
 	sideviewFboSettings.height            = ofGetHeight();
 	sideviewFboSettings.internalformat    = GL_RGBA;
-	sideviewFboSettings.numColorbuffers   = 3;
+	sideviewFboSettings.numColorbuffers   = 1;
 	sideviewFboSettings.useDepth = true;
 	sideviewFboSettings.numSamples = 4;
 	sideViewFbo.allocate( sideviewFboSettings );
@@ -1173,7 +1172,6 @@ void ofApp::draw()
 	post.setUniform1f("glowExponent", glowExponent );
 	post.setUniform1f("glowScale", glowScale );
 	
-//	sideViewFbo.draw( 0, 0, sideViewFbo.getWidth(), ofGetHeight() );
 	sideViewFbo.draw( fbo.getWidth(), 0, sideViewFbo.getWidth(), ofGetHeight() );
 	
 	post.end();
@@ -1201,16 +1199,6 @@ void ofApp::draw()
 		glEnable( GL_DEPTH_TEST );
 		ofEnableAlphaBlending();
 	}
-	
-	
-//	if( captrure ){
-//		captrure = false;
-//		
-//		fbo.readToPixels(outImage);
-//		outImage.update();
-//		outImage.saveImage("d_4Large"+ofGetTimestampString()+".png");
-//	}
-    
 }
 
 void ofApp::drawOnion()
@@ -1242,6 +1230,11 @@ void ofApp::drawOnion()
 			onions[i].transform.setOrientation( onions[i+1].transform.getOrientationQuat() * q );
 			onions[i].sampleVal = scl;//onions[i+1].transform.getScale().x * recursiveScale;
 			minSampleVal = min( minSampleVal, onions[i].sampleVal );
+			
+			
+			if(onions[i+1].transform.getScale().x > 1.01 ){
+				onions[i+1].transform.setScale( 1.01, 1.01, 1.01 );
+			}
 		}
 	}
 	
@@ -1257,7 +1250,6 @@ void ofApp::drawOnion()
 	currentShader->setUniform1f("dataSmoothing", dataSmoothing);
 	currentShader->setUniform1f("noiseScale", noiseScale );
 	currentShader->setUniform1f("slope", slope );
-	
 	
 	currentShader->setUniform1f("noiseExponent", noiseExponent );
 	currentShader->setUniform1f("noiseMixExponent", noiseMixExponent );
