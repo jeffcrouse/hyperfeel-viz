@@ -34,7 +34,28 @@ void ofApp::setup()
 	fbo_mm5.allocate( fbo_mm4.getWidth()/2, fbo_mm4.getHeight()/2, GL_RGB );
 	fbo_mm6.allocate( fbo_mm5.getWidth()/2, fbo_mm5.getHeight()/2, GL_RGB );
 	
+	//side view fbo
+	ofFbo::Settings sideviewFboSettings;
+	sideviewFboSettings.width         = ofGetWidth()/2;
+	sideviewFboSettings.height            = ofGetHeight();
+	sideviewFboSettings.internalformat    = GL_RGBA;
+	sideviewFboSettings.numColorbuffers   = 1;
+	sideviewFboSettings.useDepth = true;
+	sideviewFboSettings.numSamples = 4;
+	sideViewFbo.allocate( sideviewFboSettings );
+	
+	cout << "sideviewFboSettings.width: " << sideviewFboSettings.width  << endl;
+	cout << "sideViewFbo.width: " << sideViewFbo.getWidth()  << endl;
+	
+	sideView_mm1.allocate( sideViewFbo.getWidth()/2, sideViewFbo.getHeight()/2, GL_RGB );
+	sideView_mm2.allocate( sideView_mm1.getWidth()/2, sideView_mm1.getHeight()/2, GL_RGB );
+	sideView_mm3.allocate( sideView_mm2.getWidth()/2, sideView_mm2.getHeight()/2, GL_RGB );
+	sideView_mm4.allocate( sideView_mm3.getWidth()/2, sideView_mm3.getHeight()/2, GL_RGB );
+	sideView_mm5.allocate( sideView_mm4.getWidth()/2, sideView_mm4.getHeight()/2, GL_RGB );
+	sideView_mm6.allocate( sideView_mm5.getWidth()/2, sideView_mm5.getHeight()/2, GL_RGB );
+	
     
+	//web sockets
     bClientInitialized = false;
     bClientConnected = false;
     options = ofxLibwebsockets::defaultClientOptions();
@@ -55,7 +76,7 @@ void ofApp::setup()
 //    ofSetLogLevel(OF_LOG_VERBOSE);
 	
 	//Journy stuff
-	bLoadJsonsFromFile = true;
+	bLoadJsonsFromFile = false;
 	bJourniesNeedUpdate = false;
 	bOnionSetup = false;
 	
@@ -213,35 +234,15 @@ void ofApp::setup()
 	//camera
 	
 	
-	vector <ofVec3f> particlePositions;
-	numParticles = 100000;
-	particlePositions.resize(numParticles);
-	
-	for (int i=0; i<numParticles; i++) {
-		particlePositions[i].set( ofRandom(-1024, 1024), ofRandom(-1024, 1024), ofRandom(-1024, 1024) );
-	}
-	
-	particleVbo.setVertexData( &particlePositions[0], particlePositions.size(), GL_STATIC_DRAW );
-	
-	
-	ofFbo::Settings sideviewFboSettings;
-	sideviewFboSettings.width         = ofGetWidth()/2;
-	sideviewFboSettings.height            = ofGetHeight();
-	sideviewFboSettings.internalformat    = GL_RGBA;
-	sideviewFboSettings.numColorbuffers   = 1;
-	sideviewFboSettings.useDepth = true;
-	sideviewFboSettings.numSamples = 4;
-	sideViewFbo.allocate( sideviewFboSettings );
-	
-	cout << "sideviewFboSettings.width: " << sideviewFboSettings.width  << endl;
-	cout << "sideViewFbo.width: " << sideViewFbo.getWidth()  << endl;
-	
-	sideView_mm1.allocate( sideViewFbo.getWidth()/2, sideViewFbo.getHeight()/2, GL_RGB );
-	sideView_mm2.allocate( sideView_mm1.getWidth()/2, sideView_mm1.getHeight()/2, GL_RGB );
-	sideView_mm3.allocate( sideView_mm2.getWidth()/2, sideView_mm2.getHeight()/2, GL_RGB );
-	sideView_mm4.allocate( sideView_mm3.getWidth()/2, sideView_mm3.getHeight()/2, GL_RGB );
-	sideView_mm5.allocate( sideView_mm4.getWidth()/2, sideView_mm4.getHeight()/2, GL_RGB );
-	sideView_mm6.allocate( sideView_mm5.getWidth()/2, sideView_mm5.getHeight()/2, GL_RGB );
+//	vector <ofVec3f> particlePositions;
+//	numParticles = 100000;
+//	particlePositions.resize(numParticles);
+//	
+//	for (int i=0; i<numParticles; i++) {
+//		particlePositions[i].set( ofRandom(-1024, 1024), ofRandom(-1024, 1024), ofRandom(-1024, 1024) );
+//	}
+//	
+//	particleVbo.setVertexData( &particlePositions[0], particlePositions.size(), GL_STATIC_DRAW );
 }
 
 
@@ -1904,7 +1905,6 @@ Reading ofApp::sampleJourney( int i, float u )
 	
 	return outVal;
 }
-
 
 ofVec3f ofApp::normalFrom3Points(ofVec3f p0, ofVec3f p1, ofVec3f p2)
 {
