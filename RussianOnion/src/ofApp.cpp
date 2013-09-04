@@ -945,14 +945,8 @@ void ofApp::addJourneyTween()
 {
 	addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "addRibbonTween" );
 	
+	//this goes to keyVis -> transition medley - > keyVis over newRibbonScaleDuration
 	tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), keyVisSpan, "startJourneyIntro" );
-	
-//	//tween back to out key kis
-//	float keyVisTime = 4;
-//	tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), keyVisTime, "keyVisTween" );
-//	
-//	//start our journey transition medley after we get to the key vis. on ending we go back to key vis
-//	tween.addTween( journeyVal, 0, 1, ofGetElapsedTimef() + keyVisSpan, newRibbonScaleDuration - keyVisSpan*2, "JourneyIntro" );
 }
 
 void ofApp::mixPresets( map<string, float>* p_0, map<string, float>* p_1, float mixval ){
