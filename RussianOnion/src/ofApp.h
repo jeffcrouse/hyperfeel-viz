@@ -143,7 +143,7 @@ public:
 	ofShader onionBarsHorzShader;
 	ofShader onionDotsShader;
 	
-	
+	ofColor getNextJourneyColor();
 	ofColor getRandomColor();
 	void retryColors();
 	
@@ -218,6 +218,8 @@ public:
 	
 	float minSampleVal;
 	
+	float keyVisSpan;
+	
     /**
      *  Journeys
      */
@@ -230,6 +232,8 @@ public:
     vector<ofVbo*> vbos;
     vector<ofFloatColor> vboColors;
 	map <string, ofColor> colorMap;
+	vector <ofColor> colorArray;
+	int colorArrayIndex;
 	
 	ofShader* currentShader;
 	vector<string> shaderNames;
