@@ -56,7 +56,7 @@ void ofApp::setup()
 	
 	//Journy stuff
 	bSaveJsonsToFile = false;//for debuggin it was faster to load them from file rather then wait for the server
-	bLoadJsonsFromFile = false;
+	bLoadJsonsFromFile = true;
 	
 	bJourniesNeedUpdate = false;
 	
@@ -163,27 +163,6 @@ void ofApp::setup()
 	
 	//camera
 	
-//	noiseImage.allocate(256, 256, OF_IMAGE_COLOR );
-//	
-//	float stepi = 1. / float(noiseImage.getWidth());
-//	float stepj = 1. / float(noiseImage.getHeight());
-//	for (int i=0; i<noiseImage.getWidth(); i++) {
-//		for (int j=0; j<noiseImage.getHeight(); j++) {
-//			float n = ofNoise( stepi*i, stepj*j);
-//			float n0 = ofNoise( stepi*i*20, stepj*j*20);
-//			float n1 = ofNoise( stepi*i*40, stepj*j*40);
-//			float n2 = ofNoise( stepi*i*80, stepj*j*80);
-//			float n3 = ofNoise( stepi*i*160, stepj*j*160);
-//			
-////			ofColor c( 255 * (n0 + n1 + n2 + n3) / 4 );
-////			ofColor c( 255 * (n3 * n0 * n1 * n2) );
-//			ofColor c( 255*(n+n0+n1)/3, 255*(n0+n1+n2)/3, 255*(n1+n2+n3)/3 );
-//			
-//			noiseImage.setColor( i, j, c );
-//		}
-//	}
-//	noiseImage.update();
-	
 	
 	vector <ofVec3f> particlePositions;
 	numParticles = 100000;
@@ -197,7 +176,8 @@ void ofApp::setup()
 	
 	
 	ofFbo::Settings sideviewFboSettings;
-	sideviewFboSettings.width         = ofGetWidth()/2;
+	sideviewFboSettings.width         = ofGetWidth();
+//	sideviewFboSettings.width         = ofGetWidth()/2;
 	sideviewFboSettings.height            = ofGetHeight();
 	sideviewFboSettings.internalformat    = GL_RGBA;
 	sideviewFboSettings.numColorbuffers   = 3;
@@ -205,12 +185,15 @@ void ofApp::setup()
 	sideviewFboSettings.numSamples = 4;
 	sideViewFbo.allocate( sideviewFboSettings );
 	
-	sideView_mm1.allocate( fbo.getWidth()/2, sideViewFbo.getHeight()/2, GL_RGB );
-	sideView_mm2.allocate( fbo_mm1.getWidth()/2, sideView_mm1.getHeight()/2, GL_RGB );
-	sideView_mm3.allocate( fbo_mm2.getWidth()/2, sideView_mm2.getHeight()/2, GL_RGB );
-	sideView_mm4.allocate( fbo_mm3.getWidth()/2, sideView_mm3.getHeight()/2, GL_RGB );
-	sideView_mm5.allocate( fbo_mm4.getWidth()/2, sideView_mm4.getHeight()/2, GL_RGB );
-	sideView_mm6.allocate( fbo_mm5.getWidth()/2, sideView_mm5.getHeight()/2, GL_RGB );
+	cout << "sideviewFboSettings.width: " << sideviewFboSettings.width  << endl;
+	cout << "sideViewFbo.width: " << sideViewFbo.getWidth()  << endl;
+	
+	sideView_mm1.allocate( sideViewFbo.getWidth()/2, sideViewFbo.getHeight()/2, GL_RGB );
+	sideView_mm2.allocate( sideView_mm1.getWidth()/2, sideView_mm1.getHeight()/2, GL_RGB );
+	sideView_mm3.allocate( sideView_mm2.getWidth()/2, sideView_mm2.getHeight()/2, GL_RGB );
+	sideView_mm4.allocate( sideView_mm3.getWidth()/2, sideView_mm3.getHeight()/2, GL_RGB );
+	sideView_mm5.allocate( sideView_mm4.getWidth()/2, sideView_mm4.getHeight()/2, GL_RGB );
+	sideView_mm6.allocate( sideView_mm5.getWidth()/2, sideView_mm5.getHeight()/2, GL_RGB );
 }
 
 
@@ -650,7 +633,7 @@ void ofApp::guiEvent(ofxUIEventArgs &e)
 				{
 					ofxUIImageButton* button = (ofxUIImageButton *) e.widget;
 					
-					cout << imageButtons[i]->getName() << ": " << button->getValue() << endl;
+//					cout << imageButtons[i]->getName() << ": " << button->getValue() << endl;
 					if(button->getValue())
 					{
 						//set our palette to true
@@ -1014,12 +997,11 @@ void ofApp::update()
 		if(!bCachedPresetValues){
 			bCachedPresetValues = true;
 			cachePresetValues();
-//			
-//			mixPresets( "sideView", "sideView0", 0, &sideviewValues );
+			
 			sideviewValues = presets["sideView"];
-			for (map<string, float>::iterator it = sideviewValues.begin(); it!=sideviewValues.end(); it++) {
-				cout << it->first << " : " << it->second << endl;
-			}
+//			for (map<string, float>::iterator it = sideviewValues.begin(); it!=sideviewValues.end(); it++) {
+//				cout << it->first << " : " << it->second << endl;
+//			}
 			
 		}
 		loadPreset( nextPreset );
@@ -1090,10 +1072,6 @@ void ofApp::retryColors()
 	for(int i=0; i<onions.size(); i++){
 		onions[i].color = getRandomColor();
 	}
-	
-//	for (int i=0; i<controlColors.size(); i++) {
-//		controlColors[i].set( ofVec3f( ofRandom(.3, 1.3), ofRandom(.3, 1.3), ofRandom(.3, 1.3)) );
-//	}
 }
 
 //--------------------------------------------------------------
@@ -1134,7 +1112,7 @@ void ofApp::draw()
 	}else{
 		glDisable(GL_DEPTH_TEST);
 	}
-
+	
 	drawSideView();
 	
 	if (!bDepthTest) {
@@ -1168,7 +1146,7 @@ void ofApp::draw()
 	post.setUniform1f("glowExponent", glowExponent );
 	post.setUniform1f("glowScale", glowScale );
 	
-	fbo.draw(0, 0, ofGetWidth()/2, ofGetHeight() );
+	fbo.draw(0, 0, fbo.getWidth(), ofGetHeight() );
 	
 	post.end();
 	ofPopStyle();
@@ -1178,6 +1156,8 @@ void ofApp::draw()
 	ofEnableAlphaBlending();
 	
 	//post shader. draw to the screen
+	glDisable(GL_DEPTH_TEST);
+	
 	post.begin();
 	post.setUniform2f("center", ofGetWidth()/2, ofGetHeight()/2);
 	post.setUniform1f("circleRadius", 1920 );// circleRadius );
@@ -1193,7 +1173,8 @@ void ofApp::draw()
 	post.setUniform1f("glowExponent", glowExponent );
 	post.setUniform1f("glowScale", glowScale );
 	
-	sideViewFbo.draw(500, 0, ofGetWidth()/2, ofGetHeight() );
+//	sideViewFbo.draw( 0, 0, sideViewFbo.getWidth(), ofGetHeight() );
+	sideViewFbo.draw( fbo.getWidth(), 0, sideViewFbo.getWidth(), ofGetHeight() );
 	
 	post.end();
 	ofPopStyle();
@@ -1457,8 +1438,8 @@ void ofApp::drawSideView(){
 	//
 	ofPushMatrix();
 	
-	ofTranslate( sideviewValues["onionPosX"], sideviewValues["onionPosY"], sideviewValues["onionPosZ"] );
 	ofScale( sideviewValues["radius"], sideviewValues["radius"], sideviewValues["radius"] );
+	ofTranslate( sideviewValues["onionPosX"], sideviewValues["onionPosY"], sideviewValues["onionPosZ"] );
 	ofTranslate( sideviewValues["positionX"], sideviewValues["positionY"] + cameraOffsetVal, sideviewValues["positionZ"] );
 
 	ofRotateX( sideviewValues["rotateX"] );
@@ -1469,7 +1450,7 @@ void ofApp::drawSideView(){
 	
 	if( bRotateOnNewJourney )	ofMultMatrix( globalTransform );//<-- this rotates the onion on transition in
 	
-	ofScale(1, squishY, squish );
+	ofScale(1, sideviewValues["squishY"], sideviewValues["squish"] );
 	
 	ofRotate( newRibbonShaderScale * -360 + 90 - slope*90., 0, 0, 1);
 	float vortexRotVal = -3. * elapsedTime;
@@ -2116,7 +2097,7 @@ void ofApp::handleRoute( Json::Value& _json)
 		string journeyDirectory = ofToDataPath("Journeys/");
 		if(!dir.doesDirectoryExist(journeyDirectory))	dir.createDirectory(journeyDirectory);
 		
-		cout << ( journeyDirectory + "journey_" + route + fileIndex  +".json").c_str() << endl;
+//		cout << ( journeyDirectory + "journey_" + route + fileIndex  +".json").c_str() << endl;
 		ofstream    fs( ( journeyDirectory + "journey_" + route + fileIndex+".json").c_str() );
 		
 		fs << _json << endl;
