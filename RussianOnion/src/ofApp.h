@@ -142,6 +142,7 @@ public:
 	
 	
 	ofColor getRandomColor();
+    ofColor getNextColor();
 	void retryColors();
 	
 	/**
@@ -199,6 +200,7 @@ public:
 	float tunnelDepthScl;
 	
 	float EulScale;
+    float onJourneyRot;
 	
 	string journeyTransitionTween;
 	float journeyTransitionVal;
@@ -222,6 +224,8 @@ public:
     vector<ofVbo*> vbos;
     vector<ofFloatColor> vboColors;
 	map <string, ofColor> colorMap;
+    vector <ofColor> colorArray;
+    int colorIndex;
 	
 	ofShader* currentShader;
 	vector<string> shaderNames;

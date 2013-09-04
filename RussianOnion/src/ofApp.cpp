@@ -56,20 +56,31 @@ void ofApp::setup()
 	
 	//Journy stuff
 	bSaveJsonsToFile = false;//for debuggin it was faster to load them from file rather then wait for the server
-	bLoadJsonsFromFile = true;
+	bLoadJsonsFromFile = false;
 	
 	bJourniesNeedUpdate = false;
 	
 	bOnionSetup = false;
 	
 	//	journey colors
-	colorMap["red"].set( 255, 99, 99 );			// = ofColor::red;
+    //TODO: cycle through color map
+    // get a broader range of colors( 10-15 )
+	colorMap["red"].set( 255, 99, 99 );             // = ofColor::red;
 	colorMap["orange"].set( 255, 182, 42 );			// = ofColor::orange;
 	colorMap["yellow"].set( 236,  236, 146 );		// = ofColor::yellow;
 	colorMap["green"].set( 79, 230, 60 );			// = ofColor::green;
 	colorMap["blue"].set( 4, 184, 197 );			// = ofColor::blue;
 	colorMap["indigo"].set( 131, 102, 212 );		// = ofColor::indigo;
 	colorMap["violet"].set( 227, 59, 207 );			// = ofColor::violet;
+    
+    colorArray.push_back(colorMap["red"]);
+    colorArray.push_back(colorMap["orange"]);
+    colorArray.push_back(colorMap["yellow"]);
+    colorArray.push_back(colorMap["green"]);
+    colorArray.push_back(colorMap["blue"]);
+    colorArray.push_back(colorMap["indigo"]);
+    colorArray.push_back(colorMap["violet"]);
+    colorIndex = 0;
 	
 	controlColors.resize(64);
 	for (int i=0; i<controlColors.size(); i++) {
@@ -115,6 +126,7 @@ void ofApp::setup()
 	animationPresetVariationTime = 10;
 	animationPresetIndex0 = 0;
 	animationPresetIndex1 = 1;
+    
 	
 	animationPresets.push_back("k_0");
 	animationPresets.push_back("k_1");
@@ -251,6 +263,8 @@ void ofApp::setDefaults()
 	EulScale = 1.;
 	
 	bSideView = false;
+    
+    onJourneyRot = 1.;
 }
 
 void ofApp::setupUI()
@@ -508,6 +522,7 @@ void ofApp::setupUI()
 	guiCamera->addSlider( "tunnelDepthScl", 1, 30, &tunnelDepthScl );
 	
 	guiCamera->addSlider("EulScale", -2., 2., &EulScale);
+    guiCamera->addSlider("onJourneyRot", -2, 2, &onJourneyRot );
 	
 	guiCamera->addImage("noiseImage", &noiseImage, 255, 255 );
 	
@@ -750,22 +765,22 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 		}
 	}
 	
-	if( e.name == "keyVisTween" )
-	{
-		if(e.message == "started")
-		{
-			bPlayAnimation = false;
-			lastValues = currentValues;
-		}
-		if(e.message == "updated")
-		{
-			mixPresets( "keyVis", e.value );
-		}
-		if(e.message == "ended")
-		{
-			lastValues = currentValues;
-		}
-	}
+//	if( e.name == "keyVisTween" )
+//	{
+//		if(e.message == "started")
+//		{
+//			lastValues = currentValues;
+//			bPlayAnimation = false;
+//		}
+//		if(e.message == "updated")
+//		{
+////			mixPresets( "keyVis", e.value );
+//		}
+//		if(e.message == "ended")
+//		{
+//			lastValues = currentValues;
+//		}
+//	}
 	
 	//this adds a journey and controls the variable that plays the music
 	if( e.name == "JourneyIntro")
@@ -796,69 +811,69 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 		}
 	}
 	
-	//journey transition meedly tween. plays while the new journey is loading
-	if (e.name == "journeyMix")
-	{
-		if (e.message == "started")
-		{
-			bLaodingJourney = true;
-			//making doublely sure that we're tweening from the most recent values
-			lastValues = currentValues;
-		}
-		
-		if(e.message == "updated")
-		{
-			//mix the target preset with our lastValues
-			mixPresets( transitionPresets[transitionPresetIndex0], e.value );
-		}
-		
-		if(e.message == "ended")
-		{
-			bLaodingJourney = false;
-			//if we're still journeying the keep on mixing
-			Tween* jIntro = tween.getTween( "JourneyIntro" );
-			if( jIntro != NULL &&  jIntro->endTime > ofGetElapsedTimef() + journeyMixTime*2 )
-			{
-				
-				Tween* t = tween.getTween("journeyMix");
-				t->setup( &journeyTransitionVal, 0, 1, ofGetElapsedTimef(), journeyMixTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "journeyMix" );
-				t->bKeepAround = true;
-				
-				transitionPresetIndex0++;
-				if(transitionPresetIndex0 >= transitionPresets.size() )	transitionPresetIndex0 = 0;
-			}
-			
-			//otherwise end the mix
-			else
-			{
-				//cout  << "stop journey mixing cus we're at the end of the journey intro" << endl;
-				float span = jIntro->endTime - ofGetElapsedTimef();
-				tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), span, "keyVisTween" );
-				
-				//start our mixing again AFTER the keyvisual has been restored ==  ofGetElapsedTimef() + span, ...
-				variationTween->setup( &variation, 0, 1, ofGetElapsedTimef() + span, animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
-				variationTween->bKeepAround = true;
-			}
-			
-			//store the lastValues for future mixing
-			lastValues = currentValues;
-		}
-	}
+//	//journey transition meedly tween. plays while the new journey is loading
+//	if (e.name == "journeyMix")
+//	{
+//		if (e.message == "started")
+//		{
+//			bLaodingJourney = true;
+//			//making doublely sure that we're tweening from the most recent values
+//			lastValues = currentValues;
+//		}
+//		
+//		if(e.message == "updated")
+//		{
+//			//mix the target preset with our lastValues
+//			mixPresets( transitionPresets[transitionPresetIndex0], e.value );
+//		}
+//		
+//		if(e.message == "ended")
+//		{
+//			bLaodingJourney = false;
+//			//if we're still journeying the keep on mixing
+//			Tween* jIntro = tween.getTween( "JourneyIntro" );
+//			if( jIntro != NULL &&  jIntro->endTime > ofGetElapsedTimef() + journeyMixTime*2 )
+//			{
+//				
+//				Tween* t = tween.getTween("journeyMix");
+//				t->setup( &journeyTransitionVal, 0, 1, ofGetElapsedTimef(), journeyMixTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "journeyMix" );
+//				t->bKeepAround = true;
+//				
+//				transitionPresetIndex0++;
+//				if(transitionPresetIndex0 >= transitionPresets.size() )	transitionPresetIndex0 = 0;
+//			}
+//			
+//			//otherwise end the mix
+//			else
+//			{
+//				//cout  << "stop journey mixing cus we're at the end of the journey intro" << endl;
+//				float span = jIntro->endTime - ofGetElapsedTimef();
+//				tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), span, "keyVisTween" );
+//				
+//				//start our mixing again AFTER the keyvisual has been restored ==  ofGetElapsedTimef() + span, ...
+//				variationTween->setup( &variation, 0, 1, ofGetElapsedTimef() + span, animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
+//				variationTween->bKeepAround = true;
+//			}
+//			
+//			//store the lastValues for future mixing
+//			lastValues = currentValues;
+//		}
+//	}
 	
 	
 	//perpetual mixing of presets
 	//TODO: rename variationKey
 	if(e.name == variationKey && !bLaodingJourney)
 	{
-		if (e.message == "started")
-		{
-			//make doublely sure
-			lastValues = currentValues;
-		}
-		
 		//if we're not loading a Journey and actively animating then we are mixing and tweening
 		if(bPlayAnimation)
 		{
+            if (e.message == "started")
+            {
+                //make doublely sure
+                lastValues = currentValues;
+            }
+            
 			if( e.message == "updated")
 			{
 				//transition to the next preset
@@ -894,6 +909,13 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 void ofApp::addJourneyTween()
 {
 	addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "addRibbonTween" );
+        
+//    //tween back to out key kis
+//    float keyVisTime = 4;
+//    tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), keyVisTime, "keyVisTween" );
+//
+//    //start our journey transition medley after we get to the key vis. on ending we go back to key vis
+//    tween.addTween( journeyVal, 0, 1, ofGetElapsedTimef() + keyVisTime, newRibbonScaleDuration - keyVisTime*2, "JourneyIntro" );
 }
 
 void ofApp::mixPresets( map<string, float>* p_0, map<string, float>* p_1, float mixval )
@@ -1006,12 +1028,12 @@ void ofApp::update()
 		{
 			if(!onions[i].bIsSetup){
 				onions[i].setup( journeys[i] );
-				onions[i].color = getRandomColor();
+				onions[i].color = getNextColor();//getRandomColor();
 				
 				//prevent neighbor color matches
 				if(i>0){
 					while (onions[i].color == onions[i-1].color) {
-						onions[i].color = getRandomColor();
+						onions[i].color = getNextColor();
 					}
 				}
 			}
@@ -1400,7 +1422,6 @@ void ofApp::drawOnion()
 	currentShader->setUniformTexture( "noiseTexture", noiseImage.getTextureReference(), 1 );
 	currentShader->setUniform2f("noiseDim", noiseImage.getWidth(), noiseImage.getHeight() );
 	
-	
 	currentShader->setUniform1f("noiseExponent", noiseExponent );
 	currentShader->setUniform1f("noiseMixExponent", noiseMixExponent );
 	currentShader->setUniform1f("noisePosScale", noisePosScale );
@@ -1432,7 +1453,7 @@ void ofApp::drawOnion()
 	ofScale(1, squishY, squish );
 	
 	ofRotate( newRibbonShaderScale * -360 + 90 - slope*90., 0, 0, 1);
-	float vortexRotVal = -3. * elapsedTime;
+	float vortexRotVal = -3. * elapsedTime * onJourneyRot;
 	
 	
 	if(!bDepthTest)	glDisable( GL_DEPTH_TEST );
@@ -1480,11 +1501,11 @@ void ofApp::drawOnion()
 		{
 			currentShader->setUniform1f("animateIn", newRibbonShaderScale );
 			
-			// after .95 it fades to the normal preset color
-			float mixVal = ofMap( newRibbonShaderScale, .95, 1, 0, 1, true );
-			float mMixVal = 1. - mixVal;
-			
-			currentShader->setUniform3f( "blendColor", mMixVal*journeyIntroColor.r+mixVal*col.r, mMixVal*journeyIntroColor.g+mixVal*col.g, mMixVal*journeyIntroColor.b+mixVal*col.b );
+//			// after .95 it fades to the normal preset color
+//			float mixVal = ofMap( newRibbonShaderScale, .95, 1, 0, 1, true );
+//			float mMixVal = 1. - mixVal;
+//			
+//			currentShader->setUniform3f( "blendColor", mMixVal*journeyIntroColor.r+mixVal*col.r, mMixVal*journeyIntroColor.g+mixVal*col.g, mMixVal*journeyIntroColor.b+mixVal*col.b );
 		}
 		else
 		{
@@ -1592,6 +1613,17 @@ ofColor ofApp::getRandomColor()
 	map<string, ofColor>::iterator it = colorMap.begin();
 	advance( it, floor( ofRandom(0., colorMap.size() ) ) );
 	return  it->second;
+}
+
+
+//--------------------------------------------------------------
+ofColor ofApp::getNextColor()
+{
+    ofColor outColor = colorArray[ colorIndex ];
+    colorIndex ++;
+    if(colorIndex >= colorArray.size() ) colorIndex = 0;
+    
+    return outColor;
 }
 
 //--------------------------------------------------------------
@@ -1722,16 +1754,8 @@ void ofApp::keyPressed(int key)
 				reader.parse( buffer.getText(), json );
 				handleRoute( json );
 			}
-			
-			//draws the individual journey
-			addJourneyTween();
-			
-			//tween back to out key kis
-			float keyVisTime = 4;
-			tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), keyVisTime, "keyVisTween" );
-			
-			//start our journey transition medley after we get to the key vis. on ending we go back to key vis
-			tween.addTween( journeyVal, 0, 1, ofGetElapsedTimef() + keyVisTime, newRibbonScaleDuration - keyVisTime*2, "JourneyIntro" );
+            
+            addJourneyTween();
 		}
 	}
 	

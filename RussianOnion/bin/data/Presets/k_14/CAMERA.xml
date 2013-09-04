@@ -29,6 +29,11 @@
     <Value>0.000000000</Value>
 </Widget>
 <Widget>
+    <Kind>2</Kind>
+    <Name>bSideView</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
     <Kind>4</Kind>
     <Name>tunnelMix</Name>
     <Value>0.000000000</Value>
@@ -52,4 +57,9 @@
     <Kind>4</Kind>
     <Name>EulScale</Name>
     <Value>1.000000954</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>onJourneyRot</Name>
+    <Value>0.011695862</Value>
 </Widget>
