@@ -55,7 +55,7 @@ void ofApp::setup()
 //    ofSetLogLevel(OF_LOG_VERBOSE);
 	
 	//Journy stuff
-	bLoadJsonsFromFile = false;
+	bLoadJsonsFromFile = true;
 	bJourniesNeedUpdate = false;
 	bOnionSetup = false;
 	
@@ -733,12 +733,6 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			//Jeff, this is the correct setup?
             recordManager.endJourney(journeys.back());
             soundManager.endJourney(journeys.back());
-			
-			//=======
-			//
-			//            recordManager.endJourney(journeys.back());
-			//            soundManager.endJourney(journeys.back());
-			//>>>>>>> 9ed3f7ccdee7bc229fcd4a98c432a80f862d015a
 		}
 	}
 	
@@ -951,7 +945,7 @@ void ofApp::addJourneyTween()
 {
 	addRibbonTween = tween.addTween( addRibbonVal, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "addRibbonTween" );
 	
-	tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), keyVisSpan, "returnToKeyVis" );
+	tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), keyVisSpan, "startJourneyIntro" );
 	
 //	//tween back to out key kis
 //	float keyVisTime = 4;
@@ -2035,23 +2029,7 @@ void ofApp::keyPressed(int key)
 //		captrure = true;
 	}
 	
-	if( key == ' ' )
-	{
-		if(!bLaodingJourney)
-		{
-			//load a journey from file
-			ofBuffer buffer = ofBufferFromFile("Journeys/journey_showJourney" + ofToString(int(ofRandom(4))) + ".json");
-			if(buffer.size()){
-				reader.parse( buffer.getText(), json );
-				handleRoute( json );
-			}
-			
-			//draws the individual journey
-			addJourneyTween();
-		}
-	}
-	
-	if(key == 'j'){
+	if(key == 'j' || key == ' '){
 		if(!bAddingRibbon){
 			
 			//load a journey from file

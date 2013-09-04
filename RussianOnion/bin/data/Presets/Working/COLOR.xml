@@ -1,33 +1,33 @@
 <Widget>
     <Kind>6</Kind>
     <Name>journeyColorRange</Name>
-    <HighValue>1.000000000</HighValue>
-    <LowValue>1.000000000</LowValue>
+    <HighValue>0.619718194</HighValue>
+    <LowValue>0.098591536</LowValue>
 </Widget>
 <Widget>
     <Kind>28</Kind>
     <Name>journeyIntroColor</Name>
-    <XValue>0.680000007</XValue>
-    <YValue>0.629999995</YValue>
-    <RColor>220</RColor>
-    <GColor>111</GColor>
-    <BColor>0</BColor>
+    <XValue>0.670000017</XValue>
+    <YValue>0.250000000</YValue>
+    <RColor>255</RColor>
+    <GColor>54</GColor>
+    <BColor>255</BColor>
     <AColor>255</AColor>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>journeyIntroColor_r</Name>
-    <Value>0.999996185</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>journeyIntroColor_g</Name>
-    <Value>0.211770937</Value>
+    <Value>0.211764723</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
     <Name>journeyIntroColor_b</Name>
-    <Value>0.999972224</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>20</Kind>
@@ -242,7 +242,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_5_r</Name>
-    <Value>0.058823533</Value>
+    <Value>0.058823537</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -257,7 +257,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_6_r</Name>
-    <Value>0.058823533</Value>
+    <Value>0.058823537</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -757,7 +757,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_39_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000001</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -772,7 +772,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_40_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000001</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -787,7 +787,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_41_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000001</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -802,7 +802,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_42_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000001</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -817,7 +817,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_43_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000001</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -832,7 +832,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_44_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000001</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -847,7 +847,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_45_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000001</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -862,7 +862,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_46_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000002</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -877,7 +877,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_47_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000002</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -892,7 +892,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_48_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000002</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -907,7 +907,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_49_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000002</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -922,7 +922,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_50_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000002</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -937,7 +937,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_51_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000002</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -952,7 +952,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_52_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000002</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -967,7 +967,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_53_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000002</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -982,7 +982,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_54_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000002</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -997,7 +997,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_55_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000002</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -1012,7 +1012,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_56_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000003</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -1027,7 +1027,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_57_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000003</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -1042,7 +1042,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_58_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000003</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -1057,7 +1057,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_59_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000003</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -1072,7 +1072,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_60_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000003</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -1087,7 +1087,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_61_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000003</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -1102,7 +1102,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_62_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000003</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
@@ -1117,7 +1117,7 @@
 <Widget>
     <Kind>5</Kind>
     <Name>c_63_g</Name>
-    <Value>0.000000000</Value>
+    <Value>0.000000003</Value>
 </Widget>
 <Widget>
     <Kind>5</Kind>
