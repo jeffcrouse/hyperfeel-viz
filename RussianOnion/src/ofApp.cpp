@@ -406,6 +406,14 @@ void ofApp::setupUI()
 	
 	//get our presets and them to the radio
 	presetGui = new ofxUICanvas();
+	presetGui->setName("COLOR");
+	presetGui->setFont("GUI/OpenSans-Semibold.ttf");
+	presetGui->setFontSize(OFX_UI_FONT_LARGE, 4);
+	presetGui->setFontSize(OFX_UI_FONT_MEDIUM, 4);
+	presetGui->setFontSize(OFX_UI_FONT_SMALL, 4);
+	presetGui->setColorFill(ofxUIColor(200));
+	presetGui->setColorFillHighlight(ofxUIColor(255));
+	presetGui->setColorBack(ofxUIColor( 90, 90, 90, 170));
 	
 	//save button
 	presetGui->addSpacer();
@@ -416,7 +424,8 @@ void ofApp::setupUI()
 	presetGui->addLabel("Presets");
 	presetGui->setPosition( guiShader->getRect()->getX() + guiShader->getRect()->getWidth() + 10, 10 );
 	presetGui->addSpacer();
-	presetRadio = presetGui->addRadio("presets", getPresetNames(), false );
+//	presetRadio = presetGui->addRadio("presets", getPresetNames(), OFX_UI_ORIENTATION_VERTICAL );
+	presetRadio = presetGui->addRadio("presets", getPresetNames(), OFX_UI_ORIENTATION_VERTICAL, 100, 10, 0,0 );
 	
 	presetGui->autoSizeToFitWidgets();
 	
@@ -430,7 +439,7 @@ void ofApp::setupUI()
 	guiColor->setFontSize(OFX_UI_FONT_SMALL, 6);
 	guiColor->setColorFill(ofxUIColor(200));
 	guiColor->setColorFillHighlight(ofxUIColor(255));
-	guiColor->setColorBack(ofxUIColor( 90, 90, 90, 70));
+	guiColor->setColorBack(ofxUIColor( 90, 90, 90, 170));
 	guiColor->setPosition( presetGui->getRect()->getX() + presetGui->getRect()->getWidth() + 10, 10 );
 	guiColor->setWidth( 150 );
 
@@ -486,7 +495,7 @@ void ofApp::setupUI()
 	guiCamera->setFontSize(OFX_UI_FONT_SMALL, 6);
 	guiCamera->setColorFill(ofxUIColor(200));
 	guiCamera->setColorFillHighlight(ofxUIColor(255));
-	guiCamera->setColorBack(ofxUIColor( 90, 90, 90, 70));
+	guiCamera->setColorBack(ofxUIColor( 90, 90, 90, 170));
 	guiCamera->setPosition( guiColor->getRect()->getX() + guiColor->getRect()->getWidth() + 10, 10 );
 	guiCamera->setWidth( 350 );
 	
@@ -699,7 +708,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 				bAddingRibbon = true;
 				
 				//tells the shader where to clip the data texture
-				addRibbonScaleTween = tween.addTween( newRibbonShaderScale, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonShaderScale", TWEEN_LINEAR, TWEEN_INOUT );
+				addRibbonScaleTween = tween.addTween( newRibbonShaderScale, 0, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonShaderScale", TWEEN_SINUSOIDAL, TWEEN_OUT );
 				
 				//scales up the outside mesh to prevent scale popping caused recurssivly scaling the array of onions.
 				//when we add a new layer the scales after the new layer sholud stay the same
@@ -748,23 +757,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			journeys.erase( journeys.begin() );
 		}
 	}
-	
-	if( e.name == "keyVisTween" )
-	{
-		if(e.message == "started")
-		{
-			bPlayAnimation = false;
-			lastValues = currentValues;
-		}
-		if(e.message == "updated")
-		{
-			mixPresets( "keyVis", e.value );
-		}
-		if(e.message == "ended")
-		{
-			lastValues = currentValues;
-		}
-	}
+
 	
 	//this adds a journey and controls the variable that plays the music
 	if( e.name == "JourneyIntro")
@@ -936,6 +929,23 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			
 			lastValues = currentValues;
 //			bPlayAnimation = true;
+		}
+	}
+	
+	
+	if( e.name == "keyVisTween" )
+	{
+		if(e.message == "started")
+		{
+			lastValues = currentValues;
+		}
+		if(e.message == "updated")
+		{
+			mixPresets( "keyVis", e.value );
+		}
+		if(e.message == "ended")
+		{
+			lastValues = currentValues;
 		}
 	}
 }
