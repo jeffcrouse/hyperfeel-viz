@@ -61,12 +61,15 @@ public:
 	};
 	
 	float keyVisVar;
+	map < string, float > sideviewValues;
 	map < string, float > currentValues;
 	map < string, float > lastValues;
 	
 	void tweenToPreset( map<string, float>* p, float mixval );
 	void tweenToPreset( string presetName, float mixval );
 	
+	void mixPresets( string p_0, string p_1, float mixval, map<string, float> * values );
+	void mixPresets( map<string, float>* p_0, map<string, float>* p_1, float mixval, map<string, float> * values );
 	void mixPresets( string p_0, string p_1,  float mixval );
 	void mixPresets( string p,  float mixval );
 	void mixPresets( map<string, float>* p_0, map<string, float>* p_1, float mixval );
@@ -110,7 +113,7 @@ public:
 	 * color sampling...
 	 */
 	vector <ofFloatColor> controlColors;
-	ofFloatColor getColor(float sampleVal);
+	ofFloatColor getColor(float sampleVal, vector<ofFloatColor> * _controlColors );
 	
 	ofImage colorMapImage;
 	
@@ -210,6 +213,10 @@ public:
 	int presetMixIndex;
 	
 	bool bSideView;
+	void drawSideView();
+	
+	
+	float minSampleVal;
 	
     /**
      *  Journeys
@@ -308,13 +315,21 @@ public:
 	ofFbo fbo;
 	ofShader fboShader;
 	ofFbo fboMap;
-	
 	ofFbo fbo_mm1;
 	ofFbo fbo_mm2;
 	ofFbo fbo_mm3;
 	ofFbo fbo_mm4;
 	ofFbo fbo_mm5;
 	ofFbo fbo_mm6;
+	
+	ofFbo sideViewFbo;
+	
+	ofFbo sideView_mm1;
+	ofFbo sideView_mm2;
+	ofFbo sideView_mm3;
+	ofFbo sideView_mm4;
+	ofFbo sideView_mm5;
+	ofFbo sideView_mm6;
 	
 	ofImage noiseImage;
 	
@@ -339,8 +354,5 @@ public:
 	//particles
 	int numParticles;
 	ofVbo particleVbo;
-	
-	
-	
 	
 };

@@ -125,16 +125,6 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>sideView</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>sideView0</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
     <Name>t_0</Name>
     <Value>0</Value>
 </Widget>
@@ -196,5 +186,10 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Working</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>sideView</Name>
     <Value>1</Value>
 </Widget>
