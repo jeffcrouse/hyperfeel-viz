@@ -40,8 +40,8 @@ void ofApp::setup()
     options = ofxLibwebsockets::defaultClientOptions();
     
     ofLogNotice() << "hostname = " << hostname();
-    if(hostname()=="cheese.local")
-        options.host = "cheese.local";
+    if(hostname()=="brainz.lan")
+        options.host = "localhost";
     else if(hostname()=="brainz.local")
         options.host = "brainz.local";
     else
@@ -56,7 +56,7 @@ void ofApp::setup()
 	
 	//Journy stuff
 	bSaveJsonsToFile = false;//for debuggin it was faster to load them from file rather then wait for the server
-	bLoadJsonsFromFile = true;
+	bLoadJsonsFromFile = false;
 	
 	bJourniesNeedUpdate = false;
 	
@@ -985,6 +985,7 @@ void ofApp::update()
 	if(bSavePreset){
 		savePreset();
 	}
+    
 	if(currentPresetName != nextPreset){
 		if(!bCachedPresetValues){
 			bCachedPresetValues = true;
@@ -996,6 +997,21 @@ void ofApp::update()
 		lastValues = presets[ nextPreset ];
 	}
 	
+    
+    
+    if(!bAddingRibbon && queue.size() > 0)
+    {
+		ofLogNotice() << "adding journey from queue";
+        
+		//true for animating in
+        journeys.push_back( queue[0] );
+        queue.erase(queue.begin());
+        
+		bJourniesNeedUpdate = true;
+		addJourneyTween();
+    }
+    
+    
 	//add new journeys
 	if(bJourniesNeedUpdate){
 		bJourniesNeedUpdate = false;
@@ -1029,6 +1045,8 @@ void ofApp::update()
 	Eul *= EulScale;
     
     soundManager.rotVel.set( Eul );
+    
+
     
     if(!bClientConnected && currentTime-lastConnectionAttempt > 5) {
         client.connect( options );
@@ -1859,13 +1877,9 @@ void ofApp::handleRoute( Json::Value& _json)
     }
 	
     else if(route=="addJourney" || route == "replayJourney") {
-			
-		cout << "addJourney" << endl;
-		//true for animating in
-        journeys.push_back( new Journey(json["journey"], true) );
-		bJourniesNeedUpdate = true;
-		
-		addJourneyTween();
+        ofLogNotice() << "ading journey to queue";
+        queue.push_back( new Journey(json["journey"], true) );
+
     }
 	
     else if(route=="removeJourney") {

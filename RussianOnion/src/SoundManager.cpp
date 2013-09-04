@@ -10,7 +10,8 @@
 
 // -------------------------------------------------
 SoundManager::~SoundManager() {
-    
+    delete[] attentionLoops;
+    delete[] meditationLoops;
 }
 
 // -------------------------------------------------

@@ -219,6 +219,7 @@ public:
 	bool bJourniesNeedUpdate;
 	void JourneyInit();
     vector<Journey*> journeys;
+    vector<Journey*> queue;
     vector<ofVbo*> vbos;
     vector<ofFloatColor> vboColors;
 	map <string, ofColor> colorMap;
