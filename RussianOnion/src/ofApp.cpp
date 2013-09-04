@@ -46,6 +46,7 @@ void ofApp::setup()
         options.host = "brainz.local";
     else
         options.host = "brainz.io";
+    
     ofLogNotice() << "options.host " << options.host;
     options.port = 8080;
     client.addListener(this);
@@ -206,8 +207,6 @@ void ofApp::setup()
 	}
 	
 	particleVbo.setVertexData( &particlePositions[0], particlePositions.size(), GL_STATIC_DRAW );
-	
-	
 }
 
 
@@ -1053,8 +1052,9 @@ void ofApp::update()
     soundManager.rotVel.set( Eul );
     
     if(!bClientConnected && currentTime-lastConnectionAttempt > 5) {
-        client.connect( options );
+        ofLogNotice() << "Attempting connection to " << options.host;
         lastConnectionAttempt = currentTime;
+        client.connect( options );
     }
 }
 
@@ -1831,10 +1831,11 @@ void ofApp::onConnect( ofxLibwebsockets::Event& args )
 //--------------------------------------------------------------
 void ofApp::onOpen( ofxLibwebsockets::Event& args )
 {
-    cout<<"on open"<<endl;
+    ofLogNotice() << "Connected to" << options.host;
     bClientConnected = true;
     
     if(!bClientInitialized) {
+        ofLogNotice() << "Seding initMe message";
         client.send("{\"route\": \"initMe\"}");
         bClientInitialized = true;
     }
