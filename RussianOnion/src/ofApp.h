@@ -201,6 +201,8 @@ public:
 	float tunnelTimeScl;
 	float tunnelDepthScl;
 	
+	float vortexScl;
+	
 	float EulScale;
 	
 	string journeyTransitionTween;

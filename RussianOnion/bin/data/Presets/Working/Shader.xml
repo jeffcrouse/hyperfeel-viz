@@ -1,22 +1,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>21.096490860</Value>
+    <Value>20.163742065</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.957602382</Value>
+    <Value>0.940058470</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>squish</Name>
-    <Value>0.670000017</Value>
+    <Value>0.592651606</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>squishY</Name>
-    <Value>1.000000000</Value>
+    <Value>0.895786285</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -26,27 +26,27 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerAlpha</Name>
-    <Value>0.997105300</Value>
+    <Value>0.582854152</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerAlpha</Name>
-    <Value>0.415263146</Value>
+    <Value>0.010000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerFacingRatio</Name>
-    <Value>1.000000000</Value>
+    <Value>0.850454152</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>outerFacingRatio</Name>
-    <Value>1.000000000</Value>
+    <Value>0.818514168</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseScale</Name>
-    <Value>0.007309941</Value>
+    <Value>0.007811700</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -56,17 +56,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerDisplacement</Name>
-    <Value>-71.052627563</Value>
+    <Value>31.578948975</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerDisplacement</Name>
-    <Value>-94.736846924</Value>
+    <Value>99.122802734</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>outerReadingThreshold</Name>
-    <Value>0.298245609</Value>
+    <Value>0.065501213</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -81,7 +81,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>innerReadingScale</Name>
-    <Value>0.010000000</Value>
+    <Value>0.128684208</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -101,5 +101,5 @@
 <Widget>
     <Kind>4</Kind>
     <Name>noiseSpread</Name>
-    <Value>-0.935672522</Value>
+    <Value>-0.649122834</Value>
 </Widget>

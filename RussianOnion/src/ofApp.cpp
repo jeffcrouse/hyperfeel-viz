@@ -118,34 +118,77 @@ void ofApp::setup()
 	//TODO: rename "newRibbonScaleDuration"
 	newRibbonScaleDuration = 45; // <---- this controls the time it takes for the journey to animate in.
 
-	animationPresetVariationTime = 10;
+	animationPresetVariationTime = 6;
 	animationPresetIndex0 = 0;
 	animationPresetIndex1 = 1;
 	
 	animationPresets.push_back("k_0");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("k_0");
+	animationPresets.push_back("k_12");
 	animationPresets.push_back("k_1");
-//	animationPresets.push_back("keyVis");
-	animationPresets.push_back("k_2");
-//	animationPresets.push_back("k_3");
-	//	animationPresets.push_back("keyVis");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("k_3");
 	animationPresets.push_back("k_4");
-//	animationPresets.push_back("k_5");
+	animationPresets.push_back("k_5");
 	animationPresets.push_back("k_6");
 	animationPresets.push_back("k_7");
 	animationPresets.push_back("k_8");
+	animationPresets.push_back("keyVis");
 	animationPresets.push_back("k_9");
 	animationPresets.push_back("k_10");
 	animationPresets.push_back("k_11");
 	animationPresets.push_back("k_12");
+	animationPresets.push_back("k_13");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("k_14");
+	animationPresets.push_back("k_15");
+	animationPresets.push_back("k_16");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("t_0");
+	animationPresets.push_back("t_1");
+	animationPresets.push_back("t_3");
+	animationPresets.push_back("t_4");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("t_5");
+	animationPresets.push_back("t_6");
+	animationPresets.push_back("t_7");
+	animationPresets.push_back("t_8");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("t_66");
+	animationPresets.push_back("t_67");
+	animationPresets.push_back("t_68");
+	animationPresets.push_back("t_69");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("j_0");
+	animationPresets.push_back("j_2");
+	animationPresets.push_back("j_3");
+	animationPresets.push_back("j_4");
+	animationPresets.push_back("j_5");
+	animationPresets.push_back("keyVis");
+	animationPresets.push_back("j_6");
+	animationPresets.push_back("j_7");
+	animationPresets.push_back("j_10");
 	
 	transitionPresetIndex0 = 0;
 	transitionPresets.push_back("k_1");
+	transitionPresets.push_back("t_0");
+	transitionPresets.push_back("t_1");
+	transitionPresets.push_back("t_3");
 	transitionPresets.push_back("k_2");
-//	transitionPresets.push_back("k_8");
-	transitionPresets.push_back("k_5");
-	transitionPresets.push_back("k_7");
+	transitionPresets.push_back("t_4");
+	transitionPresets.push_back("t_5");
 	transitionPresets.push_back("k_12");
-	
+	transitionPresets.push_back("t_6");
+	transitionPresets.push_back("t_7");
+	transitionPresets.push_back("k_7");
+	transitionPresets.push_back("t_8");
+	transitionPresets.push_back("t_66");
+	transitionPresets.push_back("t_67");
+	transitionPresets.push_back("t_68");
+	transitionPresets.push_back("k_5");
+	transitionPresets.push_back("t_69");
+
 	
 	keyVis = "keyVis";
 	
@@ -256,6 +299,8 @@ void ofApp::setDefaults()
 	bSideView = false;
 	
 	keyVisSpan = 2;
+	
+	vortexScl = 1;
 }
 
 void ofApp::setupUI()
@@ -292,6 +337,7 @@ void ofApp::setupUI()
 	ofxUIToggle* toggle = guiMain->addToggle("playAnimation", &bPlayAnimation );
 	guiMain->addSlider("circleRadius", 100, 1024, &circleRadius );
 	guiMain->addSlider("edgeAADist", 1, 10, &edgeAADist );
+	guiMain->addSlider("vortexScl", -1, 1, &vortexScl );
 	
 	guiMain->addLabel("render Types");
 	guiMain->addRadio("renderTypes", renderTypes );
@@ -307,6 +353,7 @@ void ofApp::setupUI()
 	guiMain->addLabel("Shaders" );
 //	cout << "shaderNames.size(): "<< shaderNames.size() << endl;
 	guiMain->addRadio("shaders", shaderNames );
+	
 	
     //guiMain->addSpacer();
     //guiMain->addWidgetDown( new ofxUIBaseDraws(320, 240, &soundManager.audioLevelsPreview, "AUDIO LEVELS", true) );
@@ -1346,7 +1393,7 @@ void ofApp::drawOnion()
 	ofScale(1, squishY, squish );
 	
 	ofRotate( newRibbonShaderScale * -360 + 90 - slope*90., 0, 0, 1);
-	float vortexRotVal = -3. * elapsedTime;
+	float vortexRotVal = -3. * elapsedTime * vortexScl;
 	
 	
 	if(!bDepthTest)	glDisable( GL_DEPTH_TEST );
@@ -1511,7 +1558,7 @@ void ofApp::drawSideView(){
 	ofScale(1, sideviewValues["squishY"], sideviewValues["squish"] );
 	
 	ofRotate( newRibbonShaderScale * -360 + 90 - slope*90., 0, 0, 1);
-	float vortexRotVal = -3. * elapsedTime;
+	float vortexRotVal = -3. * elapsedTime * vortexScl;
 	
 	
 	if(!bDepthTest)	glDisable( GL_DEPTH_TEST );

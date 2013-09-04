@@ -203,6 +203,287 @@
 		50138E6817C683D4009E8A93 /* onion.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = onion.vert; sourceTree = "<group>"; };
 		502DAE7217CF9EFE001C8447 /* post.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = post.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		502DAE7317CF9EFE001C8447 /* post.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = post.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		503DC0C017D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC0C117D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC0C217D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC0C317D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC0C417D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC0C517D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC0C617D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC0C817D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC0C917D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC0CA17D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC0CB17D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC0CC17D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC0CD17D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC0CE17D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC0D017D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC0D117D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC0D217D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC0D317D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC0D417D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC0D517D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC0D617D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC0D817D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC0D917D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC0DA17D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC0DB17D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC0DC17D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC0DD17D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC0DE17D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC0E017D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC0E117D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC0E217D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC0E317D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC0E417D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC0E517D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC0E617D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC0E817D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC0E917D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC0EA17D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC0EB17D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC0EC17D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC0ED17D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC0EE17D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC0F017D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC0F117D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC0F217D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC0F317D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC0F417D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC0F517D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC0F617D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC0F817D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC0F917D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC0FA17D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC0FB17D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC0FC17D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC0FD17D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC0FE17D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC10017D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC10117D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC10217D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC10317D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC10417D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC10517D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC10617D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC10817D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC10917D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC10A17D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC10B17D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC10C17D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC10D17D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC10E17D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC11017D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC11117D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC11217D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC11317D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC11417D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC11517D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC11617D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC11817D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC11917D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC11A17D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC11B17D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC11C17D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC11D17D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC11E17D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC12017D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC12117D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC12217D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC12317D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC12417D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC12517D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC12617D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC12817D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC12917D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC12A17D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC12B17D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC12C17D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC12D17D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC12E17D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC13017D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC13117D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC13217D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC13317D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC13417D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC13517D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC13617D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC13817D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC13917D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC13A17D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC13B17D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC13C17D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC13D17D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC13E17D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC14017D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC14117D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC14217D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC14317D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC14417D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC14517D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC14617D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC14817D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC14917D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC14A17D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC14B17D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC14C17D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC14D17D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC14E17D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC15017D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC15117D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC15217D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC15317D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC15417D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC15517D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC15617D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC15817D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC15917D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC15A17D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC15B17D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC15C17D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC15D17D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC15E17D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC16017D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC16117D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC16217D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC16317D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC16417D7C8D300F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC16517D7C8D300F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC16617D7C8D300F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC16817D7C8D300F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC16917D7C8D300F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC16A17D7C8D300F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC16B17D7C8D300F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC16C17D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC16D17D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC16E17D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC17017D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC17117D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC17217D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC17317D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC17417D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC17517D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC17617D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC17817D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC17917D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC17A17D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC17B17D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC17C17D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC17D17D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC17E17D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC18017D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC18117D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC18217D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC18317D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC18417D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC18517D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC18617D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC18817D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC18917D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC18A17D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC18B17D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC18C17D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC18D17D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC18E17D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC19017D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC19117D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC19217D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC19317D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC19417D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC19517D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC19617D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC19817D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC19917D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC19A17D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC19B17D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC19C17D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC19D17D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC19E17D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC1A017D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC1A117D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC1A217D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC1A317D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC1A417D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC1A517D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC1A617D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC1A817D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC1A917D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC1AA17D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC1AB17D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC1AC17D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC1AD17D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC1AE17D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC1B017D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC1B117D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC1B217D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC1B317D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC1B417D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC1B517D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC1B617D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC1B817D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC1B917D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC1BA17D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC1BB17D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC1BC17D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC1BD17D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC1BE17D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC1C017D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC1C117D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC1C217D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC1C317D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC1C417D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC1C517D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC1C617D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC1C817D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC1C917D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC1CA17D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC1CB17D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC1CC17D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC1CD17D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC1CE17D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC1D017D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC1D117D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC1D217D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC1D317D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC1D417D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC1D517D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC1D617D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC1D817D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC1D917D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC1DA17D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC1DB17D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC1DC17D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC1DD17D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC1DE17D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC1E017D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC1E117D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC1E217D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC1E317D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC1E417D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC1E517D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC1E617D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC1E817D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC1E917D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC1EA17D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC1EB17D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC1EC17D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC1ED17D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC1EE17D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC1F017D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC1F117D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC1F217D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC1F317D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC1F417D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC1F517D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC1F617D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
+		503DC1F817D7C8D400F61971 /* CAMERA.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CAMERA.xml; sourceTree = "<group>"; };
+		503DC1F917D7C8D400F61971 /* COLOR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLOR.xml; sourceTree = "<group>"; };
+		503DC1FA17D7C8D400F61971 /* Main.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Main.xml; sourceTree = "<group>"; };
+		503DC1FB17D7C8D400F61971 /* OFX_UI_WIDGET_CANVAS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = OFX_UI_WIDGET_CANVAS.xml; sourceTree = "<group>"; };
+		503DC1FC17D7C8D400F61971 /* Post.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Post.xml; sourceTree = "<group>"; };
+		503DC1FD17D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
+		503DC1FE17D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
+		503DC1FF17D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
 		505F856017D3014A00AB0295 /* keyVisual.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = keyVisual.frag; sourceTree = "<group>"; };
 		505F856117D3014A00AB0295 /* keyVisual.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = keyVisual.vert; sourceTree = "<group>"; };
 		5086E4EA17CBD0C300094645 /* HyperfeelTween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HyperfeelTween.cpp; sourceTree = "<group>"; };
@@ -444,6 +725,615 @@
 			name = src;
 			sourceTree = "<group>";
 		};
+		503DC0BE17D7C8D300F61971 /* Presets */ = {
+			isa = PBXGroup;
+			children = (
+				503DC0BF17D7C8D300F61971 /* j_0 */,
+				503DC0C717D7C8D300F61971 /* j_10 */,
+				503DC0CF17D7C8D300F61971 /* j_2 */,
+				503DC0D717D7C8D300F61971 /* j_3 */,
+				503DC0DF17D7C8D300F61971 /* j_4 */,
+				503DC0E717D7C8D300F61971 /* j_5 */,
+				503DC0EF17D7C8D300F61971 /* j_6 */,
+				503DC0F717D7C8D300F61971 /* j_7 */,
+				503DC0FF17D7C8D300F61971 /* k_0 */,
+				503DC10717D7C8D300F61971 /* k_1 */,
+				503DC10F17D7C8D300F61971 /* k_10 */,
+				503DC11717D7C8D300F61971 /* k_11 */,
+				503DC11F17D7C8D300F61971 /* k_12 */,
+				503DC12717D7C8D300F61971 /* k_13 */,
+				503DC12F17D7C8D300F61971 /* k_14 */,
+				503DC13717D7C8D300F61971 /* k_15 */,
+				503DC13F17D7C8D300F61971 /* k_16 */,
+				503DC14717D7C8D300F61971 /* k_3 */,
+				503DC14F17D7C8D300F61971 /* k_4 */,
+				503DC15717D7C8D300F61971 /* k_5 */,
+				503DC15F17D7C8D300F61971 /* k_6 */,
+				503DC16717D7C8D300F61971 /* k_7 */,
+				503DC16F17D7C8D400F61971 /* k_8 */,
+				503DC17717D7C8D400F61971 /* k_9 */,
+				503DC17F17D7C8D400F61971 /* keyVis */,
+				503DC18717D7C8D400F61971 /* sideView */,
+				503DC18F17D7C8D400F61971 /* sideView0 */,
+				503DC19717D7C8D400F61971 /* t_0 */,
+				503DC19F17D7C8D400F61971 /* t_1 */,
+				503DC1A717D7C8D400F61971 /* t_3 */,
+				503DC1AF17D7C8D400F61971 /* t_4 */,
+				503DC1B717D7C8D400F61971 /* t_5 */,
+				503DC1BF17D7C8D400F61971 /* t_6 */,
+				503DC1C717D7C8D400F61971 /* t_66 */,
+				503DC1CF17D7C8D400F61971 /* t_67 */,
+				503DC1D717D7C8D400F61971 /* t_68 */,
+				503DC1DF17D7C8D400F61971 /* t_69 */,
+				503DC1E717D7C8D400F61971 /* t_7 */,
+				503DC1EF17D7C8D400F61971 /* t_8 */,
+				503DC1F717D7C8D400F61971 /* Working */,
+			);
+			name = Presets;
+			path = bin/data/Presets;
+			sourceTree = "<group>";
+		};
+		503DC0BF17D7C8D300F61971 /* j_0 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC0C017D7C8D300F61971 /* CAMERA.xml */,
+				503DC0C117D7C8D300F61971 /* COLOR.xml */,
+				503DC0C217D7C8D300F61971 /* Main.xml */,
+				503DC0C317D7C8D300F61971 /* Post.xml */,
+				503DC0C417D7C8D300F61971 /* PRESETS.xml */,
+				503DC0C517D7C8D300F61971 /* Shader.xml */,
+				503DC0C617D7C8D300F61971 /* Utils.xml */,
+			);
+			path = j_0;
+			sourceTree = "<group>";
+		};
+		503DC0C717D7C8D300F61971 /* j_10 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC0C817D7C8D300F61971 /* CAMERA.xml */,
+				503DC0C917D7C8D300F61971 /* COLOR.xml */,
+				503DC0CA17D7C8D300F61971 /* Main.xml */,
+				503DC0CB17D7C8D300F61971 /* Post.xml */,
+				503DC0CC17D7C8D300F61971 /* PRESETS.xml */,
+				503DC0CD17D7C8D300F61971 /* Shader.xml */,
+				503DC0CE17D7C8D300F61971 /* Utils.xml */,
+			);
+			path = j_10;
+			sourceTree = "<group>";
+		};
+		503DC0CF17D7C8D300F61971 /* j_2 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC0D017D7C8D300F61971 /* CAMERA.xml */,
+				503DC0D117D7C8D300F61971 /* COLOR.xml */,
+				503DC0D217D7C8D300F61971 /* Main.xml */,
+				503DC0D317D7C8D300F61971 /* Post.xml */,
+				503DC0D417D7C8D300F61971 /* PRESETS.xml */,
+				503DC0D517D7C8D300F61971 /* Shader.xml */,
+				503DC0D617D7C8D300F61971 /* Utils.xml */,
+			);
+			path = j_2;
+			sourceTree = "<group>";
+		};
+		503DC0D717D7C8D300F61971 /* j_3 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC0D817D7C8D300F61971 /* CAMERA.xml */,
+				503DC0D917D7C8D300F61971 /* COLOR.xml */,
+				503DC0DA17D7C8D300F61971 /* Main.xml */,
+				503DC0DB17D7C8D300F61971 /* Post.xml */,
+				503DC0DC17D7C8D300F61971 /* PRESETS.xml */,
+				503DC0DD17D7C8D300F61971 /* Shader.xml */,
+				503DC0DE17D7C8D300F61971 /* Utils.xml */,
+			);
+			path = j_3;
+			sourceTree = "<group>";
+		};
+		503DC0DF17D7C8D300F61971 /* j_4 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC0E017D7C8D300F61971 /* CAMERA.xml */,
+				503DC0E117D7C8D300F61971 /* COLOR.xml */,
+				503DC0E217D7C8D300F61971 /* Main.xml */,
+				503DC0E317D7C8D300F61971 /* Post.xml */,
+				503DC0E417D7C8D300F61971 /* PRESETS.xml */,
+				503DC0E517D7C8D300F61971 /* Shader.xml */,
+				503DC0E617D7C8D300F61971 /* Utils.xml */,
+			);
+			path = j_4;
+			sourceTree = "<group>";
+		};
+		503DC0E717D7C8D300F61971 /* j_5 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC0E817D7C8D300F61971 /* CAMERA.xml */,
+				503DC0E917D7C8D300F61971 /* COLOR.xml */,
+				503DC0EA17D7C8D300F61971 /* Main.xml */,
+				503DC0EB17D7C8D300F61971 /* Post.xml */,
+				503DC0EC17D7C8D300F61971 /* PRESETS.xml */,
+				503DC0ED17D7C8D300F61971 /* Shader.xml */,
+				503DC0EE17D7C8D300F61971 /* Utils.xml */,
+			);
+			path = j_5;
+			sourceTree = "<group>";
+		};
+		503DC0EF17D7C8D300F61971 /* j_6 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC0F017D7C8D300F61971 /* CAMERA.xml */,
+				503DC0F117D7C8D300F61971 /* COLOR.xml */,
+				503DC0F217D7C8D300F61971 /* Main.xml */,
+				503DC0F317D7C8D300F61971 /* Post.xml */,
+				503DC0F417D7C8D300F61971 /* PRESETS.xml */,
+				503DC0F517D7C8D300F61971 /* Shader.xml */,
+				503DC0F617D7C8D300F61971 /* Utils.xml */,
+			);
+			path = j_6;
+			sourceTree = "<group>";
+		};
+		503DC0F717D7C8D300F61971 /* j_7 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC0F817D7C8D300F61971 /* CAMERA.xml */,
+				503DC0F917D7C8D300F61971 /* COLOR.xml */,
+				503DC0FA17D7C8D300F61971 /* Main.xml */,
+				503DC0FB17D7C8D300F61971 /* Post.xml */,
+				503DC0FC17D7C8D300F61971 /* PRESETS.xml */,
+				503DC0FD17D7C8D300F61971 /* Shader.xml */,
+				503DC0FE17D7C8D300F61971 /* Utils.xml */,
+			);
+			path = j_7;
+			sourceTree = "<group>";
+		};
+		503DC0FF17D7C8D300F61971 /* k_0 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC10017D7C8D300F61971 /* CAMERA.xml */,
+				503DC10117D7C8D300F61971 /* COLOR.xml */,
+				503DC10217D7C8D300F61971 /* Main.xml */,
+				503DC10317D7C8D300F61971 /* Post.xml */,
+				503DC10417D7C8D300F61971 /* PRESETS.xml */,
+				503DC10517D7C8D300F61971 /* Shader.xml */,
+				503DC10617D7C8D300F61971 /* Utils.xml */,
+			);
+			path = k_0;
+			sourceTree = "<group>";
+		};
+		503DC10717D7C8D300F61971 /* k_1 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC10817D7C8D300F61971 /* CAMERA.xml */,
+				503DC10917D7C8D300F61971 /* COLOR.xml */,
+				503DC10A17D7C8D300F61971 /* Main.xml */,
+				503DC10B17D7C8D300F61971 /* Post.xml */,
+				503DC10C17D7C8D300F61971 /* PRESETS.xml */,
+				503DC10D17D7C8D300F61971 /* Shader.xml */,
+				503DC10E17D7C8D300F61971 /* Utils.xml */,
+			);
+			path = k_1;
+			sourceTree = "<group>";
+		};
+		503DC10F17D7C8D300F61971 /* k_10 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC11017D7C8D300F61971 /* CAMERA.xml */,
+				503DC11117D7C8D300F61971 /* COLOR.xml */,
+				503DC11217D7C8D300F61971 /* Main.xml */,
+				503DC11317D7C8D300F61971 /* Post.xml */,
+				503DC11417D7C8D300F61971 /* PRESETS.xml */,
+				503DC11517D7C8D300F61971 /* Shader.xml */,
+				503DC11617D7C8D300F61971 /* Utils.xml */,
+			);
+			path = k_10;
+			sourceTree = "<group>";
+		};
+		503DC11717D7C8D300F61971 /* k_11 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC11817D7C8D300F61971 /* CAMERA.xml */,
+				503DC11917D7C8D300F61971 /* COLOR.xml */,
+				503DC11A17D7C8D300F61971 /* Main.xml */,
+				503DC11B17D7C8D300F61971 /* Post.xml */,
+				503DC11C17D7C8D300F61971 /* PRESETS.xml */,
+				503DC11D17D7C8D300F61971 /* Shader.xml */,
+				503DC11E17D7C8D300F61971 /* Utils.xml */,
+			);
+			path = k_11;
+			sourceTree = "<group>";
+		};
+		503DC11F17D7C8D300F61971 /* k_12 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC12017D7C8D300F61971 /* CAMERA.xml */,
+				503DC12117D7C8D300F61971 /* COLOR.xml */,
+				503DC12217D7C8D300F61971 /* Main.xml */,
+				503DC12317D7C8D300F61971 /* Post.xml */,
+				503DC12417D7C8D300F61971 /* PRESETS.xml */,
+				503DC12517D7C8D300F61971 /* Shader.xml */,
+				503DC12617D7C8D300F61971 /* Utils.xml */,
+			);
+			path = k_12;
+			sourceTree = "<group>";
+		};
+		503DC12717D7C8D300F61971 /* k_13 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC12817D7C8D300F61971 /* CAMERA.xml */,
+				503DC12917D7C8D300F61971 /* COLOR.xml */,
+				503DC12A17D7C8D300F61971 /* Main.xml */,
+				503DC12B17D7C8D300F61971 /* Post.xml */,
+				503DC12C17D7C8D300F61971 /* PRESETS.xml */,
+				503DC12D17D7C8D300F61971 /* Shader.xml */,
+				503DC12E17D7C8D300F61971 /* Utils.xml */,
+			);
+			path = k_13;
+			sourceTree = "<group>";
+		};
+		503DC12F17D7C8D300F61971 /* k_14 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC13017D7C8D300F61971 /* CAMERA.xml */,
+				503DC13117D7C8D300F61971 /* COLOR.xml */,
+				503DC13217D7C8D300F61971 /* Main.xml */,
+				503DC13317D7C8D300F61971 /* Post.xml */,
+				503DC13417D7C8D300F61971 /* PRESETS.xml */,
+				503DC13517D7C8D300F61971 /* Shader.xml */,
+				503DC13617D7C8D300F61971 /* Utils.xml */,
+			);
+			path = k_14;
+			sourceTree = "<group>";
+		};
+		503DC13717D7C8D300F61971 /* k_15 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC13817D7C8D300F61971 /* CAMERA.xml */,
+				503DC13917D7C8D300F61971 /* COLOR.xml */,
+				503DC13A17D7C8D300F61971 /* Main.xml */,
+				503DC13B17D7C8D300F61971 /* Post.xml */,
+				503DC13C17D7C8D300F61971 /* PRESETS.xml */,
+				503DC13D17D7C8D300F61971 /* Shader.xml */,
+				503DC13E17D7C8D300F61971 /* Utils.xml */,
+			);
+			path = k_15;
+			sourceTree = "<group>";
+		};
+		503DC13F17D7C8D300F61971 /* k_16 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC14017D7C8D300F61971 /* CAMERA.xml */,
+				503DC14117D7C8D300F61971 /* COLOR.xml */,
+				503DC14217D7C8D300F61971 /* Main.xml */,
+				503DC14317D7C8D300F61971 /* Post.xml */,
+				503DC14417D7C8D300F61971 /* PRESETS.xml */,
+				503DC14517D7C8D300F61971 /* Shader.xml */,
+				503DC14617D7C8D300F61971 /* Utils.xml */,
+			);
+			path = k_16;
+			sourceTree = "<group>";
+		};
+		503DC14717D7C8D300F61971 /* k_3 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC14817D7C8D300F61971 /* CAMERA.xml */,
+				503DC14917D7C8D300F61971 /* COLOR.xml */,
+				503DC14A17D7C8D300F61971 /* Main.xml */,
+				503DC14B17D7C8D300F61971 /* Post.xml */,
+				503DC14C17D7C8D300F61971 /* PRESETS.xml */,
+				503DC14D17D7C8D300F61971 /* Shader.xml */,
+				503DC14E17D7C8D300F61971 /* Utils.xml */,
+			);
+			path = k_3;
+			sourceTree = "<group>";
+		};
+		503DC14F17D7C8D300F61971 /* k_4 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC15017D7C8D300F61971 /* CAMERA.xml */,
+				503DC15117D7C8D300F61971 /* COLOR.xml */,
+				503DC15217D7C8D300F61971 /* Main.xml */,
+				503DC15317D7C8D300F61971 /* Post.xml */,
+				503DC15417D7C8D300F61971 /* PRESETS.xml */,
+				503DC15517D7C8D300F61971 /* Shader.xml */,
+				503DC15617D7C8D300F61971 /* Utils.xml */,
+			);
+			path = k_4;
+			sourceTree = "<group>";
+		};
+		503DC15717D7C8D300F61971 /* k_5 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC15817D7C8D300F61971 /* CAMERA.xml */,
+				503DC15917D7C8D300F61971 /* COLOR.xml */,
+				503DC15A17D7C8D300F61971 /* Main.xml */,
+				503DC15B17D7C8D300F61971 /* Post.xml */,
+				503DC15C17D7C8D300F61971 /* PRESETS.xml */,
+				503DC15D17D7C8D300F61971 /* Shader.xml */,
+				503DC15E17D7C8D300F61971 /* Utils.xml */,
+			);
+			path = k_5;
+			sourceTree = "<group>";
+		};
+		503DC15F17D7C8D300F61971 /* k_6 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC16017D7C8D300F61971 /* CAMERA.xml */,
+				503DC16117D7C8D300F61971 /* COLOR.xml */,
+				503DC16217D7C8D300F61971 /* Main.xml */,
+				503DC16317D7C8D300F61971 /* Post.xml */,
+				503DC16417D7C8D300F61971 /* PRESETS.xml */,
+				503DC16517D7C8D300F61971 /* Shader.xml */,
+				503DC16617D7C8D300F61971 /* Utils.xml */,
+			);
+			path = k_6;
+			sourceTree = "<group>";
+		};
+		503DC16717D7C8D300F61971 /* k_7 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC16817D7C8D300F61971 /* CAMERA.xml */,
+				503DC16917D7C8D300F61971 /* COLOR.xml */,
+				503DC16A17D7C8D300F61971 /* Main.xml */,
+				503DC16B17D7C8D300F61971 /* Post.xml */,
+				503DC16C17D7C8D400F61971 /* PRESETS.xml */,
+				503DC16D17D7C8D400F61971 /* Shader.xml */,
+				503DC16E17D7C8D400F61971 /* Utils.xml */,
+			);
+			path = k_7;
+			sourceTree = "<group>";
+		};
+		503DC16F17D7C8D400F61971 /* k_8 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC17017D7C8D400F61971 /* CAMERA.xml */,
+				503DC17117D7C8D400F61971 /* COLOR.xml */,
+				503DC17217D7C8D400F61971 /* Main.xml */,
+				503DC17317D7C8D400F61971 /* Post.xml */,
+				503DC17417D7C8D400F61971 /* PRESETS.xml */,
+				503DC17517D7C8D400F61971 /* Shader.xml */,
+				503DC17617D7C8D400F61971 /* Utils.xml */,
+			);
+			path = k_8;
+			sourceTree = "<group>";
+		};
+		503DC17717D7C8D400F61971 /* k_9 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC17817D7C8D400F61971 /* CAMERA.xml */,
+				503DC17917D7C8D400F61971 /* COLOR.xml */,
+				503DC17A17D7C8D400F61971 /* Main.xml */,
+				503DC17B17D7C8D400F61971 /* Post.xml */,
+				503DC17C17D7C8D400F61971 /* PRESETS.xml */,
+				503DC17D17D7C8D400F61971 /* Shader.xml */,
+				503DC17E17D7C8D400F61971 /* Utils.xml */,
+			);
+			path = k_9;
+			sourceTree = "<group>";
+		};
+		503DC17F17D7C8D400F61971 /* keyVis */ = {
+			isa = PBXGroup;
+			children = (
+				503DC18017D7C8D400F61971 /* CAMERA.xml */,
+				503DC18117D7C8D400F61971 /* COLOR.xml */,
+				503DC18217D7C8D400F61971 /* Main.xml */,
+				503DC18317D7C8D400F61971 /* Post.xml */,
+				503DC18417D7C8D400F61971 /* PRESETS.xml */,
+				503DC18517D7C8D400F61971 /* Shader.xml */,
+				503DC18617D7C8D400F61971 /* Utils.xml */,
+			);
+			path = keyVis;
+			sourceTree = "<group>";
+		};
+		503DC18717D7C8D400F61971 /* sideView */ = {
+			isa = PBXGroup;
+			children = (
+				503DC18817D7C8D400F61971 /* CAMERA.xml */,
+				503DC18917D7C8D400F61971 /* COLOR.xml */,
+				503DC18A17D7C8D400F61971 /* Main.xml */,
+				503DC18B17D7C8D400F61971 /* Post.xml */,
+				503DC18C17D7C8D400F61971 /* PRESETS.xml */,
+				503DC18D17D7C8D400F61971 /* Shader.xml */,
+				503DC18E17D7C8D400F61971 /* Utils.xml */,
+			);
+			path = sideView;
+			sourceTree = "<group>";
+		};
+		503DC18F17D7C8D400F61971 /* sideView0 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC19017D7C8D400F61971 /* CAMERA.xml */,
+				503DC19117D7C8D400F61971 /* COLOR.xml */,
+				503DC19217D7C8D400F61971 /* Main.xml */,
+				503DC19317D7C8D400F61971 /* Post.xml */,
+				503DC19417D7C8D400F61971 /* PRESETS.xml */,
+				503DC19517D7C8D400F61971 /* Shader.xml */,
+				503DC19617D7C8D400F61971 /* Utils.xml */,
+			);
+			path = sideView0;
+			sourceTree = "<group>";
+		};
+		503DC19717D7C8D400F61971 /* t_0 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC19817D7C8D400F61971 /* CAMERA.xml */,
+				503DC19917D7C8D400F61971 /* COLOR.xml */,
+				503DC19A17D7C8D400F61971 /* Main.xml */,
+				503DC19B17D7C8D400F61971 /* Post.xml */,
+				503DC19C17D7C8D400F61971 /* PRESETS.xml */,
+				503DC19D17D7C8D400F61971 /* Shader.xml */,
+				503DC19E17D7C8D400F61971 /* Utils.xml */,
+			);
+			path = t_0;
+			sourceTree = "<group>";
+		};
+		503DC19F17D7C8D400F61971 /* t_1 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC1A017D7C8D400F61971 /* CAMERA.xml */,
+				503DC1A117D7C8D400F61971 /* COLOR.xml */,
+				503DC1A217D7C8D400F61971 /* Main.xml */,
+				503DC1A317D7C8D400F61971 /* Post.xml */,
+				503DC1A417D7C8D400F61971 /* PRESETS.xml */,
+				503DC1A517D7C8D400F61971 /* Shader.xml */,
+				503DC1A617D7C8D400F61971 /* Utils.xml */,
+			);
+			path = t_1;
+			sourceTree = "<group>";
+		};
+		503DC1A717D7C8D400F61971 /* t_3 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC1A817D7C8D400F61971 /* CAMERA.xml */,
+				503DC1A917D7C8D400F61971 /* COLOR.xml */,
+				503DC1AA17D7C8D400F61971 /* Main.xml */,
+				503DC1AB17D7C8D400F61971 /* Post.xml */,
+				503DC1AC17D7C8D400F61971 /* PRESETS.xml */,
+				503DC1AD17D7C8D400F61971 /* Shader.xml */,
+				503DC1AE17D7C8D400F61971 /* Utils.xml */,
+			);
+			path = t_3;
+			sourceTree = "<group>";
+		};
+		503DC1AF17D7C8D400F61971 /* t_4 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC1B017D7C8D400F61971 /* CAMERA.xml */,
+				503DC1B117D7C8D400F61971 /* COLOR.xml */,
+				503DC1B217D7C8D400F61971 /* Main.xml */,
+				503DC1B317D7C8D400F61971 /* Post.xml */,
+				503DC1B417D7C8D400F61971 /* PRESETS.xml */,
+				503DC1B517D7C8D400F61971 /* Shader.xml */,
+				503DC1B617D7C8D400F61971 /* Utils.xml */,
+			);
+			path = t_4;
+			sourceTree = "<group>";
+		};
+		503DC1B717D7C8D400F61971 /* t_5 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC1B817D7C8D400F61971 /* CAMERA.xml */,
+				503DC1B917D7C8D400F61971 /* COLOR.xml */,
+				503DC1BA17D7C8D400F61971 /* Main.xml */,
+				503DC1BB17D7C8D400F61971 /* Post.xml */,
+				503DC1BC17D7C8D400F61971 /* PRESETS.xml */,
+				503DC1BD17D7C8D400F61971 /* Shader.xml */,
+				503DC1BE17D7C8D400F61971 /* Utils.xml */,
+			);
+			path = t_5;
+			sourceTree = "<group>";
+		};
+		503DC1BF17D7C8D400F61971 /* t_6 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC1C017D7C8D400F61971 /* CAMERA.xml */,
+				503DC1C117D7C8D400F61971 /* COLOR.xml */,
+				503DC1C217D7C8D400F61971 /* Main.xml */,
+				503DC1C317D7C8D400F61971 /* Post.xml */,
+				503DC1C417D7C8D400F61971 /* PRESETS.xml */,
+				503DC1C517D7C8D400F61971 /* Shader.xml */,
+				503DC1C617D7C8D400F61971 /* Utils.xml */,
+			);
+			path = t_6;
+			sourceTree = "<group>";
+		};
+		503DC1C717D7C8D400F61971 /* t_66 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC1C817D7C8D400F61971 /* CAMERA.xml */,
+				503DC1C917D7C8D400F61971 /* COLOR.xml */,
+				503DC1CA17D7C8D400F61971 /* Main.xml */,
+				503DC1CB17D7C8D400F61971 /* Post.xml */,
+				503DC1CC17D7C8D400F61971 /* PRESETS.xml */,
+				503DC1CD17D7C8D400F61971 /* Shader.xml */,
+				503DC1CE17D7C8D400F61971 /* Utils.xml */,
+			);
+			path = t_66;
+			sourceTree = "<group>";
+		};
+		503DC1CF17D7C8D400F61971 /* t_67 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC1D017D7C8D400F61971 /* CAMERA.xml */,
+				503DC1D117D7C8D400F61971 /* COLOR.xml */,
+				503DC1D217D7C8D400F61971 /* Main.xml */,
+				503DC1D317D7C8D400F61971 /* Post.xml */,
+				503DC1D417D7C8D400F61971 /* PRESETS.xml */,
+				503DC1D517D7C8D400F61971 /* Shader.xml */,
+				503DC1D617D7C8D400F61971 /* Utils.xml */,
+			);
+			path = t_67;
+			sourceTree = "<group>";
+		};
+		503DC1D717D7C8D400F61971 /* t_68 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC1D817D7C8D400F61971 /* CAMERA.xml */,
+				503DC1D917D7C8D400F61971 /* COLOR.xml */,
+				503DC1DA17D7C8D400F61971 /* Main.xml */,
+				503DC1DB17D7C8D400F61971 /* Post.xml */,
+				503DC1DC17D7C8D400F61971 /* PRESETS.xml */,
+				503DC1DD17D7C8D400F61971 /* Shader.xml */,
+				503DC1DE17D7C8D400F61971 /* Utils.xml */,
+			);
+			path = t_68;
+			sourceTree = "<group>";
+		};
+		503DC1DF17D7C8D400F61971 /* t_69 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC1E017D7C8D400F61971 /* CAMERA.xml */,
+				503DC1E117D7C8D400F61971 /* COLOR.xml */,
+				503DC1E217D7C8D400F61971 /* Main.xml */,
+				503DC1E317D7C8D400F61971 /* Post.xml */,
+				503DC1E417D7C8D400F61971 /* PRESETS.xml */,
+				503DC1E517D7C8D400F61971 /* Shader.xml */,
+				503DC1E617D7C8D400F61971 /* Utils.xml */,
+			);
+			path = t_69;
+			sourceTree = "<group>";
+		};
+		503DC1E717D7C8D400F61971 /* t_7 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC1E817D7C8D400F61971 /* CAMERA.xml */,
+				503DC1E917D7C8D400F61971 /* COLOR.xml */,
+				503DC1EA17D7C8D400F61971 /* Main.xml */,
+				503DC1EB17D7C8D400F61971 /* Post.xml */,
+				503DC1EC17D7C8D400F61971 /* PRESETS.xml */,
+				503DC1ED17D7C8D400F61971 /* Shader.xml */,
+				503DC1EE17D7C8D400F61971 /* Utils.xml */,
+			);
+			path = t_7;
+			sourceTree = "<group>";
+		};
+		503DC1EF17D7C8D400F61971 /* t_8 */ = {
+			isa = PBXGroup;
+			children = (
+				503DC1F017D7C8D400F61971 /* CAMERA.xml */,
+				503DC1F117D7C8D400F61971 /* COLOR.xml */,
+				503DC1F217D7C8D400F61971 /* Main.xml */,
+				503DC1F317D7C8D400F61971 /* Post.xml */,
+				503DC1F417D7C8D400F61971 /* PRESETS.xml */,
+				503DC1F517D7C8D400F61971 /* Shader.xml */,
+				503DC1F617D7C8D400F61971 /* Utils.xml */,
+			);
+			path = t_8;
+			sourceTree = "<group>";
+		};
+		503DC1F717D7C8D400F61971 /* Working */ = {
+			isa = PBXGroup;
+			children = (
+				503DC1F817D7C8D400F61971 /* CAMERA.xml */,
+				503DC1F917D7C8D400F61971 /* COLOR.xml */,
+				503DC1FA17D7C8D400F61971 /* Main.xml */,
+				503DC1FB17D7C8D400F61971 /* OFX_UI_WIDGET_CANVAS.xml */,
+				503DC1FC17D7C8D400F61971 /* Post.xml */,
+				503DC1FD17D7C8D400F61971 /* PRESETS.xml */,
+				503DC1FE17D7C8D400F61971 /* Shader.xml */,
+				503DC1FF17D7C8D400F61971 /* Utils.xml */,
+			);
+			path = Working;
+			sourceTree = "<group>";
+		};
 		50FE7B2817C4043400F3DAA5 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +1468,7 @@
 			children = (
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
+				503DC0BE17D7C8D300F61971 /* Presets */,
 				50FE7B2817C4043400F3DAA5 /* shaders */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
