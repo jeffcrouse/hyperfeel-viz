@@ -78,7 +78,7 @@ void ofApp::setup()
 //    ofSetLogLevel(OF_LOG_VERBOSE);
 	
 	//Journy stuff
-	bLoadJsonsFromFile = true;
+	bLoadJsonsFromFile = false;
 	bJourniesNeedUpdate = false;
 	bOnionSetup = false;
 	
@@ -183,15 +183,6 @@ void ofApp::setup()
 	animationPresets.push_back("t_68");
 	animationPresets.push_back("t_69");
 	animationPresets.push_back("keyVis");
-	animationPresets.push_back("j_0");
-	animationPresets.push_back("j_2");
-	animationPresets.push_back("j_3");
-	animationPresets.push_back("j_4");
-	animationPresets.push_back("j_5");
-	animationPresets.push_back("keyVis");
-	animationPresets.push_back("j_6");
-	animationPresets.push_back("j_7");
-	animationPresets.push_back("j_10");
 	
 	transitionPresetIndex0 = 0;
 	transitionPresets.push_back("k_1");
@@ -246,6 +237,10 @@ void ofApp::setup()
 	}
 	
 	particleVbo.setVertexData( &particlePositions[0], particlePositions.size(), GL_STATIC_DRAW );
+    
+    debubgFill.loadImage("palettes/red.png");
+    
+    bDebugScreen = false;
 }
 
 
@@ -305,6 +300,10 @@ void ofApp::setDefaults()
 	keyVisSpan = 2;
 	
 	vortexScl = 1;
+    
+    
+    screenPosOffsetX = 0;
+    screenPosOffsetY = 0;
 }
 
 void ofApp::setupUI()
@@ -320,6 +319,14 @@ void ofApp::setupUI()
     float length = 220-xInit;
 	
 	setDefaults();
+    
+    
+	screenPositionGui = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
+	screenPositionGui->setName("Screen");
+    screenPositionGui->addSlider( "screenPositionX", -100., 100., &screenPosOffsetX );
+    screenPositionGui->addSlider( "screenPositionY", -100., 100., &screenPosOffsetY );
+    screenPositionGui->setPosition( 10, ofGetHeight() / 2 );
+    
 	
 	ofxUICanvas* guiMain = new ofxUICanvas(columnWidth, 0, length+xInit, columnWidth);
 	guiMain->setName("Main");
@@ -1257,7 +1264,7 @@ void ofApp::draw()
 	
 	//post shader. draw to the screen
 	post.begin();
-	post.setUniform2f("center", ofGetWidth()/4, ofGetHeight()/2);
+	post.setUniform2f("center", 3 * ofGetWidth()/4 + screenPosOffsetX, ofGetHeight()/2 - screenPosOffsetY);
 	post.setUniform1f("circleRadius", circleRadius );
 	post.setUniform1f("edgeAADist", edgeAADist );
 	post.setUniformTexture("fbo", fbo.getTextureReference(), 0);
@@ -1271,7 +1278,7 @@ void ofApp::draw()
 	post.setUniform1f("glowExponent", glowExponent );
 	post.setUniform1f("glowScale", glowScale );
 	
-	fbo.draw(0, 0, fbo.getWidth(), ofGetHeight() );
+	fbo.draw( ofGetWidth()/2 + screenPosOffsetX, screenPosOffsetY, fbo.getWidth(), ofGetHeight() );
 	
 	post.end();
 	ofPopStyle();
@@ -1284,8 +1291,7 @@ void ofApp::draw()
 	glDisable(GL_DEPTH_TEST);
 	
 	post.begin();
-	post.setUniform2f("center", ofGetWidth()/2, ofGetHeight()/2);
-	post.setUniform1f("circleRadius", 1920 );// circleRadius );
+	post.setUniform1f("circleRadius", 10000 );// circleRadius );
 	post.setUniform1f("edgeAADist", edgeAADist );
 	post.setUniformTexture("fbo", sideViewFbo.getTextureReference(), 0);
 	post.setUniformTexture("mm1", sideView_mm1.getTextureReference(), 1);
@@ -1298,10 +1304,47 @@ void ofApp::draw()
 	post.setUniform1f("glowExponent", glowExponent );
 	post.setUniform1f("glowScale", glowScale );
 	
-	sideViewFbo.draw( fbo.getWidth(), 0, sideViewFbo.getWidth(), ofGetHeight() );
+	sideViewFbo.draw( 0, 0, sideViewFbo.getWidth(), ofGetHeight() );
 	
 	post.end();
 	ofPopStyle();
+    
+    if(bDebugScreen){
+//        ofBackground( 255,255,255,255);
+        
+        ofPushStyle();
+        
+        //post shader. draw to the screen
+        glDisable(GL_DEPTH_TEST);
+        
+        post.begin();
+        post.setUniform2f("center", 3 * ofGetWidth()/4 + screenPosOffsetX, ofGetHeight()/2 - screenPosOffsetY);
+        post.setUniform1f("circleRadius", circleRadius );
+        post.setUniform1f("edgeAADist", edgeAADist );
+        post.setUniform1f("edgeAADist", edgeAADist );
+        post.setUniformTexture("fbo", debubgFill.getTextureReference(), 0);
+        post.setUniformTexture("mm1", debubgFill.getTextureReference(), 1);
+        post.setUniformTexture("mm2", debubgFill.getTextureReference(), 2);
+        post.setUniformTexture("mm3", debubgFill.getTextureReference(), 3);
+        post.setUniformTexture("mm4", debubgFill.getTextureReference(), 4);
+        post.setUniformTexture("mm5", debubgFill.getTextureReference(), 5);
+        post.setUniformTexture("mm6", debubgFill.getTextureReference(), 6);
+        
+        debubgFill.draw( ofGetWidth()/2 + screenPosOffsetX, screenPosOffsetY, fbo.getWidth(), ofGetHeight() );
+        
+        post.end();
+        
+        ofSetColor(255, 255, 255);
+        for(int i=0; i <= ofGetWidth()/100; i++){
+            ofLine( i*100, 0, i*100, ofGetHeight() );
+        }
+        
+        for(int i=0; i <= ofGetHeight()/100; i++){
+            ofLine( 0, i*100, ofGetWidth(), i*100 );
+        }
+        
+        ofPopStyle();
+    }
 	
 	
 	//draw mip maps if gui is visible 
@@ -1966,6 +2009,7 @@ void ofApp::exit()
 		ofRemoveListener(guis[i]->newGUIEvent,this,&ofApp::guiEvent);
 		delete guis[i];
 	}
+    delete screenPositionGui;
 	
 	//delete our vbos
 	if(bDebug)	cout << "deleting/clearing vbos" << endl;
@@ -2103,6 +2147,10 @@ void ofApp::keyPressed(int key)
 			(*it)->toggleVisible();
 		}
 	}
+    if( key == 'd' || key == 'D' ){
+        bDebugScreen = !bDebugScreen;
+    }
+    
 	if(key == 's' || key == 'S' ) {
 		savePreset();
 	}
@@ -2137,6 +2185,23 @@ void ofApp::keyPressed(int key)
 			addJourneyTween();
 		}
 	}
+    
+//    if( key == OF_KEY_LEFT ){
+//        --screenPosOffsetX;
+//        cout << "screenPosOffsetX = " << screenPosOffsetX << ";"<< endl << "screenPosOffsetY = " << screenPosOffsetY << ";"<< endl;
+//    }
+//    if( key == OF_KEY_RIGHT ){
+//        ++screenPosOffsetX;
+//        cout << "screenPosOffsetX = " << screenPosOffsetX << ";"<< endl << "screenPosOffsetY = " << screenPosOffsetY << ";"<< endl;
+//    }
+//    if( key == OF_KEY_UP ){
+//        --screenPosOffsetY;
+//        cout << "screenPosOffsetX = " << screenPosOffsetX << ";"<< endl << "screenPosOffsetY = " << screenPosOffsetY << ";"<< endl;
+//    }
+//    if( key == OF_KEY_DOWN ){
+//        ++screenPosOffsetY;
+//        cout << "screenPosOffsetX = " << screenPosOffsetX << ";"<< endl << "screenPosOffsetY = " << screenPosOffsetY << ";"<< endl;
+//    }
 }
 
 //--------------------------------------------------------------

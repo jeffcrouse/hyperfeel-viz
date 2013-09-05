@@ -148,6 +148,8 @@ public:
 	ofColor getRandomColor();
 	void retryColors();
 	
+    bool bDebugScreen;
+    ofImage debubgFill;
 	/**
 	 * onion
 	 */
@@ -361,5 +363,8 @@ public:
 	//particles
 	int numParticles;
 	ofVbo particleVbo;
+    
+    float screenPosOffsetX, screenPosOffsetY;
+    ofxUICanvas* screenPositionGui;
 	
 };
