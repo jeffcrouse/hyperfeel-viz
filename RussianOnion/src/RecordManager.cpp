@@ -79,7 +79,7 @@ void RecordManager::grabScreen()
 {
     if(!bScreenGrabbed)
     {
-        int x = (ofGetWidth()/2) - (frameDimension/2);
+        int x = (ofGetWidth()*0.75) - (frameDimension/2);
         frame.grabScreen(x, 0, frameDimension, frameDimension);
         bScreenGrabbed = true;
     }
@@ -138,13 +138,16 @@ void RecordManager::update(ofEventArgs &args)
 // -------------------------------------------------
 void RecordManager::startJourney(Journey* j, float duration)
 {
+    
     ofLogNotice() << "RecordManager::startJourney " << j->uid;
-    bJourneyInProgress = true;
     
     stringstream path;
     path << SHARE_ROOT << "/" << j->uid;
     ofDirectory::createDirectory(path.str(), false, true);
-
+    if(!ofDirectory::doesDirectoryExist(path.str(), false))
+        return;
+    
+    bJourneyInProgress = true;
     
     if(bMakePhotoStrips)
     {        
