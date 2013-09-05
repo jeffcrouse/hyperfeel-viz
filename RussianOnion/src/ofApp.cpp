@@ -1187,6 +1187,7 @@ void ofApp::update()
 	timedelta = currentTime - lasttime;
 	lasttime = currentTime;
 	elapsedTime += timedelta * timeScale;
+
 	
 	//tweens auto update vi ofListener
     Eul.set( 0, pow(sin(elapsedTime * .8), 3.)*3, pow(sin(elapsedTime * .4), 3.)*10. );
@@ -1431,7 +1432,7 @@ void ofApp::drawOnion()
 	
 	currentShader->setUniform1f("tunnelMix", tunnelMix );
 	currentShader->setUniform1f("tunnelDeltaScl", tunnelDeltaScl );
-	currentShader->setUniform1f("tunnelTimeScl", tunnelTimeScl );
+	currentShader->setUniform1f("tunnelTimeScl", 	elapsedTime + timedelta * tunnelTimeScl );
 	currentShader->setUniform1f("tunnelDepthScl", tunnelDepthScl );
 	
 	//

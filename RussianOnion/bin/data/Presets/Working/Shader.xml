@@ -1,12 +1,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>22.095123291</Value>
+    <Value>21.645141602</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.899892867</Value>
+    <Value>0.918204367</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -31,12 +31,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>innerAlpha</Name>
-    <Value>0.551315784</Value>
+    <Value>0.551315844</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerFacingRatio</Name>
-    <Value>0.959455252</Value>
+    <Value>0.958813369</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -66,7 +66,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerReadingThreshold</Name>
-    <Value>0.321815282</Value>
+    <Value>0.326046437</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -81,17 +81,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>innerReadingScale</Name>
-    <Value>0.128684208</Value>
+    <Value>0.128684193</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseExponent</Name>
-    <Value>1.026315808</Value>
+    <Value>1.026315928</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseMixExponent</Name>
-    <Value>3.815789461</Value>
+    <Value>3.815789223</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
