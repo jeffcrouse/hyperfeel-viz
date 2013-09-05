@@ -1558,8 +1558,9 @@ void ofApp::drawSideView()
 	{
 		if(i == onions.size()-1 )
 		{
-			onions[i].transform.setScale( newRibbonScale,newRibbonScale,newRibbonScale ); // newRibbonScale scales down to 1.
+			float rbnScl = 1.01;//max( 1.f, newRibbonScale );
 			onions[i].transform.setOrientation( q + q.inverse() * (1.f - newRibbonShaderScale) ); // newRibbonShaderScale == val btwn 0-1
+			onions[i].transform.setScale( rbnScl,rbnScl,rbnScl ); // newRibbonScale scales down to 1.
 			onions[i].sampleVal = newRibbonScale;
 		}
 		else
