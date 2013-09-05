@@ -54,6 +54,8 @@
 		50A150D717C783B0000FADB1 /* displacedBars.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50A150D317C783B0000FADB1 /* displacedBars.vert */; };
 		50A150D817C783B0000FADB1 /* displacedDots.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50A150D417C783B0000FADB1 /* displacedDots.frag */; };
 		50A150D917C783B0000FADB1 /* displacedDots.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50A150D517C783B0000FADB1 /* displacedDots.vert */; };
+		50C3260317D7FDEB008639DC /* ambientParticle.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50C3260117D7FDEB008639DC /* ambientParticle.frag */; };
+		50C3260417D7FDEB008639DC /* ambientParticle.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50C3260217D7FDEB008639DC /* ambientParticle.vert */; };
 		50FE7B4B17C4043400F3DAA5 /* facingRatio.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50FE7B3717C4043400F3DAA5 /* facingRatio.frag */; };
 		50FE7B4C17C4043400F3DAA5 /* facingRatio.vert in Sources */ = {isa = PBXBuildFile; fileRef = 50FE7B3817C4043400F3DAA5 /* facingRatio.vert */; };
 		50FE7B4F17C4043400F3DAA5 /* normal.frag in Sources */ = {isa = PBXBuildFile; fileRef = 50FE7B3B17C4043400F3DAA5 /* normal.frag */; };
@@ -502,6 +504,8 @@
 		50A150D317C783B0000FADB1 /* displacedBars.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displacedBars.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		50A150D417C783B0000FADB1 /* displacedDots.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displacedDots.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		50A150D517C783B0000FADB1 /* displacedDots.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = displacedDots.vert; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		50C3260117D7FDEB008639DC /* ambientParticle.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ambientParticle.frag; sourceTree = "<group>"; };
+		50C3260217D7FDEB008639DC /* ambientParticle.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ambientParticle.vert; sourceTree = "<group>"; };
 		50FE7B3717C4043400F3DAA5 /* facingRatio.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = facingRatio.frag; sourceTree = "<group>"; };
 		50FE7B3817C4043400F3DAA5 /* facingRatio.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = facingRatio.vert; sourceTree = "<group>"; };
 		50FE7B3B17C4043400F3DAA5 /* normal.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = normal.frag; sourceTree = "<group>"; };
@@ -1337,6 +1341,8 @@
 		50FE7B2817C4043400F3DAA5 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				50C3260117D7FDEB008639DC /* ambientParticle.frag */,
+				50C3260217D7FDEB008639DC /* ambientParticle.vert */,
 				505F856017D3014A00AB0295 /* keyVisual.frag */,
 				505F856117D3014A00AB0295 /* keyVisual.vert */,
 				502DAE7217CF9EFE001C8447 /* post.frag */,
@@ -1735,6 +1741,8 @@
 				1F3E8F6E17CFC13A004CDA73 /* ofxHttpUtils.cpp in Sources */,
 				505F856217D3014A00AB0295 /* keyVisual.frag in Sources */,
 				505F856317D3014A00AB0295 /* keyVisual.vert in Sources */,
+				50C3260317D7FDEB008639DC /* ambientParticle.frag in Sources */,
+				50C3260417D7FDEB008639DC /* ambientParticle.vert in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,7 +1,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>timeScl</Name>
-    <Value>1.075846672</Value>
+    <Value>1.105659485</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -52,4 +52,9 @@
     <Kind>2</Kind>
     <Name>keyVisualShader</Name>
     <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>particleShader</Name>
+    <Value>0</Value>
 </Widget>

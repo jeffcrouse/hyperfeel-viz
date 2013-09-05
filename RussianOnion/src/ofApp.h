@@ -142,6 +142,7 @@ public:
 	ofShader onionBarsShader;
 	ofShader onionBarsHorzShader;
 	ofShader onionDotsShader;
+	ofShader particleShader;
 	
 	ofColor getNextJourneyColor();
 	ofColor getRandomColor();

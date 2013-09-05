@@ -76,7 +76,7 @@ void ofApp::setup()
 //    ofSetLogLevel(OF_LOG_VERBOSE);
 	
 	//Journy stuff
-	bLoadJsonsFromFile = false;
+	bLoadJsonsFromFile = true;
 	bJourniesNeedUpdate = false;
 	bOnionSetup = false;
 	
@@ -234,15 +234,16 @@ void ofApp::setup()
 	//camera
 	
 	
-//	vector <ofVec3f> particlePositions;
-//	numParticles = 100000;
-//	particlePositions.resize(numParticles);
-//	
-//	for (int i=0; i<numParticles; i++) {
-//		particlePositions[i].set( ofRandom(-1024, 1024), ofRandom(-1024, 1024), ofRandom(-1024, 1024) );
-//	}
-//	
-//	particleVbo.setVertexData( &particlePositions[0], particlePositions.size(), GL_STATIC_DRAW );
+	vector <ofVec3f> particlePositions;
+	numParticles = 10000;
+	particlePositions.resize(numParticles);
+	
+	for (int i=0; i<numParticles; i++) {
+//		particlePositions[i].set( ofRandom(-1, 1), ofRandom(-1, 1), ofRandom(-1, 1) );
+		particlePositions[i].set( ofRandom(-1024, 1024), ofRandom(-1024, 1024), ofRandom(-1024, 1024) );
+	}
+	
+	particleVbo.setVertexData( &particlePositions[0], particlePositions.size(), GL_STATIC_DRAW );
 }
 
 
@@ -800,9 +801,15 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 		
 		//TODO: magic number
 		//remove the old journeys & onions
-		if(onions.size() > 30){ // could be while() here?
+		
+		int onionDeleteCount = 0;
+		while(onions.size() > 30){ // could be while() here?
 			onions.erase( onions.begin() );
 			journeys.erase( journeys.begin() );
+			if(onionDeleteCount > 30){
+				break;
+			}
+			onionDeleteCount ++;
 		}
 	}
 
@@ -1074,6 +1081,9 @@ void ofApp::loadShaders()
 	
 	displacedShader.load( "shaders/displaced" );
 	shaderMap["displacedShader"] = &displacedShader;
+	
+	particleShader.load( "shaders/ambientParticle" );
+	shaderMap["particleShader"] = &particleShader;
 	
 //	onionShader.load( "shaders/onion" );
 //	shaderMap["onionShader"] = &onionShader;
@@ -1485,7 +1495,8 @@ void ofApp::drawOnion()
 	camera.end();
 }
 
-void ofApp::drawSideView(){
+void ofApp::drawSideView()
+{
 	
 	ofQuaternion q;
 	q.makeRotate(Eul.x, ofVec3f(1,0,0), Eul.y, ofVec3f(0,1,0), Eul.z, ofVec3f(0,0,1));
@@ -1514,6 +1525,7 @@ void ofApp::drawSideView(){
 	
 	globalTransform.makeIdentityMatrix();
 	globalTransform.rotateRad(globalRotationAboutXAxis, 1, 0, 0);
+	
 	
 	//draw it
 	camera.begin();
@@ -1613,6 +1625,7 @@ void ofApp::drawSideView(){
 //			float mMixVal = 1. - mixVal;
 //			
 //			currentShader->setUniform3f( "blendColor", mMixVal*journeyIntroColor.r+mixVal*col.r, mMixVal*journeyIntroColor.g+mixVal*col.g, mMixVal*journeyIntroColor.b+mixVal*col.b );
+
 		}
 		else
 		{
@@ -1632,21 +1645,42 @@ void ofApp::drawSideView(){
 		
 		ofPopMatrix();
 		
+		
 	}
+	
 	
 	
 	glDisable(GL_CULL_FACE);
 	
 	currentShader->end();
 	
-	//	//AMBIENT PARTICLES
-	//	glPointSize( 10 );
-	//	glEnable( GL_VERTEX_PROGRAM_POINT_SIZE );
-	//
-	//	ofSetColor(255, 0, 0);
-	//	particleVbo.draw( GL_POINTS, 0, numParticles );
 	
 	ofPopMatrix();
+	
+	ofPopMatrix();
+	
+	
+	//AMBIENT PARTICLES
+	glDisable( GL_DEPTH_TEST );
+	glEnable( GL_VERTEX_PROGRAM_POINT_SIZE );
+	ofEnableAlphaBlending();
+	
+	float noiseTime = elapsedTime * .2;
+	ofVec3f noiseVec( ofNoise(noiseTime), ofNoise(noiseTime + 2), ofNoise(noiseTime + 3)  );
+	noiseVec *= 10.;
+	
+	ofPushMatrix();
+	ofRotate( elapsedTime, 0, 1, 0 );
+	//	ofScale( sideviewValues["radius"], sideviewValues["radius"], sideviewValues["radius"] );
+	ofTranslate( sideviewValues["positionX"] + noiseVec.x, sideviewValues["positionY"] + cameraOffsetVal * sideviewValues["radius"] + noiseVec.y, sideviewValues["positionZ"] + noiseVec.z);
+	//	ofMultMatrix( onions.back().transform.getGlobalTransformMatrix() );
+	
+	
+	particleShader.begin();
+	particleShader.setUniform1f( "time", elapsedTime );
+	ofSetColor(255, 0, 0);
+	particleVbo.draw( GL_POINTS, 0, numParticles );
+	particleShader.end();
 	
 	ofPopMatrix();
 	
@@ -1938,6 +1972,7 @@ void ofApp::exit()
 		delete vbos[i];
 	}
 	
+	client.close();
     soundManager.exit();
     
 	if(bDebug)	cout << "end of ofApp::exit" << endl;
