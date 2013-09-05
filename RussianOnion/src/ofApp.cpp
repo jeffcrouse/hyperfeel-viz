@@ -211,7 +211,7 @@ void ofApp::setup()
 	bPlayAnimation = true;
 	
 	//kick off animation variation
-	variationKey = tween.addTween( variation, 0, 1, ofGetElapsedTimef(), ofGetElapsedTimef(), "variation", TWEEN_SINUSOIDAL, TWEEN_INOUT);
+	variationKey = tween.addTween( variation, 0, 1, ofGetElapsedTimef(), ofGetElapsedTimef()+5, "variation", TWEEN_SINUSOIDAL, TWEEN_INOUT);
 	variationTween = tween.getTween( variationKey );//<--a looping tween( basically a timer ) that triggers transitions between presets
 	variationTween->bKeepAround = true;
 	
@@ -761,12 +761,12 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 	
 	//perpetual mixing of presets
 	//TODO: rename variationKey
-	if(e.name == variationKey && bPlayAnimation && !bAddingRibbon )
+	if(e.name == variationKey && bPlayAnimation )// && !bAddingRibbon )
 	{
 		if (e.message == "started")
 		{
 			//make doublely sure
-			lastValues = currentValues;
+//			lastValues = currentValues;
             cout << animationPresets[presetMixIndex] << endl;
             
             cout << "STARTED ANIMATION" << endl;
@@ -782,8 +782,11 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 		if( e.message == "ended")
 		{
 			//cout << e.name << ": " << e.message << " : " << ofGetElapsedTimef() << endl;
-			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
-			variationTween->bKeepAround = true;
+//			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
+//			variationTween->bKeepAround = true;
+			
+			variationKey = tween.addTween( variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, "variation") ;
+			tween.getTween(variationKey)->bKeepAround = true;
 			
 			presetMixIndex++;
 			if (presetMixIndex >= animationPresets.size())
@@ -792,7 +795,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			}
 			
 			//make sure to store our current values to mix with later
-//			lastValues = currentValues;
+			lastValues = currentValues;
 		}
 	}
 	
@@ -812,17 +815,14 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 				//when we add a new layer the scales after the new layer sholud stay the same
 				tween.addTween( newRibbonScale, startScale, 1, ofGetElapsedTimef(), newRibbonScaleDuration, "newRibbonScale", TWEEN_LINEAR, TWEEN_INOUT );
 				newRibbonShaderScale = 0;
+				newRibbonScale = 1;
                 
                 
 				//audio
                 float totalDuration = newRibbonScaleDuration;
                 recordManager.startJourney(journeys.back(), totalDuration);
                 soundManager.startJourney(journeys.back());
-				
-//				//go
-//				tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), 3, "startJourneyMix" );
 			}
-            bPlayAnimation = false;
 		}
 		
         if( e.message=="updated")
@@ -831,7 +831,6 @@ void ofApp::tweenEventHandler(TweenEvent &e)
         }
 		
 		if ( e.message == "updated") {
-//			cout << e.name << ": "<< e.value << " ::: " << sampleJourney(journeys.size()-1, e.value) << endl;
 			Reading sample = sampleJourney(journeys.size()-1, e.value);
 			cameraOffsetVal = sample.getAttention();// - sample.getMeditation();
 			cameraOffsetVal *= -3;
@@ -841,13 +840,20 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 		{
 			bAddingRibbon = false;
             bPlayAnimation = true;
-			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
-			variationTween->bKeepAround = true;
+//			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
+//			variationTween->bKeepAround = true;
 			
 			//Jeff, this is the correct setup?
             recordManager.endJourney(journeys.back());
             soundManager.endJourney(journeys.back());
             
+		}
+	}
+	
+	if(e.name == "newRibbonScale")
+	{
+		if(e.message == "ended"){
+			newRibbonScale = 1.;
 		}
 	}
 	
@@ -1377,15 +1383,16 @@ void ofApp::drawOnion()
 	ofQuaternion q;
 	q.makeRotate(Eul.x, ofVec3f(1,0,0), Eul.y, ofVec3f(0,1,0), Eul.z, ofVec3f(0,0,1));
 	
-	float startScale = 1. / recursiveScale;
+	float startScale = 1.;// 1. / recursiveScale;
 	
 	minSampleVal = 10000000;
 	for (int i=onions.size()-1; i>=0; i--)
 	{
 		if(i == onions.size()-1 )
 		{
-			onions[i].transform.setScale( newRibbonScale,newRibbonScale,newRibbonScale ); // newRibbonScale scales down to 1.
+			float rbnScl = 1.01;//max( 1.f, newRibbonScale );
 			onions[i].transform.setOrientation( q + q.inverse() * (1.f - newRibbonShaderScale) ); // newRibbonShaderScale == val btwn 0-1
+			onions[i].transform.setScale( rbnScl,rbnScl,rbnScl ); // newRibbonScale scales down to 1.
 			onions[i].sampleVal = newRibbonScale;
 		}
 		else
