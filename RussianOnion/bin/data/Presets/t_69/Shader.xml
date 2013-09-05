@@ -1,27 +1,12 @@
 <Widget>
     <Kind>4</Kind>
-    <Name>rotateX</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>rotateY</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>rotateZ</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>16.602338791</Value>
+    <Value>20.078947067</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.934210539</Value>
+    <Value>0.931286573</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -30,8 +15,23 @@
 </Widget>
 <Widget>
     <Kind>4</Kind>
+    <Name>squishY</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
     <Name>dataSmoothing</Name>
     <Value>0.076578945</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>outerAlpha</Name>
+    <Value>0.542631567</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>innerAlpha</Name>
+    <Value>0.973947346</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -54,11 +54,6 @@
     <Value>0.051886793</Value>
 </Widget>
 <Widget>
-    <Kind>2</Kind>
-    <Name>rotateOnNewJourney</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
     <Kind>4</Kind>
     <Name>outerDisplacement</Name>
     <Value>42.105270386</Value>
@@ -70,23 +65,13 @@
 </Widget>
 <Widget>
     <Kind>4</Kind>
-    <Name>outerAlpha</Name>
-    <Value>0.409473687</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>innerAlpha</Name>
-    <Value>0.973947346</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
     <Name>outerReadingThreshold</Name>
     <Value>0.318713456</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerReadingThreshold</Name>
-    <Value>0.002923977</Value>
+    <Value>0.423976600</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -97,4 +82,24 @@
     <Kind>4</Kind>
     <Name>innerReadingScale</Name>
     <Value>0.010000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>noiseExponent</Name>
+    <Value>1.026315808</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>noiseMixExponent</Name>
+    <Value>1.947368383</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>noisePosScale</Name>
+    <Value>94.546783447</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>noiseSpread</Name>
+    <Value>-0.450292408</Value>
 </Widget>

@@ -1,5 +1,10 @@
 <Widget>
     <Kind>2</Kind>
+    <Name>_t2</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>j_0</Name>
     <Value>0</Value>
 </Widget>
@@ -85,11 +90,6 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>k_3</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
     <Name>k_4</Name>
     <Value>0</Value>
 </Widget>
@@ -120,7 +120,32 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
+    <Name>keyFour</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>keyThree</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>keyTwo</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
     <Name>keyVis</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>scene</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>screen</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
@@ -140,17 +165,7 @@
 </Widget>
 <Widget>
     <Kind>2</Kind>
-    <Name>t_1</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>t_3</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>t_4</Name>
+    <Name>t_2</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
@@ -161,11 +176,6 @@
 <Widget>
     <Kind>2</Kind>
     <Name>t_6</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>t_66</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
@@ -196,5 +206,10 @@
 <Widget>
     <Kind>2</Kind>
     <Name>Working</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>keyFive</Name>
     <Value>0</Value>
 </Widget>

@@ -1,0 +1,60 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>timeScl</Name>
+    <Value>1.105659485</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>playAnimation</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>circleRadius</Name>
+    <Value>451.933959961</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>edgeAADist</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>vortexScl</Name>
+    <Value>0.122641563</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>onion</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>depthTest</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>displacedBarsShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>displacedDotsShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>displacedShader</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>keyVisualShader</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>particleShader</Name>
+    <Value>0</Value>
+</Widget>

@@ -1,7 +1,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>21.690059662</Value>
+    <Value>28.812864304</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -96,10 +96,10 @@
 <Widget>
     <Kind>4</Kind>
     <Name>noisePosScale</Name>
-    <Value>94.546783447</Value>
+    <Value>6.245614052</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseSpread</Name>
-    <Value>0.631578922</Value>
+    <Value>-0.345029235</Value>
 </Widget>

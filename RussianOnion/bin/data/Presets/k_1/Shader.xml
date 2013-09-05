@@ -1,7 +1,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>19.654970169</Value>
+    <Value>23.640350342</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -21,7 +21,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>dataSmoothing</Name>
-    <Value>0.227105275</Value>
+    <Value>0.296578944</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -66,7 +66,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerReadingThreshold</Name>
-    <Value>0.230994150</Value>
+    <Value>0.277777791</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -76,7 +76,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerReadingScale</Name>
-    <Value>0.125789478</Value>
+    <Value>0.067894734</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

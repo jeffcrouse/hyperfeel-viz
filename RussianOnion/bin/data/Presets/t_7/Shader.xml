@@ -1,12 +1,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>21.944444656</Value>
+    <Value>24.657894135</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.921052635</Value>
+    <Value>0.942982435</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -26,22 +26,22 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerAlpha</Name>
-    <Value>0.010000000</Value>
+    <Value>0.154736847</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerAlpha</Name>
-    <Value>0.235789478</Value>
+    <Value>0.189473689</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerFacingRatio</Name>
-    <Value>0.010000000</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>outerFacingRatio</Name>
-    <Value>0.010000000</Value>
+    <Value>1.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -71,12 +71,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>innerReadingThreshold</Name>
-    <Value>0.175438598</Value>
+    <Value>0.315789461</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>outerReadingScale</Name>
-    <Value>0.125789478</Value>
+    <Value>0.064999998</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -101,5 +101,5 @@
 <Widget>
     <Kind>4</Kind>
     <Name>noiseSpread</Name>
-    <Value>0.631578922</Value>
+    <Value>1.000000000</Value>
 </Widget>

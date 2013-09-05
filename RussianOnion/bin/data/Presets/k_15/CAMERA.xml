@@ -58,8 +58,3 @@
     <Name>EulScale</Name>
     <Value>1.000000954</Value>
 </Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>onJourneyRot</Name>
-    <Value>0.011695862</Value>
-</Widget>

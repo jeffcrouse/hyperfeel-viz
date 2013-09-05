@@ -28,3 +28,33 @@
     <Name>positionZ</Name>
     <Value>0.000000000</Value>
 </Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>bSideView</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>tunnelMix</Name>
+    <Value>0.397660822</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>tunnelDeltaScl</Name>
+    <Value>0.131578952</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>tunnelTimeScl</Name>
+    <Value>5.555555344</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>tunnelDepthScl</Name>
+    <Value>8.801169395</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>EulScale</Name>
+    <Value>-0.035087705</Value>
+</Widget>

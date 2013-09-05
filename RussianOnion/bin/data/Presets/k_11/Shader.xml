@@ -1,12 +1,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>18.489887238</Value>
+    <Value>22.114036560</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.847953200</Value>
+    <Value>0.899122834</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -66,7 +66,7 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerReadingThreshold</Name>
-    <Value>0.368421048</Value>
+    <Value>0.321637422</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

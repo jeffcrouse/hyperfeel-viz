@@ -165,6 +165,11 @@
     <Value>0</Value>
 </Widget>
 <Widget>
+    <Kind>20</Kind>
+    <Name>palette_27</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
     <Kind>5</Kind>
     <Name>c_0_r</Name>
     <Value>0.078431375</Value>
