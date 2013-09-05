@@ -14,7 +14,7 @@ void ofApp::setup()
 	ofSetVerticalSync(true);
 	bDebug = true;
     
-//    ofSetWindowShape(1920*2,1200);
+    ofSetWindowShape(1920*2,1080);
     
 	//fbo
 	fbo.allocate( ofGetWidth(), ofGetHeight(), GL_RGBA16F, 4 );
@@ -1439,9 +1439,9 @@ void ofApp::drawOnion()
 	ofPushMatrix();
 	
 	ofScale( radius, radius, radius );
-	ofTranslate( onionPosX, onionPosY, onionPosZ );
-	
-	ofTranslate( positionX, positionY, positionZ );
+//	ofTranslate( onionPosX, onionPosY, onionPosZ );
+//	
+//	ofTranslate( positionX, positionY, positionZ );
 	
 	ofRotateX( rotateX );
 	ofRotateY( rotateY );

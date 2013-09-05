@@ -46,15 +46,15 @@
 <Widget>
     <Kind>4</Kind>
     <Name>tunnelTimeScl</Name>
-    <Value>-4.210472584</Value>
+    <Value>-0.012194633</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>tunnelDepthScl</Name>
-    <Value>15.000005722</Value>
+    <Value>15.064518929</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>EulScale</Name>
-    <Value>1.000000954</Value>
+    <Value>1.000000477</Value>
 </Widget>
