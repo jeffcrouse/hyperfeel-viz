@@ -14,7 +14,7 @@ void ofApp::setup()
 	ofSetVerticalSync(true);
 	bDebug = true;
     
-    ofSetWindowShape(1920*2,1200);
+//    ofSetWindowShape(1920*2,1200);
     
 	//fbo
 //	fbo.allocate( ofGetWidth(), ofGetHeight(), GL_RGBA16F, 4 );
@@ -155,6 +155,7 @@ void ofApp::setup()
 	animationPresets.push_back("k_4");
 	animationPresets.push_back("k_5");
 	animationPresets.push_back("k_6");
+	animationPresets.push_back("keyVis");
 	animationPresets.push_back("k_7");
 	animationPresets.push_back("k_8");
 	animationPresets.push_back("keyVis");
@@ -181,6 +182,7 @@ void ofApp::setup()
 	animationPresets.push_back("t_66");
 	animationPresets.push_back("t_67");
 	animationPresets.push_back("t_68");
+	animationPresets.push_back("keyVis");
 	animationPresets.push_back("t_69");
 	animationPresets.push_back("keyVis");
 	
@@ -757,6 +759,43 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 	float startScale = 1. / recursiveScale;
 	
 	
+	//perpetual mixing of presets
+	//TODO: rename variationKey
+	if(e.name == variationKey && bPlayAnimation && !bAddingRibbon )
+	{
+		if (e.message == "started")
+		{
+			//make doublely sure
+			lastValues = currentValues;
+            cout << animationPresets[presetMixIndex] << endl;
+            
+            cout << "STARTED ANIMATION" << endl;
+		}
+		
+		if( e.message == "updated")
+		{
+			//transition to the next preset
+			mixPresets( animationPresets[presetMixIndex], e.value );
+		}
+		
+		
+		if( e.message == "ended")
+		{
+			//cout << e.name << ": " << e.message << " : " << ofGetElapsedTimef() << endl;
+			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
+			variationTween->bKeepAround = true;
+			
+			presetMixIndex++;
+			if (presetMixIndex >= animationPresets.size())
+			{
+				presetMixIndex = 0;
+			}
+			
+			//make sure to store our current values to mix with later
+//			lastValues = currentValues;
+		}
+	}
+	
 	//action when a new ribbon animates in
 	if(e.name == addRibbonTween)
 	{
@@ -776,9 +815,12 @@ void ofApp::tweenEventHandler(TweenEvent &e)
                 
                 
 				//audio
-                float totalDuration = newRibbonScaleDuration + (newRibbonAnimationSpan*2);
+                float totalDuration = newRibbonScaleDuration;
                 recordManager.startJourney(journeys.back(), totalDuration);
                 soundManager.startJourney(journeys.back());
+				
+//				//go
+//				tween.addTween( keyVisVar, 0, 1, ofGetElapsedTimef(), 3, "startJourneyMix" );
 			}
             bPlayAnimation = false;
 		}
@@ -798,12 +840,14 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 		if( e.message == "ended" )
 		{
 			bAddingRibbon = false;
+            bPlayAnimation = true;
+			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
+			variationTween->bKeepAround = true;
 			
 			//Jeff, this is the correct setup?
             recordManager.endJourney(journeys.back());
             soundManager.endJourney(journeys.back());
             
-            bPlayAnimation = true;
 		}
 	}
 	
@@ -825,6 +869,30 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 			onionDeleteCount ++;
 		}
 	}
+	
+//	if( e.name == "startJourneyMix" )
+//	{
+//		if(e.message == "started")
+//		{
+//			cout << e.name <<" : " << e.message << endl;
+//			
+//			lastValues = currentValues;
+//			
+//			cout << e.name << ": " << e.value << endl;
+//			bPlayAnimation = false;
+//		}
+//		if(e.message == "updated")
+//		{
+//			cout << e.name << ": " << e.value << endl;
+//			bPlayAnimation = false;
+//			
+//			mixPresets( "keyVis", ofClamp( e.value, 0, 1) );
+//		}
+//		if(e.message == "ended")
+//		{
+//			cout << e.name <<" : " << e.message << endl;
+//		}
+//	}
 
 	
 //	//this adds a journey and controls the variable that plays the music
@@ -940,51 +1008,6 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 //	}
 	
 	
-	//perpetual mixing of presets
-	//TODO: rename variationKey
-	if(e.name == variationKey && bPlayAnimation)
-	{
-		if (e.message == "started")
-		{
-			//make doublely sure
-			lastValues = currentValues;
-            cout << animationPresets[presetMixIndex] << endl;
-            
-            cout << "STARTED ANIMATION" << endl;
-		}
-		
-		//if we're not loading a Journey and actively animating then we are mixing and tweening
-		if(!bLaodingJourney)
-		{
-			if( e.message == "updated")
-			{
-				//transition to the next preset
-				mixPresets( animationPresets[presetMixIndex], e.value );
-			}
-			
-			
-			if( e.message == "ended")
-			{
-				//cout << e.name << ": " << e.message << " : " << ofGetElapsedTimef() << endl;
-				variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
-				variationTween->bKeepAround = true;
-				
-				presetMixIndex++;
-				if (presetMixIndex >= animationPresets.size())
-				{
-					presetMixIndex = 0;
-				}
-				
-				//make sure to store our current values to mix with later
-				lastValues = currentValues;
-			}
-		}
-		
-		else
-		{
-			//we must be loading a journey. so no mixing here.
-		}
-	}
 }
 
 
