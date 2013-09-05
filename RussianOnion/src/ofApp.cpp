@@ -17,7 +17,7 @@ void ofApp::setup()
 //    ofSetWindowShape(1920*2,1200);
     
 	//fbo
-//	fbo.allocate( ofGetWidth(), ofGetHeight(), GL_RGBA16F, 4 );
+	fbo.allocate( ofGetWidth(), ofGetHeight(), GL_RGBA16F, 4 );
 	
 	ofFbo::Settings s;
 	s.width         = ofGetWidth()/2;
