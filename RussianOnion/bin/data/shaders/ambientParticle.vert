@@ -25,7 +25,7 @@ void main()
 	gl_Position = gl_ProjectionMatrix * ecPosition;
 	
 	//texture index
-	gl_PointSize = min( 60., 60. * pow( max(0., 1. - length( ecPosition.xyz )/1000. ), 2.));
+	gl_PointSize = min( 10., 10. * pow( max(0., 1. - length( ecPosition.xyz )/2000. ), 2.));
 	
 	color = vec4( 1., 1., 1., nVal * .125 );
 }

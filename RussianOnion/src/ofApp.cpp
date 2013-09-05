@@ -228,7 +228,7 @@ void ofApp::setup()
 	
 	
 	vector <ofVec3f> particlePositions;
-	numParticles = 10000;
+	numParticles = 20000;
 	particlePositions.resize(numParticles);
 	
 	for (int i=0; i<numParticles; i++) {
@@ -1684,12 +1684,12 @@ void ofApp::drawSideView()
 	glEnable( GL_VERTEX_PROGRAM_POINT_SIZE );
 	ofEnableAlphaBlending();
 	
-	float noiseTime = elapsedTime * .2;
+	float noiseTime = elapsedTime * .1;
 	ofVec3f noiseVec( ofNoise(noiseTime), ofNoise(noiseTime + 2), ofNoise(noiseTime + 3)  );
 	noiseVec *= 10.;
 	
 	ofPushMatrix();
-	ofRotate( elapsedTime, 0, 1, 0 );
+	ofRotate( elapsedTime * .3, 0, 1, 0 );
 	//	ofScale( sideviewValues["radius"], sideviewValues["radius"], sideviewValues["radius"] );
 	ofTranslate( sideviewValues["positionX"] + noiseVec.x, sideviewValues["positionY"] + cameraOffsetVal * sideviewValues["radius"] + noiseVec.y, sideviewValues["positionZ"] + noiseVec.z);
 	//	ofMultMatrix( onions.back().transform.getGlobalTransformMatrix() );
@@ -1983,7 +1983,6 @@ void ofApp::exit()
 		ofRemoveListener(guis[i]->newGUIEvent,this,&ofApp::guiEvent);
 		delete guis[i];
 	}
-    delete screenPositionGui;
 	
 	//delete our vbos
 	if(bDebug)	cout << "deleting/clearing vbos" << endl;
