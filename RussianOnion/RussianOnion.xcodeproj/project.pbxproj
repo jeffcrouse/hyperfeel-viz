@@ -486,7 +486,7 @@
 		503DC1FD17D7C8D400F61971 /* PRESETS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PRESETS.xml; sourceTree = "<group>"; };
 		503DC1FE17D7C8D400F61971 /* Shader.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shader.xml; sourceTree = "<group>"; };
 		503DC1FF17D7C8D400F61971 /* Utils.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Utils.xml; sourceTree = "<group>"; };
-		505F856017D3014A00AB0295 /* keyVisual.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = keyVisual.frag; sourceTree = "<group>"; };
+		505F856017D3014A00AB0295 /* keyVisual.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = keyVisual.frag; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		505F856117D3014A00AB0295 /* keyVisual.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = keyVisual.vert; sourceTree = "<group>"; };
 		5086E4EA17CBD0C300094645 /* HyperfeelTween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HyperfeelTween.cpp; sourceTree = "<group>"; };
 		5086E4EB17CBD0C300094645 /* HyperfeelTween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyperfeelTween.h; sourceTree = "<group>"; };

@@ -218,7 +218,7 @@ void main(void)
 	
 	
 //	/light tunnel
-	float tunnelVal = sin( (sampleVal+delta*tunnelDeltaScl) * tunnelDepthScl - time * tunnelTimeScl ) + 1.2;
+	float tunnelVal = sin( (sampleVal+delta*tunnelDeltaScl) * tunnelDepthScl - tunnelTimeScl ) + 1.2;
 	col = col * tunnelVal * tunnelMix + col * (1.-tunnelMix);
 	a = a * tunnelVal * tunnelMix + a * (1.-tunnelMix);
 	
