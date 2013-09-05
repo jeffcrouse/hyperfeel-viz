@@ -13,7 +13,9 @@ void ofApp::setup()
 {
 	ofSetVerticalSync(true);
 	bDebug = true;
-		
+    
+    ofSetWindowShape(1920*2,1200);
+    
 	//fbo
 //	fbo.allocate( ofGetWidth(), ofGetHeight(), GL_RGBA16F, 4 );
 	
@@ -2078,8 +2080,13 @@ void ofApp::keyPressed(int key)
 		retryColors();
 	}
 	
+	if(key == 'f' || key == 'F'){
+        //		captrure = true;
+       ofToggleFullscreen();
+	}
+	
 	if(key == 'e' || key == 'E'){
-//		captrure = true;
+        //		captrure = true;
 	}
 	
 	if(key == 'j' || key == ' '){

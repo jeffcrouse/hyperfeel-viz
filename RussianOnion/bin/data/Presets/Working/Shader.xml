@@ -1,17 +1,17 @@
 <Widget>
     <Kind>4</Kind>
     <Name>radius</Name>
-    <Value>21.347118378</Value>
+    <Value>20.014131546</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>recursiveScale</Name>
-    <Value>0.953770638</Value>
+    <Value>0.934354186</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>squish</Name>
-    <Value>0.654176474</Value>
+    <Value>0.819928527</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -21,32 +21,32 @@
 <Widget>
     <Kind>4</Kind>
     <Name>dataSmoothing</Name>
-    <Value>0.250299275</Value>
+    <Value>0.227105230</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>outerAlpha</Name>
-    <Value>0.997321486</Value>
+    <Value>0.998420477</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerAlpha</Name>
-    <Value>0.459049761</Value>
+    <Value>0.477076322</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerFacingRatio</Name>
-    <Value>0.953611076</Value>
+    <Value>0.601504326</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>outerFacingRatio</Name>
-    <Value>0.604428589</Value>
+    <Value>0.754400373</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseScale</Name>
-    <Value>0.007293519</Value>
+    <Value>0.007210307</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -56,32 +56,32 @@
 <Widget>
     <Kind>4</Kind>
     <Name>outerDisplacement</Name>
-    <Value>-44.683410645</Value>
+    <Value>-27.922264099</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerDisplacement</Name>
-    <Value>-88.168159485</Value>
+    <Value>-6.660049438</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>outerReadingThreshold</Name>
-    <Value>0.263969839</Value>
+    <Value>0.296903163</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerReadingThreshold</Name>
-    <Value>0.184196830</Value>
+    <Value>0.175438598</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>outerReadingScale</Name>
-    <Value>0.127090082</Value>
+    <Value>0.095540561</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>innerReadingScale</Name>
-    <Value>0.015636072</Value>
+    <Value>0.063922130</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -91,15 +91,15 @@
 <Widget>
     <Kind>4</Kind>
     <Name>noiseMixExponent</Name>
-    <Value>1.947368264</Value>
+    <Value>2.796248674</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noisePosScale</Name>
-    <Value>94.546783447</Value>
+    <Value>94.546806335</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>noiseSpread</Name>
-    <Value>0.092052460</Value>
+    <Value>0.101565361</Value>
 </Widget>
