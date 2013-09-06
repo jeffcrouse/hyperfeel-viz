@@ -1208,6 +1208,14 @@ void ofApp::update()
         client.connect( options );
         lastConnectionAttempt = currentTime;
     }
+   
+#ifdef __APPLE__
+    if(currentTime-lastMouseMove>5) {
+        CGDisplayHideCursor(NULL); // <- OK
+    } else {
+        CGDisplayShowCursor(NULL);
+    }
+#endif
 }
 
 void ofApp::retryColors()
