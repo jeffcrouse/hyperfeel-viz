@@ -21,12 +21,12 @@
 <Widget>
     <Kind>4</Kind>
     <Name>positionY</Name>
-    <Value>0.147647858</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>positionZ</Name>
-    <Value>9.006607056</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -46,15 +46,15 @@
 <Widget>
     <Kind>4</Kind>
     <Name>tunnelTimeScl</Name>
-    <Value>-0.696713448</Value>
+    <Value>0.002483368</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>tunnelDepthScl</Name>
-    <Value>15.317804337</Value>
+    <Value>15.000569344</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>EulScale</Name>
-    <Value>0.975315094</Value>
+    <Value>0.701979637</Value>
 </Widget>

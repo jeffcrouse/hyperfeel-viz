@@ -302,7 +302,7 @@ void ofApp::setDefaults()
 	keyVisSpan = 2;
 	
 	vortexScl = 1;
-    
+    lastMouseMove = 0;
     
     screenPosOffsetX = 0;
     screenPosOffsetY = 0;
@@ -607,6 +607,11 @@ void ofApp::setupUI()
 	ofAddListener( guiPost->newGUIEvent,this,&ofApp::guiEvent );
 	ofAddListener( guiUtils->newGUIEvent,this,&ofApp::guiEvent );
 
+    
+    for(vector<ofxUICanvas *>::iterator it = guis.begin(); it != guis.end(); ++it)
+    {
+        (*it)->toggleVisible();
+    }
 	
 	//load our working sttings
 	//	loadPreset("Working");
@@ -786,7 +791,7 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 //			variationTween->bKeepAround = true;
 			
 			variationKey = tween.addTween( variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, "variation") ;
-			tween.getTween(variationKey)->bKeepAround = true;
+//			tween.getTween(variationKey)->bKeepAround = true;
 			
 			presetMixIndex++;
 			if (presetMixIndex >= animationPresets.size())
@@ -1121,6 +1126,8 @@ void ofApp::loadShaders()
 void ofApp::update()
 {
     ofSetWindowTitle(ofToString(ofGetFrameRate())+"fps");
+    
+  
     
 	//preset load/save
 	if(bSavePreset){
@@ -2216,7 +2223,7 @@ void ofApp::keyReleased(int key)
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y )
 {
-	
+	lastMouseMove = ofGetElapsedTimef();
 }
 
 //--------------------------------------------------------------
