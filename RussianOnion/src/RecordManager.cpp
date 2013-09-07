@@ -126,7 +126,7 @@ void RecordManager::update(ofEventArgs &args)
     {
         grabScreen();
         stringstream path;
-        path << SHARE_ROOT << "/Snapshots/" << ofGetTimestampString("%m%d%H%M%S") << ".png";
+        path << LOCAL_SHARE_ROOT << "/Snapshots/" << ofGetTimestampString("%m%d%H%M%S") << ".png";
         frame.saveThreaded(path.str());
         lastSnapshot = now;
     }
@@ -142,7 +142,7 @@ void RecordManager::startJourney(Journey* j, float duration)
     ofLogNotice() << "RecordManager::startJourney " << j->uid;
     
     stringstream path;
-    path << SHARE_ROOT << "/" << j->uid;
+    path << LOCAL_SHARE_ROOT << "/" << j->uid;
     ofDirectory::createDirectory(path.str(), false, true);
     if(!ofDirectory::doesDirectoryExist(path.str(), false))
         return;
@@ -168,7 +168,7 @@ void RecordManager::startJourney(Journey* j, float duration)
                 << " -b:a 192k "
                 << " -s 640x640 "
                 << " -q:v 3 "
-                << SHARE_ROOT << "/" << j->uid << "/video.mov";
+                << LOCAL_SHARE_ROOT << "/" << j->uid << "/video.mov";
         
         vidRecorder.setupCustomOutput(frameDimension, frameDimension, frameRate, sampleRate, channels, settings.str());
     }
@@ -203,7 +203,7 @@ void RecordManager::endJourney(Journey* j)
     
     if(bMakePhotoStrips)
     {
-        path << SHARE_ROOT << "/" << j->uid << "/photoStrip.png";
+        path << LOCAL_SHARE_ROOT << "/" << j->uid << "/photoStrip.png";
         
         photoStrip.readToPixels(photoStripSaver.getPixelsRef());
         photoStripSaver.saveThreaded(path.str());
@@ -222,9 +222,13 @@ void RecordManager::endJourney(Journey* j)
     
     
     Json::StyledWriter writer;
-    path << SHARE_ROOT << "/" << j->uid << "/info.json";
+    path << LOCAL_SHARE_ROOT << "/" << j->uid << "/info.json";
     ofstream fs( path.str().c_str() );
     fs << writer.write( json ) << endl;
     fs.close();
+    
+    path.str("");
+    path << "cp -avr " << LOCAL_SHARE_ROOT << "/" << j->uid << " " << REMOTE_SHARE_ROOT << " &";
+    system( path.str().c_str() );
 }
 

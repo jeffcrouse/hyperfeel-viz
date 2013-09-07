@@ -14,7 +14,9 @@
 #include "ofxThreadedImageSaver.h"
 
 
-#define SHARE_ROOT "/Volumes/sharing-1"
+#define LOCAL_SHARE_ROOT "/Users/jeff/Desktop/Sharing"
+#define REMOTE_SHARE_ROOT "/Users/jeff/Desktop/Remote_Share"
+
 
 class RecordManager
 {
