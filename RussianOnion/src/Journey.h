@@ -96,11 +96,11 @@ public:
             events.push_back( e );
         }
         
-        long start = readings.front().getTime();
-        long end = readings.back().getTime();
-        long duration = end-start;
-        ofLogNotice() << "Constructed Journey " << uid << " with " << readings.size() << " readings duration: " << duration;
-		
+//        long start = readings.front().getTime();
+//        long end = readings.back().getTime();
+//        long duration = end-start;
+//        ofLogNotice() << "Constructed Journey " << uid << " with " << readings.size() << " readings duration: " << duration;
+//		
 		//t is a value btwn 0-1 proportionate to it's index position
 		if( readings.size() ){
 			float step = 1. / float(readings.size() - 1);

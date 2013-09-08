@@ -822,11 +822,13 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 				newRibbonShaderScale = 0;
 				newRibbonScale = 1;
                 
-                
-				//audio
-                float totalDuration = newRibbonScaleDuration;
-                recordManager.startJourney(journeys.back(), totalDuration);
-                soundManager.startJourney(journeys.back());
+                if(journeys.size() > 0)
+                {
+                    //audio
+                    float totalDuration = newRibbonScaleDuration;
+                    recordManager.startJourney(journeys.back(), totalDuration);
+                    soundManager.startJourney(journeys.back());
+                }
 			}
 		}
 		
@@ -848,9 +850,12 @@ void ofApp::tweenEventHandler(TweenEvent &e)
 //			variationTween->setup( &variation, 0, 1, ofGetElapsedTimef(), animationPresetVariationTime, TWEEN_SINUSOIDAL, TWEEN_INOUT, "variation" );
 //			variationTween->bKeepAround = true;
 			
-			//Jeff, this is the correct setup?
-            recordManager.endJourney(journeys.back());
-            soundManager.endJourney(journeys.back());
+            if(journeys.size() > 0)
+            {
+                //Jeff, this is the correct setup?
+                recordManager.endJourney(journeys.back());
+                soundManager.endJourney(journeys.back());
+            }
             
 		}
 	}
@@ -2332,7 +2337,10 @@ void ofApp::handleRoute( Json::Value& _json)
 	
     else if(route=="addJourney" || route == "replayJourney") {
         ofLogNotice() << "ading journey to queue";
-        queue.push_back( new Journey(json["journey"], true) );
+        if(json["journey"]["readings"].size() > 0)
+        {
+            queue.push_back( new Journey(json["journey"], true) );
+        }
 
     }
 	
